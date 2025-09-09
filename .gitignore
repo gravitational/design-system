@@ -1,0 +1,45 @@
+# Logs
+logs
+*.log
+
+# Coverage directory used by tools like istanbul
+coverage
+*.lcov
+
+# Dependency directories
+node_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# dotenv environment variable files
+.env
+.env.*
+!.env.example
+
+# Vite logs files
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Storybook files
+*storybook.log
+storybook-static
+
+# Dist
+dist/
+
+# JetBrains IDEs
+.idea/
+*.iml
+
+# TypeScript build info files
+.typescript
+
+# SWC
+.swc

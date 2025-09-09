@@ -1,0 +1,102 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../docs/Canvas';
+import { PropTypes } from '../../../docs/PropTypes';
+
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Used to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation.
+
+## Usage
+
+```tsx
+import { Button } from '@gravitational/design-system';
+
+<Button variant="filled">Click me</Button>;
+```
+
+### Sizes
+
+Use the `size` prop to adjust the button size.
+
+<Canvas of={ButtonStories.Sizes} />
+
+### Intent
+
+Use the `intent` prop to adjust the button's purpose.
+
+<Canvas of={ButtonStories.Intents} />
+
+### Fill
+
+Use `fill` to change the style of the button.
+
+<Canvas of={ButtonStories.Fill} />
+
+### Icon
+
+Use an icon by passing it as a child. It will automatically adjust its size based on the button size.
+
+<Canvas of={ButtonStories.Icon} />
+
+### Disabled
+
+Use the `disabled` prop to disable the button.
+
+<Canvas of={ButtonStories.DisabledButtons} />
+
+### Link
+
+Use `asChild` to render the button as a link. Use `fill="link"` or `ButtonLink` to style the button like a traditional link (underlined/blue text).
+
+<Canvas of={ButtonStories.Links} />
+
+### Presets
+
+There are several button presets available for common use cases.
+
+<Canvas of={ButtonStories.Presets} />
+
+### Loading
+
+Use the `loading` prop to show a loading spinner. `loadingText` can be used to show text next to the spinner.
+
+<Canvas of={ButtonStories.Loading} />
+
+### Spinner Placement
+
+Use the `spinnerPlacement` prop to adjust the spinner placement.
+
+<Canvas of={ButtonStories.SpinnerPlacement} />
+
+### Group
+
+Use `ButtonGroup` to group buttons together. Use the `attached` prop to remove spacing between buttons and the middle border radius.
+
+<Canvas of={ButtonStories.Group} />
+
+### Block
+
+The `block` prop makes the button take the full width of its container.
+
+<Canvas of={ButtonStories.Block} />
+
+### Compact
+
+Use the `compact` prop to reduce the button padding for a more compact look.
+
+<Canvas of={ButtonStories.Compact} />
+
+### Input Alignment
+
+Use the `inputAlignment` prop to change the padding of the button to be aligned with the text in an input field.
+
+<Canvas of={ButtonStories.InputAlignment} />
+
+## Props
+
+<PropTypes of={ButtonStories} />

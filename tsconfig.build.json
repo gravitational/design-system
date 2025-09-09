@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "composite": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "emitDeclarationOnly": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "noEmitHelpers": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "outDir": "dist",
+    "pretty": true,
+    "rootDir": ".",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "stripInternal": true,
+    "strict": true,
+    "target": "esnext",
+    "tsBuildInfoFile": ".typescript/tsconfig.build.tsbuildinfo",
+    "verbatimModuleSyntax": true,
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx"
+  ]
+}

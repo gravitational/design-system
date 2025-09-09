@@ -1,0 +1,36 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../docs/Canvas';
+import { PropTypes } from '../../../docs/PropTypes';
+
+import * as CloseButtonStories from './CloseButton.stories';
+
+<Meta of={CloseButtonStories} />
+
+# CloseButton
+
+Used to trigger closing a dialog, modal, or dismissing a notification.
+
+## Usage
+
+```tsx
+import { CloseButton } from '@gravitational/design-system';
+
+<CloseButton variant="filled">Click me</CloseButton>;
+```
+
+### Sizes
+
+Use the `size` prop to adjust the button size.
+
+<Canvas of={CloseButtonStories.Sizes} />
+
+### Fill
+
+Use the `fill` prop to adjust the appearance of the button.
+
+<Canvas of={CloseButtonStories.Fills} />
+
+## Props
+
+<PropTypes of={CloseButtonStories} />

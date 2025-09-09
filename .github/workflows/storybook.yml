@@ -1,0 +1,44 @@
+name: Storybook
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  NODE_VERSION: 22.x
+
+jobs:
+  deploy:
+    name: Deploy Storybook
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build-storybook
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: 'storybook-static'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+®

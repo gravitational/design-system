@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "composite": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "noEmitHelpers": true,
+    "pretty": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "stripInternal": true,
+    "strict": true,
+    "target": "esnext",
+    "tsBuildInfoFile": ".typescript/tsconfig.node.tsbuildinfo",
+    "verbatimModuleSyntax": true
+  },
+  "include": [
+    "commitlint.config.ts",
+    "lint-staged.config.mts",
+    "shims/react-hook-plugins.shim.d.ts",
+    "shims/vitest.shims.d.ts",
+    "prettier.config.mts",
+    "eslint.config.mts",
+    "rollup.config.mts",
+    "rollup/**/*.mts",
+    "vite.config.mts",
+    "vitest.config.mts"
+  ]
+}
