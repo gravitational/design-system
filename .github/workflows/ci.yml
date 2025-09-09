@@ -60,7 +60,7 @@ jobs:
 
   generate:
     runs-on: ubuntu-latest
-    name: Frontend generate
+    name: Generate
     steps:
       - uses: actions/checkout@v4
 
