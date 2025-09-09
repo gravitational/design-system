@@ -1,7 +1,7 @@
 import { Button, type ButtonProps } from '@chakra-ui/react';
 import type { ComponentPropsWithoutRef } from 'react';
 
-export { Button };
+export { Button, type ButtonProps };
 
 export function ButtonSecondary(props: ButtonProps) {
   return <Button fill="filled" intent="neutral" {...props} />;
