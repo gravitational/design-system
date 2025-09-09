@@ -100,6 +100,9 @@
     "title": "Teleport Design System",
     "url": "https://design.teleport.dev"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "exports": {
     ".": {
       "dev": "./src/index.ts",

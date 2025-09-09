@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - ".changeset/**"
+      - ".github/workflows/release.yml"
       - "src/**"
     branches:
       - main
@@ -44,3 +45,4 @@ jobs:
           setupGitUser: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
