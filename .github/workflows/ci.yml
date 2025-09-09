@@ -49,6 +49,9 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      - name: Generate theme types
+        run: pnpm generate-theme
+
       - name: Type Check
         run: pnpm type-check
 
@@ -92,6 +95,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install
         run: pnpm install --frozen-lockfile

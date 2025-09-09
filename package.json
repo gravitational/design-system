@@ -7,6 +7,7 @@
   },
   "scripts": {
     "prepare": "husky",
+    "prebuild": "pnpm generate-theme",
     "build": "rm -rf dist && rollup -c rollup.config.mts",
     "dev": "rollup -c rollup.config.mts -w",
     "eslint": "eslint . --ext .ts,.tsx --fix",
