@@ -25,13 +25,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
  */
 export async function addComments(ext = 'js') {
   const baseDir = join(__dirname, '..');
-  const recipesIndexPath = join(baseDir, 'theme', 'recipes', `index.${ext}`);
-  const slotRecipesIndexPath = join(
-    baseDir,
-    'theme',
-    'slot-recipes',
-    `index.${ext}`
-  );
+  const recipesIndexPath = join(baseDir, 'theme', `recipes.${ext}`);
+  const slotRecipesIndexPath = join(baseDir, 'theme', `slotRecipes.${ext}`);
 
   const allRecipes = new Map<string, string>();
 
