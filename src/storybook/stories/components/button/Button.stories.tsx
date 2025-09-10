@@ -1,10 +1,11 @@
-import { Box, ButtonGroup, Grid, HStack, VStack } from '@chakra-ui/react';
+import { Box, Grid, HStack, VStack } from '@chakra-ui/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn } from 'storybook/test';
 
 import {
   Button,
   ButtonBorder,
+  ButtonGroup,
   ButtonLink,
   ButtonSecondary,
   ButtonText,

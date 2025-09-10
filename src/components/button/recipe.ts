@@ -407,6 +407,7 @@ export const buttonRecipe = defineRecipe({
         _hover: {
           color: 'text.main',
           bg: 'interactive.tonal.neutral.1',
+          borderColor: 'transparent',
         },
         _active: {
           color: 'text.main',
