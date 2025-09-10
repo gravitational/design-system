@@ -28,6 +28,11 @@ export const buttonRecipe = defineRecipe({
     focusVisibleRing: 'outside',
     _disabled: {
       layerStyle: 'disabled',
+      bg: 'interactive.tonal.neutral.0',
+      color: 'buttons.textDisabled',
+      borderColor: 'transparent',
+      boxShadow: 'none',
+      cursor: 'auto',
     },
     _icon: {
       flexShrink: '0',
