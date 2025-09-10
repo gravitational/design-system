@@ -62,8 +62,8 @@ export const buttonRecipe = defineRecipe({
         fontSize: 1,
         lineHeight: '{sizes.4}',
         _icon: {
-          width: '5',
-          height: '5',
+          width: '4',
+          height: '4',
         },
       },
       lg: {
@@ -73,8 +73,8 @@ export const buttonRecipe = defineRecipe({
         lineHeight: '{sizes.5}',
         letterSpacing: '0.175px',
         _icon: {
-          width: '6',
-          height: '6',
+          width: '5',
+          height: '5',
         },
       },
       xl: {
@@ -85,8 +85,8 @@ export const buttonRecipe = defineRecipe({
         letterSpacing: '0.2px',
         gap: 3,
         _icon: {
-          width: '7',
-          height: '7',
+          width: '6',
+          height: '6',
         },
       },
     },
