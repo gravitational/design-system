@@ -134,7 +134,16 @@ export async function getChangedPackages({
   const packages: Packages = {
     root,
     tool: 'pnpm',
-    packages: [root],
+    packages: [
+      root,
+      {
+        dir: 'bot',
+        packageJson: {
+          name: 'bot',
+          version: '0.0.0',
+        },
+      },
+    ],
   };
 
   const releasePlan = assembleReleasePlan(
