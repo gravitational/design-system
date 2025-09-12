@@ -2,6 +2,7 @@
   "name": "@gravitational/design-system",
   "version": "0.0.1",
   "main": "dist/index.js",
+  "license": "Apache-2.0",
   "bin": {
     "design-system": "./cli/cli.js"
   },

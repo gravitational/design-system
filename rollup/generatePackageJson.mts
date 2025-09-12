@@ -6,6 +6,7 @@ import type { Plugin } from 'rollup';
 interface PackageJson {
   name: string;
   version: string;
+  license: string;
   dependencies?: Record<string, string>;
   peerDependencies?: Record<string, string>;
   bin?: Record<string, string>;
@@ -36,6 +37,7 @@ export function generatePackageJson({
 
         const nextPackageJson: PackageJson = {
           bin: packageJson.bin,
+          license: packageJson.license,
           name: packageJson.name,
           version: packageJson.version,
           dependencies: packageJson.dependencies,
