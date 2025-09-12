@@ -6,7 +6,7 @@ import type {
   VersionType,
 } from '@changesets/types';
 import { Octokit } from '@octokit/rest';
-import humanId from 'human-id';
+import { humanId } from 'human-id';
 import { markdownTable } from 'markdown-table';
 
 import { getChangedPackages } from './getChangedPackages';
