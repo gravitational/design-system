@@ -44,6 +44,7 @@ jobs:
         with:
           publish: pnpm release
           commit: "ci(changesets): version packages"
+          commitMode: github-api
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
