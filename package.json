@@ -9,6 +9,7 @@
     "prepare": "husky",
     "prebuild": "pnpm generate-theme",
     "build": "rm -rf dist && rollup -c rollup.config.mts",
+    "bot": "jiti bot/index.ts",
     "dev": "rollup -c rollup.config.mts -w",
     "eslint": "eslint . --ext .ts,.tsx --fix",
     "prettier-check": "prettier --log-level silent --check \"**/*.{ts,tsx,mts,md,mdx}\"",

@@ -1,0 +1,49 @@
+name: Changeset Bot
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+env:
+  NODE_VERSION: 22.x
+
+jobs:
+  changeset-bot:
+    name: Changeset Bot
+    runs-on: ubuntu-latest
+    if: ${{ !startsWith(github.event.pull_request.head.ref, 'changeset-release') }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install bot dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: bot
+
+      - name: Run changeset bot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pnpm bot \
+            ${{ github.repository_owner }} \
+            ${{ github.event.repository.name }} \
+            ${{ github.event.pull_request.number }} \
+            ${{ github.event.action }}
