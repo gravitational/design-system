@@ -27,15 +27,13 @@ When changesets are added to this PR, you'll see the package version type that w
   }
 
   const versionType = {
-    major: 'Major',
-    minor: 'Minor',
-    patch: 'Patch',
+    major: 'major',
+    minor: 'minor',
+    patch: 'patch',
   }[publishableRelease.type];
 
   return releasePlan.changesets.length
-    ? `This PR includes changesets to release a ${versionType} version
-
-**${publishableRelease.name}** - ${versionType}`
+    ? `This PR includes changesets to release a ${versionType} version`
     : `This PR includes no changesets
 
 When changesets are added to this PR, you'll see the package version type that will be released`;
