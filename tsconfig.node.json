@@ -18,7 +18,6 @@
     "verbatimModuleSyntax": true
   },
   "include": [
-    "commitlint.config.ts",
     "lint-staged.config.mts",
     "shims/react-hook-plugins.shim.d.ts",
     "shims/vitest.shims.d.ts",
