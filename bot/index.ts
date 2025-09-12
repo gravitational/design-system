@@ -7,7 +7,6 @@ import type {
 } from '@changesets/types';
 import { Octokit } from '@octokit/rest';
 import { humanId } from 'human-id';
-import { markdownTable } from 'markdown-table';
 
 import { getChangedPackages } from './getChangedPackages';
 
@@ -16,42 +15,30 @@ function getReleasePlanMessage(releasePlan: ReleasePlan | null) {
     return '';
   }
 
-  const publishableReleases = releasePlan.releases.filter(
+  const publishableRelease = releasePlan.releases.find(
     (x): x is ComprehensiveRelease & { type: Exclude<VersionType, 'none'> } =>
       x.type !== 'none'
   );
 
-  const table = markdownTable([
-    ['Name', 'Type'],
-    ...publishableReleases.map(x => {
-      return [
-        x.name,
-        {
-          major: 'Major',
-          minor: 'Minor',
-          patch: 'Patch',
-        }[x.type],
-      ];
-    }),
-  ]);
+  if (!publishableRelease) {
+    return `This PR includes no changesets
 
-  return `<details><summary>This PR includes ${
-    releasePlan.changesets.length
-      ? `changesets to release ${
-          publishableReleases.length === 1
-            ? '1 package'
-            : `${publishableReleases.length} packages`
-        }`
-      : 'no changesets'
-  }</summary>
-
-  ${
-    publishableReleases.length
-      ? table
-      : "When changesets are added to this PR, you'll see the packages that this PR includes changesets for and the associated semver types"
+When changesets are added to this PR, you'll see the package version type that will be released`;
   }
 
-</details>`;
+  const versionType = {
+    major: 'Major',
+    minor: 'Minor',
+    patch: 'Patch',
+  }[publishableRelease.type];
+
+  return releasePlan.changesets.length
+    ? `This PR includes changesets to release a ${versionType} version
+
+**${publishableRelease.name}** - ${versionType}`
+    : `This PR includes no changesets
+
+When changesets are added to this PR, you'll see the package version type that will be released`;
 }
 
 function getAbsentMessage(
@@ -63,7 +50,7 @@ function getAbsentMessage(
 
 Latest commit: ${commitSha}
 
-Merging this PR will not cause a version bump for any packages. If these changes should not result in a new version, you're good to go. **If these changes should result in a version bump, you need to add a changeset.**
+Merging this PR will not cause a version bump. If these changes should not result in a new version, you're good to go. **If these changes should result in a version bump, you need to add a changeset.**
 
 ${getReleasePlanMessage(releasePlan)}
 
@@ -94,9 +81,9 @@ ${getReleasePlanMessage(releasePlan)}
 `;
 }
 
-function getNewChangesetTemplate(changedPackages: string[], title: string) {
+function getNewChangesetTemplate(packageName: string, title: string) {
   return encodeURIComponent(`---
-${changedPackages.map(x => `"${x}": patch`).join('\n')}
+"${packageName}": patch
 ---
 
 ${title}
@@ -209,13 +196,15 @@ async function main() {
         }),
       ] as const);
 
+    const packageName = changedPackages[0] ?? '@fake-scope/fake-pkg';
+
     const addChangesetUrl = `${headRepo.html_url}/new/${
       pullRequest.data.head.ref
     }?filename=.changeset/${humanId({
       separator: '-',
       capitalize: false,
     })}.md&value=${getNewChangesetTemplate(
-      changedPackages,
+      packageName,
       pullRequest.data.title
     )}`;
 
