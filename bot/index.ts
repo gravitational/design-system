@@ -64,7 +64,7 @@ function getApproveMessage(
   addChangesetUrl: string,
   releasePlan: ReleasePlan | null
 ) {
-  return `### Changeset detected
+  return `###  📦️  Changeset detected
 
 Latest commit: ${commitSha}
 
