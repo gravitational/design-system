@@ -52,7 +52,7 @@ Merging this PR will not cause a version bump. If these changes should not resul
 
 ${getReleasePlanMessage(releasePlan)}
 
-[Learn about changesets](https://github.com/gravitational/design-system/blob/main/guides/changesets.md) - [Add a changeset to this PR](${addChangesetUrl})
+[Learn about changesets](https://github.com/gravitational/design-system/blob/main/guides/changesets.md) • [Add a changeset to this PR](${addChangesetUrl})
 
 `;
 }
@@ -70,7 +70,7 @@ Latest commit: ${commitSha}
 
 ${getReleasePlanMessage(releasePlan)}
 
-[Learn about changesets](https://github.com/gravitational/design-system/blob/main/guides/changesets.md) - [Add another changeset to this PR](${addChangesetUrl})
+[Learn about changesets](https://github.com/gravitational/design-system/blob/main/guides/changesets.md) • [Add another changeset to this PR](${addChangesetUrl})
 
 `;
 }
