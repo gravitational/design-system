@@ -252,4 +252,15 @@ export const keyframes = {
       scale: '0.95',
     },
   },
+  highlight: {
+    from: {
+      backgroundColor: 'var(--teleport-colors-interactive-tonal-neutral-1)',
+      borderColor:
+        'color-mix(in srgb, var(--teleport-colors-brand) 50%, transparent)',
+    },
+    to: {
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+    },
+  },
 };

@@ -1,0 +1,49 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { DocsHeader } from '../../../components/DocsHeader';
+
+<Meta title="Guides/Styling/Style Props/SVG" />
+
+<DocsHeader title="SVG" />
+
+## Fill
+
+Use the `fill` prop to set the fill color of an SVG element.
+
+```tsx
+<styled.svg fill="blue.500">
+  <path d="..." />
+</styled.svg>
+```
+
+| Prop   | CSS Property | Token Category |
+| ------ | ------------ | -------------- |
+| `fill` | `fill`       | `colors`       |
+
+## Stroke
+
+Use the `stroke` prop to set the stroke color of an SVG element.
+
+```tsx
+<styled.svg stroke="blue.500">
+  <path d="..." />
+</styled.svg>
+```
+
+| Prop     | CSS Property | Token Category |
+| -------- | ------------ | -------------- |
+| `stroke` | `stroke`     | `colors`       |
+
+## Stroke Width
+
+Use the `strokeWidth` prop to set the stroke width of an SVG element.
+
+```tsx
+<styled.svg strokeWidth="1px">
+  <path d="..." />
+</styled.svg>
+```
+
+| Prop          | CSS Property   | Token Category |
+| ------------- | -------------- | -------------- |
+| `strokeWidth` | `stroke-width` | `borderWidths` |

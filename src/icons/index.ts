@@ -24,10 +24,20 @@ THIS FILE IS GENERATED. DO NOT EDIT.
 
 export { Icon, type IconProps } from '@chakra-ui/react';
 
+export { ArrowBendDoubleUpRightIcon } from './generated/ArrowBendDoubleUpRightIcon';
+export { ArrowCircleUpIcon } from './generated/ArrowCircleUpIcon';
+export { ArrowLineUpRightIcon } from './generated/ArrowLineUpRightIcon';
+export { ArrowUpIcon } from './generated/ArrowUpIcon';
+export { ArrowUpRightIcon } from './generated/ArrowUpRightIcon';
+export { AtIcon } from './generated/AtIcon';
 export { CaretDownIcon } from './generated/CaretDownIcon';
+export { CaretLeftIcon } from './generated/CaretLeftIcon';
+export { CaretRightIcon } from './generated/CaretRightIcon';
 export { CheckIcon } from './generated/CheckIcon';
+export { ChefHatIcon } from './generated/ChefHatIcon';
 export { ClipboardIcon } from './generated/ClipboardIcon';
 export { CodeIcon } from './generated/CodeIcon';
+export { GithubLogoIcon } from './generated/GithubLogoIcon';
 export { HorseIcon } from './generated/HorseIcon';
 export { TrashIcon } from './generated/TrashIcon';
 export { XIcon } from './generated/XIcon';

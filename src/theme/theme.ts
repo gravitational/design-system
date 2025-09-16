@@ -20,6 +20,7 @@ export const baseThemeConfig = defineConfig({
   cssVarsPrefix: 'teleport',
   cssVarsRoot: ':where(:root, :host)',
   globalCss,
+  conditions: {},
   theme: {
     breakpoints,
     keyframes,

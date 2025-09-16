@@ -17,7 +17,7 @@ interface UiThemeWithForcedColor extends BaseUiTheme {
   forcedColorMode: 'light' | 'dark';
 }
 
-interface UiThemeWithSingleColor extends BaseUiTheme {
+export interface UiThemeWithSingleColor extends BaseUiTheme {
   mode: UiThemeMode.SingleColor;
   storybookName: string;
   color: 'light' | 'dark';

@@ -1,0 +1,105 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { CodeBlock } from '../../../../../.storybook/docs/CodeBlock';
+import breakpoints from '../../../../theme/breakpoints?raw';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { GitHubFileLink } from '../../../components/GitHubFileLink';
+
+<Meta title="Guides/Styling/Concepts/Responsive Design" />
+
+<DocsHeader title="Responsive Design" />
+
+The design system has built-in support for responsive design, allowing you to create styles that adapt to different screen sizes.
+The breakpoints are defined in <GitHubFileLink to="src/theme/breakpoints.ts" /> and are as follows:
+
+<CodeBlock text={breakpoints} />
+
+You can specify styles for different screen sizes a few different ways.
+
+## Object Syntax
+
+You can use the breakpoint size as a prop to apply different styles.
+
+```tsx
+<Text fontWeight="normal" lg={{ fontWeight: 'bold' }}>
+  This text is normal weight on small screens and bold on large screens.
+</Text>
+```
+
+Or you can pass an object to a style prop with keys for each breakpoint.
+
+```tsx
+<Text fontWeight={{ base: 'normal', lg: 'bold' }}>
+  This text is normal weight on small screens and bold on large screens.
+</Text>
+```
+
+## Array Syntax
+
+You can also use an array syntax to specify styles for different breakpoints. The first value is for the base size, the second for the first breakpoint, and so on.
+
+```tsx
+<Text fontWeight={['normal', /* sm */ undefined, /* md */ undefined, 'bold']}>
+  This text is normal weight on small screens and bold on large screens.
+</Text>
+```
+
+You need to include `undefined` for any breakpoints you want to skip.
+
+## Breakpoint targeting
+
+### Breakpoint range
+
+You can target a range of breakpoints using the `To` notion. This can be used both in an object and as a prop.
+
+For example, to target between the `sm` and `lg` breakpoints:
+
+```tsx
+<Text fontWeight={{ smToLg: 'bold' }}>
+  This text is bold between the sm and lg breakpoints.
+</Text>
+```
+
+Or as a prop:
+
+```tsx
+<Text fontWeight="normal" smToLg={{ fontWeight: 'bold' }}>
+  This text is bold between the sm and lg breakpoints.
+</Text>
+```
+
+### Only breakpoint
+
+You can target a specific breakpoint using the `Only` notion. This can be used both in an object and as a prop.
+
+For example, to target only the `md` breakpoint:
+
+```tsx
+<Text fontWeight={{ mdOnly: 'bold' }}>
+  This text is bold only at the md breakpoint.
+</Text>
+```
+
+Or as a prop:
+
+```tsx
+<Text fontWeight="normal" mdOnly={{ fontWeight: 'bold' }}>
+  This text is bold only at the md breakpoint.
+</Text>
+```
+
+## Hiding elements at specific breakpoints
+
+You can use the `hideFrom` and `hideBelow` props to hide elements at specific breakpoints.
+
+To hide an element from the `md` breakpoint and up:
+
+```tsx
+<Box hideFrom="md">This box is hidden from the md breakpoint and up.</Box>
+```
+
+To hide an element below the `md` breakpoint:
+
+```tsx
+<Box hideBelow="md">This box is hidden below the md breakpoint.</Box>
+```

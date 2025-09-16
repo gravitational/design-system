@@ -1,15 +1,18 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-import { Canvas } from '../../../docs/Canvas';
-import { PropTypes } from '../../../docs/PropTypes';
+import { Canvas } from '../../../components/Canvas';
+import { PropTypes } from '../../../components/PropTypes';
 
+import { DocsHeader } from '../../../components/DocsHeader';
 import * as CloseButtonStories from './CloseButton.stories';
 
 <Meta of={CloseButtonStories} />
 
-# CloseButton
-
-Used to trigger closing a dialog, modal, or dismissing a notification.
+<DocsHeader
+  title="Close Button"
+  description="Used to trigger closing a dialog, modal, or dismissing a notification."
+  sourcePath="src/components/button/CloseButton.tsx"
+/>
 
 ## Usage
 
