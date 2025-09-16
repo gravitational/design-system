@@ -26,10 +26,6 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Install bot dependencies
-        run: pnpm install --frozen-lockfile
-        working-directory: bot
-
       - name: Assign random reviewer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
