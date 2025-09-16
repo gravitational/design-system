@@ -13,8 +13,8 @@ inputs:
     description: 'NPM registry URL'
     required: false
     default: ''
-  skip-install:
-    description: 'Skip pnpm install (when using artifacts from another job)'
+  skip-cache-restore:
+    description: 'Skip restoring pnpm cache (when using artifacts)'
     required: false
     default: 'false'
 
@@ -36,6 +36,7 @@ runs:
       run: echo "pnpm_cache_dir=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
 
     - name: Restore pnpm cache
+      if: inputs.skip-cache-restore != 'true'
       uses: actions/cache/restore@v4
       with:
         path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
@@ -44,7 +45,6 @@ runs:
           pnpm-store-${{ runner.os }}-
 
     - name: Install dependencies
-      if: inputs.skip-install != 'true'
       shell: bash
       run: pnpm install --frozen-lockfile
 

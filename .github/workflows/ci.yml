@@ -15,6 +15,8 @@ jobs:
   setup:
     name: Setup Dependencies
     runs-on: ubuntu-latest
+    outputs:
+      pnpm-cache-dir: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
     steps:
       - name: Checkout branch
         uses: actions/checkout@v5
@@ -25,13 +27,15 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           save-cache: ${{ github.ref == 'refs/heads/main' }}
 
-      - name: Upload dependencies
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "pnpm_cache_dir=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+
+      - name: Upload pnpm cache
         uses: actions/upload-artifact@v4
         with:
-          name: node-modules
-          path: |
-            node_modules
-            **/node_modules
+          name: pnpm-cache
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
           retention-days: 1
 
   build:
@@ -42,16 +46,17 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v5
 
-      - name: Download dependencies
+      - name: Download pnpm cache
         uses: actions/download-artifact@v4
         with:
-          name: node-modules
+          name: pnpm-cache
+          path: ${{ needs.setup.outputs.pnpm-cache-dir }}
 
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
-          skip-install: true
+          skip-cache-restore: true
 
       - name: Build
         run: pnpm build
@@ -64,16 +69,17 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v5
 
-      - name: Download dependencies
+      - name: Download pnpm cache
         uses: actions/download-artifact@v4
         with:
-          name: node-modules
+          name: pnpm-cache
+          path: ${{ needs.setup.outputs.pnpm-cache-dir }}
 
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
-          skip-install: true
+          skip-cache-restore: true
 
       - name: Generate theme types
         run: pnpm generate-theme
@@ -91,16 +97,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download dependencies
+      - name: Download pnpm cache
         uses: actions/download-artifact@v4
         with:
-          name: node-modules
+          name: pnpm-cache
+          path: ${{ needs.setup.outputs.pnpm-cache-dir }}
 
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
-          skip-install: true
+          skip-cache-restore: true
 
       - run: pnpm generate
       - name: Check for Changes
@@ -121,16 +128,17 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v5
 
-      - name: Download dependencies
+      - name: Download pnpm cache
         uses: actions/download-artifact@v4
         with:
-          name: node-modules
+          name: pnpm-cache
+          path: ${{ needs.setup.outputs.pnpm-cache-dir }}
 
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
-          skip-install: true
+          skip-cache-restore: true
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install
