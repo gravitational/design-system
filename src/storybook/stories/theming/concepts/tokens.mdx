@@ -1,0 +1,22 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { DocsHeader } from '../../../components/DocsHeader';
+import { GitHubFileLink } from '../../../components/GitHubFileLink';
+
+<Meta title="Guides/Theming/Concepts/Tokens" />
+
+<DocsHeader title="Tokens" />
+
+Tokens are a way to store design values such as colors, typography, spacing, etc. They are a collection
+of attributes that describe any fundamental/atomic visual style. Each attribute is a key-value pair.
+
+> Chakra's design tokens are largely influenced by the [W3C Token Format](https://tr.designtokens.org/format/)
+
+A design token consists of:
+
+- `value`: The value of the token. This can be any valid CSS value, such as a color, size, or font.
+- `description`: An optional description of what the token is used for.
+
+## Defining Tokens
+
+Tokens are defined in <GitHubFileLink to="src/theme/tokens" />

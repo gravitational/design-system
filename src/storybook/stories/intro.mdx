@@ -1,7 +1,29 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
+import { CategoryList } from '../components/CategoryList';
+import { DocsHeader } from '../components/DocsHeader';
+
 <Meta title="Guides/Introduction" />
 
-# Teleport Design System
+<DocsHeader title="Teleport Design System" />
 
-This page explains how to get started, best practices, and links to resources.
+The Teleport Design System is built using [Chakra UI](https://chakra-ui.com) and is designed to be used across all
+Teleport products. It provides a consistent look and feel, as well as a set of reusable components that can be used to
+build user interfaces quickly and efficiently.
+
+There are some concepts that are important to understand when working with the design system:
+
+## Styling
+
+<CategoryList category="Guides/Styling/Concepts" />
+
+## Theming
+
+Tokens and recipes are the building blocks of the design system's theme. They allow for consistent styling across
+all components and make it easy to update the look and feel of the entire application.
+
+<CategoryList category="Guides/Theming/Concepts" />
+
+## Migration Guide
+
+Once you understand the design system's core concepts, refer to the [migration guide](/?path=/docs/guides-migration-guide--docs) for guidance on adapting to changes from the previous system.

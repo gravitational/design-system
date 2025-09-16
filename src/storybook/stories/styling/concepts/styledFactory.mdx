@@ -1,0 +1,188 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { DocsHeader } from '../../../components/DocsHeader';
+
+<Meta title="Guides/Styling/Concepts/Styled Factory" />
+
+<DocsHeader title="Styled Factory" />
+
+The design system exports [Chakra's Factory](https://chakra-ui.com/docs/styling/chakra-factory) utility as `styled`.
+This allows you to create styled JSX components from any HTML element, enabling them to receive style props.
+
+```ts
+import { styled } from '@gravitational/design-system';
+```
+
+This can be used in two ways: as a JSX element or as a factory function.
+
+## JSX Element
+
+```tsx
+import { styled } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <styled.div
+      bg="levels.surface"
+      color="text.main"
+      p={4}
+      borderRadius="md"
+      _hover={{ bg: 'levels.elevated' }}
+    >
+      This is a styled div
+    </styled.div>
+  );
+}
+```
+
+## Factory function
+
+You can use the `styled` function to convert native elements or custom components into styled components.
+
+> [!NOTE]
+> If you are wrapping a custom component, ensure it forwards the `className` prop to the underlying DOM element.
+
+```tsx
+import { styled } from '@gravitational/design-system';
+
+const Link = styled('a');
+
+function Example() {
+  return (
+    <Link color="text.primaryInverse" my={3}>
+      This is a styled link
+    </Link>
+  );
+}
+```
+
+### Adding styles
+
+You can add pass styles to the factory function as the second argument.
+
+```tsx
+import { styled } from '@gravitational/design-system';
+
+const Link = styled('a', {
+  base: {
+    color: 'text.primaryInverse',
+    my: 3,
+    textDecoration: 'underline',
+    fontWeight: 'bold',
+  },
+});
+
+function Example() {
+  return <Link>This is a styled link</Link>;
+}
+```
+
+### Adding recipes
+
+You can also use recipes (variants) with the factory function.
+
+```tsx
+import { styled } from '@gravitational/design-system';
+
+const Link = styled('a', {
+  base: {
+    color: 'text.primaryInverse',
+    my: 3,
+    textDecoration: 'underline',
+    fontWeight: 'bold',
+  },
+  variants: {
+    variant: {
+      border: {
+        border: '1px solid {colors.interactive.tonal.neutral.0}',
+      },
+      subtle: {
+        color: 'text.secondary',
+        textDecoration: 'none',
+        fontWeight: 'normal',
+      },
+    },
+  },
+});
+
+function Example() {
+  return <Link variant="subtle">This is a styled link</Link>;
+}
+```
+
+### Default props
+
+You can set default props for your styled component using the `defaultProps` property.
+
+```tsx
+import { styled } from '@gravitational/design-system';
+
+const Link = styled(
+  'a',
+  {
+    base: {
+      color: 'text.primaryInverse',
+      my: 3,
+      textDecoration: 'underline',
+      fontWeight: 'bold',
+    },
+  },
+  {
+    defaultProps: {
+      target: '_blank',
+    },
+  }
+);
+
+function Example() {
+  return <Link>This is a styled link that opens in a new window</Link>;
+}
+```
+
+## Polymorphism
+
+Each component created with the `styled` factory supports the `as` prop, allowing you to change the underlying HTML element.
+
+```tsx
+import { styled } from '@gravitational/design-system';
+
+const Text = styled('p', {
+  base: {
+    color: 'text.primaryInverse',
+    my: 3,
+  },
+});
+
+function Example() {
+  return (
+    <>
+      <Text>This is a paragraph</Text>
+      <Text as="span">This is a span</Text>
+    </>
+  );
+}
+```
+
+If you need to pass props to the element rendered with `as`, use `asChild` instead.
+
+```tsx
+import { styled } from '@gravitational/design-system';
+
+const Text = styled('p', {
+  base: {
+    color: 'text.primaryInverse',
+    my: 3,
+  },
+});
+
+function Example() {
+  return (
+    <>
+      <Text>This is a paragraph</Text>
+      <Text asChild>
+        <a href="#">This is a link</a>
+      </Text>
+    </>
+  );
+}
+```

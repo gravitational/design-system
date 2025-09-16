@@ -903,14 +903,6 @@ export const colors = defineSemanticTokens.colors({
       },
     },
   },
-  test: {
-    nested: {
-      value: {
-        _light: 'red',
-        _dark: 'blue',
-      },
-    },
-  },
   sessionRecording: {
     resource: {
       value: {

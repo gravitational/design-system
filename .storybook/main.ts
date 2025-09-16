@@ -1,9 +1,21 @@
 import type { StorybookConfig } from '@storybook/react-vite';
+import { rehypeGithubAlerts } from 'rehype-github-alerts';
+import remarkGfm from 'remark-gfm';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
-    '@storybook/addon-docs',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            rehypePlugins: [[rehypeGithubAlerts]],
+            remarkPlugins: [remarkGfm],
+          },
+        },
+      },
+    },
     '@storybook/addon-a11y',
     '@storybook/addon-themes',
     '@storybook/addon-vitest',

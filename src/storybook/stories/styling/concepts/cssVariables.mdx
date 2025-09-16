@@ -1,0 +1,166 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { DocsHeader } from '../../../components/DocsHeader';
+
+<Meta title="Guides/Styling/Concepts/CSS Variables" />
+
+<DocsHeader title="CSS Variables" />
+
+Using CSS variables where appropriate can help reduce complexity and improve performance. CSS variables can be used to share values across nested components, avoid unnecessary class regeneration, and reduce runtime token evaluation.
+
+## Examples
+
+### Using CSS Variables
+
+You can define CSS variables in the `css` prop and use them in nested components:
+
+```tsx
+<Box
+  css={{
+    '--color': 'blue',
+  }}
+>
+  <Text color="var(--color)">
+    This box uses CSS variables for color and padding.
+  </Text>
+  <Box bg="var(--color)">
+    Nested box with padding and background color from CSS variables.
+  </Box>
+</Box>
+```
+
+### Referencing tokens
+
+You can reference design tokens by using their full path.
+
+```tsx
+<Box
+  css={{
+    '--color': 'colors.brand',
+    '--padding': 'spacing.4',
+    '--size': 'sizes.8',
+  }}
+>
+  <Text color="var(--color)">
+    This box uses CSS variables for color and padding.
+  </Text>
+  <Box bg="var(--color)" p="var(--padding)" w="var(--size)" h="var(--size)">
+    Nested box with padding and background color from CSS variables.
+  </Box>
+</Box>
+```
+
+### Responsive values
+
+Use the responsive syntax to make CSS variables responsive:
+
+```tsx
+<Box
+  css={{
+    '--color': { base: 'colors.red', md: 'colors.green', lg: 'colors.blue' },
+    '--padding': { base: 'spacing.2', md: 'spacing.4', lg: 'spacing.6' },
+  }}
+  bg="var(--color)"
+  p="var(--padding)"
+>
+  This box uses responsive CSS variables for color and padding.
+</Box>
+```
+
+### Avoiding Prop Interpolations
+
+Instead of passing dynamic values through props, use CSS variables to share values across nested components:
+
+```jsx
+// ❌ Before: Prop drilling animation values
+<Card>
+  <CardHeader animationDuration={open ? '0.3s' : '0.1s'} />
+  <CardBody animationDuration={open ? '0.3s' : '0.1s'} />
+  <CardFooter animationDuration={open ? '0.3s' : '0.1s'} />
+</Card>
+
+// ✅ After: CSS variable inheritance
+<Card css={{ '--animation-duration': open ? '0.3s' : '0.1s' }}>
+  <CardHeader animationDuration="var(--animation-duration)" />
+  <CardBody animationDuration="var(--animation-duration)" />
+  <CardFooter animationDuration="var(--animation-duration)" />
+</Card>
+```
+
+### Preventing Classname Regeneration
+
+Dynamic values typically generate new classes. CSS variables keep the same class while changing values:
+
+```tsx
+// ❌ Before: Each slider value generates a new className
+function ProgressBar({ progress }: { progress: number }) {
+  return <Box width={`${progress}%`} />; // New class for each value
+}
+
+// ✅ After: Same className, different CSS variable
+function ProgressBar({ progress }: { progress: number }) {
+  return (
+    <Box
+      css={{ '--progress': `${progress}%` }}
+      width="var(--progress)"
+      transition="width 0.3s"
+    />
+  );
+}
+```
+
+### Reducing Runtime Token Evaluation
+
+Complex calculations with tokens can be moved to CSS, avoiding JavaScript runtime overhead:
+
+```tsx
+// ❌ Before: JavaScript calculates spacing at runtime
+function DynamicGrid({ multiplier }: { multiplier: number }) {
+  const spacing = useToken('spacing', '4'); // Runtime lookup
+  return (
+    <Grid gap={`${parseInt(spacing) * multiplier}px`}>
+      {items.map(item => (
+        <GridItem p={`${parseInt(spacing) * multiplier * 0.5}px`} />
+      ))}
+    </Grid>
+  );
+}
+
+// ✅ After: CSS handles calculations
+function DynamicGrid({ multiplier }: { multiplier: number }) {
+  return (
+    <Grid
+      css={{
+        '--base-spacing': 'spacing.4',
+        '--multiplier': multiplier,
+      }}
+      gap="calc(var(--base-spacing) * var(--multiplier))"
+    >
+      {items.map(item => (
+        <GridItem p="calc(var(--base-spacing) * var(--multiplier) * 0.5)" />
+      ))}
+    </Grid>
+  );
+}
+```
+
+### Animation Coordination
+
+Coordinate complex animations without prop passing:
+
+```tsx
+<Box
+  css={{
+    '--stagger-delay': '0.1s',
+    '--base-duration': '0.5s',
+  }}
+>
+  {items.map((item, i) => (
+    <Box
+      key={i}
+      css={{ '--index': i }}
+      animation="slideIn var(--base-duration) calc(var(--index) * var(--stagger-delay)) ease-out"
+    />
+  ))}
+</Box>
+```

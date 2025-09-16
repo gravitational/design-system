@@ -162,10 +162,10 @@ export const colors: SingleColorThemeColors = defineTokens.colors({
   },
   tooltip: {
     background: {
-      value: 'rgba(255, 255, 255, 0.8)',
+      value: 'color-mix(in srgb, white 80%, {colors.levels.sunken})',
     },
     inverseBackground: {
-      value: 'rgba(0, 0, 0, 0.5)',
+      value: 'color-mix(in srgb, black 50%, {colors.levels.sunken})',
     },
   },
   progressBarColor: {
@@ -321,11 +321,6 @@ export const colors: SingleColorThemeColors = defineTokens.colors({
     },
     caribbean: {
       value: '{colors.dataVisualisation.tertiary.caribbean}',
-    },
-  },
-  test: {
-    nested: {
-      value: 'red',
     },
   },
   sessionRecording: {

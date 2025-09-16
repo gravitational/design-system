@@ -1,0 +1,87 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { DocsHeader } from '../../../components/DocsHeader';
+
+<Meta title="Guides/Styling/Style Props/Tables" />
+
+<DocsHeader title="Tables" />
+
+## Border Spacing
+
+Control the border-spacing property of a table. This property applies only when
+`border-collapse` is set to `separate`.
+
+```jsx
+<styled.table borderSpacing="2" borderCollapse="separate">
+  <tbody>
+    <tr>
+      <td>Cell 1</td>
+      <td>Cell 2</td>
+    </tr>
+  </tbody>
+</styled.table>
+```
+
+| Prop            | CSS Property     | Token Category |
+| --------------- | ---------------- | -------------- |
+| `borderSpacing` | `border-spacing` | `spacing`      |
+
+## Border Spacing X
+
+Use the `borderSpacingX` prop to set the horizontal border-spacing property of a
+table. This requires the `borderSpacing` prop to be set to `auto`.
+
+```jsx
+<styled.table borderSpacing="auto" borderSpacingX="2" borderCollapse="separate">
+  <tbody>
+    <tr>
+      <td>Cell 1</td>
+      <td>Cell 2</td>
+    </tr>
+  </tbody>
+</styled.table>
+```
+
+| Prop             | CSS Property     | Token Category |
+| ---------------- | ---------------- | -------------- |
+| `borderSpacingX` | `border-spacing` | `spacing`      |
+
+## Border Spacing Y
+
+Use the `borderSpacingY` prop to set the vertical border-spacing property of a
+table. This requires the `borderSpacing` prop to be set to `auto`.
+
+```jsx
+<styled.table borderSpacing="auto" borderSpacingY="2" borderCollapse="separate">
+  <tbody>
+    <tr>
+      <td>Cell 1</td>
+      <td>Cell 2</td>
+    </tr>
+  </tbody>
+</styled.table>
+```
+
+| Prop             | CSS Property     | Token Category |
+| ---------------- | ---------------- | -------------- |
+| `borderSpacingY` | `border-spacing` | `spacing`      |
+
+## Caption Side
+
+Use the `captionSide` prop to set the side of the caption of a table.
+
+```jsx
+<table>
+  <styled.caption captionSide="bottom">This is a caption</styled.caption>
+  <tbody>
+    <tr>
+      <td>Cell 1</td>
+      <td>Cell 2</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+| Prop          | CSS Property   | Token Category |
+| ------------- | -------------- | -------------- |
+| `captionSide` | `caption-side` | -              |

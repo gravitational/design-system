@@ -1,0 +1,227 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { GitHubFileLink } from '../../../components/GitHubFileLink';
+import { ConditionalStylesReference } from './ConditionalStylesReference';
+
+import { DocsHeader } from '../../../components/DocsHeader';
+
+<Meta title="Guides/Styling/Concepts/Conditional Styles" />
+
+<DocsHeader title="Conditional Styles" />
+
+You can write styles for pseudo states, media queries, and custom data attributes by using the conditional style props.
+
+## Usage
+
+Here's how you can change the background color of a `Box` component when it is hovered over:
+
+```tsx
+<Box bg="gray.100" _hover={{ bg: 'gray.200' }}>
+  Hover me
+</Box>
+```
+
+### Nested conditions
+
+You can nest conditions to create more complex selectors. For example, to change the background color when a box is both hovered and focused:
+
+```tsx
+<Box
+  bg="gray.100"
+  _hover={{
+    bg: 'gray.200',
+    _focus: { bg: 'gray.300' },
+  }}
+  tabIndex={0} // Make the box focusable
+>
+  Hover and focus me
+</Box>
+```
+
+### @ rules
+
+You can also use the supported `@` rules (`@media`, `@layer`, `@container`, `@supports`, and `@page`).
+
+```tsx
+<Box
+  bg="gray.100"
+  css={{
+    '@container (min-width: 600px)': { bg: 'gray.200' },
+  }}
+>
+  This box changes color when the container is at least 600px wide.
+</Box>
+```
+
+## Pseudo classes
+
+### Hover, active, focus, and disabled
+
+```tsx
+<Box
+  bg="gray.100"
+  _hover={{ bg: 'gray.200' }}
+  _active={{ bg: 'gray.300' }}
+  _focus={{ boxShadow: '0 0 0 2px {colors.blue.500}' }}
+  _disabled={{ bg: 'gray.50', cursor: 'not-allowed', opacity: 0.6 }}
+  tabIndex={0} // Make the box focusable
+>
+  Interact with me
+</Box>
+```
+
+### First, last, odd, and even
+
+```tsx
+<Box>
+  {[...Array(5)].map((_, index) => (
+    <Box
+      key={index}
+      bg="gray.100"
+      mb="spacing.2"
+      _first={{ bg: 'red.100' }}
+      _last={{ bg: 'green.100' }}
+      _odd={{ bg: 'blue.100' }}
+      _even={{ bg: 'yellow.100' }}
+      p="spacing.4"
+    >
+      Item {index + 1}
+    </Box>
+  ))}
+</Box>
+```
+
+## Pseudo elements
+
+### Before and after
+
+```tsx
+<Box
+  position="relative"
+  p="spacing.4"
+  bg="gray.100"
+  _before={{
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '4px',
+    bg: 'blue.500',
+  }}
+>
+  This box has a blue bar before it.
+</Box>
+```
+
+### Placeholder
+
+```tsx
+<styled.input
+  placeholder="Enter text"
+  _placeholder={{ color: 'gray.500', fontStyle: 'italic' }}
+  p={2}
+  border="1px solid {colors.gray.300}"
+  borderRadius="md"
+/>
+```
+
+## Selectors
+
+### Arbitrary attribute selectors
+
+Use the `css` prop to target arbitrary attributes:
+
+```tsx
+<Box
+  data-state={open ? 'open' : 'closed'}
+  css={{
+    '&[data-state="open"]': { bg: 'green.100' },
+    '&[data-state="closed"]': { bg: 'red.100' },
+  }}
+>
+  This box changes color based on its data-state attribute.
+</Box>
+```
+
+You can target child elements as well:
+
+```tsx
+<Box
+  css={{
+    '& > *': { margin: 2 },
+  }}
+>
+  <Box>Child box</Box>
+</Box>
+```
+
+### Group selector
+
+To style an element based on the state of its parent, add a `group` class to the parent and use any of the `_group` props on the child.
+
+```tsx
+<Box className="group" p="spacing.4" bg="gray.100">
+  <Text
+    _groupHover={{ color: 'blue.500' }}
+    _groupFocus={{ textDecoration: 'underline' }}
+  >
+    Hover or focus the parent box to change my style.
+  </Text>
+</Box>
+```
+
+## Data attributes
+
+To style an element based on its `data-{state}` attribute, use the corresponding `_{state}` prop.
+
+```tsx
+<Box data-active _active={{ bg: 'green.100' }}>
+  This box is active
+</Box>
+```
+
+```tsx
+<Box data-loading _loading={{ bg: 'blue.100' }}>
+  This box is loading
+</Box>
+```
+
+This works for `data-active`, `data-disabled`, `data-focus`, `data-hover`, `data-invalid`, `data-required`, and `data-valid`.
+
+## ARIA attributes
+
+You can also style elements based on their ARIA attributes using the corresponding `_{state}` props.
+
+```tsx
+<Box aria-expanded="true" _expanded={{ bg: 'green.100' }}>
+  This box is expanded
+</Box>
+```
+
+You can see all the valid ARIA attributes and their corresponding condition name below.
+
+## Adding custom conditions
+
+You can add custom conditions to <GitHubFileLink to="src/theme/theme.ts" />.
+
+For example:
+
+```tsx
+const config = defineConfig({
+  conditions: {
+    off: '&:is([data-state=off])',
+    on: '&:is([data-state=on])',
+  },
+  // ...
+});
+
+// Then you can use them like this:
+
+<Box data-state="off" _off={{ bg: 'red.500' }} />
+<Box data-state="on" _on={{ bg: 'green.500' }} />
+```
+
+## Reference
+
+<ConditionalStylesReference />
