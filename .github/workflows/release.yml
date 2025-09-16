@@ -23,16 +23,11 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - name: Setup pnpm with cache
+        uses: ./.github/actions/setup-pnpm
         with:
           node-version: '22.x'
           registry-url: 'https://npm.pkg.github.com'
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Install
-        run: pnpm install --frozen-lockfile
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install
