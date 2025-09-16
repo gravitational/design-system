@@ -1,4 +1,4 @@
-name: Storybook
+name: Storybook Cleanup
 
 on:
   pull_request:
@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   cleanup:
-    name: Cleanup PR Preview
+    name: Remove PR preview
     runs-on: ubuntu-latest
     steps:
       - name: Restore main storybook from cache

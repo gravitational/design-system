@@ -1,4 +1,4 @@
-name: Storybook
+name: Storybook Preview
 
 on:
   pull_request:
@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   deploy:
-    name: Deploy PR Preview
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR branch
