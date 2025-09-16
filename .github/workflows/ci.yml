@@ -25,6 +25,15 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           save-cache: ${{ github.ref == 'refs/heads/main' }}
 
+      - name: Upload dependencies
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-modules
+          path: |
+            node_modules
+            **/node_modules
+          retention-days: 1
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -33,10 +42,16 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v5
 
+      - name: Download dependencies
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
+          skip-install: true
 
       - name: Build
         run: pnpm build
@@ -49,10 +64,16 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v5
 
+      - name: Download dependencies
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
+          skip-install: true
 
       - name: Generate theme types
         run: pnpm generate-theme
@@ -70,10 +91,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Download dependencies
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
+          skip-install: true
 
       - run: pnpm generate
       - name: Check for Changes
@@ -94,10 +121,16 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v5
 
+      - name: Download dependencies
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
+          skip-install: true
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install

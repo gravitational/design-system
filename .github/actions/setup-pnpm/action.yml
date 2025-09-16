@@ -13,6 +13,10 @@ inputs:
     description: 'NPM registry URL'
     required: false
     default: ''
+  skip-install:
+    description: 'Skip pnpm install (when using artifacts from another job)'
+    required: false
+    default: 'false'
 
 runs:
   using: 'composite'
@@ -40,6 +44,7 @@ runs:
           pnpm-store-${{ runner.os }}-
 
     - name: Install dependencies
+      if: inputs.skip-install != 'true'
       shell: bash
       run: pnpm install --frozen-lockfile
 
