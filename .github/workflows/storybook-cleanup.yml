@@ -1,4 +1,4 @@
-name: Storybook
+name: Storybook Cleanup
 
 on:
   pull_request:
@@ -20,14 +20,14 @@ permissions:
 
 jobs:
   cleanup:
-    name: Cleanup PR Preview
+    name: Remove PR preview
     runs-on: ubuntu-latest
     steps:
       - name: Restore main storybook from cache
         uses: actions/cache/restore@v4
         with:
           path: ./main-storybook
-          key: storybook-main-${{ github.sha }}
+          key: storybook-main
           restore-keys: |
             storybook-main-
 
@@ -35,7 +35,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: ./pr-previews
-          key: storybook-pr-previews-${{ github.sha }}
+          key: storybook-pr-previews
           restore-keys: |
             storybook-pr-previews-
 
@@ -55,7 +55,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: ./pr-previews
-          key: storybook-pr-previews-${{ github.sha }}
+          key: storybook-pr-previews
 
       - name: Combine main storybook with remaining PR previews
         run: |
