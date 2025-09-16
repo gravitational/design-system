@@ -1,0 +1,87 @@
+name: Storybook
+
+on:
+  pull_request:
+    types: [closed]
+
+env:
+  NODE_VERSION: 22.x
+
+concurrency:
+  group: storybook-deployment
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  cleanup:
+    name: Cleanup PR Preview
+    runs-on: ubuntu-latest
+    steps:
+      - name: Restore main storybook from cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ./main-storybook
+          key: storybook-main-${{ github.sha }}
+          restore-keys: |
+            storybook-main-
+
+      - name: Restore PR previews from cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ./pr-previews
+          key: storybook-pr-previews-${{ github.sha }}
+          restore-keys: |
+            storybook-pr-previews-
+
+      - name: Remove PR preview
+        run: |
+          PR_NUMBER=${{ github.event.pull_request.number }}
+
+          # Remove the specific PR directory if it exists
+          if [ -d "./pr-previews/${PR_NUMBER}" ]; then
+            rm -rf "./pr-previews/${PR_NUMBER}"
+            echo "Removed PR preview for PR #${PR_NUMBER}"
+          else
+            echo "No preview found for PR #${PR_NUMBER}"
+          fi
+
+      - name: Save updated PR previews to cache
+        uses: actions/cache/save@v4
+        with:
+          path: ./pr-previews
+          key: storybook-pr-previews-${{ github.sha }}
+
+      - name: Combine main storybook with remaining PR previews
+        run: |
+          mkdir -p ./combined-pages
+
+          # Add main storybook if it exists in cache
+          if [ -d ./main-storybook ]; then
+            cp -r ./main-storybook/* ./combined-pages/
+            echo "Added main storybook from cache"
+          else
+            echo "Warning: No main storybook found. Main branch needs to be deployed."
+          fi
+
+          # Add remaining PR previews
+          if [ -d ./pr-previews ] && [ "$(ls -A ./pr-previews)" ]; then
+            cp -r ./pr-previews ./combined-pages/pr
+            echo "Added remaining PR previews to combined pages"
+          else
+            echo "No PR previews remaining"
+          fi
+
+      - name: Upload updated artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: './combined-pages'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

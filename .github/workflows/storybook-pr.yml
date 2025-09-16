@@ -1,0 +1,106 @@
+name: Storybook
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+env:
+  NODE_VERSION: 22.x
+
+concurrency:
+  group: storybook-deployment
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  deploy:
+    name: Deploy PR Preview
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm with cache
+        uses: ./.github/actions/setup-pnpm
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Build Storybook
+        run: pnpm build-storybook
+
+      - name: Restore main storybook from cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ./main-storybook
+          key: storybook-main-${{ github.sha }}
+          restore-keys: |
+            storybook-main-
+
+      - name: Restore PR previews from cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ./pr-previews
+          key: storybook-pr-previews-${{ github.sha }}
+          restore-keys: |
+            storybook-pr-previews-
+
+      - name: Add PR storybook to previews
+        run: |
+          PR_NUMBER=${{ github.event.pull_request.number }}
+
+          # Create or update PR previews directory
+          mkdir -p ./pr-previews
+
+          # Add this PR's storybook
+          rm -rf ./pr-previews/${PR_NUMBER}
+          mkdir -p ./pr-previews/${PR_NUMBER}
+          cp -r ./storybook-static/* ./pr-previews/${PR_NUMBER}/
+          echo "Added PR #${PR_NUMBER} preview"
+
+      - name: Save PR previews to cache
+        uses: actions/cache/save@v4
+        with:
+          path: ./pr-previews
+          key: storybook-pr-previews-${{ github.sha }}
+
+      - name: Combine main storybook with PR previews
+        run: |
+          mkdir -p ./combined-pages
+
+          # Add main storybook if it exists in cache
+          if [ -d ./main-storybook ]; then
+            cp -r ./main-storybook/* ./combined-pages/
+            echo "Added main storybook from cache"
+          else
+            echo "Warning: No main storybook found. Main branch needs to be deployed."
+          fi
+
+          # Add all PR previews
+          if [ -d ./pr-previews ]; then
+            cp -r ./pr-previews ./combined-pages/pr
+            echo "Added PR previews to combined pages"
+          fi
+
+      - name: Upload combined pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: './combined-pages'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Post deployment comment
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pnpm bot storybook \
+            ${{ github.repository_owner }} \
+            ${{ github.event.repository.name }} \
+            ${{ github.event.pull_request.number }}
