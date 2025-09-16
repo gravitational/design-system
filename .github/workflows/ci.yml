@@ -23,6 +23,7 @@ jobs:
         uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
+          save-cache: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build
         run: pnpm build
