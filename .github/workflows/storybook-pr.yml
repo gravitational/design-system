@@ -37,8 +37,8 @@ jobs:
       - name: Restore main storybook from cache
         uses: actions/cache/restore@v4
         with:
-          path: ./main-storybook
-          key: storybook-main-${{ github.sha }}
+          path: ./storybook-static-main
+          key: storybook-main
           restore-keys: |
             storybook-main-
 
@@ -46,7 +46,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: ./pr-previews
-          key: storybook-pr-previews-${{ github.sha }}
+          key: storybook-pr-previews
           restore-keys: |
             storybook-pr-previews-
 
@@ -67,15 +67,15 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: ./pr-previews
-          key: storybook-pr-previews-${{ github.sha }}
+          key: storybook-pr-previews
 
       - name: Combine main storybook with PR previews
         run: |
           mkdir -p ./combined-pages
 
           # Add main storybook if it exists in cache
-          if [ -d ./main-storybook ]; then
-            cp -r ./main-storybook/* ./combined-pages/
+          if [ -d ./storybook-static-main ]; then
+            cp -r ./storybook-static-main/* ./combined-pages/
             echo "Added main storybook from cache"
           else
             echo "Warning: No main storybook found. Main branch needs to be deployed."

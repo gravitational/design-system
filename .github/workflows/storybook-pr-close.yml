@@ -27,7 +27,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: ./main-storybook
-          key: storybook-main-${{ github.sha }}
+          key: storybook-main
           restore-keys: |
             storybook-main-
 
@@ -35,7 +35,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: ./pr-previews
-          key: storybook-pr-previews-${{ github.sha }}
+          key: storybook-pr-previews
           restore-keys: |
             storybook-pr-previews-
 
@@ -55,7 +55,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: ./pr-previews
-          key: storybook-pr-previews-${{ github.sha }}
+          key: storybook-pr-previews
 
       - name: Combine main storybook with remaining PR previews
         run: |
