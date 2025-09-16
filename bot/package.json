@@ -11,6 +11,7 @@
   "license": "Apache-2.0",
   "packageManager": "pnpm@10.14.0",
   "dependencies": {
+    "@actions/core": "^1.11.1",
     "@changesets/assemble-release-plan": "^6.0.9",
     "@changesets/config": "^3.1.1",
     "@changesets/errors": "^0.2.0",
