@@ -40,7 +40,7 @@ jobs:
           path: ./pr-previews
           key: storybook-pr-previews
           restore-keys: |
-            storybook-pr-previews-
+            storybook-pr-previews
 
       - name: Save main storybook to cache
         uses: actions/cache/save@v4

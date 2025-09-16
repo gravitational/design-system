@@ -40,7 +40,7 @@ jobs:
           path: ./storybook-static-main
           key: storybook-main
           restore-keys: |
-            storybook-main-
+            storybook-main
 
       - name: Restore PR previews from cache
         uses: actions/cache/restore@v4
@@ -48,7 +48,7 @@ jobs:
           path: ./pr-previews
           key: storybook-pr-previews
           restore-keys: |
-            storybook-pr-previews-
+            storybook-pr-previews
 
       - name: Add PR storybook to previews
         run: |
