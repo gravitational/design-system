@@ -32,6 +32,24 @@ const globalStorybookCss = defineGlobalStyles({
       color: 'text.muted',
     },
   },
+  'div.sb-preparing-docs.sb-wrapper, div.sb-preparing-story': {
+    backgroundColor: '{colors.levels.sunken} !important',
+  },
+  'div.sb-previewBlock': {
+    backgroundColor: '{colors.levels.elevated} !important',
+  },
+  '.sb-argstableBlock th span, .sb-argstableBlock td span': {
+    backgroundColor: '{colors.interactive.tonal.neutral.1} !important',
+  },
+  '.sb-argstableBlock-body td': {
+    background: '{colors.levels.elevated} !important',
+  },
+  '.sb-argstableBlock-body tr:not(:first-child)': {
+    borderTopColor: '{colors.interactive.tonal.neutral.2} !important',
+  },
+  '.sb-loader': {
+    color: '{colors.text.main} !important',
+  },
 });
 
 const colors = defineSemanticTokens.colors({
