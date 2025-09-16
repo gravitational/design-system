@@ -60,6 +60,7 @@ jobs:
           name: storybook-pr-previews
           path: ./pr-previews
           retention-days: 30
+          overwrite: true
 
       - name: Combine main storybook with PR previews
         run: |
@@ -79,10 +80,27 @@ jobs:
             echo "Added PR previews to combined pages"
           fi
 
-      - name: Upload combined pages artifact
-        uses: actions/upload-pages-artifact@v4
+      - name: Archive pages artifact
+        shell: sh
+        run: |
+          echo ::group::Archive artifact
+          tar \
+            --dereference --hard-dereference \
+            --directory "./combined-pages" \
+            -cvf "$RUNNER_TEMP/artifact.tar" \
+            --exclude=.git \
+            --exclude=.github \
+            --exclude=".[^/]*" \
+            .
+          echo ::endgroup::
+
+      - name: Upload pages artifact
+        uses: actions/upload-artifact@v4
         with:
-          path: './combined-pages'
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          overwrite: true
 
       - name: Deploy to GitHub Pages
         id: deployment
