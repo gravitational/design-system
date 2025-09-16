@@ -18,6 +18,7 @@
     "lint": "pnpm eslint && pnpm prettier-check",
     "type-check": "tsc --build",
     "storybook": "storybook dev -p 6006",
+    "prebuild-storybook": "pnpm generate-theme",
     "build-storybook": "storybook build",
     "test": "vitest --project=storybook",
     "prerelease": "pnpm build",
