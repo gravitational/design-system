@@ -4,39 +4,69 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 env:
   NODE_VERSION: 22.x
 
+concurrency:
+  group: storybook-deployment
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
-    name: Deploy Storybook
+    name: Deploy
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
     steps:
       - name: Checkout branch
         uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - name: Setup pnpm with cache
+        uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Install
-        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm build-storybook
 
+      - name: Restore PR previews from cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ./pr-previews
+          key: storybook-pr-previews-${{ github.sha }}
+          restore-keys: |
+            storybook-pr-previews-
+
+      - name: Save main storybook to cache
+        uses: actions/cache/save@v4
+        with:
+          path: ./storybook-static
+          key: storybook-main-${{ github.sha }}
+
+      - name: Combine main storybook with PR previews
+        run: |
+          mkdir -p ./combined-pages
+
+          # Add main storybook
+          cp -r ./storybook-static/* ./combined-pages/
+
+          # Restore PR previews if they exist in cache
+          if [ -d ./pr-previews ]; then
+            cp -r ./pr-previews ./combined-pages/pr
+            echo "Restored PR previews from cache"
+          else
+            echo "No PR previews found in cache"
+          fi
+
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: 'storybook-static'
+          path: './combined-pages'
 
       - name: Deploy to GitHub Pages
         id: deployment

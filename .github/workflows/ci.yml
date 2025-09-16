@@ -19,15 +19,11 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - name: Setup pnpm
+        uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Install
-        run: pnpm install --frozen-lockfile
+          save-cache: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build
         run: pnpm build
@@ -39,15 +35,10 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - name: Setup pnpm
+        uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Install
-        run: pnpm install --frozen-lockfile
 
       - name: Generate theme types
         run: pnpm generate-theme
@@ -64,15 +55,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js
-        uses: actions/setup-node@v4
+      - name: Setup pnpm
+        uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - run: pnpm install --frozen-lockfile
 
       - run: pnpm generate
       - name: Check for Changes
@@ -92,15 +78,10 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - name: Setup pnpm
+        uses: ./.github/actions/setup-pnpm
         with:
           node-version: ${{ env.NODE_VERSION }}
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Install
-        run: pnpm install --frozen-lockfile
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install
