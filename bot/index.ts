@@ -3,6 +3,7 @@ import { Octokit } from '@octokit/rest';
 
 import { runChangesetCommand } from './changeset.ts';
 import { runReviewerCommand } from './review.ts';
+import { runStorybookCommand } from './storybook.ts';
 import { resolveErrorMessage } from './util.ts';
 
 async function main() {
@@ -10,12 +11,13 @@ async function main() {
 
   if (args.length < 4) {
     core.error('Usage: pnpm bot <command> <owner> <repo> <pr-number> [action]');
-    core.error('Commands: changeset, reviewer');
+    core.error('Commands: changeset, reviewer, storybook');
     core.error('Examples:');
     core.error(
       '  pnpm bot changeset gravitational design-system 1 synchronize'
     );
     core.error('  pnpm bot reviewer gravitational design-system 1');
+    core.error('  pnpm bot storybook gravitational design-system 1');
     process.exit(1);
   }
 
@@ -63,9 +65,18 @@ async function main() {
 
         break;
 
+      case 'storybook':
+        await runStorybookCommand(octokit, {
+          owner,
+          repo,
+          pull_number: pullNumber,
+        });
+
+        break;
+
       default:
         core.error(`Unknown command: ${command}`);
-        core.error('Available commands: changeset, reviewer');
+        core.error('Available commands: changeset, reviewer, storybook');
         process.exit(1);
     }
   } catch (err) {

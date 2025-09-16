@@ -4,18 +4,29 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+  workflow_dispatch:
 
 env:
   NODE_VERSION: 22.x
 
+concurrency:
+  group: storybook-deployment
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: write
+  issues: write
+
 jobs:
-  deploy:
-    name: Deploy Storybook
+  deploy-main:
+    name: Deploy
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
     steps:
       - name: Checkout branch
         uses: actions/checkout@v5
@@ -28,10 +39,147 @@ jobs:
       - name: Build
         run: pnpm build-storybook
 
+      - name: Download current GitHub Pages
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: ./existing-pages
+        continue-on-error: true
+
+      - name: Extract existing PR previews
+        run: |
+          mkdir -p ./combined-pages
+          if [ -f ./existing-pages/artifact.tar ]; then
+            tar -xf ./existing-pages/artifact.tar -C ./combined-pages
+            # Preserve only the /pr/ directory if it exists
+            if [ -d ./combined-pages/pr ]; then
+              cp -r ./combined-pages/pr ./pr-backup
+            fi
+          fi
+          # Clear combined-pages and add main storybook
+          rm -rf ./combined-pages/*
+          cp -r ./storybook-static/* ./combined-pages/
+          # Restore PR previews if they existed
+          if [ -d ./pr-backup ]; then
+            mv ./pr-backup ./combined-pages/pr
+          fi
+
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: 'storybook-static'
+          path: './combined-pages'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  deploy-pr:
+    name: Deploy PR Preview
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm with cache
+        uses: ./.github/actions/setup-pnpm
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Build Storybook
+        run: pnpm build-storybook
+
+      - name: Download current GitHub Pages
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: ./pages-content
+        continue-on-error: true
+
+      - name: Extract existing pages content
+        run: |
+          mkdir -p ./combined-pages
+
+          # Try to extract existing pages
+          if [ -f ./pages-content/artifact.tar ]; then
+            tar -xf ./pages-content/artifact.tar -C ./combined-pages
+            echo "Extracted existing GitHub Pages content"
+          else
+            echo "No existing GitHub Pages found, starting fresh"
+          fi
+
+          # Check if there's a main storybook at root, if not, indicate it needs to be deployed
+          if [ ! -f ./combined-pages/index.html ]; then
+            echo "Warning: No main storybook found at root. Main branch needs to be deployed."
+          fi
+
+      - name: Add PR storybook to combined pages
+        run: |
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          mkdir -p ./combined-pages/pr/${PR_NUMBER}
+          cp -r ./storybook-static/* ./combined-pages/pr/${PR_NUMBER}/
+          echo "Added PR #${PR_NUMBER} preview to /pr/${PR_NUMBER}"
+
+      - name: Create updated artifact
+        run: |
+          cd ./combined-pages
+          tar -cf ../updated-pages.tar .
+
+      - name: Upload combined pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: './combined-pages'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Post deployment comment
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pnpm bot storybook \
+            ${{ github.repository_owner }} \
+            ${{ github.event.repository.name }} \
+            ${{ github.event.pull_request.number }}
+
+  cleanup-pr:
+    name: Cleanup PR Preview
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download current GitHub Pages
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: ./pages-content
+        continue-on-error: true
+
+      - name: Remove PR preview
+        run: |
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          mkdir -p ./combined-pages
+
+          # Extract existing pages if they exist
+          if [ -f ./pages-content/artifact.tar ]; then
+            tar -xf ./pages-content/artifact.tar -C ./combined-pages
+
+            # Remove the specific PR directory
+            if [ -d "./combined-pages/pr/${PR_NUMBER}" ]; then
+              rm -rf "./combined-pages/pr/${PR_NUMBER}"
+              echo "Removed PR preview for PR #${PR_NUMBER}"
+            else
+              echo "No preview found for PR #${PR_NUMBER}"
+            fi
+          else
+            echo "No existing GitHub Pages found"
+            exit 0
+          fi
+
+      - name: Upload updated artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: './combined-pages'
 
       - name: Deploy to GitHub Pages
         id: deployment

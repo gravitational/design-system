@@ -192,7 +192,10 @@ async function getCommentId(
 ) {
   const comments = await octokit.rest.issues.listComments(params);
   const changesetBotComment = comments.data.find(
-    comment => comment.user?.login === 'github-actions[bot]'
+    comment =>
+      comment.user?.login === 'github-actions[bot]' &&
+      (comment.body?.includes('No Changeset found') ??
+        comment.body?.includes('Changeset detected'))
   );
   return changesetBotComment ? changesetBotComment.id : null;
 }
