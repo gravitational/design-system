@@ -1,0 +1,46 @@
+name: 'Fetch Main Storybook Artifact'
+description: 'Fetches the latest main storybook artifact from the storybook.yml workflow'
+outputs:
+  found:
+    description: 'Whether the artifact was found'
+    value: ${{ steps.get-main-run.outputs.found }}
+  run-id:
+    description: 'The workflow run ID where the artifact was found'
+    value: ${{ steps.get-main-run.outputs.run_id }}
+runs:
+  using: 'composite'
+  steps:
+    - name: Get latest main storybook workflow run
+      id: get-main-run
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const runs = await github.rest.actions.listWorkflowRuns({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: '.github/workflows/storybook.yml',
+            branch: 'main',
+            status: 'success',
+            per_page: 1
+          });
+
+          if (runs.data.workflow_runs.length > 0) {
+            const runId = runs.data.workflow_runs[0].id;
+            console.log(`Found main storybook run: ${runId}`);
+            core.setOutput('run_id', runId);
+            core.setOutput('found', 'true');
+          } else {
+            console.log('No main storybook runs found');
+            core.setOutput('found', 'false');
+          }
+
+    - name: Download main storybook artifact
+      if: steps.get-main-run.outputs.found == 'true'
+      uses: actions/download-artifact@v5
+      with:
+        name: storybook-main
+        path: ./storybook-static-main
+        github-token: ${{ github.token }}
+        repository: ${{ github.repository }}
+        run-id: ${{ steps.get-main-run.outputs.run_id }}
+      continue-on-error: true

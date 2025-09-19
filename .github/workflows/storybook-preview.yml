@@ -12,6 +12,7 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
@@ -34,23 +35,13 @@ jobs:
       - name: Build Storybook
         run: pnpm build-storybook
 
-      - name: Restore main storybook from cache
-        uses: actions/cache/restore@v4
-        with:
-          path: ./storybook-static-main
-          key: storybook-main
-          restore-keys: |
-            storybook-main-
+      - name: Fetch main storybook
+        uses: ./.github/actions/fetch-storybook-main
 
-      - name: Restore PR previews from cache
-        uses: actions/cache/restore@v4
-        with:
-          path: ./pr-previews
-          key: storybook-pr-previews
-          restore-keys: |
-            storybook-pr-previews-
+      - name: Fetch previous PR previews
+        uses: ./.github/actions/fetch-pr-previews
 
-      - name: Add PR storybook to previews
+      - name: Add current PR storybook to previews
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
 
@@ -63,20 +54,22 @@ jobs:
           cp -r ./storybook-static/* ./pr-previews/${PR_NUMBER}/
           echo "Added PR #${PR_NUMBER} preview"
 
-      - name: Save PR previews to cache
-        uses: actions/cache/save@v4
+      - name: Upload PR previews artifact
+        uses: actions/upload-artifact@v4
         with:
+          name: storybook-pr-previews
           path: ./pr-previews
-          key: storybook-pr-previews
+          retention-days: 30
+          overwrite: true
 
       - name: Combine main storybook with PR previews
         run: |
           mkdir -p ./combined-pages
 
-          # Add main storybook if it exists in cache
+          # Add main storybook if it exists
           if [ -d ./storybook-static-main ]; then
             cp -r ./storybook-static-main/* ./combined-pages/
-            echo "Added main storybook from cache"
+            echo "Added main storybook"
           else
             echo "Warning: No main storybook found. Main branch needs to be deployed."
           fi
@@ -87,10 +80,27 @@ jobs:
             echo "Added PR previews to combined pages"
           fi
 
-      - name: Upload combined pages artifact
-        uses: actions/upload-pages-artifact@v4
+      - name: Archive pages artifact
+        shell: sh
+        run: |
+          echo ::group::Archive artifact
+          tar \
+            --dereference --hard-dereference \
+            --directory "./combined-pages" \
+            -cvf "$RUNNER_TEMP/artifact.tar" \
+            --exclude=.git \
+            --exclude=.github \
+            --exclude=".[^/]*" \
+            .
+          echo ::endgroup::
+
+      - name: Upload pages artifact
+        uses: actions/upload-artifact@v4
         with:
-          path: './combined-pages'
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          overwrite: true
 
       - name: Deploy to GitHub Pages
         id: deployment
