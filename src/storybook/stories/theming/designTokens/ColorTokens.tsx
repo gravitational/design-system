@@ -191,7 +191,7 @@ interface CopyableTextProps {
   children?: ReactNode;
 }
 
-function CopyableText({
+export function CopyableText({
   value,
   tooltip = 'Copy to clipboard',
   children,
@@ -569,7 +569,7 @@ function NestedColorGrids({
             fontSize={getTextSize(nestingLevel)}
             mb={Math.max(0, 2 - nestingLevel)}
             fontWeight="medium"
-            color="fg.muted"
+            color="text.slightlyMuted"
           >
             {groupName}
           </Text>

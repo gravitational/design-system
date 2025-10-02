@@ -94,10 +94,10 @@ export function TableOfContents({ channel }: TableOfContentsProps) {
     const configuration: tocbot.IStaticOptions = {
       tocSelector: '.toc-wrapper',
       contentSelector: '[data-docs-content]',
-      headingSelector: 'h2, h3',
+      headingSelector: 'h2, h3, h4',
       ignoreSelector: '.docs-story *, .skip-toc',
       headingsOffset: 20,
-      scrollSmoothOffset: -10,
+      scrollSmoothOffset: -20,
       orderedList: false,
       scrollHandlerType: 'throttle',
       scrollHandlerTimeout: 10,
@@ -126,21 +126,11 @@ export function TableOfContents({ channel }: TableOfContentsProps) {
 
   const headingId = useId();
 
-  // if (
-  //   !entry ||
-  //   CATEGORIES_TO_HIDE.some(category => entry.title.startsWith(category))
-  // ) {
-  //   return <Box />;
-  // }
-
   return (
     <Aside>
       <Nav
         aria-labelledby={headingId}
         css={{
-          '& .toc-wrapper': {
-            mt: 2,
-          },
           '& > .toc-wrapper > .toc-list': {
             ml: 0,
           },
@@ -150,7 +140,8 @@ export function TableOfContents({ channel }: TableOfContentsProps) {
           '& .toc-list-item': {
             position: 'relative',
             listStyleType: 'none',
-            py: 1,
+            pt: 2,
+            lineHeight: '2',
           },
           '& .toc-list-item.is-active-li::before': {
             opacity: 1,
@@ -159,11 +150,12 @@ export function TableOfContents({ channel }: TableOfContentsProps) {
             color: 'text.slightlyMuted',
             textDecoration: 'none',
             display: 'block',
+            lineHeight: '1.5',
             // Add slight letter-spacing to compensate for bold weight difference
-            letterSpacing: '0.01em',
+            letterSpacing: '0.02em',
           },
           '& .toc-list-item.is-active-li > a': {
-            fontWeight: 600,
+            fontWeight: 500,
             color: 'text.main',
             textDecoration: 'none',
             // Remove letter-spacing when bold to maintain similar width

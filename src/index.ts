@@ -13,8 +13,11 @@ export {
   Box,
   HStack,
   VStack,
-  type SystemContext,
+  Grid,
+  type GridProps,
   useToken,
 } from '@chakra-ui/react';
+
+export * from '@chakra-ui/react/styled-system';
 
 export { LEGACY_THEME_COLORS_VARIABLES } from './themes/teleport/colors';

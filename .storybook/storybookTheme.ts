@@ -44,7 +44,7 @@ const globalStorybookCss = defineGlobalStyles({
   '.sb-argstableBlock-body td': {
     background: '{colors.levels.elevated} !important',
   },
-  '.sb-argstableBlock-body tr:not(:first-child)': {
+  '.sb-argstableBlock-body tr:not(:first-of-type)': {
     borderTopColor: '{colors.interactive.tonal.neutral.2} !important',
   },
   '.sb-loader': {
@@ -53,6 +53,30 @@ const globalStorybookCss = defineGlobalStyles({
 });
 
 const colors = defineSemanticTokens.colors({
+  semanticTokensExample: {
+    bg: {
+      DEFAULT: {
+        value: {
+          _light: '{colors.grey.100}',
+          _dark: '{colors.grey.800}',
+          _active: '{colors.semanticTokensExample.bg.active}',
+          _focus: '{colors.semanticTokensExample.bg.main}',
+        },
+      },
+      main: {
+        value: {
+          _light: '{colors.red.100}',
+          _dark: '{colors.red.800}',
+        },
+      },
+      active: {
+        value: {
+          _light: '{colors.blue.200}',
+          _dark: '{colors.blue.700}',
+        },
+      },
+    },
+  },
   syntax: {
     background: {
       value: {

@@ -8,6 +8,7 @@ import {
   List,
   Text,
   VStack,
+  type HeadingProps,
   type HTMLChakraProps,
 } from '@chakra-ui/react';
 import { MDXProvider } from '@mdx-js/react';
@@ -17,6 +18,8 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
+  useState,
   type MouseEvent,
   type PropsWithChildren,
   type ReactNode,
@@ -24,8 +27,15 @@ import {
 import { NAVIGATE_URL } from 'storybook/internal/core-events';
 import type { DocsContextProps } from 'storybook/internal/types';
 import { styled, ThemeProvider } from 'storybook/theming';
+import { useCopyToClipboard } from 'usehooks-ts';
 
-import { Table } from '../../src';
+import {
+  ArrowUpRightIcon,
+  ClipboardIcon,
+  IconButton,
+  Table,
+  Tooltip,
+} from '../../src';
 import { storybookTheme } from '../storybookTheme';
 import { StorybookThemeProvider } from '../StorybookThemeProvider';
 import { getThemes } from '../themes';
@@ -60,7 +70,7 @@ const StorybookOverrides = styled.div`
     border: 1px solid;
     border-radius: var(--teleport-radii-md);
 
-    & > :first-child {
+    & > :first-of-type {
       margin-top: 0;
     }
 
@@ -75,6 +85,15 @@ const StorybookOverrides = styled.div`
 
     .octicon {
       fill: var(--teleport-colors-interactive-solid-accent-default);
+    }
+
+    a {
+      color: var(--teleport-colors-alpha-800);
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--teleport-colors-text-main);
+      }
     }
   }
 
@@ -122,6 +141,8 @@ const StorybookOverrides = styled.div`
 
 export function DocsLink(props: HTMLChakraProps<'a'>) {
   const context = useContext(DocsContext);
+  const url = props.href ?? '';
+  const isExternal = url.startsWith('http://') || url.startsWith('https://');
 
   function handleClick(event: MouseEvent) {
     const LEFT_BUTTON = 0;
@@ -134,14 +155,97 @@ export function DocsLink(props: HTMLChakraProps<'a'>) {
 
     if (isLeftClick) {
       event.preventDefault();
-      context.channel.emit(
-        NAVIGATE_URL,
-        event.currentTarget.getAttribute('href') ?? ''
-      );
+      context.channel.emit(NAVIGATE_URL, url);
     }
   }
 
+  if (isExternal) {
+    const { children, ...rest } = props;
+
+    return (
+      <Link {...rest} target="_blank">
+        {children}
+
+        <ArrowUpRightIcon />
+      </Link>
+    );
+  }
+
   return <Link {...props} onClick={handleClick} />;
+}
+
+function HeadingWrapper({ id, mt, mb, my, children, ...props }: HeadingProps) {
+  const [copied, setCopied] = useState(false);
+  const [, copy] = useCopyToClipboard();
+
+  const timeoutRef = useRef<number | null>(null);
+
+  const location = new URL(window.location.href);
+  const docId = location.searchParams.get('id') ?? '';
+  const idValue = id ?? '';
+  const url = location.origin + '/?path=/docs/' + docId + '#' + idValue;
+
+  async function handleCopy() {
+    await copy(url);
+
+    setCopied(true);
+
+    if (timeoutRef.current) {
+      window.clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = window.setTimeout(() => {
+      setCopied(false);
+    }, 1000);
+  }
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        window.clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <Box
+      display="flex"
+      alignItems="center"
+      ml="-32px"
+      mt={mt}
+      my={my}
+      mb={mb}
+      className="group"
+    >
+      <Tooltip
+        content={copied ? 'Copied' : 'Copy link to clipboard'}
+        openDelay={0}
+        positioning={{
+          placement: 'top',
+        }}
+        closeDelay={0}
+        closeOnClick={false}
+      >
+        <IconButton
+          onClick={() => {
+            void handleCopy();
+          }}
+          size="sm"
+          fill="minimal"
+          intent="neutral"
+          mr="8px"
+          opacity={0}
+          _groupHover={{ opacity: 1 }}
+        >
+          <ClipboardIcon />
+        </IconButton>
+      </Tooltip>
+
+      <Heading {...props} id={id} cursor="pointer">
+        <a href={url}>{children}</a>
+      </Heading>
+    </Box>
+  );
 }
 
 export function DocsContainerWrapper({
@@ -161,33 +265,55 @@ export function DocsContainerWrapper({
   useEffect(() => {
     let timeout: number | null = null;
 
-    try {
-      const url = new URL(window.parent.location.toString());
-
-      if (url.hash) {
-        const element = document.getElementById(
-          decodeURIComponent(url.hash.substring(1))
-        );
-
-        if (element) {
-          timeout = window.setTimeout(() => {
-            element.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
-              inline: 'nearest',
-            });
-          }, 200);
-        }
+    function scrollToHash(ms: number) {
+      if (timeout) {
+        window.clearTimeout(timeout);
+        timeout = null;
       }
-    } catch {
-      // pass
+
+      try {
+        const url = new URL(window.parent.location.toString());
+
+        if (url.hash) {
+          const element = document.getElementById(
+            decodeURIComponent(url.hash.substring(1))
+          );
+
+          if (element) {
+            timeout = window.setTimeout(() => {
+              const elementPosition =
+                element.getBoundingClientRect().top + window.pageYOffset;
+              const offsetPosition = elementPosition - 20;
+
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth',
+              });
+            }, ms);
+          }
+        }
+      } catch {
+        // pass
+      }
     }
+
+    scrollToHash(200);
+
+    function handleChange() {
+      scrollToHash(0);
+    }
+
+    window.parent.addEventListener('popstate', handleChange);
+    window.parent.addEventListener('hashchange', handleChange);
 
     return () => {
       if (timeout) {
         window.clearTimeout(timeout);
         timeout = null;
       }
+
+      window.parent.removeEventListener('popstate', handleChange);
+      window.parent.removeEventListener('hashchange', handleChange);
     };
   }, []);
 
@@ -197,18 +323,32 @@ export function DocsContainerWrapper({
         <MDXProvider
           components={{
             h1: props => (
-              <Heading {...props} as="h1" mt={3} mb={4} size="3xl" />
+              <HeadingWrapper {...props} as="h1" mt={3} mb={4} size="3xl" />
             ),
             h2: props => (
-              <Heading {...props} as="h2" mt={6} mb={4} size="2xl" />
+              <HeadingWrapper {...props} as="h2" mt={6} mb={4} size="2xl" />
             ),
-            h3: props => <Heading {...props} as="h3" mt={3} mb={3} size="xl" />,
-            h4: props => <Heading {...props} as="h4" mt={2} mb={2} size="md" />,
-            h5: props => <Heading {...props} as="h5" size="sm" />,
-            h6: props => <Heading {...props} as="h6" size="xs" />,
+            h3: props => (
+              <HeadingWrapper {...props} as="h3" mt={3} mb={3} size="xl" />
+            ),
+            h4: props => (
+              <HeadingWrapper
+                {...props}
+                as="h4"
+                mt={4}
+                mb={2}
+                size="lg"
+                fontSize="16px"
+              />
+            ),
+            h5: props => (
+              <HeadingWrapper {...props} as="h5" mt={4} mb={0} size="md" />
+            ),
+            h6: props => <HeadingWrapper {...props} as="h6" size="sm" />,
             p: props => <Text {...props} mb={2} />,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
-            pre: props => <CodeBlock text={props.children.props.children} />,
+            em: props => <Text as="em" fontStyle="italic" {...props} />,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            pre: props => <CodeBlock {...props.children.props} />,
             ul: props => <List.Root mt={4} mb={6} pl={4} {...props} />,
             li: props => <List.Item pl={1} {...props} />,
             a: props => <DocsLink {...props} />,

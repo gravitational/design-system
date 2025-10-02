@@ -1,7 +1,77 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 import { DocsHeader } from '../../../components/DocsHeader';
+import { Breakpoints } from './Breakpoints';
+import {
+  BreakpointSizes,
+  FractionalSizes,
+  LargeSizes,
+  NamedSizes,
+  TokenSizes,
+} from './Sizes';
 
 <Meta title="Guides/Theming/Design Tokens/Sizes" />
 
-<DocsHeader title="Sizes" />
+<DocsHeader title="Sizes" recipePath="src/theme/tokens/sizes.ts" />
+
+The following size tokens are defined in the design system:
+
+## Token sizes
+
+<TokenSizes />
+
+```tsx
+<Box
+  boxSize="12"
+  bg="brand"
+  width="4" // will be 16px
+/>
+```
+
+## Named sizes
+
+<NamedSizes />
+
+```tsx
+<Box
+  boxSize="12"
+  bg="brand"
+  width="max" // will be max-content
+/>
+```
+
+## Fractional sizes
+
+<FractionalSizes />
+
+```tsx
+<Box
+  boxSize="12"
+  bg="brand"
+  width="1/2" // will be 50%
+/>
+```
+
+## Breakpoint sizes
+
+<BreakpointSizes />
+
+```tsx
+<Box
+  boxSize="12"
+  bg="brand"
+  width="breakpoint-sm" // will be the small breakpoint (600px)
+/>
+```
+
+## Large sizes
+
+<LargeSizes />
+
+```tsx
+<Box
+  boxSize="12"
+  bg="brand"
+  width="8xl" // will be 1440px
+/>
+```

@@ -94,12 +94,9 @@ export function Canvas(props: PropsWithChildren<CanvasProps>) {
       </Box>
 
       {showSource && sourceProps.code && (
-        <CodeBlock
-          borderTopRadius="none"
-          mt={0}
-          mb={0}
-          text={sourceProps.code}
-        />
+        <CodeBlock borderTopRadius="none" mt={0} mb={0}>
+          {sourceProps.code}
+        </CodeBlock>
       )}
     </Box>
   );

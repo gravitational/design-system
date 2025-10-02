@@ -1,7 +1,240 @@
+import { Box, HStack } from '@chakra-ui/react';
 import { Meta } from '@storybook/addon-docs/blocks';
 
 import { DocsHeader } from '../../../components/DocsHeader';
+import { GitHubFileLink } from '../../../components/GitHubFileLink';
 
 <Meta title="Guides/Theming/Concepts/Semantic Tokens" />
 
 <DocsHeader title="Semantic Tokens" />
+
+Semantic tokens are tokens that are designed to be used in a specific context. Most commonly, they are used to define colors that adapt to light and dark modes.
+
+A semantic token consists of:
+
+- `value`: The value of the token. This can be any valid CSS value, such as a color, size, or font, or a reference to another token.
+- `description`: An optional description of what the token is used for.
+
+## Defining Semantic Tokens
+
+The definition for semantic tokens is split into two places. There is the theme-agnostic definitions in <GitHubFileLink to="src/theme/semanticTokens" />,
+and the theme-specific values in the Teleport theme <GitHubFileLink to="src/themes/teleport/colors.ts" />.
+
+Any other themes will need to conform to the same shape defined in the Teleport theme. You can see an example of this in the BBLP theme <GitHubFileLink to="src/themes/bblp/colors.ts" />.
+There is more information about defining themes in the next section.
+
+Semantic token values are typically defined as an object with values for both light and dark mode. If the theme does not have a light or dark mode, it can just use a single value.
+
+```tsx
+const colors = defineSemanticTokens.colors({
+  text: {
+    main: {
+      value: {
+        _light: '{colors.grey.800}',
+        _dark: '{colors.grey.200}',
+      },
+    },
+    secondary: {
+      value: {
+        _light: '{colors.grey.600}',
+        _dark: '{colors.grey.400}',
+      },
+    },
+  },
+});
+
+// or for a theme without light/dark mode that needs to conform to the same shape as the Teleport theme:
+
+const colors: SingleColorThemeColors = defineSemanticTokens.colors({
+  text: {
+    main: {
+      value: '{colors.grey.800}',
+    },
+    secondary: {
+      value: '{colors.grey.600}',
+    },
+  },
+});
+```
+
+### Selector Conditions
+
+You can define values for any of the parent selector [conditions](/?path=/docs/guides-styling-concepts-conditional-styles--docs#reference) except hover. For example, to define a background for the active and focus states:
+
+> [!NOTE]
+> You can't nest conditions, so if you need to provide a different value for light and dark mode, you need to reference another token.
+
+```tsx
+const colors = defineSemanticTokens.colors({
+  bg: {
+    DEFAULT: {
+      value: {
+        _light: '{colors.grey.100}',
+        _dark: '{colors.grey.800}',
+        _active: '{colors.bg.active}',
+        _focus: '{colors.bg.main}',
+      },
+    },
+    main: {
+      value: {
+        _light: '{colors.red.100}',
+        _dark: '{colors.red.800}',
+      },
+    },
+    active: {
+      value: {
+        _light: '{colors.blue.200}',
+        _dark: '{colors.blue.700}',
+      },
+    },
+  },
+});
+
+// for a theme without light/dark mode that needs to conform to the same shape as the Teleport theme:
+
+const colors: SingleColorThemeColors = defineSemanticTokens.colors({
+  bg: {
+    DEFAULT: {
+      value: {
+        base: '{colors.levels.surface}', // _light and _dark are now base
+        _active: '{colors.bg.active}', // active and focus are required
+        _focus: '{colors.bg.main}',
+      },
+    },
+    main: {
+      value: '{colors.red.100}', // this is just a single value, same as above
+    },
+    active: {
+      value: '{colors.blue.200}',
+    },
+  },
+});
+```
+
+<HStack className="dark" width="fit-content">
+  <Box
+    borderRadius="md"
+    border="1px solid {colors.interactive.tonal.neutral.2}"
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+    bg="semanticTokensExample.bg"
+    w={24}
+    h={24}
+    tabIndex={0}
+  >
+    <Box>Default</Box>{' '}
+    {/* Not wrapping in a Box would make the element a `<p>` with bottom margin */}
+  </Box>
+  <Box
+    borderRadius="md"
+    border="1px solid {colors.interactive.tonal.neutral.2}"
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+    bg="semanticTokensExample.bg"
+    data-active
+    w={24}
+    h={24}
+    tabIndex={0}
+  >
+    <Box>Active</Box>
+  </Box>
+  <Box
+    borderRadius="md"
+    border="1px solid {colors.interactive.tonal.neutral.2}"
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+    bg="semanticTokensExample.bg"
+    data-focus
+    w={24}
+    h={24}
+    tabIndex={0}
+  >
+    <Box>Focus</Box>
+  </Box>
+</HStack>
+
+```tsx
+<Box // This box will have a different background color in light and dark mode, and when focused or active.
+  bg="bg"
+  w={24}
+  h={24}
+  tabIndex={0}
+/>
+```
+
+## Semantic Token Nesting
+
+Similar to design tokens, semantic tokens can be nested within other tokens.
+
+```tsx
+const colors = defineSemanticTokens.colors({
+  interactive: {
+    solid: {
+      primary: {
+        default: {
+          value: {
+            _light: '#512FC9',
+            _dark: '#9F85FF',
+          },
+        },
+        hover: {
+          value: {
+            _light: '#4126A1',
+            _dark: '#B29DFF',
+          },
+        },
+        active: {
+          value: {
+            _light: '#311C79',
+            _dark: '#C5B6FF',
+          },
+        },
+      },
+      success: {
+        default: {
+          value: {
+            _light: '#007D6B',
+            _dark: '#00BFA6',
+          },
+        },
+        hover: {
+          value: {
+            _light: '#006456',
+            _dark: '#33CCB8',
+          },
+        },
+        active: {
+          value: {
+            _light: '#004B40',
+            _dark: '#66D9CA',
+          },
+        },
+      },
+    },
+  },
+});
+```
+
+```tsx
+<Box
+  bg="interactive.solid.primary.default"
+  w={24}
+  h={24}
+  borderRadius="md"
+  _hover={{ bg: 'interactive.solid.primary.hover' }}
+  _active={{ bg: 'interactive.solid.primary.active' }}
+  tabIndex={0}
+/>
+<Box
+  bg="interactive.solid.success.default"
+  w={24}
+  h={24}
+  borderRadius="md"
+  _hover={{ bg: 'interactive.solid.success.hover' }}
+  _active={{ bg: 'interactive.solid.success.active' }}
+  tabIndex={0}
+/>
+```

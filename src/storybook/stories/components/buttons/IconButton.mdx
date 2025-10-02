@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { PropTypes } from '../../../components/PropTypes';
+
+import { DocsHeader } from '../../../components/DocsHeader';
+import * as IconButtonStories from './IconButton.stories';
+
+<Meta of={IconButtonStories} />
+
+<DocsHeader
+  title="Icon Button"
+  description="Used to show an icon in a button."
+  sourcePath="src/components/button/IconButton.tsx"
+  recipePath="src/components/button/recipe.ts"
+/>
+
+## Usage
+
+```tsx
+import { HorseIcon, IconButton } from '@gravitational/design-system';
+
+<IconButton variant="filled">
+  <HorseIcon />
+</IconButton>;
+```
+
+### Sizes
+
+Use the `size` prop to adjust the button size.
+
+<Canvas of={IconButtonStories.Sizes} />
+
+### Fill
+
+Use the `fill` prop to adjust the appearance of the button.
+
+<Canvas of={IconButtonStories.Fills} />
+
+### Rounded
+
+Use the `rounded="full"` [border radius prop](/?path=/docs/guides-styling-style-props-border--docs#border-radius) to make the button fully rounded.
+
+<Canvas of={IconButtonStories.Rounded} />
+
+## Props
+
+<PropTypes of={IconButtonStories} />

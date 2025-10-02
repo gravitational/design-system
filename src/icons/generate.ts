@@ -158,6 +158,39 @@ ${lines}
   await fs.writeFile(resolve(import.meta.dirname, 'index.ts'), content);
 }
 
+async function makeStorybookFile(icons: Set<string>) {
+  // Chakra icons do not work nicely with `import * as icons from ...`, so instead we
+  // generate the file
+
+  const lines = Array.from(icons)
+    .toSorted((a, b) => a.localeCompare(b))
+    .map(
+      icon => `<IconItem name="${icon}">
+    <icons.${icon} />
+  </IconItem>`
+    )
+    .join('\n  ');
+
+  const content = `import { IconGallery, IconItem, Meta } from '@storybook/addon-docs/blocks';
+
+import { DocsHeader } from '../../components/DocsHeader';
+import * as icons from '../../../icons';
+
+<Meta title="Guides/Icons/Icons" />
+
+<DocsHeader title="Icons" />
+
+<IconGallery>
+  ${lines}
+</IconGallery>
+`;
+
+  await fs.writeFile(
+    resolve(import.meta.dirname, '../storybook/stories/icons/icons.mdx'),
+    content
+  );
+}
+
 async function run() {
   await makeGeneratedDirectory();
 
@@ -189,6 +222,8 @@ async function run() {
   }
 
   await makeIndexFile(icons);
+
+  await makeStorybookFile(icons);
 }
 
 void run();

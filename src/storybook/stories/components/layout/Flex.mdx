@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import { Flex } from '../../../..';
+
+import * as FlexStories from './Flex.stories';
+
+<Meta title="Components/Layout/Flex" />
+
+<DocsHeader title="Flex" description="" recipePath="" sourcePath="" />
+
+<Canvas of={FlexStories.Preview} />
+
+## Usage
+
+Information about usage here.
+
+```tsx
+import { Flex } from '@gravitational/design-system';
+
+function Example() {
+  return <Flex />;
+}
+```
+
+## Examples
+
+### Example
+
+<Canvas of={FlexStories.Example} />
+
+## Props
+
+<PropTypes of={Flex} />

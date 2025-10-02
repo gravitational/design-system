@@ -1,0 +1,143 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { DocsHeader } from '../../../components/DocsHeader';
+
+import { GitHubFileLink } from '../../../components/GitHubFileLink';
+
+<Meta title="Guides/Theming/Concepts/Adding Chakra Components" />
+
+<DocsHeader title="Adding Chakra Components" />
+
+The design system does not implement all of the components offered by Chakra UI. [You can see all of the components here](https://chakra-ui.com/docs/components/concepts/overview).
+
+If you are implementing a new component that Chakra already provides, in most cases it's better to add it to the design system and re-style it to match the Teleport design.
+This allows us to take advantage of the existing accessibility and functionality provided by Chakra.
+
+## Creating a new component
+
+The components are located in <GitHubFileLink to="src/components" />. Each component should be in its own directory with the following structure:
+
+```
+component-name/
+  ComponentName.tsx
+  index.ts
+  recipe.ts
+```
+
+### The component file
+
+The component file should export the component and the component props.
+
+```tsx
+export { Button, type ButtonProps } from '@chakra-ui/react';
+```
+
+The component file can also export predefined variants of the component.
+
+```tsx
+import { Button, type ButtonProps } from '@chakra-ui/react';
+
+export { Button, type ButtonProps };
+
+export function ButtonSecondary(props: Omit<ButtonProps, 'fill' | 'intent'>) {
+  return <Button fill="filled" intent="neutral" {...props} />;
+}
+```
+
+There can be multiple component files in the same directory if needed (see <GitHubFileLink to="src/components/button" /> for an example).
+
+### Recipe file
+
+`recipe.ts` is either the recipe or slot recipe for the component. This should be copied over from Chakra and modified to match the Teleport design.
+
+#### Recipe example
+
+```tsx
+import { defineRecipe } from '@chakra-ui/react';
+
+export const codeRecipe = defineRecipe({
+  className: 'teleport-code',
+  base: {
+    fontFamily: 'mono',
+    alignItems: 'center',
+    display: 'inline-flex',
+    borderRadius: 'l2',
+  },
+  variants: {
+    variant: {
+      subtle: {
+        bg: 'interactive.tonal.neutral.0',
+      },
+      outline: {
+        bg: 'interactive.tonal.neutral.0',
+        color: 'text.main',
+        shadow: 'inset 0 0 0px 1px var(--shadow-color)',
+        shadowColor: 'interactive.tonal.neutral.1',
+      },
+    },
+    size: {
+      xs: {
+        textStyle: '2xs',
+        px: '1',
+        minH: '4',
+      },
+      // etc...
+    },
+  },
+});
+```
+
+#### Slot recipe example
+
+```tsx
+import { defineSlotRecipe } from '@chakra-ui/react';
+import { listAnatomy } from '@chakra-ui/react/anatomy';
+
+export const listSlotRecipe = defineSlotRecipe({
+  className: 'chakra-list',
+  slots: listAnatomy.keys(),
+  base: {
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 'var(--list-gap)',
+      '& :where(ul, ol)': {
+        marginTop: 'var(--list-gap)',
+      },
+    },
+    item: {
+      whiteSpace: 'normal',
+      display: 'list-item',
+    },
+    indicator: {
+      marginEnd: '2',
+      minHeight: '1lh',
+      flexShrink: 0,
+      display: 'inline-block',
+      verticalAlign: 'middle',
+    },
+  },
+  // etc...
+});
+```
+
+### index.ts
+
+The `index.ts` file should only export items from the component files. This is because <GitHubFileLink to="src/components/index.ts" /> exports everything from the `index.ts` files in each component directory.
+This is done to make importing/exporting components easier.
+
+```tsx
+// src/components/button/index.ts
+export * from './Button';
+```
+
+```tsx
+// src/components/index.ts
+
+export * from './button';
+export * from './code';
+// add the export here, keeping the list alphabetical
+export * from './component-name';
+export * from './table';
+export * from './tooltip';
+```

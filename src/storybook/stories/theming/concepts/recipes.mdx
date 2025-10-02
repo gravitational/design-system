@@ -5,3 +5,302 @@ import { DocsHeader } from '../../../components/DocsHeader';
 <Meta title="Guides/Theming/Concepts/Recipes" />
 
 <DocsHeader title="Recipes" />
+
+Chakra's recipes provide a way to write CSS-in-JS with better performance, developer experience, and composability. One of its key features is the ability to create multi-variant styles with a type-safe runtime API.
+
+A recipe consists of these properties:
+
+- `className`: The class name to apply to the component
+- `base`: The base styles for the component
+- `variants`: The different style variants for the component
+- `compoundVariants`: The different combinations of variants for the component
+- `defaultVariants`: The default variants for the component
+
+> [!TIP]
+> If your component has children that also need to be styled, you need to use a [slot recipe](/?path=/docs/guides-theming-concepts-slot-recipes--docs).
+
+## Defining a recipe
+
+Use the `defineRecipe` function to create a recipe.
+
+```tsx
+import { defineRecipe } from '@gravitational/design-system';
+
+export const buttonRecipe = defineRecipe({
+  base: {
+    display: 'flex',
+  },
+  variants: {
+    variant: {
+      solid: { bg: 'red.200', color: 'white' },
+      outline: { borderWidth: '1px', borderColor: 'red.200' },
+    },
+    size: {
+      sm: { padding: '4', fontSize: '12px' },
+      lg: { padding: '8', fontSize: '24px' },
+    },
+  },
+});
+```
+
+## Using a recipe
+
+There are two ways to use a recipe:
+
+- Directly in the component with `useRecipe` (useful for custom components with logic)
+- Creating a component with the `styled` factory (useful for styling existing elements or components)
+
+### Directly in a component
+
+Use the `useRecipe` hook to get the recipe for a component. If the recipe is defined in the theme (i.e. design system components), you should pass in the name of the recipe as `key`. If the recipe is defined locally, you can pass in the recipe object directly.
+
+```tsx
+import { useRecipe } from '@gravitational/design-system';
+
+export function Button({ variant, size, children }) {
+  const recipe = useRecipe({
+    key: 'button', // for design system components
+  });
+}
+```
+
+```tsx
+import { useRecipe } from '@gravitational/design-system';
+
+import { buttonRecipe } from './recipe';
+
+export function Button({ variant, size, children }) {
+  const recipe = useRecipe({
+    recipe: buttonRecipe, // for local recipes
+  });
+}
+```
+
+Then, call the recipe with the variant props to get the styles.
+
+```tsx
+import { styled, useRecipe } from '@gravitational/design-system';
+
+export function Button({ variant, size, ...rest }) {
+  const recipe = useRecipe({
+    key: 'button',
+  });
+  const styles = recipe({ variant, size });
+
+  return <styled.button css={styles} {...rest} />;
+}
+```
+
+#### splitVariantProps
+
+Instead of needing to keep the prop destructuring in sync with the recipe, you can use `recipe.splitVariantProps` to separate the variant props from the rest of the props.
+
+```tsx
+import { styled, useRecipe } from '@gravitational/design-system';
+
+export function Button(props) {
+  const recipe = useRecipe({
+    key: 'button',
+  });
+  const [recipeProps, rest] = recipe.splitVariantProps(props);
+  const styles = recipe(recipeProps);
+
+  return <styled.button css={styles} {...rest} />;
+}
+```
+
+#### Types
+
+To infer the recipe variant prop types, use either the `RecipeProps` (for design system components) or `RecipeVariantProps` type helpers.
+
+```tsx
+// for design system components
+
+import { RecipeProps, styled, useRecipe } from '@gravitational/design-system';
+import { PropsWithChildren } from 'react';
+
+type ButtonVariantProps = RecipeProps<'button'>;
+
+export interface ButtonProps extends PropsWithChildren<ButtonVariantProps> {
+  // other props here
+}
+
+export function Button(props: ButtonProps) {
+  const recipe = useRecipe({
+    key: 'button',
+  });
+  const [recipeProps, rest] = recipe.splitVariantProps(props);
+  const styles = recipe(recipeProps);
+
+  return <styled.button css={styles} {...rest} />;
+}
+```
+
+```tsx
+// for local recipes
+
+import {
+  RecipeVariantProps,
+  styled,
+  useRecipe,
+} from '@gravitational/design-system';
+import { PropsWithChildren } from 'react';
+
+import { buttonRecipe } from './recipe';
+
+type ButtonVariantProps = RecipeVariantProps<typeof buttonRecipe>;
+
+export interface ButtonProps extends PropsWithChildren<ButtonVariantProps> {
+  // other props here
+}
+
+export function Button(props: ButtonProps) {
+  const recipe = useRecipe({
+    recipe: buttonRecipe,
+  });
+  const [recipeProps, rest] = recipe.splitVariantProps(props);
+  const styles = recipe(recipeProps);
+
+  return <styled.button css={styles} {...rest} />;
+}
+```
+
+### Creating a component
+
+If the component doesn't need any custom logic, you can create a styled component directly with the `styled` factory and pass in the recipe.
+
+```tsx
+import { styled } from '@gravitational/design-system';
+
+import { buttonRecipe } from './recipe';
+
+export const Button = styled('button', buttonRecipe);
+```
+
+```tsx
+<Button variant="solid" size="sm">
+  Click me
+</Button>
+```
+
+## Variants
+
+Variants are defined in the `variants` property of a recipe. Each variant is an object with keys representing the variant names and values representing the styles for that variant.
+
+Add a JSDoc comment above each variant to explain its purpose. This comment will automatically be added to the generated types, so it will show up in your IDE and the Storybook props table.
+
+```tsx
+import { defineRecipe } from '@gravitational/design-system';
+
+export const buttonRecipe = defineRecipe({
+  base: {
+    display: 'flex',
+  },
+  variants: {
+    /**
+     * The visual style of the button
+     */
+    variant: {
+      solid: { bg: 'red.200', color: 'white' },
+      outline: { borderWidth: '1px', borderColor: 'red.200' },
+    },
+    /**
+     * The size of the button
+     */
+    size: {
+      sm: { padding: '4', fontSize: '12px' },
+      lg: { padding: '8', fontSize: '24px' },
+    },
+  },
+});
+```
+
+## Default variants
+
+You can define default variants for a recipe with the `defaultVariants` property. These variants will be applied if no variant is specified.
+
+```tsx
+import { defineRecipe } from '@gravitational/design-system';
+
+export const buttonRecipe = defineRecipe({
+  base: {
+    display: 'flex',
+  },
+  variants: {
+    variant: {
+      solid: { bg: 'red.200', color: 'white' },
+      outline: { borderWidth: '1px', borderColor: 'red.200' },
+    },
+    size: {
+      sm: { padding: '4', fontSize: '12px' },
+      lg: { padding: '8', fontSize: '24px' },
+    },
+  },
+  defaultVariants: {
+    variant: 'solid',
+    size: 'sm',
+  },
+});
+```
+
+## Compound variants
+
+Use `compoundVariants` to define styles for specific combinations of variants.
+
+```tsx
+import { defineRecipe } from '@gravitational/design-system';
+
+export const buttonRecipe = defineRecipe({
+  base: {
+    display: 'flex',
+  },
+  variants: {
+    variant: {
+      solid: { bg: 'red.200', color: 'white' },
+      outline: { borderWidth: '1px', borderColor: 'red.200' },
+    },
+    size: {
+      sm: { padding: '4', fontSize: '12px' },
+      lg: { padding: '8', fontSize: '24px' },
+    },
+  },
+  compoundVariants: [
+    {
+      size: 'small',
+      variant: 'outline',
+      css: {
+        borderWidth: '2px',
+      },
+    },
+  ],
+});
+```
+
+When you use `size="small"` and `variant="outline"`, the button will have a `borderWidth` of `2px` instead of `1px`.
+
+```tsx
+<Button variant="outline" size="sm">
+  Click me
+</Button>
+```
+
+### Caveat
+
+Using `compoundVariants` with responsive values is not supported. This means you can't do this:
+
+```tsx
+<Button size={{ base: 'sm', md: 'lg' }} variant="outline">
+  Click Me
+</Button>
+```
+
+To get around this, you can render two buttons with different breakpoints and hide/show them as needed.
+
+```tsx
+<Button size="sm" variant="outline" display={{ base: 'inline-flex', md: 'none' }}>
+  Click Me
+</Button>
+<Button size="lg" variant="outline" display={{ base: 'none', md: 'inline-flex' }}>
+  Click Me
+</Button>
+```

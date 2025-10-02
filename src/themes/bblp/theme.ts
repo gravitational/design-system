@@ -5,7 +5,7 @@ import { colors } from './colors';
 
 const config = defineConfig({
   theme: {
-    tokens: {
+    semanticTokens: {
       colors,
     },
   },

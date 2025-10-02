@@ -1,7 +1,18 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 import { DocsHeader } from '../../../components/DocsHeader';
+import { Shadows } from './Shadows';
 
 <Meta title="Guides/Theming/Design Tokens/Shadows" />
 
-<DocsHeader title="Shadows" />
+<DocsHeader title="Shadows" recipePath="src/theme/tokens/shadows.ts" />
+
+The following shadow tokens are defined in the design system:
+
+## Shadows
+
+<Shadows />
+
+```tsx
+<Box boxSize="12" bg="brand" boxShadow="lg" />
+```

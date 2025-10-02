@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+
+import * as AbsoluteCenterStories from './AbsoluteCenter.stories';
+
+<Meta title="Components/Layout/Center (Absolute)" />
+
+<DocsHeader
+  title="Center (Absolute)"
+  description="Used to horizontally and vertically center content within a container, using absolute positioning."
+/>
+
+<Canvas of={AbsoluteCenterStories.Example} />
+
+## Usage
+
+The `AbsoluteCenter` component is a wrapper around the `Box` component that applies styles to center its children both horizontally and vertically using absolute positioning.
+
+The parent element must have a `position` of `relative`, `absolute`, or `fixed` for the centering to work correctly.
+
+```tsx
+import { AbsoluteCenter, Box } from '@gravitational/design-system';
+
+<Box pos="relative" h="200px">
+  <AbsoluteCenter>Centered Content</AbsoluteCenter>
+</Box>;
+```
+
+### With content
+
+Use `AbsoluteCenter` with various content types like icons, badges, or status indicators.
+
+<Canvas of={AbsoluteCenterStories.WithContent} />
+
+### Overlay usage
+
+Ideal for creating loading overlays or modal-like content that needs to be centered over other elements.
+
+<Canvas of={AbsoluteCenterStories.Overlay} />
+
+## Props
+
+`AbsoluteCenter` supports all CSS properties as props, similar to the `Box` component.

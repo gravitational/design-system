@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
+import { CategoryList } from '../../../components/CategoryList';
 import { DocsHeader } from '../../../components/DocsHeader';
 import { GitHubFileLink } from '../../../components/GitHubFileLink';
 
@@ -14,9 +15,90 @@ of attributes that describe any fundamental/atomic visual style. Each attribute 
 
 A design token consists of:
 
-- `value`: The value of the token. This can be any valid CSS value, such as a color, size, or font.
+- `value`: The value of the token. This can be any valid CSS value, such as a color, size, or font, or a reference to another token.
 - `description`: An optional description of what the token is used for.
 
 ## Defining Tokens
 
-Tokens are defined in <GitHubFileLink to="src/theme/tokens" />
+Tokens are defined in <GitHubFileLink to="src/theme/tokens" />. Tokens defined here are theme-agnostic and will be
+the same across all themes. This is useful for defining values for spacing, typography, etc.
+
+> [!TIP]
+> You probably won't need to modify these tokens. In most cases, you'll need to edit [semantic tokens](/?path=/docs/guides-theming-concepts-semantic-tokens--docs) instead.
+
+## Using Tokens
+
+After defining tokens, you should regenerate the theme types by running:
+
+```bash
+pnpm generate-theme
+```
+
+This will provide autocompletion and type safety when using tokens in your editor.
+
+> [!NOTE]
+> You will need to restart the TypeScript language server in your editor to pick up the new types.
+
+```tsx
+<Box p="4" fontFamily="mono">
+  This box has padding of 4 and uses the mono font family.
+</Box>
+```
+
+### Token reference syntax
+
+You can reference design tokens within composite values for CSS properties like `border`, `padding` and `box-shadow`.
+
+> [!NOTE]
+> Make sure you use the full token path, e.g. `colors.text.main` instead of just `text.main`.
+
+```tsx
+<Box
+  border="1px solid {colors.border.main}"
+  p="{spacing.4} {spacing.2}"
+  boxShadow="{spacing.4} {spacing.2} {spacing.2} {colors.shadow}"
+>
+  This box has a border, padding and box shadow using design tokens.
+</Box>
+```
+
+(You'd probably use `px={2} py={4}` for padding in this case, but this is just an example of the syntax.)
+
+Tokens can be referenced in other tokens as well:
+
+```tsx
+const colors = defineTokens.colors({
+  primary: '#FF0000',
+  secondary: '#00FF00',
+  accent: '{colors.primary}', // Reference to another token
+});
+```
+
+## Token Nesting
+
+Tokens can be nested within other tokens.
+
+> [!TIP]
+> Use the `DEFAULT` token to define the default value for a nested token.
+
+```tsx
+const colors = defineTokens.colors({
+  primary: {
+    DEFAULT: '#FF0000', // Default value for colors.primary
+    light: '#FF6666',
+    dark: '#990000',
+  },
+});
+```
+
+```tsx
+<Box color="primary">This text is red.</Box>
+<Box color="primary.light">This text is light red.</Box>
+<Box color="primary.dark">This text is dark red.</Box>
+```
+
+## Token Types
+
+There are several types of tokens available in the design system.
+
+<CategoryList category="Guides/Theming/Design Tokens" />

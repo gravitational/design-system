@@ -1,0 +1,80 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as BoxStories from './Box.stories';
+
+<Meta title="Components/Layout/Box" />
+
+<DocsHeader
+  title="Box"
+  description="The most abstract component for styling elements."
+/>
+
+<Canvas of={BoxStories.ExampleLonghand} />
+
+## Usage
+
+```tsx
+import { Box } from '@gravitational/design-system';
+
+<Box
+  display="flex"
+  flexDirection="column"
+  alignItems="center"
+  justifyContent="center"
+  width="sm"
+  height="sm"
+  bg="brand"
+  color="textPrimary"
+  p={4}
+  borderRadius="md"
+  boxShadow="md"
+>
+  Content goes here
+</Box>;
+```
+
+### Shorthand
+
+Use shorthand props like `bg` instead of `backgroundColor`, `p` instead of `padding`, and `m` instead of `margin`.
+
+<Canvas of={BoxStories.ExampleShorthand} />
+
+### Pseudo props
+
+Use pseudo props like `_hover`, `_focus`, and `_active` to style the component in different states.
+
+<Canvas of={BoxStories.ExamplePseudo} />
+
+### Border
+
+You can define borders in one of two ways:
+
+#### Using the `border` prop
+
+Advantage: one prop to set everything.
+Disadvantage: doesn't offer type completion for the color
+
+<Canvas of={BoxStories.BorderProp} />
+
+#### Using `borderWidth` and `borderColor` props
+
+By default, all elements have a `borderStyle` of `solid`. You can change this using the `borderStyle` prop.
+
+Advantage: type completion for the color.
+Disadvantage: two props to set everything.
+
+<Canvas of={BoxStories.BorderWidthColorProps} />
+
+### As Prop
+
+Use the `as` prop to change the rendered element type.
+
+<Canvas of={BoxStories.AsProp} />
+
+## Props
+
+The `Box` component supports all CSS properties as props.
