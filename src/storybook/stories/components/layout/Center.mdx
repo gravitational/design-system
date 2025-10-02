@@ -1,0 +1,54 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+
+import { PropTypes } from '../../../components/PropTypes';
+import * as CenterStories from './Center.stories';
+
+<Meta title="Components/Layout/Center" />
+
+<DocsHeader
+  title="Center"
+  description="Used to center its child within itself."
+/>
+
+<Canvas of={CenterStories.Example} />
+
+## Usage
+
+```tsx
+import { Center, Circle, Square } from '@gravitational/design-system';
+
+<Center>Centered Content</Center>;
+```
+
+## Examples
+
+### Icon
+
+Use `Center` with various content types like icons, badges, or status indicators.
+
+<Canvas of={CenterStories.Icon} />
+
+### Center with inline
+
+Use the `inline` prop to change the display to `inline-flex`.
+
+<Canvas of={CenterStories.CenterWithInline} />
+
+### Square
+
+`Square` centers its child and makes the container a square.
+
+<Canvas of={CenterStories.SquareExample} />
+
+### Circle
+
+`Circle` centers its child and makes the container a circle.
+
+<Canvas of={CenterStories.CircleExample} />
+
+## Props
+
+<PropTypes of={CenterStories} />

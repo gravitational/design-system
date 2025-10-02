@@ -91,26 +91,33 @@ const preview: PreviewWithStorySort = {
       storySort: (a, b) => {
         const categoriesOrder = ['Guides', 'Components'];
         const storiesOrder = {
-          Guides: ['Introduction', 'Styling', 'Theming', 'Migration Guide'],
+          Guides: [
+            'Introduction',
+            'Styling',
+            'Theming',
+            'Icons',
+            'Migration Guide',
+          ],
           'Guides/Styling': ['Concepts', 'Style Props'],
           'Guides/Styling/Concepts': [
             'Styled Factory',
             'Responsive Design',
             'CSS Variables',
+            'Dark Mode',
             'Conditional Styles',
           ],
           'Guides/Theming': ['Concepts'],
           'Guides/Theming/Concepts': [
             'Tokens',
             'Semantic Tokens',
+            'Defining Themes',
             'Recipes',
             'Slot Recipes',
-            `Teleport's Theme`,
+            'Adding Chakra Components',
           ],
           Components: ['Buttons'],
           'Components/Buttons': ['Button', 'Close Button'],
         };
-
         const pathA = a.title.split('/');
         const pathB = b.title.split('/');
 

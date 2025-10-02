@@ -1,0 +1,103 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { DocsHeader } from '../../../components/DocsHeader';
+
+import { GitHubFileLink } from '../../../components/GitHubFileLink';
+
+<Meta title="Guides/Theming/Concepts/Defining Themes" />
+
+<DocsHeader title="Defining Themes" />
+
+There are three different types of themes in the Teleport Design System:
+
+- Light and dark, which are themes that have both light and dark modes (currently only the Teleport theme).
+- Forced color, which are themes that force either light or dark mode of another theme.
+- Single color, which are themes that are always the same color regardless of light or dark mode.
+
+## Theme structure
+
+Themes are defined in the <GitHubFileLink to="src/themes" /> directory. Each theme has its own folder with the following structure:
+
+```
+theme-name/
+  colors.ts // Optional for forced color themes
+  index.ts
+  theme.ts
+```
+
+`colors.ts` defines the colors as [semantic tokens](/?path=/docs/guides-theming-concepts-semantic-tokens--docs). For single color themes, the value is just a string instead of an object with light and dark values. For other conditions, see the [selector conditions in semantic tokens documentation](/?path=/docs/guides-theming-concepts-semantic-tokens--docs#selector-conditions).
+
+It's generally best that the themes only define colors, and leave other theme properties (e.g. typography, spacing, etc.) to be inherited from the base theme. It may be necessary for a theme to define a different default font.
+
+## Adding new themes
+
+To add a new theme, create a new directory in the <GitHubFileLink to="src/themes" /> with the name of the theme.
+
+Then create the `index.ts`,`theme.ts` and (optional) `colors.ts` files. You can copy these from an existing theme and modify them as needed.
+
+##### index.ts
+
+```tsx
+export { TELEPORT_THEME } from './theme';
+```
+
+##### theme.ts
+
+```tsx
+const config = defineConfig({
+  theme: {
+    semanticTokens: {
+      colors,
+    },
+  },
+});
+
+export const TELEPORT_THEME: UiTheme = {
+  mode: UiThemeMode.LightAndDark,
+  name: 'teleport',
+  config,
+};
+```
+
+##### colors.ts
+
+```tsx
+export const colors: ThemeColors = defineSemanticTokens.colors({
+  // Define colors here for light and dark themes
+  text: {
+    main: {
+      value: {
+        _light: '{colors.grey.800}',
+        _dark: '{colors.grey.200}',
+      },
+    },
+    secondary: {
+      value: {
+        _light: '{colors.grey.600}',
+        _dark: '{colors.grey.400}',
+      },
+    },
+  },
+});
+
+export const colors: SingleColorThemeColors = defineSemanticTokens.colors({
+  // Define colors here for single color themes
+  text: {
+    main: {
+      value: '{colors.grey.800}',
+    },
+    secondary: {
+      value: '{colors.grey.600}',
+    },
+  },
+});
+```
+
+> [!NOTE]
+> The design system Storybook currently relies on there being only one light/dark theme (the Teleport theme), to match the theme names to the existing Storybook theme names.
+> If you add a new light/dark theme, you will need to update the Storybook configuration in <GitHubFileLink to=".storybook/preview.tsx" />.
+
+## Adding colors to the themes
+
+When adding new colors to the themes, you should first add the color to the Teleport theme <GitHubFileLink to="src/themes/teleport/colors.ts" />.
+This will ensure type safety as the other theme definitions will now have type errors. You should then add the color to any other themes that need it.

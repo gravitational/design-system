@@ -1,0 +1,70 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { DocsHeader } from '../../components/DocsHeader';
+import { GitHubFileLink } from '../../components/GitHubFileLink';
+
+<Meta title="Guides/Icons/Adding Icons" />
+
+<DocsHeader title="Adding Icons" />
+
+The design system uses the React Phosphor Icons library directly.
+
+To add an icon, edit <GitHubFileLink to="src/icons/icons.ts" /> and add the icon to the array.
+
+```tsx
+import * as icons from '@phosphor-icons/react';
+
+export const AVAILABLE_ICONS = [
+  // Add your icon where it needs to go, keeping the list sorted alphabetically
+  icons.ArrowBendDoubleUpRightIcon,
+  icons.ArrowCircleUpIcon,
+  icons.ArrowLineUpRightIcon,
+  icons.ArrowUpIcon,
+  icons.ArrowUpRightIcon,
+  icons.AtIcon,
+  icons.CaretDownIcon,
+  icons.CaretLeftIcon,
+  icons.CaretRightIcon,
+  icons.CheckIcon,
+  icons.ChefHatIcon,
+  icons.ClipboardIcon,
+  icons.CodeIcon,
+  icons.GithubLogoIcon,
+  icons.HorseIcon,
+  icons.TrashIcon,
+  icons.XIcon,
+];
+```
+
+Then run `pnpm generate-icons`, which will generate wrapper components for each icon in <GitHubFileLink to="src/icons/generated" />.
+
+You can then use the icon components directly. When using the icon components in a button, the size is automatically adjusted to fit the button size.
+
+```tsx
+import {
+  ArrowUpRightIcon,
+  Button,
+  GithubLogoIcon,
+} from '@gravitational/design-system';
+
+function SomeComponent() {
+  return (
+    <>
+      <Button>
+        <ArrowUpRightIcon />
+        Some Action
+      </Button>
+      <Button size="sm" ml={2}>
+        <GithubLogoIcon />
+      </Button>
+    </>
+  );
+}
+```
+
+They support all of the styled props, so you can customize them as needed.
+
+```tsx
+<ArrowUpRightIcon size="sm" ml={1} />
+<GithubLogoIcon pos="relative" zIndex={2} />
+```

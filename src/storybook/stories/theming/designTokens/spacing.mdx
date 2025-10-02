@@ -1,7 +1,23 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 import { DocsHeader } from '../../../components/DocsHeader';
+import { Spacing } from './Spacing';
 
 <Meta title="Guides/Theming/Design Tokens/Spacing" />
 
-<DocsHeader title="Spacing" />
+<DocsHeader title="Spacing" recipePath="src/theme/tokens/spacing.ts" />
+
+The following spacing tokens are defined in the design system:
+
+## Spacing
+
+<Spacing />
+
+```tsx
+<Box
+  boxSize="12"
+  bg="brand"
+  ml={2} // Example of using a spacing token for margin-left, will be 8px
+  py={4} // Example of using a spacing token for padding-y, will be 16px
+/>
+```

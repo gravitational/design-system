@@ -1,7 +1,8 @@
 import { Box, Heading, HStack, Text } from '@chakra-ui/react';
 
-import { ChefHatIcon, GithubLogoIcon } from '../../icons';
+import { GithubLogoIcon } from '../../icons';
 import { GitHubLink } from './GitHubLink';
+import { RecipeLink } from './RecipeLink';
 
 interface DocsHeaderProps {
   title: string;
@@ -35,14 +36,7 @@ export function DocsHeader({
             </GitHubLink>
           )}
 
-          {recipePath && (
-            <GitHubLink
-              href={`https://github.com/gravitational/design-system/blob/main/${recipePath}`}
-              icon={ChefHatIcon}
-            >
-              Recipe
-            </GitHubLink>
-          )}
+          {recipePath && <RecipeLink recipePath={recipePath} />}
         </HStack>
       ) : null}
     </Box>

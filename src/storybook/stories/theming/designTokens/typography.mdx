@@ -1,7 +1,100 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 import { DocsHeader } from '../../../components/DocsHeader';
+import { RecipeLink } from '../../../components/RecipeLink';
+import {
+  Font,
+  FontSize,
+  FontWeight,
+  LetterSpacing,
+  LineHeight,
+} from './Typography';
 
 <Meta title="Guides/Theming/Design Tokens/Typography" />
 
 <DocsHeader title="Typography" />
+
+## Fonts
+
+<RecipeLink recipePath="src/theme/tokens/fonts.ts" mb={4} />
+
+Here's the list of available fonts.
+
+<Font />
+
+```tsx
+<Box
+  fontFamily="mono"
+/>
+<Box
+  fontFamily="body"
+/>
+```
+
+## Font Sizes
+
+<RecipeLink recipePath="src/theme/tokens/fontSizes.ts" mb={4} />
+
+Here's the list of available font sizes.
+
+<FontSize />
+
+```tsx
+<Box
+  fontSize="sm"
+/>
+<Box
+  fontSize="lg"
+/>
+```
+
+## Font Weights
+
+<RecipeLink recipePath="src/theme/tokens/fontWeights.ts" mb={4} />
+
+Here's the list of available font weights.
+
+<FontWeight />
+
+```tsx
+<Box
+  fontWeight="light"
+/>
+<Box
+  fontWeight="bold"
+/>
+```
+
+## Line Heights
+
+<RecipeLink recipePath="src/theme/tokens/lineHeights.ts" mb={4} />
+
+Here's the list of available line heights.
+
+<LineHeight />
+
+```tsx
+<Box
+  lineHeight="short"
+/>
+<Box
+  lineHeight="taller"
+/>
+```
+
+## Letter Spacings
+
+<RecipeLink recipePath="src/theme/tokens/letterSpacings.ts" mb={4} />
+
+Here's the list of available letter spacing.
+
+<LetterSpacing />
+
+```tsx
+<Box
+  letterSpacing="tight"
+/>
+<Box
+  letterSpacing="wider"
+/>
+```

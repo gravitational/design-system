@@ -5,3 +5,309 @@ import { DocsHeader } from '../../../components/DocsHeader';
 <Meta title="Guides/Theming/Concepts/Slot Recipes" />
 
 <DocsHeader title="Slot Recipes" />
+
+Slot recipes are a way to define styles for multiple parts of a component.
+
+A slot recipe consists of these properties:
+
+- `className`: The class name to apply to the component slot
+- `slots`: An array of component parts to style
+- `base`: The base styles per slot
+- `variants`: The different style variants for each slot
+- `compoundVariants`: The compound variant combination and style overrides for each slot
+- `defaultVariants`: The default variants for the component
+
+## Defining a slot recipe
+
+Use the `defineSlotRecipe` function to create a slot recipe.
+
+```tsx
+import { defineSlotRecipe } from '@gravitational/design-system';
+
+export const checkboxSlotRecipe = defineSlotRecipe({
+  slots: ['root', 'control', 'label'],
+  base: {
+    root: { display: 'flex', alignItems: 'center', gap: '2' },
+    control: { borderWidth: '1px', borderRadius: 'sm' },
+    label: { marginStart: '2' },
+  },
+  variants: {
+    size: {
+      sm: {
+        control: { width: '8', height: '8' },
+        label: { fontSize: 'sm' },
+      },
+      md: {
+        control: { width: '10', height: '10' },
+        label: { fontSize: 'md' },
+      },
+    },
+  },
+});
+```
+
+## Using a slot recipe
+
+There are two ways to use a recipe:
+
+- Directly in the component with `useSlotRecipe` (useful for custom components with logic)
+- As a compound component with `createSlotRecipeContext` (useful for styling existing elements or components)
+
+### Directly in a component
+
+Use the `useSlotRecipe` hook to get the recipe for a component. If the recipe is defined in the theme (i.e. design system components), you should pass in the name of the recipe as `key`. If the recipe is defined locally, you can pass in the recipe object directly.
+
+```tsx
+import { useSlotRecipe } from '@gravitational/design-system';
+
+export function Checkbox({ size, children }) {
+  const recipe = useSlotRecipe({
+    key: 'checkbox', // for design system components
+  });
+}
+```
+
+```tsx
+import { useSlotRecipe } from '@gravitational/design-system';
+
+import { checkboxSlotRecipe } from './recipe';
+
+export function Checkbox({ size, children }) {
+  const recipe = useSlotRecipe({
+    recipe: checkboxSlotRecipe, // for local recipes
+  });
+}
+```
+
+Then, call the recipe with the variant props to get the styles.
+
+```tsx
+import { styled, useRecipe } from '@gravitational/design-system';
+
+export function Checkbox({ size, ...rest }) {
+  const recipe = useSlotRecipe({
+    key: 'checkbox',
+  });
+  const styles = recipe({ size });
+
+  return (
+    <styled.label css={styles.root}>
+      <styled.input type="checkbox" css={styles.control} {...rest} />
+      <styled.span css={styles.label}>Checkbox Label</styled.span>
+    </styled.label>
+  );
+}
+```
+
+#### splitVariantProps
+
+Instead of needing to keep the prop destructuring in sync with the recipe, you can use `recipe.splitVariantProps` to separate the variant props from the rest of the props.
+
+```tsx
+import { styled, useSlotRecipe } from '@gravitational/design-system';
+
+export function Checkbox(props) {
+  const recipe = useSlotRecipe({
+    key: 'checkbox',
+  });
+  const [recipeProps, rest] = recipe.splitVariantProps(props);
+  const styles = recipe(recipeProps);
+
+  return (
+    <styled.label css={styles.root}>
+      <styled.input type="checkbox" css={styles.control} {...rest} />
+      <styled.span css={styles.label}>Checkbox Label</styled.span>
+    </styled.label>
+  );
+}
+```
+
+#### Types
+
+To infer the recipe variant prop types, use either the `RecipeProps` (for design system components) or `RecipeVariantProps` type helpers.
+
+```tsx
+// for design system components
+
+import { RecipeProps, styled, useRecipe } from '@gravitational/design-system';
+import { PropsWithChildren } from 'react';
+
+type CheckboxVariantProps = RecipeProps<'checkbox'>;
+
+export interface CheckboxProps extends PropsWithChildren<CheckboxVariantProps> {
+  // other props here
+}
+
+export function Checkbox(props: CheckboxProps) {
+  const recipe = useRecipe({
+    key: 'checkbox',
+  });
+  const [recipeProps, rest] = recipe.splitVariantProps(props);
+  const styles = recipe(recipeProps);
+
+  return (
+    <styled.label css={styles.root}>
+      <styled.input type="checkbox" css={styles.control} {...rest} />
+      <styled.span css={styles.label}>Checkbox Label</styled.span>
+    </styled.label>
+  );
+}
+```
+
+```tsx
+// for local recipes
+
+import {
+  RecipeVariantProps,
+  styled,
+  useRecipe,
+} from '@gravitational/design-system';
+import { PropsWithChildren } from 'react';
+
+import { checkboxSlotRecipe } from './recipe';
+
+type CheckboxVariantProps = RecipeVariantProps<typeof checkboxSlotRecipe>;
+
+export interface CheckboxProps extends PropsWithChildren<CheckboxVariantProps> {
+  // other props here
+}
+
+export function Checkbox(props: CheckboxProps) {
+  const recipe = useRecipe({
+    recipe: checkboxSlotRecipe,
+  });
+  const [recipeProps, rest] = recipe.splitVariantProps(props);
+  const styles = recipe(recipeProps);
+
+  return (
+    <styled.label css={styles.root}>
+      <styled.input type="checkbox" css={styles.control} {...rest} />
+      <styled.span css={styles.label}>Checkbox Label</styled.span>
+    </styled.label>
+  );
+}
+```
+
+### Creating compound components
+
+If the components do not need any custom logic, you can create a compound component directly with the `createSlotRecipeContext` function and pass in the recipe.
+
+```tsx
+import {
+  createSlotRecipeContext,
+  HTMLChakraProps,
+  RecipeVariantProps,
+} from '@gravitational/design-system';
+
+import { checkboxSlotRecipe } from './recipe';
+
+const { withProvider, withContext } = createSlotRecipeContext({
+  recipe: checkboxSlotRecipe, // for local recipes - use `key: 'checkbox'` for design system components
+});
+```
+
+You can then create the root component that provides the recipe context.
+
+```tsx
+interface CheckboxRootProps
+  extends HTMLChakraProps<
+    'label',
+    RecipeVariantProps<typeof checkboxSlotRecipe>
+  > {
+  // other props here
+}
+
+export const CheckboxRoot = withProvider<HTMLLabelElement, CheckboxRootProps>(
+  'label', // the HTML element
+  'root' // the slot name
+);
+```
+
+And create the other slot components that consume the recipe context.
+
+```tsx
+interface CheckboxControlProps extends HTMLChakraProps<'input'> {}
+
+export const CheckboxControl = withContext<
+  HTMLInputElement,
+  CheckboxControlProps
+>(
+  'input', // the HTML element
+  'control' // the slot name
+);
+
+interface CheckboxLabelProps extends HTMLChakraProps<'span'> {}
+
+export const CheckboxLabel = withContext<HTMLSpanElement, CheckboxLabelProps>(
+  'span', // the HTML element
+  'label' // the slot name
+);
+```
+
+You can then use the compound components together. Pass the variant props to the root component.
+
+```tsx
+function Checkbox() {
+  return (
+    <CheckboxRoot size="md">
+      <CheckboxControl />
+      <CheckboxLabel />
+    </CheckboxRoot>
+  );
+}
+```
+
+## Compound variants
+
+Use `compoundVariants` to define styles for specific combinations of variants.
+
+```tsx
+import { defineSlotRecipe } from '@gravitational/design-system';
+
+export const checkboxSlotRecipe = defineSlotRecipe({
+  slots: ['root', 'control', 'label'],
+  base: {},
+  variants: {
+    size: {
+      sm: {},
+      md: {},
+    },
+    visual: {
+      contained: {},
+      outline: {},
+    },
+  },
+  compoundVariants: [
+    {
+      size: 'sm',
+      visual: 'outline',
+      css: {
+        control: { borderWidth: '1px' },
+        label: { color: 'green.500' },
+      },
+    },
+  ],
+});
+```
+
+## Targeting a slot
+
+Sometimes you may need to target a specific slot. You can do this by using the class name generated for the slot.
+
+> [!NOTE]
+> `className` must be set in the recipe. The class names are generated in the format `${className}__${slot}`
+
+```tsx
+export const checkboxRecipe = defineSlotRecipe({
+  className: 'checkbox',
+  slots: ['root', 'control', 'label'],
+  base: {
+    root: {
+      bg: 'blue.500',
+      _hover: {
+        '& .checkbox__label': { color: 'white' },
+      },
+    },
+  },
+});
+```

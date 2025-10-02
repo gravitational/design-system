@@ -2,20 +2,43 @@ import { Box, Code, Table, Text } from '@chakra-ui/react';
 import { useOf, type Of } from '@storybook/addon-docs/blocks';
 import Markdown from 'markdown-to-jsx';
 import { useMemo } from 'react';
+import type { ArgTypesExtractor } from 'storybook/internal/docs-tools';
 import type {
+  Parameters,
+  Renderer,
   ResolvedModuleExportFromType,
   ResolvedModuleExportType,
+  StrictArgTypes,
 } from 'storybook/internal/types';
 
 interface PropTypesProps {
   of?: Of;
 }
 
+function extractComponentArgTypes(
+  component: Renderer['component'],
+  parameters: Parameters
+): StrictArgTypes {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const {
+    extractArgTypes,
+  }: { extractArgTypes: ArgTypesExtractor | undefined } = parameters.docs ?? {};
+
+  if (!extractArgTypes) {
+    throw new Error('No extractArgTypes function found in parameters.docs');
+  }
+
+  return extractArgTypes(component) ?? {};
+}
+
 function getArgTypesFromResolved(
   resolved: ResolvedModuleExportFromType<ResolvedModuleExportType>
 ) {
   if (resolved.type === 'component') {
-    throw new Error('Not implemented');
+    return extractComponentArgTypes(
+      resolved.component,
+      resolved.projectAnnotations.parameters ?? {}
+    );
   }
 
   if (resolved.type === 'meta') {
@@ -54,7 +77,7 @@ export function PropTypes({ of }: PropTypesProps) {
 
     return keys.map(key => (
       <Table.Row key={key}>
-        <Table.Cell>
+        <Table.Cell whiteSpace="nowrap" minW="120px">
           <Code variant="outline">{argTypes[key].name}</Code>
 
           {argTypes[key].type?.required && (
@@ -65,7 +88,7 @@ export function PropTypes({ of }: PropTypesProps) {
             </Box>
           )}
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell whiteSpace="nowrap" minW="150px">
           {argTypes[key].table?.defaultValue?.summary ? (
             <Code variant="outline">
               {argTypes[key].table.defaultValue.summary

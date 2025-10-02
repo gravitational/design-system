@@ -34,8 +34,13 @@ const config: StorybookConfig = {
       shouldRemoveUndefinedFromOptional: true,
       skipChildrenPropWithoutDoc: false,
       shouldSortUnions: true,
+      savePropValueAsString: true,
+      shouldIncludePropTagMap: true,
+      shouldIncludeExpression: true,
       propFilter: prop => {
-        if (!prop.parent) return false;
+        if (!prop.parent) {
+          return false;
+        }
 
         if (prop.type.name.startsWith('ConditionalValue<')) {
           const startIdx = 'ConditionalValue<'.length;

@@ -1,7 +1,23 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 import { DocsHeader } from '../../../components/DocsHeader';
+import { ZIndex } from './ZIndex';
 
 <Meta title="Guides/Theming/Design Tokens/Z-Index" />
 
-<DocsHeader title="Z-Index" />
+<DocsHeader title="Z-Index" recipePath="src/theme/tokens/zIndex.ts" />
+
+The following z-index tokens are defined in the design system:
+
+## z-index
+
+<ZIndex />
+
+```tsx
+<Box
+  zIndex="sticky"
+/>
+<Box
+  zIndex="popover"
+/>
+```

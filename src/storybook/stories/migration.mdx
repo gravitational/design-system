@@ -1,7 +1,989 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 import { DocsHeader } from '../components/DocsHeader';
+import { GitHubFileLink } from '../components/GitHubFileLink';
+import { RecipeLink } from '../components/RecipeLink';
 
 <Meta title="Guides/Migration Guide" />
 
 <DocsHeader title="Migration Guide" />
+
+This guide covers some common changes between the legacy design system and this new design system.
+
+## Adding colors to the theme
+
+Before, you would add the color to the `ThemeColors` type and then update the colors in `lightTheme.ts`, `darkTheme.ts`, etc.
+
+```tsx
+// types.ts
+
+export type ThemeColors = {
+  // ...
+  newColor: string; // add the new color here
+};
+```
+
+```tsx
+// lightTheme.ts
+import { ThemeColors, ThemeColors } from './types';
+
+const colors: ThemeColors = {
+  // ...
+  newColor: '#ff0000', // add the new color value here
+};
+
+// darkTheme.ts
+const colors: ThemeColors = {
+  // ...
+  newColor: '#cc0000', // add the new color value here
+};
+```
+
+Now, you should add the color to Teleport's theme in <GitHubFileLink to="src/themes/teleport/colors.ts" />. The types for the theme are inferred from this,
+so you don't need to manually update any types.
+
+You will need to add the color to the other themes as well. You can read more about [theming here](/?path=/docs/guides-theming-concepts-defining-themes--docs).
+
+```tsx
+export const colors = defineSemanticTokens.colors({
+  // ...
+  newColor: {
+    value: {
+      _light: '#ff0000', // light mode color
+      _dark: '#cc0000', // dark mode color
+    },
+  },
+});
+```
+
+## Creating styled components
+
+### Simple styled components
+
+Previously, you would create a styled component using `styled` from `styled-components` and use props from the theme like this:
+
+```tsx
+import styled from 'styled-components';
+
+const Button = styled.button<{ primary?: boolean }>`
+  background: ${p => (p.primary ? p.theme.colors.brand : 'white')};
+  color: ${p => (p.primary ? 'white' : p.theme.colors.text.main)};
+  padding: ${p => p.theme.space[2]}px ${p => p.theme.space[3]}px;
+  border: none;
+  border-radius: ${p => p.theme.radii[2]}px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${p =>
+      p.primary
+        ? p.theme.colors.interactive.tonal.neutral[1]
+        : p.theme.colors.interactive.tonal.neutral[0]};
+  }
+`;
+
+<Button primary>Primary Button</Button>
+<Button>Default Button</Button>
+```
+
+Now, you can use the `styled` function from `@gravitational/design-system` and access theme tokens directly by their names. You can also define variants for your styled components.
+
+```tsx
+import { styled } from '@gravitational/design-system';
+
+const Button = styled('button', {
+  base: {
+    py: 2,
+    px: 4,
+    color: 'text.main',
+    border: 'none',
+    borderRadius: 'sm',
+    cursor: 'pointer',
+    _hover: {
+      bg: 'interactive.tonal.neutral.0',
+    },
+  },
+  variants: {
+    primary: {
+      true: {
+        bg: 'brand',
+        color: 'white',
+        _hover: {
+          bg: 'interactive.tonal.neutral.1',
+        },
+      },
+    },
+  },
+});
+
+<Button primary>Primary Button</Button>
+<Button>Default Button</Button>
+```
+
+### Using a styled element
+
+Alternatively you can use a styled element:
+
+```tsx
+import { HTMLChakraProps, styled } from '@gravitational/design-system';
+
+interface ButtonProps extends HTMLChakraProps<'button'> {
+  primary?: boolean;
+}
+
+function Button({ primary, ...rest }: ButtonProps) {
+  return (
+    <styled.button
+      bg={primary ? 'brand' : 'white'}
+      color={primary ? 'white' : 'text.main'}
+      py={2}
+      px={4}
+      border="none"
+      borderRadius="sm"
+      cursor="pointer"
+      _hover={{
+        bg: primary
+          ? 'interactive.tonal.neutral.1'
+          : 'interactive.tonal.neutral.0',
+      }}
+      {...rest}
+    />
+  );
+}
+```
+
+All of these will be styled components that then accept further style props for customization.
+
+```tsx
+<Button primary fontSize="lg" boxShadow="md">
+  Primary Button
+</Button>
+<Button ml={2} bg="brand">
+  Custom Default Button
+</Button>
+```
+
+### Using primitive layout components
+
+For simpler components that aren't reused, prefer to use `Box` or one of the other primitive layout components, like `HStack`, `VStack`, `Flex`, `Grid`, etc.
+
+This is at your discretion, as some components may need a lot of styles that would make using a primitive component unwieldy. Some components with a lot of different props changing the styles may be better suited to using a styled element (the example above).
+
+Before:
+
+```tsx
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${p => p.theme.space[4]}px;
+  padding: ${p => p.theme.space[4]}px;
+  background: ${p => p.theme.colors.brand};
+  border-radius: ${p => p.theme.radii[2]}px;
+  box-shadow: ${p => p.theme.boxShadow[1]};
+`;
+
+function SomeComponent() {
+  return <Container>{/* content */}</Container>;
+}
+```
+
+After:
+
+```tsx
+import { VStack } from '@gravitational/design-system';
+
+function SomeComponent() {
+  return (
+    <VStack gap={4} p={4} bg="brand" borderRadius="md" boxShadow="md">
+      {/* content */}
+    </VStack>
+  );
+}
+```
+
+## Creating reusable components
+
+Previously, reusable components would be normal components accepting the different variants as props and using complex logic to determine the styles.
+
+```tsx
+const themedStyles = (props: ThemedButtonProps<E>): CSSObject => {
+  const { colors } = props.theme;
+
+  const style = buttonStyle(props);
+
+  let disabledStyle: CSSObject = {
+    backgroundColor: colors.interactive.tonal.neutral[0],
+    color: colors.buttons.textDisabled,
+    borderColor: 'transparent',
+    boxShadow: 'none',
+    cursor: 'auto',
+  };
+  style['&:disabled'] = disabledStyle;
+
+  // Using the pseudo class `:disabled` to style disabled state
+  // doesn't work for non form elements (e.g. anchor). So
+  // we target by attribute with square brackets. Only true
+  // when we change the underlying type for this component (button)
+  // using the `as` prop (eg: a, NavLink, Link).
+  if (props.as && props.disabled) {
+    disabledStyle.pointerEvents = 'none';
+    style['&[disabled]'] = disabledStyle;
+  }
+
+  return {
+    ...style,
+    ...size(props),
+    ...space(props),
+    ...width(props),
+    ...minWidth(props),
+    ...block(props),
+    ...height(props),
+    ...textTransform(props),
+    ...alignSelf(props),
+    // Since a Button has `display: inline-flex`, we want to be able to set gap within it in case we
+    // need to use an icon.
+    ...gap(props),
+  };
+};
+
+// different parts of the style are broken out into separate functions
+
+const size = (props: ThemedButtonProps<E>) => {
+  const borderWidth = 1.5;
+  const hp = horizontalPadding(props);
+  const commonStyles = {
+    borderWidth: `${borderWidth}px`,
+    padding: `0 ${hp - borderWidth}px`,
+  };
+  switch (props.size) {
+    case 'small':
+      return {
+        ...commonStyles,
+        minHeight: '24px',
+        fontSize: '12px',
+        lineHeight: '16px',
+        letterSpacing: '0.15px',
+      };
+  }
+  // etc...
+};
+```
+
+Now, reusable components are defined using [recipes](/?path=/docs/guides-theming-concepts-recipes--docs) which encapsulate the styles and variants.
+
+> [!NOTE]
+> You should first of all check if there is an [existing Chakra component](https://chakra-ui.com/docs/components/concepts/overview) that meets your needs.
+> If there is, follow the [adding Chakra components](/?path=/docs/guides-theming-concepts-adding-chakra-components--docs) guide to add it to the design system
+> and style it as needed.
+
+<RecipeLink
+  recipePath="src/components/button/recipe.ts"
+  mt={2}
+  text="View full button recipe"
+/>
+
+```tsx
+export const buttonRecipe = defineRecipe({
+  className: 'teleport-button',
+  base: {
+    display: 'inline-flex',
+    lineHeight: '1.5',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: '1.5px',
+    // etc...
+    _disabled: {
+      layerStyle: 'disabled',
+      bg: 'interactive.tonal.neutral.0',
+      color: 'buttons.textDisabled',
+      borderColor: 'transparent',
+      boxShadow: 'none',
+      cursor: 'auto',
+    },
+    _icon: {
+      flexShrink: '0',
+    },
+  },
+
+  variants: {
+    /**
+     * The size of the button.
+     */
+    size: {
+      sm: {
+        px: 'calc({spacing.2} - 1.5px)',
+        gap: 1,
+        minH: '{sizes.6}',
+        minW: '{sizes.6}',
+        fontSize: 1,
+        lineHeight: '{sizes.4}',
+        _icon: {
+          width: '4',
+          height: '4',
+        },
+      },
+      // etc...
+    },
+    /**
+     * Fill specifies the desired shape of the button.
+     */
+    fill: {
+      filled: {},
+      minimal: {},
+      border: {},
+      link: {
+        bg: 'none',
+        color: 'buttons.link.default',
+        fontWeight: 'normal',
+        textDecoration: 'underline',
+        textTransform: 'none',
+        px: '2',
+        _hover: {
+          bg: 'levels.surface',
+          color: 'buttons.link.hover',
+          boxShadow: 'none',
+        },
+        _active: {
+          bg: 'levels.surface',
+          color: 'buttons.link.active',
+        },
+        _focusVisible: {
+          borderColor: 'buttons.link.default',
+          boxShadow: 'none',
+          bg: 'levels.surface',
+          color: 'buttons.link.hover',
+        },
+      },
+    },
+  },
+  compoundVariants: [
+    // filled
+    {
+      intent: 'primary',
+      fill: 'filled',
+      css: {
+        bg: 'interactive.solid.primary.default',
+        color: 'text.primaryInverse',
+        _hover: {
+          bg: 'interactive.solid.primary.hover',
+        },
+        _active: {
+          bg: 'interactive.solid.primary.active',
+        },
+        _focusVisible: {
+          bg: 'interactive.solid.primary.default',
+          outlineColor: 'interactive.solid.primary.default',
+        },
+      },
+    },
+    {
+      intent: 'danger',
+      fill: 'filled',
+      css: {
+        bg: 'interactive.solid.danger.default',
+        color: 'text.primaryInverse',
+        _hover: {
+          bg: 'interactive.solid.danger.hover',
+        },
+        _active: {
+          bg: 'interactive.solid.danger.active',
+        },
+        _focusVisible: {
+          bg: 'interactive.solid.danger.default',
+          outlineColor: 'interactive.solid.danger.default',
+        },
+      },
+    },
+    // etc...
+  ],
+});
+```
+
+This supports all of the styled props automatically and the variant props after the types are regenerated with `pnpm generate-theme`, so you can still customize the component as needed.
+
+```tsx
+<Button fill="filled" intent="primary" mt={4} borderWidth="4px">
+  Primary Button
+</Button>
+
+<Button fill="border" intent="danger" pos="absolute" top={4} right={4}>
+  Primary Button
+</Button>
+```
+
+## Components with multiple children styled by variants
+
+Previously, components that had children that needed to be styled based on the component's variants would need to drill the variant props down to the children.
+
+```tsx
+function Card({ variant, size, children }) {
+  return (
+    <Container variant={variant} size={size}>
+      <Header variant={variant}>Header</Header>
+      <Body size={size}>{children}</Body>
+      <Footer variant={variant}>Footer</Footer>
+    </Container>
+  );
+}
+
+const Container = styled.div<{
+  variant: 'primary' | 'secondary';
+  size: 'sm' | 'md' | 'lg';
+}>`
+  // container styles
+`;
+
+const Header = styled.header<{ variant: 'primary' | 'secondary' }>`
+  font-weight: ${p => (p.variant === 'primary' ? 'bold' : 'normal')};
+`;
+
+const Body = styled.section<{ size: 'sm' | 'md' | 'lg' }>`
+  font-size: ${p =>
+    p.size === 'sm' ? '12px' : p.size === 'md' ? '16px' : '20px'};
+`;
+
+const Footer = styled.footer<{ variant: 'primary' | 'secondary' }>`
+  font-style: ${p => (p.variant === 'primary' ? 'italic' : 'normal')};
+`;
+```
+
+Or the container could target the children directly, but this would get unwieldy with more complex components.
+
+```tsx
+const Container = styled.div<{
+  variant: 'primary' | 'secondary';
+  size: 'sm' | 'md' | 'lg';
+}>`
+  // container styles
+
+  ${Body} {
+    font-size: ${p.size === 'sm' ? '12px' : p.size === 'md' ? '16px' : '20px'};
+  }
+
+  ${p =>
+    p.variant === 'primary'
+      ? `
+    background: ${p.theme.colors.brand};
+    color: white;
+
+    ${Header} {
+      font-weight: bold;
+    }
+
+    ${Footer} {
+      font-style: italic;
+    }
+  `
+      : `
+    background: white;
+    color: ${p.theme.colors.text.main};
+
+    ${Header} {
+      font-weight: normal;
+    }
+
+    ${Footer} {
+      font-style: normal;
+    }
+  `}
+`;
+```
+
+### Using slot recipes
+
+Now, you can use [slot recipes](/?path=/docs/guides-theming-concepts-slot-recipes--docs) to define the styles for the children within the main component's recipe.
+
+```tsx
+import {
+  Box,
+  defineSlotRecipe,
+  useSlotRecipe,
+} from '@gravitational/design-system';
+
+const cardSlotRecipe = defineSlotRecipe({
+  slots: ['root', 'header', 'body', 'footer'],
+  base: {
+    root: {
+      border: '1px solid {colors.interactive.tonal.neutral.1}',
+      // etc...
+    },
+    header: {},
+    body: {
+      fontSize: 'md',
+    },
+    footer: {},
+  },
+  variants: {
+    variant: {
+      primary: {
+        root: {
+          bg: 'brand',
+          color: 'white',
+        },
+        header: {
+          fontWeight: 'bold',
+        },
+        footer: {
+          fontStyle: 'italic',
+        },
+      },
+      secondary: {
+        root: {
+          bg: 'white',
+          color: 'text.main',
+        },
+        header: {
+          fontWeight: 'normal',
+        },
+        footer: {
+          fontStyle: 'normal',
+        },
+      },
+    },
+    size: {
+      sm: {
+        body: {
+          fontSize: 'sm',
+        },
+      },
+      md: {
+        body: {
+          fontSize: 'md',
+        },
+      },
+      lg: {
+        body: {
+          fontSize: 'lg',
+        },
+      },
+    },
+  },
+});
+
+function Card(props) {
+  const recipe = useSlotRecipe({ recipe: cardSlotRecipe });
+  const [recipeProps, rest] = recipe.splitVariantProps(props);
+  const styles = recipe(recipeProps);
+
+  return (
+    <Box css={styles.root}>
+      <Box css={styles.header}>Header</Box>
+      <Box css={styles.body}>{rest.children}</Box>
+      <Box css={styles.footer}>Footer</Box>
+    </Box>
+  );
+}
+```
+
+### Creating compound components
+
+Or consider creating a [compound component](/?path=/docs/guides-theming-concepts-slot-recipes--docs#creating-compound-components) instead and exporting the subcomponents for use directly.
+
+```tsx
+import {
+  createSlotRecipeContext,
+  HTMLChakraProps,
+  RecipeVariantProps,
+} from '@gravitational/design-system';
+
+import { cardSlotRecipe } from './recipe';
+
+const { withProvider, withContext } = createSlotRecipeContext({
+  recipe: cardSlotRecipe,
+});
+
+interface CardRootProps
+  extends HTMLChakraProps<'div', RecipeVariantProps<typeof cardSlotRecipe>> {
+  // other props here
+}
+
+const CardRoot = withProvider<HTMLDivElement, CardRootProps>(
+  'div', // the HTML element
+  'root' // the slot name
+);
+
+interface CardHeaderProps extends HTMLChakraProps<'header'> {}
+
+const CardHeader = withContext<HTMLElement, CardHeaderProps>(
+  'header', // the HTML element
+  'header' // the slot name
+);
+
+interface CardBodyProps extends HTMLChakraProps<'section'> {}
+
+const CardBody = withContext<HTMLElement, CardBodyProps>(
+  'section', // the HTML element
+  'body' // the slot name
+);
+
+interface CardFooterProps extends HTMLChakraProps<'footer'> {}
+
+const CardFooter = withContext<HTMLElement, CardFooterProps>(
+  'footer', // the HTML element
+  'footer' // the slot name
+);
+
+export const Card = {
+  Root: CardRoot,
+  Header: CardHeader,
+  Body: CardBody,
+  Footer: CardFooter,
+};
+```
+
+That can then be used like this:
+
+```tsx
+import { Card } from '@gravitational/design-system';
+
+function SomeCard({ variant, size, children }) {
+  return (
+    <Card.Root variant={variant} size={size}>
+      <Card.Header>Header</Card.Header>
+      <Card.Body>{children}</Card.Body>
+      <Card.Footer>Footer</Card.Footer>
+    </Card.Root>
+  );
+}
+
+// styled props can be used on any of the components
+
+function AnotherComponent() {
+  return (
+    <Card.Root variant="secondary" size="lg" p={6} boxShadow="lg">
+      <Card.Header fontSize="2xl" fontWeight="bold">
+        Header
+      </Card.Header>
+      <Card.Body fontSize="lg" mt={4}>
+        Body
+      </Card.Body>
+      <Card.Footer textAlign="right" fontStyle="italic">
+        Footer
+      </Card.Footer>
+    </Card.Root>
+  );
+}
+```
+
+### Using primitive layout components
+
+If the component is a one-off, you _could_ opt to use `Box` or other primitive layout elements within a component instead of creating a separate recipe,
+but if it has multiple variants affecting different parts of the component, it's probably better to create a slot recipe or compound component.
+
+```tsx
+import { Box } from '@gravitational/design-system';
+
+function Card({ variant, size, children }) {
+  return (
+    <Box
+      bg={variant === 'primary' ? 'brand' : 'white'}
+      color={variant === 'primary' ? 'white' : 'text.main'}
+      border="1px solid {colors.interactive.tonal.neutral.1}"
+      borderRadius="md"
+      boxShadow="md"
+      p={4}
+    >
+      <Box fontWeight={variant === 'primary' ? 'bold' : 'normal'}>Header</Box>
+      <Box fontSize={size === 'sm' ? 'sm' : size === 'md' ? 'md' : 'lg'} mt={2}>
+        Box
+      </Box>
+      <Box fontStyle={variant === 'primary' ? 'italic' : 'normal'} mt={4}>
+        Footer
+      </Box>
+    </Box>
+  );
+}
+```
+
+## Styling a styled component
+
+You can use the `styled` function to override the styles of an existing styled component.
+
+```tsx
+import { Button, styled } from '@gravitational/design-system';
+
+const StyledButton = styled(Button, {
+  base: {
+    bg: 'red.200',
+    color: 'white',
+  },
+});
+
+function SomeComponent() {
+  return <StyledButton>Click me</StyledButton>;
+}
+```
+
+## Setting default props
+
+Before, you would use `.attrs` to set default props on a styled component.
+
+```tsx
+import styled from 'styled-components';
+
+const Link = styled.a.attrs({
+  target: '_blank',
+})`
+  color: ${p => p.theme.colors.text.slightlyMuted};
+  margin: ${p => p.theme.space[3]}px 0;
+  text-decoration: underline;
+  font-weight: bold;
+`;
+```
+
+You can pass default props to a styled component as the third argument to the `styled` function. Read more about the [styled factory here](/?path=/docs/guides-styling-concepts-styled-factory--docs).
+
+```tsx
+import { styled } from '@gravitational/design-system';
+
+const Link = styled(
+  'a',
+  {
+    base: {
+      color: 'text.slightlyMuted',
+      my: 3,
+      textDecoration: 'underline',
+      fontWeight: 'bold',
+    },
+  },
+  {
+    defaultProps: {
+      target: '_blank',
+    },
+  }
+);
+```
+
+If you need to change the default variants, you can do that by passing them in the `defaultProps` as well. You cannot set `defaultVariants` in the recipe (the types for default variants is from the variants defined in the same recipe object).
+
+```tsx
+const PrimaryButton = styled(
+  Button,
+  {},
+  {
+    defaultProps: {
+      fill: 'filled',
+      intent: 'primary',
+    },
+  }
+);
+```
+
+## Styling a third-party component
+
+### Components that accept a `className` prop
+
+If the third-party component accepts a `className` prop, you can style it directly with the `styled` function.
+
+```tsx
+import { styled } from '@gravitational/design-system';
+import ThirdPartyComponent from 'third-party-library';
+
+const StyledThirdPartyComponent = styled(ThirdPartyComponent, {
+  base: {
+    color: 'brand',
+    border: '1px solid {colors.interactive.tonal.neutral.1}',
+  },
+});
+
+function SomeComponent() {
+  return <StyledThirdPartyComponent />;
+}
+```
+
+You can pass in styles for child classes with the `css` prop.
+
+```tsx
+function SomeComponent() {
+  return (
+    <StyledThirdPartyComponent
+      css={{
+        '.another-class': {
+          mt: 3,
+        },
+      }}
+    />
+  );
+}
+```
+
+### Using CSS selectors
+
+Third-party components that are styled through CSS classes can be wrapped in a component that uses the `css` prop.
+
+```tsx
+import { Box } from '@gravitational/design-system';
+
+function StyledThirdPartyComponent(props) {
+  return (
+    <Box
+      css={{
+        '.third-party-class': {
+          color: 'brand',
+          border: '1px solid {colors.interactive.tonal.neutral.1}',
+        },
+        '.another-class': {
+          mt: 3,
+        },
+      }}
+    >
+      <ThirdPartyComponent {...props} />
+    </Box>
+  );
+}
+```
+
+These values can refer to tokens directly.
+
+## Using tokens in raw CSS
+
+If you need to use token values in raw CSS, you can refer to them with the `--teleport` prefix.
+
+```css
+.third-party-class {
+  color: var(--teleport-colors-brand);
+  border: 1px solid var(--teleport-colors-interactive-tonal-neutral-1);
+  padding: var(--teleport-space-4);
+  border-radius: var(--teleport-radii-md);
+  box-shadow: var(--teleport-shadows-md);
+}
+```
+
+## Adding icons
+
+Previously, you would add icons by copying them from Figma as SVGs, putting them in the `web/packages/design/src/Icon/assets` directory, and then running `pnpm process-icons` to optimize and generate the icon components.
+
+Now, we use the React Phosphor Icons library directly.
+
+To add an icon, edit <GitHubFileLink to="src/icons/icons.ts" /> and add the icon to the array.
+
+```tsx
+import * as icons from '@phosphor-icons/react';
+
+export const AVAILABLE_ICONS = [
+  // Add your icon where it needs to go, keeping the list sorted alphabetically
+  icons.ArrowBendDoubleUpRightIcon,
+  icons.ArrowCircleUpIcon,
+  icons.ArrowLineUpRightIcon,
+  icons.ArrowUpIcon,
+  icons.ArrowUpRightIcon,
+  icons.AtIcon,
+  icons.CaretDownIcon,
+  icons.CaretLeftIcon,
+  icons.CaretRightIcon,
+  icons.CheckIcon,
+  icons.ChefHatIcon,
+  icons.ClipboardIcon,
+  icons.CodeIcon,
+  icons.GithubLogoIcon,
+  icons.HorseIcon,
+  icons.TrashIcon,
+  icons.XIcon,
+];
+```
+
+Then run `pnpm generate-icons`, which will generate wrapper components for each icon in <GitHubFileLink to="src/icons/generated" />.
+
+You can then use the icon components directly. When using the icon components in a button, the size is automatically adjusted to fit the button size.
+
+```tsx
+import {
+  ArrowUpRightIcon,
+  Button,
+  GithubLogoIcon,
+} from '@gravitational/design-system';
+
+function SomeComponent() {
+  return (
+    <>
+      <Button>
+        <ArrowUpRightIcon />
+        Some Action
+      </Button>
+      <Button size="sm" ml={2}>
+        <GithubLogoIcon />
+      </Button>
+    </>
+  );
+}
+```
+
+They support all of the styled props, so you can customize them as needed.
+
+```tsx
+<ArrowUpRightIcon size="sm" ml={1} />
+<GithubLogoIcon pos="relative" zIndex={2} />
+```
+
+## Using spacing
+
+The spacing is the same as the legacy design system, with one difference - there is now a `12px` option.
+
+```tsx
+// previously
+p.theme.space[1] = '4px';
+p.theme.space[2] = '8px';
+p.theme.space[3] = '16px';
+p.theme.space[4] = '24px';
+p.theme.space[5] = '32px';
+
+// now
+p={1} // 4px
+p={2} // 8px
+p={3} // 12px
+p={4} // 16px
+p={5} // 24px
+```
+
+## Identifying elements in the DOM
+
+Previously, elements could be easily identified in the DOM by the styled components plugin adding the component name to the class names.
+
+```html
+<label class="LabelInput-kNDFlF dvGdyK">
+  <div class="Box-iiQCao Flex-kbIpvy krBUck bmDhPl">
+    <div class="Text-ihcfNQ hTKEGM">Password</div>
+  </div>
+  <div class="Box-iiQCao Input__InputWrapper-cOAWey dFueaZ jMpXZr">
+    <input
+      placeholder="Password"
+      class="Input__StyledInput-cPRAaO bjgXBp"
+      type="password"
+    />
+  </div>
+</label>
+```
+
+With the new design system, there is a custom plugin that adds a `data-uic` (user interface component) attribute to all styled components during development, with the value being the component name it's used in and the styled component name.
+
+```tsx
+import { Box, Input, Label, styled } from '@gravitational/design-system';
+
+const StyledLabel = styled(Label, {
+  base: {
+    fontWeight: 'bold',
+  },
+});
+
+function LoginForm() {
+  return (
+    <form>
+      <StyledLabel htmlFor="username">Username</StyledLabel>
+      <Box mt={2}>
+        <Input id="username" placeholder="Username" />
+      </Box>
+    </form>
+  );
+}
+```
+
+```html
+<form>
+  <label data-uic="LoginForm-StyledLabel-Label" for="username">
+    Username
+  </label>
+  <div data-uic="LoginForm-Box" class="css-0">
+    <input data-uic="LoginForm-Input" id="username" placeholder="Username" />
+  </div>
+</form>
+```

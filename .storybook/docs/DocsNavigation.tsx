@@ -67,9 +67,10 @@ export function DocsNavigation() {
     }
 
     const entries = Object.values(store.storyIndex.entries);
-    const orderedEntries = entries.toSorted(
-      preview.parameters.options.storySort
-    );
+    const orderedEntries = entries
+      .filter(entry => entry.type === 'docs')
+      .filter(entry => entry.tags?.includes('dev'))
+      .toSorted(preview.parameters.options.storySort);
 
     const currentIndex = orderedEntries.findIndex(
       entry => entry.id === currentId

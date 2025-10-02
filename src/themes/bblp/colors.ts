@@ -1,8 +1,8 @@
-import { defineTokens } from '@chakra-ui/react';
+import { defineSemanticTokens } from '@chakra-ui/react';
 
 import type { SingleColorThemeColors } from '../teleport/colors';
 
-export const colors: SingleColorThemeColors = defineTokens.colors({
+export const colors: SingleColorThemeColors = defineSemanticTokens.colors({
   levels: {
     deep: { value: '#000000' },
     sunken: { value: '#191919' },

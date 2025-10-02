@@ -12,7 +12,7 @@
     "build": "rm -rf dist && rollup -c rollup.config.mts",
     "bot": "jiti bot/index.ts",
     "dev": "rollup -c rollup.config.mts -w",
-    "eslint": "eslint . --ext .ts,.tsx --fix",
+    "eslint": "eslint . --ext .ts,.tsx",
     "prettier-check": "prettier --log-level silent --check \"**/*.{ts,tsx,mts,md,mdx}\"",
     "prettier-write": "prettier --log-level silent --write \"**/*.{ts,tsx,mts,md,mdx}\"",
     "lint": "pnpm eslint && pnpm prettier-check",
@@ -25,7 +25,8 @@
     "release": "cd dist && changeset publish",
     "generate": "pnpm generate-icons",
     "generate-icons": "jiti src/icons/generate.ts",
-    "generate-theme": "chakra typegen src/themes/teleport/theme.ts --strict && jiti src/cli/generateComments.ts"
+    "generate-theme": "chakra typegen src/themes/teleport/theme.ts --strict && jiti src/cli/generateComments.ts",
+    "create-storybook-doc": "jiti src/storybook/create.ts"
   },
   "dependencies": {
     "@chakra-ui/cli": "^3.26.0",

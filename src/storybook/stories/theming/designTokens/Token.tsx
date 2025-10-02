@@ -14,7 +14,7 @@ export function Token({ action, children, title, ...rest }: TokenProps) {
       borderColor="interactive.tonal.neutral.1"
       {...rest}
     >
-      <Box p="6" pb="0">
+      <Box p="6" pb="0" pt={title ? '6' : '0'}>
         {title && (
           <Box fontWeight="medium" fontSize="lg" as="h3" id={title}>
             {title}

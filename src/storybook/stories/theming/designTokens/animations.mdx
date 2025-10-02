@@ -1,7 +1,36 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 import { DocsHeader } from '../../../components/DocsHeader';
+import { Animations, Durations } from './Animations';
 
 <Meta title="Guides/Theming/Design Tokens/Animations" />
 
-<DocsHeader title="Animations" />
+<DocsHeader title="Animations" recipePath="src/theme/tokens/animations.ts" />
+
+## Keyframes
+
+The following keyframes are supported:
+
+<Animations />
+
+```tsx
+<Box
+  boxSize="12"
+  bg="brand"
+  animation="animation-name 1s ease-in-out infinite alternate" // e.g animation="fade-in 1s ease-in-out infinite alternate"
+/>
+```
+
+## Durations
+
+The following durations are supported:
+
+<Durations />
+
+```tsx
+<Box
+  boxSize="12"
+  bg="brand"
+  animation="fade-in slowest ease-in-out infinite alternate"
+/>
+```

@@ -1,0 +1,75 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { DocsHeader } from '../../../components/DocsHeader';
+
+<Meta title="Guides/Styling/Concepts/Dark Mode" />
+
+<DocsHeader title="Dark Mode" />
+
+To apply different styles for light and dark modes, there are a few different approaches you can take.
+
+## Semantic Tokens
+
+You can define colors in the theme using [semantic tokens](/?path=/docs/guides-theming-concepts-semantic-tokens--docs). This is usually the best approach as it keeps the color definitions in one place and makes it easy to update colors across the app.
+
+```tsx
+const colors = defineSemanticTokens.colors({
+  text: {
+    main: {
+      value: {
+        _light: '{colors.grey.800}',
+        _dark: '{colors.grey.200}',
+      },
+    },
+  },
+});
+```
+
+```tsx
+<Text color="text.main">This text will adapt to light and dark modes.</Text>
+```
+
+## Styling dark mode
+
+You can use the `_dark` prop to apply different styles for dark mode.
+
+```tsx
+<Box bg="white" color="black" _dark={{ bg: 'grey.800', color: 'white' }}>
+  This box will have a white background and black text in light mode, and a grey
+  background and white text in dark mode.
+</Box>
+```
+
+Or you can pass an object to any style prop with `base` and `_dark` keys.
+
+```tsx
+<Box
+  bg={{ base: 'white', _dark: 'grey.800' }}
+  color={{ base: 'black', _dark: 'white' }}
+>
+  This box will have a white background and black text in light mode, and a grey
+  background and white text in dark mode.
+</Box>
+```
+
+## Forcing dark mode
+
+To force dark mode, set the `dark` className on any parent element, or the root element of your application.
+
+```tsx
+<Box bg="black" className="dark">
+  <Box bg="levels.elevated">
+    <Text>Hello</Text>
+  </Box>
+</Box>
+```
+
+The same can be done for light mode with the `light` className.
+
+```tsx
+<Box bg="white" className="light">
+  <Box bg="levels.elevated">
+    <Text>Hello</Text>
+  </Box>
+</Box>
+```

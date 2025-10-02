@@ -12,12 +12,16 @@ import './highlight.css';
 
 interface CodeBlockProps extends HTMLChakraProps<'pre'> {
   className?: string;
-  text: string;
+  children: string;
 }
 
 const Pre = chakra('pre');
 
-export function CodeBlock({ text, ...rest }: CodeBlockProps) {
+export function CodeBlock({
+  children: text,
+  className,
+  ...rest
+}: CodeBlockProps) {
   const ref = useRef<HTMLPreElement>(null);
 
   const [copied, setCopied] = useState(false);
@@ -27,9 +31,15 @@ export function CodeBlock({ text, ...rest }: CodeBlockProps) {
 
   useEffect(() => {
     if (ref.current) {
-      ref.current.innerHTML = Prism.highlight(text, Prism.languages.tsx, 'tsx');
+      const language = className?.replace('language-', '') ?? 'tsx';
+
+      ref.current.innerHTML = Prism.highlight(
+        text,
+        Prism.languages[language],
+        language
+      );
     }
-  }, [text]);
+  }, [className, text]);
 
   async function handleCopy() {
     await copy(text);

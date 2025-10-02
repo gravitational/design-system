@@ -3,6 +3,8 @@ import { resolve } from 'node:path';
 
 import * as ts from 'typescript';
 
+import { writeFormattedFile } from '../utils/writeFormattedFile';
+
 const generatedDirectory = resolve(import.meta.dirname, 'generated');
 
 async function collectGeneratedIcons() {
@@ -109,7 +111,10 @@ export function ${iconName}(props: IconProps) {
 }
 `;
 
-  await fs.writeFile(resolve(generatedDirectory, `${iconName}.tsx`), content);
+  await writeFormattedFile(
+    resolve(generatedDirectory, `${iconName}.tsx`),
+    content
+  );
 }
 
 async function makeGeneratedDirectory() {
@@ -155,7 +160,40 @@ export { Icon, type IconProps } from '@chakra-ui/react';
 ${lines}
 `;
 
-  await fs.writeFile(resolve(import.meta.dirname, 'index.ts'), content);
+  await writeFormattedFile(resolve(import.meta.dirname, 'index.ts'), content);
+}
+
+async function makeStorybookFile(icons: Set<string>) {
+  // Chakra icons do not work nicely with `import * as icons from ...`, so instead we
+  // generate the file
+
+  const lines = Array.from(icons)
+    .toSorted((a, b) => a.localeCompare(b))
+    .map(
+      icon => `<IconItem name="${icon}">
+    <icons.${icon} />
+  </IconItem>`
+    )
+    .join('\n  ');
+
+  const content = `import { IconGallery, IconItem, Meta } from '@storybook/addon-docs/blocks';
+
+import * as icons from '../../../icons';
+import { DocsHeader } from '../../components/DocsHeader';
+
+<Meta title="Guides/Icons/Icons" />
+
+<DocsHeader title="Icons" />
+
+<IconGallery>
+  ${lines}
+</IconGallery>
+`;
+
+  await writeFormattedFile(
+    resolve(import.meta.dirname, '../storybook/stories/icons/icons.mdx'),
+    content
+  );
 }
 
 async function run() {
@@ -189,6 +227,8 @@ async function run() {
   }
 
   await makeIndexFile(icons);
+
+  await makeStorybookFile(icons);
 }
 
 void run();

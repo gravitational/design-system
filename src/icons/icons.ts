@@ -1,6 +1,7 @@
 import * as icons from '@phosphor-icons/react';
 
 export const AVAILABLE_ICONS = [
+  // Keep this list alphabetical
   icons.ArrowBendDoubleUpRightIcon,
   icons.ArrowCircleUpIcon,
   icons.ArrowLineUpRightIcon,
