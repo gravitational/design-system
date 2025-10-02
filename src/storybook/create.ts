@@ -1,7 +1,7 @@
-import { mkdir, stat, writeFile } from 'node:fs/promises';
+import { mkdir, stat } from 'node:fs/promises';
 import { relative, resolve } from 'node:path';
 
-import prettier, { resolveConfig, resolveConfigFile } from 'prettier';
+import { writeFormattedFile } from '../utils/writeFormattedFile';
 
 const createPath = process.argv[2];
 const force = process.argv.includes('--force');
@@ -20,23 +20,6 @@ async function fileExists(path: string) {
   } catch {
     return false;
   }
-}
-
-async function writeFormattedFile(path: string, content: string) {
-  const configFile = await resolveConfigFile(import.meta.dirname);
-  const config = await resolveConfig(path, {
-    config: configFile ?? undefined,
-  });
-
-  const parser = path.endsWith('.mdx') ? 'mdx' : 'babel-ts';
-
-  const formatted = await prettier.format(content, {
-    ...config,
-    parser,
-    filepath: path,
-  });
-
-  await writeFile(path, formatted, 'utf-8');
 }
 
 async function create(path: string) {
