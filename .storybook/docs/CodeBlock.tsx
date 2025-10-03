@@ -6,8 +6,10 @@ import { useCopyToClipboard } from 'usehooks-ts';
 
 import { CheckIcon, ClipboardIcon, Tooltip } from '../../src';
 
+import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-tsx';
+import 'prismjs/components/prism-bash';
 import './highlight.css';
 
 interface CodeBlockProps extends HTMLChakraProps<'pre'> {
