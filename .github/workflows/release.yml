@@ -53,6 +53,7 @@ jobs:
           commitMode: github-api
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload release asset
         if: steps.changesets.outputs.published == 'true'
