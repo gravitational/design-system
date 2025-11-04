@@ -11,6 +11,9 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+env:
+  NODE_VERSION: 22.x
+
 jobs:
   release:
     name: Release
@@ -26,8 +29,7 @@ jobs:
       - name: Setup pnpm with cache
         uses: ./.github/actions/setup-pnpm
         with:
-          node-version: '22.x'
-          registry-url: 'https://npm.pkg.github.com'
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install
@@ -35,13 +37,31 @@ jobs:
       - name: Test
         run: pnpm test
 
-      - name: Create release PR or publish to GitHub packages
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
+
+      - name: Create release PR
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm release
-          commit: "ci(changesets): version packages"
+          commit: "Version packages"
           commitMode: github-api
         env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+
+      - name: Build the release
+        if: steps.changesets.outputs.published == 'true'
+        run: pnpm release
+
+      - name: Upload release asset
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          set -e
+          LATEST_TAG=$(gh release list --limit 1 --json tagName -q '.[0].tagName')
+          gh release upload "$LATEST_TAG" dist/design-system.tgz
+          echo "Uploaded $ASSET to the release $TAG"
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
