@@ -22,7 +22,7 @@
     "build-storybook": "storybook build",
     "test": "vitest --project=storybook",
     "prerelease": "pnpm build",
-    "release": "cd dist && pnpm pack --out design-system.tgz",
+    "release": "cd dist && pnpm pack --out design-system.tgz && changeset publish",
     "generate": "pnpm generate-icons",
     "generate-icons": "jiti src/icons/generate.ts",
     "generate-theme": "chakra typegen src/themes/teleport/theme.ts --strict && jiti src/cli/generateComments.ts",
