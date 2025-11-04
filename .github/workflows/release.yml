@@ -47,7 +47,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm release && echo "New tag:"
+          publish: pnpm release
           commit: "Version packages"
           commitMode: github-api
         env:
