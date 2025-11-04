@@ -47,14 +47,11 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
+          publish: pnpm release
           commit: "Version packages"
           commitMode: github-api
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-
-      - name: Build the release
-        if: steps.changesets.outputs.published == 'true'
-        run: pnpm release
 
       - name: Upload release asset
         if: steps.changesets.outputs.published == 'true'
