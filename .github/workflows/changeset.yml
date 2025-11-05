@@ -13,29 +13,6 @@ env:
   NODE_VERSION: 22.x
 
 jobs:
-  assign-reviewer:
-    name: Assign random reviewer
-    runs-on: ubuntu-latest
-    if: ${{ !github.event.pull_request.draft }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Setup pnpm
-        uses: ./.github/actions/setup-pnpm
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Assign random reviewer
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          pnpm bot reviewer \
-            ${{ github.repository_owner }} \
-            ${{ github.event.repository.name }} \
-            ${{ github.event.pull_request.number }}
-
   changeset-bot:
     name: Check for changeset
     runs-on: ubuntu-latest
