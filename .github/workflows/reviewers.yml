@@ -1,0 +1,39 @@
+name: Bot
+
+on:
+  pull_request_review:
+    type: [ submitted, edited, dismissed ]
+  pull_request:
+    types: [ opened, ready_for_review, synchronize, reopened ]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+env:
+  NODE_VERSION: 22.x
+
+jobs:
+  check-reviewers:
+    name: Check reviewers
+    runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm
+        uses: ./.github/actions/setup-pnpm
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Check reviewers
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pnpm bot reviewer \
+            ${{ github.repository_owner }} \
+            ${{ github.event.repository.name }} \
+            ${{ github.event.pull_request.number }}

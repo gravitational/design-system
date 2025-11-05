@@ -39,8 +39,8 @@ async function main() {
     await runReleaseCommand(octokit, {
       owner,
       repo,
-      version: args[2],
-      tar_gz_path: args[3],
+      version: prNumber,
+      tar_gz_path: action,
     });
 
     return;
