@@ -2,6 +2,7 @@ import * as core from '@actions/core';
 import { Octokit } from '@octokit/rest';
 
 import { runChangesetCommand } from './changeset.ts';
+import { runReleaseCommand } from './release.ts';
 import { runReviewerCommand } from './review.ts';
 import { runStorybookCommand } from './storybook.ts';
 import { resolveErrorMessage } from './util.ts';
@@ -21,14 +22,6 @@ async function main() {
     process.exit(1);
   }
 
-  const [command, owner, repo, prNumber, action] = args;
-  const pullNumber = parseInt(prNumber, 10);
-
-  if (isNaN(pullNumber)) {
-    core.error('PR number must be a valid number');
-    process.exit(1);
-  }
-
   const githubToken = process.env.GITHUB_TOKEN;
   if (!githubToken) {
     core.error('GITHUB_TOKEN environment variable is required');
@@ -38,6 +31,26 @@ async function main() {
   const octokit = new Octokit({
     auth: githubToken,
   });
+
+  const [command, owner, repo, prNumber, action] = args;
+
+  // TODO(ryan): handle parameters a bit better so we don't have this special case
+  if (command === 'release') {
+    await runReleaseCommand(octokit, {
+      owner,
+      repo,
+      version: args[2],
+      tar_gz_path: args[3],
+    });
+
+    return;
+  }
+
+  const pullNumber = parseInt(prNumber, 10);
+  if (isNaN(pullNumber)) {
+    core.error('PR number must be a valid number');
+    process.exit(1);
+  }
 
   try {
     switch (command) {

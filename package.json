@@ -43,7 +43,6 @@
   "devDependencies": {
     "@chakra-ui/cli": "^3.26.0",
     "@chakra-ui/react": "^3.26.0",
-    "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.7",
     "@changesets/get-release-plan": "^4.0.13",
     "@changesets/types": "^6.1.0",
@@ -59,6 +58,7 @@
     "@storybook/addon-themes": "^9.1.10",
     "@storybook/addon-vitest": "^9.1.10",
     "@storybook/react-vite": "^9.1.10",
+    "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "@swc/core": "^1.13.5",
     "@types/hast": "^3.0.4",
     "@types/prismjs": "^1.26.5",
