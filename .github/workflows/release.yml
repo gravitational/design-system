@@ -55,12 +55,41 @@ jobs:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Retag and retitle the release (pkg@x.y.z -> vX.Y.Z)
+        if: steps.changesets.outputs.published == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          # Changeset titles releases and tags as @gravitational/design-system@1.2.3
+          # We want to retag it as v1.2.3 and set the release title to 1.2.3
+
+          git fetch origin +refs/tags/*:refs/tags/*
+
+          OLD_TAG=$(gh release list --limit 1 --json tagName -q '.[0].tagName')
+          VERSION="${OLD_TAG##*@}"   # -> "1.2.3"
+          NEW_TAG="v${VERSION}"      # -> "v1.2.3"
+
+          git fetch --tags
+          COMMIT=$(git rev-list -n 1 "$OLD_TAG")
+          git tag -f "$NEW_TAG" "$COMMIT"
+          git push -f origin "refs/tags/$NEW_TAG"
+
+          gh release edit "$OLD_TAG" --tag "$NEW_TAG" --title "$VERSION" --verify-tag
+
+          # Delete the old tag (remote + local) so only vX.Y.Z remains
+          git push origin ":refs/tags/$OLD_TAG" || true
+          git tag -d "$OLD_TAG" || true
+
+          echo "Retagged and retitled release to $NEW_TAG"
+
       - name: Upload release asset
         if: steps.changesets.outputs.published == 'true'
-        run: |
-          set -e
-          LATEST_TAG=$(gh release list --limit 1 --json tagName -q '.[0].tagName')
-          gh release upload "$LATEST_TAG" dist/design-system.tgz
-          echo "Uploaded $ASSET to the release $TAG"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          TAG=$(gh release list --limit 1 --json tagName -q '.[0].tagName')
+          gh release upload "$TAG" dist/design-system.tgz --clobber
+          echo "Uploaded dist/design-system.tgz to release $TAG"
