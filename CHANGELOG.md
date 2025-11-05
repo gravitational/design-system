@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.0.5
+
+### Patch Changes
+
+- Another test for testing the GitHub release ([#61](https://github.com/gravitational/design-system/pull/61))
+
 ## 0.0.4
 
 ### Patch Changes
