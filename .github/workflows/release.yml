@@ -51,7 +51,7 @@ jobs:
           publish: pnpm release
           commit: "Version packages"
           commitMode: github-api
-          createGithubReleases: 'false'
+          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
