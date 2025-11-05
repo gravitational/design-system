@@ -51,16 +51,25 @@ jobs:
           publish: pnpm release
           commit: "Version packages"
           commitMode: github-api
+          createGithubReleases: 'false'
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload release asset
+      - name: Extract version from Changesets
+        id: meta
         if: steps.changesets.outputs.published == 'true'
         run: |
-          set -e
-          LATEST_TAG=$(gh release list --limit 1 --json tagName -q '.[0].tagName')
-          gh release upload "$LATEST_TAG" dist/design-system.tgz
-          echo "Uploaded $ASSET to the release $TAG"
+          echo "version=${{ fromJSON(steps.changesets.outputs.publishedPackages)[0].version }}" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub release
+        if: steps.changesets.outputs.published == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.meta.outputs.version }}
+        run: |
+          pnpm bot release \
+            ${{ github.repository_owner }} \
+            ${{ github.event.repository.name }} \
+            "$VERSION" \
+            dist/design-system.tgz

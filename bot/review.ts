@@ -3,7 +3,8 @@ import { Octokit } from '@octokit/rest';
 
 import { resolveErrorMessage } from './util.ts';
 
-const DESIGN_SYSTEM_REVIEWERS = ['ryanclark', 'strideynet'];
+const GROUP1_REVIEWERS = ['ryanclark'];
+const GROUP2_REVIEWERS = ['strideynet'];
 
 export async function runReviewerCommand(
   octokit: Octokit,
@@ -57,7 +58,7 @@ export async function runReviewerCommand(
     return;
   }
 
-  await assignRandomReviewer(octokit, {
+  await assignRandomReviewers(octokit, {
     owner: params.owner,
     repo: params.repo,
     pull_number: params.pull_number,
@@ -65,7 +66,7 @@ export async function runReviewerCommand(
   });
 }
 
-async function assignRandomReviewer(
+async function assignRandomReviewers(
   octokit: Octokit,
   params: {
     owner: string;
@@ -74,29 +75,45 @@ async function assignRandomReviewer(
     pr_author: string;
   }
 ) {
-  const eligibleReviewers = DESIGN_SYSTEM_REVIEWERS.filter(
-    r => r !== params.pr_author
-  );
+  const eligibleGroup1 = GROUP1_REVIEWERS.filter(r => r !== params.pr_author);
+  const eligibleGroup2 = GROUP2_REVIEWERS.filter(r => r !== params.pr_author);
 
-  if (eligibleReviewers.length === 0) {
+  const reviewers: string[] = [];
+
+  if (eligibleGroup1.length > 0) {
+    const shuffledGroup1 = eligibleGroup1.toSorted(() => Math.random() - 0.5);
+    reviewers.push(shuffledGroup1[0]);
+  }
+
+  if (eligibleGroup2.length > 0) {
+    const shuffledGroup2 = eligibleGroup2.toSorted(() => Math.random() - 0.5);
+    const group2Count =
+      eligibleGroup1.length === 0 ? Math.min(2, eligibleGroup2.length) : 1;
+
+    reviewers.push(...shuffledGroup2.slice(0, group2Count));
+  }
+
+  if (reviewers.length === 0) {
     core.warning('No eligible reviewers available');
     return;
   }
-
-  const randomIndex = Math.floor(Math.random() * eligibleReviewers.length);
-  const selectedReviewer = eligibleReviewers[randomIndex];
 
   try {
     await octokit.rest.pulls.requestReviewers({
       owner: params.owner,
       repo: params.repo,
       pull_number: params.pull_number,
-      reviewers: [selectedReviewer],
+      reviewers,
     });
 
-    core.info(`Successfully assigned reviewer: ${selectedReviewer}`);
+    if (reviewers.length > 1) {
+      core.info(`Successfully assigned reviewers: ${reviewers.join(' and ')}`);
+      return reviewers;
+    }
 
-    return selectedReviewer;
+    core.info(`Successfully assigned reviewer: ${reviewers[0]}`);
+
+    return reviewers;
   } catch (error) {
     core.error(`Error assigning reviewer: ${resolveErrorMessage(error)}`);
 
