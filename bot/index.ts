@@ -34,6 +34,7 @@ async function main() {
 
   const [command, owner, repo, prNumber, action] = args;
 
+  // TODO(ryan): handle parameters a bit better so we don't have this special case
   if (command === 'release') {
     await runReleaseCommand(octokit, {
       owner,
