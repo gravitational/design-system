@@ -8,6 +8,7 @@
   },
   "keywords": [],
   "author": "",
+  "private": true,
   "license": "Apache-2.0",
   "packageManager": "pnpm@10.14.0",
   "dependencies": {
