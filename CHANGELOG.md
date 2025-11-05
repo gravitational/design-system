@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.0.3
+
+### Patch Changes
+
+- [#56](https://github.com/gravitational/design-system/pull/56) [`3769905`](https://github.com/gravitational/design-system/commit/37699050bb028509701e4b5355076f0bae59b992) Thanks [@ryanclark](https://github.com/ryanclark)! - Test changeset to test publishing
+
 ## 0.0.2
 
 ### Patch Changes
