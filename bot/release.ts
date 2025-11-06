@@ -55,7 +55,7 @@ export async function runReleaseCommand(
     headers: {
       'content-type': 'application/gzip',
     },
-    data: await readFile(params.tar_gz_path, 'utf-8'),
+    data: (await readFile(params.tar_gz_path)) as unknown as string,
   });
 }
 
