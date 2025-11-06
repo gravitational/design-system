@@ -6,7 +6,7 @@ import type { DecoratorFunction } from 'storybook/internal/csf';
 
 import { StorybookThemeProvider } from './StorybookThemeProvider';
 
-import '../src/assets/ubuntu/style.css';
+import '../src/ubuntu.css';
 
 import type { IndexEntry } from 'storybook/internal/types';
 
