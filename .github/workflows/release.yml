@@ -33,7 +33,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install
+        run: pnpm exec playwright install chromium
 
       - name: Test
         run: pnpm test

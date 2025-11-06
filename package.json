@@ -20,7 +20,7 @@
     "storybook": "storybook dev -p 6006",
     "prebuild-storybook": "pnpm generate-theme",
     "build-storybook": "storybook build",
-    "test": "vitest --project=storybook",
+    "test": "vitest --project=storybook && cd bot && pnpm test",
     "prerelease": "pnpm build",
     "release": "cd dist && pnpm pack --out design-system.tgz && cd .. && changeset publish",
     "generate": "pnpm generate-icons",

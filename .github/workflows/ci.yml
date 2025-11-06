@@ -84,7 +84,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install
+        run: pnpm exec playwright install chromium
 
       - name: Test
         run: pnpm test
