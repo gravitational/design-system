@@ -10,6 +10,7 @@ permissions:
   contents: read
   pull-requests: write
   issues: write
+  actions: write
 
 env:
   NODE_VERSION: 22.x

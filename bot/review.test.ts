@@ -520,12 +520,12 @@ describe('processReviewState', () => {
     const result = processReviewState(reviews, [], [], 'testuser');
 
     expect(result.humanReviews).toHaveLength(2);
-    expect(result.humanReviews[0]).toEqual({
+    expect(result.humanReviews[1]).toEqual({
       id: 1,
       state: 'APPROVED',
       user: 'user1',
     });
-    expect(result.humanReviews[1]).toEqual({
+    expect(result.humanReviews[0]).toEqual({
       id: 2,
       state: 'CHANGES_REQUESTED',
       user: 'user2',

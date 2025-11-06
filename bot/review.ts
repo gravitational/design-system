@@ -85,6 +85,8 @@ export async function runCheckReviewersCommand(
     return;
   }
 
+  await dismissOldWorkflowRuns(octokit, context);
+
   const reviewState = await getReviewState(
     octokit,
     owner,
@@ -186,14 +188,31 @@ export function processReviewState(
   prAuthor: string
 ): ReviewState {
   const validAssociations = ['OWNER', 'MEMBER', 'COLLABORATOR'];
+  const seenReviewers = new Set<string>();
 
+  // Process reviews from the end first (latest reviews first)
   const humanReviews = reviews
+    .slice()
+    .reverse()
     .filter(
       review =>
         review.user &&
         !review.user.login.includes('[bot]') &&
         review.user.login !== prAuthor
     )
+    .filter(review => {
+      if (!review.user?.login) {
+        return false;
+      }
+
+      if (seenReviewers.has(review.user.login)) {
+        return false;
+      }
+
+      seenReviewers.add(review.user.login);
+
+      return true;
+    })
     .map(r => ({
       id: r.id,
       state: r.state,
@@ -566,4 +585,124 @@ export function isEUWorkingHours() {
   const hours = new Date().getUTCHours();
 
   return hours >= 6 && hours < 18;
+}
+
+async function dismissOldWorkflowRuns(
+  octokit: Octokit,
+  context: PullRequestContext
+) {
+  try {
+    const workflow = await findWorkflow(
+      octokit,
+      context.owner,
+      context.repo,
+      '.github/workflows/check-reviewers.yml'
+    );
+
+    if (!workflow) {
+      core.warning('Check reviewers workflow not found');
+      return;
+    }
+
+    const { data: pullRequest } = await octokit.rest.pulls.get({
+      owner: context.owner,
+      repo: context.repo,
+      pull_number: context.pullNumber,
+    });
+
+    const runs = await listWorkflowRuns(
+      octokit,
+      context.owner,
+      context.repo,
+      pullRequest.head.ref,
+      workflow.id
+    );
+
+    await deleteRuns(octokit, context.owner, context.repo, runs);
+  } catch (error) {
+    core.error(
+      `Error dismissing old workflow runs: ${resolveErrorMessage(error)}`
+    );
+  }
+}
+
+async function findWorkflow(
+  octokit: Octokit,
+  owner: string,
+  repo: string,
+  path: string
+): Promise<{ id: number; path: string } | null> {
+  const { data: workflows } = await octokit.rest.actions.listRepoWorkflows({
+    owner,
+    repo,
+  });
+
+  const matching = workflows.workflows.filter(w => w.path === path);
+
+  if (matching.length === 0) {
+    return null;
+  }
+
+  if (matching.length > 1) {
+    core.warning(`Found ${matching.length} matching workflows for ${path}`);
+  }
+
+  return {
+    id: matching[0].id,
+    path: matching[0].path,
+  };
+}
+
+async function listWorkflowRuns(
+  octokit: Octokit,
+  owner: string,
+  repo: string,
+  branch: string,
+  workflowId: number
+): Promise<{ id: number; created_at: string }[]> {
+  const { data } = await octokit.rest.actions.listWorkflowRuns({
+    owner,
+    repo,
+    workflow_id: workflowId,
+    branch,
+  });
+
+  return data.workflow_runs.map(run => ({
+    id: run.id,
+    created_at: run.created_at,
+  }));
+}
+
+async function deleteRuns(
+  octokit: Octokit,
+  owner: string,
+  repo: string,
+  runs: { id: number; created_at: string }[]
+) {
+  const sortedRuns = [...runs].sort((a, b) => {
+    const timeA = new Date(a.created_at);
+    const timeB = new Date(b.created_at);
+
+    return timeA.getTime() - timeB.getTime();
+  });
+
+  if (sortedRuns.length > 0) {
+    sortedRuns.pop();
+  }
+
+  for (const run of sortedRuns) {
+    try {
+      await octokit.rest.actions.deleteWorkflowRun({
+        owner,
+        repo,
+        run_id: run.id,
+      });
+
+      core.info(`Successfully deleted workflow run: ${run.id}`);
+    } catch (error) {
+      core.error(
+        `Failed to dismiss workflow run ${run.id}: ${resolveErrorMessage(error)}`
+      );
+    }
+  }
 }
