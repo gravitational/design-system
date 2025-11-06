@@ -3,7 +3,10 @@ import { Octokit } from '@octokit/rest';
 
 import { runChangesetCommand } from './changeset.ts';
 import { runReleaseCommand } from './release.ts';
-import { runReviewerCommand } from './review.ts';
+import {
+  runAssignReviewersCommand,
+  runCheckReviewersCommand,
+} from './review.ts';
 import { runStorybookCommand } from './storybook.ts';
 import { resolveErrorMessage } from './util.ts';
 
@@ -69,12 +72,13 @@ async function main() {
 
         break;
 
-      case 'reviewer':
-        await runReviewerCommand(octokit, {
-          owner,
-          repo,
-          pull_number: pullNumber,
-        });
+      case 'assign-reviewers':
+        await runAssignReviewersCommand(octokit, owner, repo, pullNumber);
+
+        break;
+
+      case 'check-reviewers':
+        await runCheckReviewersCommand(octokit, owner, repo, pullNumber);
 
         break;
 
