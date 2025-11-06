@@ -51,7 +51,10 @@ export async function runReleaseCommand(
     owner: params.owner,
     repo: params.repo,
     release_id: release.data.id,
-    name: 'design-system.tar.gz',
+    name: 'design-system.tgz',
+    headers: {
+      'content-type': 'application/gzip',
+    },
     data: await readFile(params.tar_gz_path, 'utf-8'),
   });
 }
