@@ -55,7 +55,7 @@ const config: RollupOptions[] = [
         packageJson,
       }),
       copy({
-        targets: [{ src: 'src/assets', dest: 'dist' }],
+        targets: [{ src: 'src/ubuntu.css', dest: 'dist' }],
       }),
     ],
     onwarn(warning, warn) {

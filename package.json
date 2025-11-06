@@ -36,6 +36,7 @@
   },
   "peerDependencies": {
     "@emotion/react": ">=11",
+    "@fontsource/ubuntu": "^5.2.8",
     "react": ">=19",
     "react-dom": ">=19",
     "tslib": "^2.8.1"
@@ -46,6 +47,7 @@
     "@changesets/cli": "^2.29.7",
     "@changesets/get-release-plan": "^4.0.13",
     "@changesets/types": "^6.1.0",
+    "@fontsource/ubuntu": "^5.2.8",
     "@emotion/react": "^11.14.0",
     "@eslint/js": "^9.34.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
