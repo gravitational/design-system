@@ -3,18 +3,27 @@ import { Octokit } from '@octokit/rest';
 
 import { resolveErrorMessage } from './util.ts';
 
-const GROUP1_REVIEWERS = ['ryanclark'];
-const GROUP2_REVIEWERS = [
-  'bl-nero',
-  'ravicious',
-  'rudream',
-  'mcbattirola',
-  'nicholasmarais1158',
-  'michellescripts',
-];
-const DESIGN_REVIEWERS = ['roraback'];
+interface ReviewerDefinition {
+  eu: string[];
+  us: string[];
+}
 
-interface PullRequestContext {
+export const GROUP1_REVIEWERS: ReviewerDefinition = {
+  eu: ['ryanclark'],
+  us: [],
+};
+
+export const GROUP2_REVIEWERS: ReviewerDefinition = {
+  eu: ['bl-nero', 'ravicious', 'nicholasmarais1158'],
+  us: ['rudream', 'mcbattirola', 'michellescripts'],
+};
+
+export const DESIGN_REVIEWERS: ReviewerDefinition = {
+  eu: [],
+  us: ['roraback'],
+};
+
+export interface PullRequestContext {
   owner: string;
   repo: string;
   pullNumber: number;
@@ -22,6 +31,16 @@ interface PullRequestContext {
   isDraft: boolean;
   needsDesignReview: boolean;
   isRelease: boolean;
+  availableReviewers: {
+    group1: string[];
+    group2: string[];
+    design: string[];
+  };
+  fallbackReviewers: {
+    group1: string[];
+    group2: string[];
+    design: string[];
+  };
 }
 
 interface HumanReview {
@@ -30,7 +49,7 @@ interface HumanReview {
   user?: string;
 }
 
-interface ReviewState {
+export interface ReviewState {
   humanReviews: HumanReview[];
   requestedReviewers: {
     users: string[];
@@ -122,6 +141,20 @@ async function getPullRequestContext(
     pull_number: pullNumber,
   });
 
+  const isEU = isEUWorkingHours();
+
+  const availableReviewers = {
+    group1: isEU ? GROUP1_REVIEWERS.eu : GROUP1_REVIEWERS.us,
+    group2: isEU ? GROUP2_REVIEWERS.eu : GROUP2_REVIEWERS.us,
+    design: isEU ? DESIGN_REVIEWERS.eu : DESIGN_REVIEWERS.us,
+  };
+
+  const fallbackReviewers = {
+    group1: isEU ? GROUP1_REVIEWERS.us : GROUP1_REVIEWERS.eu,
+    group2: isEU ? GROUP2_REVIEWERS.us : GROUP2_REVIEWERS.eu,
+    design: isEU ? DESIGN_REVIEWERS.us : DESIGN_REVIEWERS.eu,
+  };
+
   return {
     owner,
     repo,
@@ -132,6 +165,75 @@ async function getPullRequestContext(
       l => l.name === 'needs-design-review'
     ),
     isRelease: pullRequest.user.login === 'design-system-release[bot]',
+    availableReviewers,
+    fallbackReviewers,
+  };
+}
+
+export interface Review {
+  id: number;
+  state: string;
+  user?: {
+    login: string;
+  };
+  author_association: string;
+}
+
+export function processReviewState(
+  reviews: Review[],
+  requestedUsers: string[],
+  requestedTeams: string[],
+  prAuthor: string
+): ReviewState {
+  const validAssociations = ['OWNER', 'MEMBER', 'COLLABORATOR'];
+
+  const humanReviews = reviews
+    .filter(
+      review =>
+        review.user &&
+        !review.user.login.includes('[bot]') &&
+        review.user.login !== prAuthor
+    )
+    .map(r => ({
+      id: r.id,
+      state: r.state,
+      user: r.user?.login,
+      authorAssociation: r.author_association,
+    }));
+
+  const approvedBy = new Set(
+    humanReviews
+      .filter(r => {
+        if (r.state !== 'APPROVED') return false;
+
+        if (!validAssociations.includes(r.authorAssociation)) {
+          core.warning(
+            `Ignoring approval from ${r.user} - not a member/collaborator (association: ${r.authorAssociation})`
+          );
+
+          return false;
+        }
+
+        return true;
+      })
+      .map(r => r.user)
+      .filter(Boolean) as string[]
+  );
+
+  const users = requestedUsers.filter(u => u !== prAuthor);
+  const teams = requestedTeams;
+
+  return {
+    humanReviews: humanReviews.map(r => ({
+      id: r.id,
+      state: r.state,
+      user: r.user,
+    })),
+    requestedReviewers: {
+      users,
+      teams,
+    },
+    approvedBy,
   };
 }
 
@@ -155,40 +257,26 @@ async function getReviewState(
     }),
   ]);
 
-  const humanReviews = reviews.data
-    .filter(
-      review =>
-        review.user &&
-        !review.user.login.includes('[bot]') &&
-        review.user.login !== prAuthor
-    )
-    .map(r => ({
-      id: r.id,
-      state: r.state,
-      user: r.user?.login,
-    }));
-
-  const approvedBy = new Set(
-    humanReviews
-      .filter(r => r.state === 'APPROVED')
-      .map(r => r.user)
-      .filter(Boolean) as string[]
+  return processReviewState(
+    reviews.data as Review[],
+    requestedReviewers.data.users.map(u => u.login),
+    requestedReviewers.data.teams.map(t => t.name),
+    prAuthor
   );
+}
 
-  const users = requestedReviewers.data.users
-    .map(u => u.login)
-    .filter(u => u !== prAuthor);
+export function getReviewerPool(
+  context: PullRequestContext,
+  group: 'group1' | 'group2' | 'design'
+): string[] {
+  const available = context.availableReviewers[group];
+  if (available.length > 0) {
+    return available;
+  }
 
-  const teams = requestedReviewers.data.teams.map(t => t.name);
+  core.info(`No available reviewers in ${group}, falling back to other region`);
 
-  return {
-    humanReviews,
-    requestedReviewers: {
-      users,
-      teams,
-    },
-    approvedBy,
-  };
+  return context.fallbackReviewers[group];
 }
 
 async function handleDesignReviewers(
@@ -206,7 +294,7 @@ async function handleDesignReviewers(
     ...(reviewState.humanReviews.map(r => r.user).filter(Boolean) as string[]),
   ]);
 
-  const designToRequest = DESIGN_REVIEWERS.filter(
+  const designToRequest = getReviewerPool(context, 'design').filter(
     r => r !== context.author && !alreadyHandled.has(r)
   );
 
@@ -241,7 +329,7 @@ async function handleInitialReviewerAssignment(
 ) {
   const hasExistingReviewActivity =
     reviewState.humanReviews.length > 0 ||
-    reviewState.requestedReviewers.users.length > 0 ||
+    reviewState.requestedReviewers.users.length > 1 ||
     reviewState.requestedReviewers.teams.length > 0;
 
   if (hasExistingReviewActivity) {
@@ -262,8 +350,12 @@ async function assignRandomReviewers(
   octokit: Octokit,
   context: PullRequestContext
 ) {
-  const eligibleGroup1 = GROUP1_REVIEWERS.filter(r => r !== context.author);
-  const eligibleGroup2 = GROUP2_REVIEWERS.filter(r => r !== context.author);
+  const eligibleGroup1 = getReviewerPool(context, 'group1').filter(
+    r => r !== context.author
+  );
+  const eligibleGroup2 = getReviewerPool(context, 'group2').filter(
+    r => r !== context.author
+  );
 
   const reviewers = selectRandomReviewers(
     eligibleGroup1,
@@ -295,7 +387,7 @@ async function assignRandomReviewers(
   }
 }
 
-function selectRandomReviewers(
+export function selectRandomReviewers(
   eligibleGroup1: string[],
   eligibleGroup2: string[],
   isRelease: boolean
@@ -323,17 +415,22 @@ function selectRandomReviewers(
   return reviewers;
 }
 
-function validateApprovals(
+export function validateApprovals(
   context: PullRequestContext,
   reviewState: ReviewState
 ): ApprovalValidation {
-  const eligibleGroup1 = GROUP1_REVIEWERS.filter(u => u !== context.author);
-  const eligibleGroup2 = GROUP2_REVIEWERS.filter(u => u !== context.author);
-  const eligibleDesign = DESIGN_REVIEWERS.filter(u => u !== context.author);
+  const allGroup1 = [...GROUP1_REVIEWERS.eu, ...GROUP1_REVIEWERS.us];
+  const allDesign = [...DESIGN_REVIEWERS.eu, ...DESIGN_REVIEWERS.us];
 
-  const group1Approved = GROUP1_REVIEWERS.some(u =>
-    reviewState.approvedBy.has(u)
-  );
+  const group1 = getReviewerPool(context, 'group1');
+  const group2 = getReviewerPool(context, 'group2');
+  const design = getReviewerPool(context, 'design');
+
+  const eligibleGroup1 = group1.filter(u => u !== context.author);
+  const eligibleGroup2 = group2.filter(u => u !== context.author);
+  const eligibleDesign = design.filter(u => u !== context.author);
+
+  const group1Approved = allGroup1.some(u => reviewState.approvedBy.has(u));
 
   if (context.isRelease) {
     return {
@@ -354,13 +451,9 @@ function validateApprovals(
   // count any approver not in group 1 or design as group 2 whilst we do not have the full
   // team being requested for review automatically
   const group2Approved = Array.from(reviewState.approvedBy).some(
-    approver =>
-      !GROUP1_REVIEWERS.includes(approver) &&
-      !DESIGN_REVIEWERS.includes(approver)
+    approver => !allGroup1.includes(approver) && !allDesign.includes(approver)
   );
-  const designApproved = DESIGN_REVIEWERS.some(u =>
-    reviewState.approvedBy.has(u)
-  );
+  const designApproved = allDesign.some(u => reviewState.approvedBy.has(u));
 
   const hasEligibleGroup1 = eligibleGroup1.length > 0;
 
@@ -467,4 +560,10 @@ async function dismissNonApprovedReviews(
       );
     }
   }
+}
+
+export function isEUWorkingHours() {
+  const hours = new Date().getUTCHours();
+
+  return hours >= 6 && hours < 18;
 }
