@@ -104,7 +104,7 @@ export async function runCheckReviewersCommand(
     return;
   }
 
-  await dismissNonApprovedReviews(octokit, context, reviewState);
+  await removeRequestedReviewers(octokit, context, reviewState);
 }
 
 export async function runAssignReviewersCommand(
@@ -544,41 +544,36 @@ function formatReviewers(reviewers: string[]): string {
   return reviewers.length > 0 ? reviewers.join(', ') : 'none';
 }
 
-async function dismissNonApprovedReviews(
+async function removeRequestedReviewers(
   octokit: Octokit,
   context: PullRequestContext,
   reviewState: ReviewState
 ) {
-  const toDismiss = reviewState.humanReviews.filter(
-    r => r.state !== 'APPROVED' && r.state !== 'DISMISSED'
-  );
+  const toRemove = reviewState.requestedReviewers.users;
 
-  if (toDismiss.length === 0) {
-    core.info('There are approvals but no other human reviews to dismiss');
+  if (toRemove.length === 0) {
+    core.info('No pending review requests to remove');
     return;
   }
 
   core.info(
-    `Found approval; dismissing ${toDismiss.length} other review(s): ` +
-      toDismiss.map(r => r.user).join(', ')
+    `PR is approved; removing ${toRemove.length} pending review request(s): ` +
+      toRemove.join(', ')
   );
 
-  for (const review of toDismiss) {
-    try {
-      await octokit.rest.pulls.dismissReview({
-        owner: context.owner,
-        repo: context.repo,
-        pull_number: context.pullNumber,
-        review_id: review.id,
-        message: 'Dismissing non-approved review because the PR is approved.',
-      });
+  try {
+    await octokit.rest.pulls.removeRequestedReviewers({
+      owner: context.owner,
+      repo: context.repo,
+      pull_number: context.pullNumber,
+      reviewers: toRemove,
+    });
 
-      core.info(`Dismissed review ${review.id} (${review.user})`);
-    } catch (error) {
-      core.error(
-        `Failed to dismiss review ${review.id} (${review.user}): ${resolveErrorMessage(error)}`
-      );
-    }
+    core.info(`Removed pending review requests: ${toRemove.join(', ')}`);
+  } catch (error) {
+    core.error(
+      `Failed to remove review requests: ${resolveErrorMessage(error)}`
+    );
   }
 }
 
