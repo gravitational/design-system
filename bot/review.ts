@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import { Octokit } from '@octokit/rest';
 
-import { resolveErrorMessage } from './util.ts';
+import { resolveErrorMessage } from './util';
 
 interface ReviewerDefinition {
   eu: string[];
