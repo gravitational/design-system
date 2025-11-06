@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import { Octokit } from '@octokit/rest';
 
+import { GRAVITATIONAL_MEMBERS } from './team.ts';
 import { resolveErrorMessage } from './util';
 
 interface ReviewerDefinition {
@@ -178,7 +179,6 @@ export interface Review {
   user?: {
     login: string;
   };
-  author_association: string;
 }
 
 export function processReviewState(
@@ -187,7 +187,6 @@ export function processReviewState(
   requestedTeams: string[],
   prAuthor: string
 ): ReviewState {
-  const validAssociations = ['OWNER', 'MEMBER', 'COLLABORATOR'];
   const seenReviewers = new Set<string>();
 
   // Process reviews from the end first (latest reviews first)
@@ -198,7 +197,8 @@ export function processReviewState(
       review =>
         review.user &&
         !review.user.login.includes('[bot]') &&
-        review.user.login !== prAuthor
+        review.user.login !== prAuthor &&
+        (review.state === 'APPROVED' || review.state === 'CHANGES_REQUESTED')
     )
     .filter(review => {
       if (!review.user?.login) {
@@ -217,17 +217,18 @@ export function processReviewState(
       id: r.id,
       state: r.state,
       user: r.user?.login,
-      authorAssociation: r.author_association,
     }));
 
   const approvedBy = new Set(
     humanReviews
       .filter(r => {
-        if (r.state !== 'APPROVED') return false;
+        if (r.state !== 'APPROVED' || !r.user) {
+          return false;
+        }
 
-        if (!validAssociations.includes(r.authorAssociation)) {
+        if (!GRAVITATIONAL_MEMBERS.includes(r.user)) {
           core.warning(
-            `Ignoring approval from ${r.user} - not a member/collaborator (association: ${r.authorAssociation})`
+            `Ignoring approval from ${r.user} - not a Teleport team member.`
           );
 
           return false;

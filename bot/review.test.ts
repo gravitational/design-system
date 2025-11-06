@@ -329,59 +329,35 @@ describe('processReviewState', () => {
     vi.clearAllMocks();
   });
 
-  it('only includes approvals from valid associations (OWNER, MEMBER, COLLABORATOR)', () => {
+  it('only includes approvals from Teleport team members', () => {
     const reviews: Review[] = [
       {
         id: 1,
         state: 'APPROVED',
-        user: { login: 'owner-user' },
-        author_association: 'OWNER',
+        user: { login: 'tigrato' },
       },
       {
         id: 2,
         state: 'APPROVED',
-        user: { login: 'member-user' },
-        author_association: 'MEMBER',
+        user: { login: 'external-user-1' },
       },
       {
         id: 3,
         state: 'APPROVED',
-        user: { login: 'collab-user' },
-        author_association: 'COLLABORATOR',
-      },
-      {
-        id: 4,
-        state: 'APPROVED',
-        user: { login: 'contributor-user' },
-        author_association: 'CONTRIBUTOR',
-      },
-      {
-        id: 5,
-        state: 'APPROVED',
-        user: { login: 'none-user' },
-        author_association: 'NONE',
-      },
-      {
-        id: 6,
-        state: 'APPROVED',
-        user: { login: 'first-time-user' },
-        author_association: 'FIRST_TIME_CONTRIBUTOR',
+        user: { login: 'external-user-2' },
       },
     ];
 
     const result = processReviewState(reviews, [], [], 'testuser');
 
-    // Only OWNER, MEMBER, and COLLABORATOR should be included
-    expect(result.approvedBy.has('owner-user')).toBe(true);
-    expect(result.approvedBy.has('member-user')).toBe(true);
-    expect(result.approvedBy.has('collab-user')).toBe(true);
+    // Only tigrato (GRAVITATIONAL_MEMBERS) should be included
+    expect(result.approvedBy.has('tigrato')).toBe(true);
 
     // Others should be excluded
-    expect(result.approvedBy.has('contributor-user')).toBe(false);
-    expect(result.approvedBy.has('none-user')).toBe(false);
-    expect(result.approvedBy.has('first-time-user')).toBe(false);
+    expect(result.approvedBy.has('external-user-1')).toBe(false);
+    expect(result.approvedBy.has('external-user-2')).toBe(false);
 
-    expect(result.approvedBy.size).toBe(3);
+    expect(result.approvedBy.size).toBe(1);
   });
 
   it('filters out bot reviews', () => {
@@ -390,20 +366,18 @@ describe('processReviewState', () => {
         id: 1,
         state: 'APPROVED',
         user: { login: 'dependabot[bot]' },
-        author_association: 'MEMBER',
       },
       {
         id: 2,
         state: 'APPROVED',
-        user: { login: 'real-user' },
-        author_association: 'MEMBER',
+        user: { login: 'tigrato' },
       },
     ];
 
     const result = processReviewState(reviews, [], [], 'testuser');
 
     expect(result.approvedBy.has('dependabot[bot]')).toBe(false);
-    expect(result.approvedBy.has('real-user')).toBe(true);
+    expect(result.approvedBy.has('tigrato')).toBe(true);
     expect(result.approvedBy.size).toBe(1);
   });
 
@@ -413,20 +387,18 @@ describe('processReviewState', () => {
         id: 1,
         state: 'APPROVED',
         user: { login: 'pr-author' },
-        author_association: 'MEMBER',
       },
       {
         id: 2,
         state: 'APPROVED',
-        user: { login: 'other-user' },
-        author_association: 'MEMBER',
+        user: { login: 'tigrato' },
       },
     ];
 
     const result = processReviewState(reviews, [], [], 'pr-author');
 
     expect(result.approvedBy.has('pr-author')).toBe(false);
-    expect(result.approvedBy.has('other-user')).toBe(true);
+    expect(result.approvedBy.has('tigrato')).toBe(true);
     expect(result.approvedBy.size).toBe(1);
   });
 
@@ -438,14 +410,13 @@ describe('processReviewState', () => {
         id: 1,
         state: 'APPROVED',
         user: { login: 'external-user' },
-        author_association: 'CONTRIBUTOR',
       },
     ];
 
     processReviewState(reviews, [], [], 'testuser');
 
     expect(core.warning).toHaveBeenCalledWith(
-      'Ignoring approval from external-user - not a member/collaborator (association: CONTRIBUTOR)'
+      'Ignoring approval from external-user - not a Teleport team member.'
     );
   });
 
@@ -453,29 +424,24 @@ describe('processReviewState', () => {
     const reviews: Review[] = [
       {
         id: 1,
-        state: 'APPROVED',
-        user: { login: 'approver' },
-        author_association: 'MEMBER',
+        state: 'COMMENTED',
+        user: { login: 'tigrato' },
       },
       {
         id: 2,
         state: 'CHANGES_REQUESTED',
-        user: { login: 'requester' },
-        author_association: 'MEMBER',
+        user: { login: 'tigrato' },
       },
       {
         id: 3,
-        state: 'COMMENTED',
-        user: { login: 'commenter' },
-        author_association: 'MEMBER',
+        state: 'APPROVED',
+        user: { login: 'tigrato' },
       },
     ];
 
     const result = processReviewState(reviews, [], [], 'testuser');
 
-    expect(result.approvedBy.has('approver')).toBe(true);
-    expect(result.approvedBy.has('requester')).toBe(false);
-    expect(result.approvedBy.has('commenter')).toBe(false);
+    expect(result.approvedBy.has('tigrato')).toBe(true);
     expect(result.approvedBy.size).toBe(1);
   });
 
@@ -500,35 +466,27 @@ describe('processReviewState', () => {
       {
         id: 1,
         state: 'APPROVED',
-        user: { login: 'user1' },
-        author_association: 'MEMBER',
+        user: { login: 'tigrato' },
       },
       {
         id: 2,
         state: 'CHANGES_REQUESTED',
-        user: { login: 'user2' },
-        author_association: 'OWNER',
+        user: { login: 'tigrato' },
       },
       {
         id: 3,
         state: 'COMMENTED',
-        user: { login: 'bot[bot]' },
-        author_association: 'NONE',
+        user: { login: 'tigrato' },
       },
     ];
 
     const result = processReviewState(reviews, [], [], 'testuser');
 
-    expect(result.humanReviews).toHaveLength(2);
-    expect(result.humanReviews[1]).toEqual({
-      id: 1,
-      state: 'APPROVED',
-      user: 'user1',
-    });
+    expect(result.humanReviews).toHaveLength(1);
     expect(result.humanReviews[0]).toEqual({
       id: 2,
       state: 'CHANGES_REQUESTED',
-      user: 'user2',
+      user: 'tigrato',
     });
   });
 });
