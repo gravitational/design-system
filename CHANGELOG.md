@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.0.6
+
+### Patch Changes
+
+- Sets the content-type on the release asset so hopefully it downloads now ([#63](https://github.com/gravitational/design-system/pull/63))
+
 ## 0.0.5
 
 ### Patch Changes
