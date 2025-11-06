@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.0.8
+
+### Patch Changes
+
+- Removes fonts from the bundle, adds `@fontsource/ubuntu` as peer dependency ([#69](https://github.com/gravitational/design-system/pull/69))
+
 ## 0.0.7
 
 ### Patch Changes
