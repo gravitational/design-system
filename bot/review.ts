@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import { Octokit } from '@octokit/rest';
 
-import { GRAVITATIONAL_MEMBERS } from './team.ts';
+import { GRAVITATIONAL_MEMBERS } from './team';
 import { resolveErrorMessage } from './util';
 
 interface ReviewerDefinition {
