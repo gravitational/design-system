@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.0.7
+
+### Patch Changes
+
+- Do not read the release.tar.gz in as utf-8 ([#67](https://github.com/gravitational/design-system/pull/67))
+
 ## 0.0.6
 
 ### Patch Changes
