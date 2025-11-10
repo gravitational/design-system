@@ -27,6 +27,7 @@ export const DESIGN_REVIEWERS: ReviewerDefinition = {
 export interface PullRequestContext {
   owner: string;
   repo: string;
+  headRef: string;
   pullNumber: number;
   author: string;
   isDraft: boolean;
@@ -162,6 +163,7 @@ async function getPullRequestContext(
     owner,
     repo,
     pullNumber,
+    headRef: pullRequest.head.ref,
     author: pullRequest.user.login,
     isDraft: pullRequest.draft ?? false,
     needsDesignReview: pullRequest.labels.some(
@@ -600,17 +602,11 @@ async function dismissOldWorkflowRuns(
       return;
     }
 
-    const { data: pullRequest } = await octokit.rest.pulls.get({
-      owner: context.owner,
-      repo: context.repo,
-      pull_number: context.pullNumber,
-    });
-
     const runs = await listWorkflowRuns(
       octokit,
       context.owner,
       context.repo,
-      pullRequest.head.ref,
+      context.headRef,
       workflow.id
     );
 

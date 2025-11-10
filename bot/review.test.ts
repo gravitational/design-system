@@ -25,6 +25,7 @@ describe('validateApprovals', () => {
   const baseContext: PullRequestContext = {
     owner: 'gravitational',
     repo: 'design-system',
+    headRef: 'feature-branch',
     pullNumber: 1,
     author: 'testuser',
     isDraft: false,
@@ -283,6 +284,7 @@ describe('getReviewerPool', () => {
   const baseContext: PullRequestContext = {
     owner: 'gravitational',
     repo: 'design-system',
+    headRef: 'feature-branch',
     pullNumber: 1,
     author: 'testuser',
     isDraft: false,
@@ -498,6 +500,7 @@ describe('Integration scenarios', () => {
     const context: PullRequestContext = {
       owner: 'gravitational',
       repo: 'design-system',
+      headRef: 'feature-branch',
       pullNumber: 1,
       author: 'testuser',
       isDraft: false,
@@ -535,6 +538,7 @@ describe('Integration scenarios', () => {
     const context: PullRequestContext = {
       owner: 'gravitational',
       repo: 'design-system',
+      headRef: 'feature-branch',
       pullNumber: 1,
       author: 'bl-nero',
       isDraft: false,
