@@ -1,0 +1,23 @@
+[package]
+authors = { workspace = true }
+description = "Core transformation logic for JSX marker plugin"
+edition = { workspace = true }
+homepage = { workspace = true }
+license = { workspace = true }
+name = "jsx_marker"
+repository = { workspace = true }
+rust-version = { workspace = true }
+version = "0.1.0"
+
+[dependencies]
+rustc-hash = { workspace = true }
+serde = { workspace = true }
+swc_atoms = { workspace = true }
+swc_common = { workspace = true }
+swc_ecma_ast = { workspace = true }
+swc_ecma_visit = { workspace = true }
+
+[dev-dependencies]
+swc_ecma_parser = { workspace = true }
+swc_ecma_transforms_testing = { workspace = true }
+testing = { workspace = true }

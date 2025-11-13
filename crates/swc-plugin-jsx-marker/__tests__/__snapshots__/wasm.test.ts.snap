@@ -1,0 +1,70 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Design System Plugin > Should add data-uic to basic components 1`] = `
+"import { Box, chakra, HStack } from '@chakra-ui/react';
+var StyledBox = chakra(Box, {
+    base: {
+        color: 'red'
+    }
+});
+function MyComponent() {
+    return /*#__PURE__*/ React.createElement(HStack, {
+        "data-uic": "MyComponent-HStack"
+    }, /*#__PURE__*/ React.createElement(Box, {
+        "data-uic": "MyComponent-Box"
+    }, "Hello"), /*#__PURE__*/ React.createElement(StyledBox, {
+        "data-uic": "MyComponent-StyledBox-Box"
+    }, "World"));
+}
+"
+`;
+
+exports[`Design System Plugin > Should support custom prefix 1`] = `
+"import { Box, chakra, HStack } from '@chakra-ui/react';
+var StyledBox = chakra(Box, {
+    base: {
+        color: 'red'
+    }
+});
+function MyComponent() {
+    return /*#__PURE__*/ React.createElement(HStack, {
+        "data-uic": "MyComponent-HStack"
+    }, /*#__PURE__*/ React.createElement(Box, {
+        "data-uic": "MyComponent-Box"
+    }, "Hello"), /*#__PURE__*/ React.createElement(StyledBox, {
+        "data-uic": "MyComponent-StyledBox-Box"
+    }, "World"));
+}
+"
+`;
+
+exports[`Design System Plugin > Should track styled component chains 1`] = `
+"import { Box, chakra } from '@chakra-ui/react';
+var Card = chakra(Box, {
+    base: {
+        padding: '20px'
+    }
+});
+var StyledCard = chakra(Card, {
+    base: {
+        background: 'blue'
+    }
+});
+var SuperStyledCard = chakra(StyledCard, {
+    base: {
+        border: '1px solid red'
+    }
+});
+function App() {
+    return /*#__PURE__*/ React.createElement("div", null, /*#__PURE__*/ React.createElement(Box, {
+        "data-uic": "App-Box"
+    }, "Plain Box"), /*#__PURE__*/ React.createElement(Card, {
+        "data-uic": "App-Card-Box"
+    }, "Card Component"), /*#__PURE__*/ React.createElement(StyledCard, {
+        "data-uic": "App-StyledCard-Card"
+    }, "Styled Card"), /*#__PURE__*/ React.createElement(SuperStyledCard, {
+        "data-uic": "App-SuperStyledCard-StyledCard"
+    }, "Super Styled Card"));
+}
+"
+`;

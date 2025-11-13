@@ -8,7 +8,14 @@ import tseslint, { type ConfigArray } from 'typescript-eslint';
 
 const config: ConfigArray = [
   {
-    ignores: ['dist/**', 'storybook-static/**', 'node_modules/**'],
+    ignores: [
+      'dist/**',
+      'storybook-static/**',
+      'node_modules/**',
+      '**/*.js',
+      '**/__tests__/**',
+      '**/tests/fixture/**',
+    ],
   },
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,

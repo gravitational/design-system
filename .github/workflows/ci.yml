@@ -19,6 +19,12 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v5
 
+      - name: Setup Rust
+        uses: ./.github/actions/setup-rust
+        with:
+          rust-channel: ${{ env.RUST_CHANNEL }}
+          save-cache: ${{ github.ref == 'refs/heads/main' }}
+
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
         with:
@@ -34,6 +40,12 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v5
+
+      - name: Setup Rust
+        uses: ./.github/actions/setup-rust
+        with:
+          rust-channel: ${{ env.RUST_CHANNEL }}
+          save-cache: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
@@ -54,6 +66,12 @@ jobs:
     name: Generate
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: ./.github/actions/setup-rust
+        with:
+          rust-channel: ${{ env.RUST_CHANNEL }}
+          save-cache: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
@@ -77,6 +95,12 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v5
+
+      - name: Setup Rust
+        uses: ./.github/actions/setup-rust
+        with:
+          rust-channel: ${{ env.RUST_CHANNEL }}
+          save-cache: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm

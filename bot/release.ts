@@ -1,5 +1,7 @@
 import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
+import { getPackages, type Package } from '@manypkg/get-packages';
 import { Octokit } from '@octokit/rest';
 import { toString } from 'mdast-util-to-string';
 import remarkParse from 'remark-parse';
@@ -18,13 +20,26 @@ export async function runReleaseCommand(
   params: {
     owner: string;
     repo: string;
+    packageName: string;
     version: string;
-    tar_gz_path: string;
   }
 ) {
+  const packages = await getPackages(process.cwd());
+
+  const pkg: Package | undefined = packages.packages.find(
+    p => p.packageJson.name === params.packageName
+  );
+
+  if (!pkg) {
+    throw new Error(`Package ${params.packageName} not found`);
+  }
+
+  const packageName = pkg.packageJson.name;
+  const isDesignSystem = packageName === '@gravitational/design-system';
+
   let changelog;
   try {
-    changelog = await readFile('CHANGELOG.md', 'utf8');
+    changelog = await readFile(join(pkg.dir, 'CHANGELOG.md'), 'utf8');
   } catch (err) {
     if (isErrorWithCode(err, 'ENOENT')) {
       return;
@@ -38,24 +53,35 @@ export async function runReleaseCommand(
     throw new Error(`Could not find changelog entry for ${params.version}`);
   }
 
+  const distTarGz = join(pkg.dir, 'dist', 'package.tgz');
+  const assetName = `${packageName.replace('@gravitational/', '')}.tgz`;
+
+  const releaseName = isDesignSystem
+    ? params.version
+    : `${packageName}@${params.version}`;
+  const releaseTag = isDesignSystem
+    ? `v${params.version}`
+    : `${packageName}@${params.version}`;
+
   const release = await octokit.rest.repos.createRelease({
-    name: params.version,
-    tag_name: `v${params.version}`,
+    name: releaseName,
+    tag_name: releaseTag,
     body: changelogEntry.content,
     prerelease: params.version.includes('-'),
     repo: params.repo,
     owner: params.owner,
+    make_latest: isDesignSystem ? 'true' : 'false',
   });
 
   await octokit.rest.repos.uploadReleaseAsset({
     owner: params.owner,
     repo: params.repo,
     release_id: release.data.id,
-    name: 'design-system.tgz',
+    name: assetName,
     headers: {
       'content-type': 'application/gzip',
     },
-    data: (await readFile(params.tar_gz_path)) as unknown as string,
+    data: (await readFile(distTarGz)) as unknown as string,
   });
 }
 

@@ -1,0 +1,65 @@
+name: 'Setup Rust with cache'
+inputs:
+  rust-channel:
+    description: 'Rust channel to install'
+    required: false
+    default: 'stable'
+  save-cache:
+    description: 'Whether to save the cache (only on main branch)'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Rust toolchain
+      run: |
+        rustup component add --toolchain ${{ inputs.rust-channel }:  rustfmt rust-src
+        rustup update --no-self-update ${{ inputs.rust-channel }}
+        rustup default ${{ inputs.rust-channel }}
+      shell: bash
+
+    - name: Get Rust cache key
+      id: rust-cache
+      shell: bash
+      run: |
+        echo "rust_version=$(rustc --version | awk '{print $2}')" >> $GITHUB_OUTPUT
+        echo "cargo_lock_hash=${{ hashFiles('**/Cargo.lock') }}" >> $GITHUB_OUTPUT
+
+    - name: Restore cargo registry cache
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+        key: cargo-registry-${{ runner.os }}-${{ steps.rust-cache.outputs.rust_version }}-${{ steps.rust-cache.outputs.cargo_lock_hash }}
+        restore-keys: |
+          cargo-registry-${{ runner.os }}-${{ steps.rust-cache.outputs.rust_version }}-
+          cargo-registry-${{ runner.os }}-
+
+    - name: Restore target cache
+      uses: actions/cache/restore@v4
+      with:
+        path: target
+        key: cargo-target-${{ runner.os }}-${{ steps.rust-cache.outputs.rust_version }}-${{ steps.rust-cache.outputs.cargo_lock_hash }}
+        restore-keys: |
+          cargo-target-${{ runner.os }}-${{ steps.rust-cache.outputs.rust_version }}-
+          cargo-target-${{ runner.os }}-
+
+    - name: Save cargo registry cache
+      if: inputs.save-cache == 'true'
+      uses: actions/cache/save@v4
+      with:
+        path: |
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+        key: cargo-registry-${{ runner.os }}-${{ steps.rust-cache.outputs.rust_version }}-${{ steps.rust-cache.outputs.cargo_lock_hash }}
+
+    - name: Save target cache
+      if: inputs.save-cache == 'true'
+      uses: actions/cache/save@v4
+      with:
+        path: target
+        key: cargo-target-${{ runner.os }}-${{ steps.rust-cache.outputs.rust_version }}-${{ steps.rust-cache.outputs.cargo_lock_hash }}

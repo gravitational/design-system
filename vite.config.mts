@@ -10,7 +10,7 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 const config: UserConfig = {
   plugins: [
     react({
-      plugins: [['@ryanclark/swc-plugin-jsx-marker', {}]],
+      plugins: [['@gravitational/swc-plugin-jsx-marker', {}]],
     }),
   ],
   optimizeDeps: {

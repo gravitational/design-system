@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "composite": true,
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "noEmitHelpers": true,
+    "pretty": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "stripInternal": true,
+    "strict": true,
+    "target": "esnext",
+    "tsBuildInfoFile": "../../.typescript/tsconfig.jsxmarker.tsbuildinfo",
+    "verbatimModuleSyntax": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+  ]
+}
