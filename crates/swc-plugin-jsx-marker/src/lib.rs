@@ -23,9 +23,7 @@ impl JSXMarkerPluginOptions {
       attribute_name: self
         .attribute_name
         .unwrap_or_else(|| "data-uic".to_string()),
-      styled_function_name: self
-        .styled_function
-        .unwrap_or_else(|| "chakra".to_string()),
+      styled_function_name: self.styled_function.unwrap_or_else(|| "chakra".to_string()),
     }
   }
 }
