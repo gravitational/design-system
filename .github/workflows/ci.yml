@@ -10,6 +10,7 @@ on:
 
 env:
   NODE_VERSION: 22.x
+  RUST_CHANNEL: stable
 
 jobs:
   build:
