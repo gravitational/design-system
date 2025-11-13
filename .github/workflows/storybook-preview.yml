@@ -6,6 +6,7 @@ on:
 
 env:
   NODE_VERSION: 22.x
+  RUST_CHANNEL: stable
 
 concurrency:
   group: storybook-deployment
@@ -26,6 +27,11 @@ jobs:
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v5
+
+      - name: Setup Rust
+        uses: ./.github/actions/setup-rust
+        with:
+          rust-channel: ${{ env.RUST_CHANNEL }}
 
       - name: Setup pnpm with cache
         uses: ./.github/actions/setup-pnpm

@@ -11,6 +11,7 @@ permissions:
 
 env:
   NODE_VERSION: 22.x
+  RUST_CHANNEL: stable
 
 jobs:
   changeset-bot:
@@ -23,6 +24,11 @@ jobs:
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
+
+      - name: Setup Rust
+        uses: ./.github/actions/setup-rust
+        with:
+          rust-channel: ${{ env.RUST_CHANNEL }}
 
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
