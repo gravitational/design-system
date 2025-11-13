@@ -55,6 +55,12 @@ jobs:
       - name: Build design system
         run: pnpm build
 
+      - name: Build libraries
+        run: |
+          (cd crates/swc-plugin-jsx-marker && ./build.sh)
+          (cd crates/swc-plugin-styled-components && ./build.sh)
+        shell: bash
+
       - name: Create release PR
         id: changesets
         uses: changesets/action@v1

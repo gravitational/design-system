@@ -50,7 +50,6 @@
     "@fontsource/ubuntu": "^5.2.8",
     "@emotion/react": "^11.14.0",
     "@eslint/js": "^9.34.0",
-    "@gravitational/swc-plugin-jsx-marker": "file:crates/swc-plugin-jsx-marker/dist",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
     "@mdx-js/react": "^3.1.1",
     "@rollup/plugin-commonjs": "^28.0.6",

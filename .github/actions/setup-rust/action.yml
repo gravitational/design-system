@@ -53,9 +53,3 @@ runs:
           cargo-target-${{ runner.os }}-${{ steps.rust-cache.outputs.rust_version }}-${{ steps.rust-cache.outputs.cargo_lock_hash }}
           cargo-target-${{ runner.os }}-${{ steps.rust-cache.outputs.rust_version }}-
           cargo-target-${{ runner.os }}-
-
-    - name: Build libraries
-      run: |
-        (cd crates/swc-plugin-jsx-marker && ./build.sh)
-        (cd crates/swc-plugin-styled-components && ./build.sh)
-      shell: bash
