@@ -14,10 +14,12 @@ runs:
   steps:
     - name: Install Rust toolchain
       run: |
-        rustup component add --toolchain ${{ inputs.rust-channel }} rustfmt rust-src
-        rustup update --no-self-update ${{ inputs.rust-channel }}
-        rustup default ${{ inputs.rust-channel }}
+        rustup component add --toolchain $RUST_CHANNEL rustfmt rust-src
+        rustup update --no-self-update $RUST_CHANNEL
+        rustup default $RUST_CHANNEL
       shell: bash
+      env:
+        RUST_CHANNEL: ${{ inputs.rust-channel }}
 
     - name: Get Rust cache key
       id: rust-cache
