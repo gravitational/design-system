@@ -19,10 +19,6 @@ runs:
         rustup default ${{ inputs.rust-channel }}
       shell: bash
 
-    - name: Install wasm32-wasip1 target
-      run: rustup target add wasm32-wasip1
-      shell: bash
-
     - name: Get Rust cache key
       id: rust-cache
       shell: bash
@@ -53,3 +49,7 @@ runs:
           cargo-target-${{ runner.os }}-${{ steps.rust-cache.outputs.rust_version }}-${{ steps.rust-cache.outputs.cargo_lock_hash }}
           cargo-target-${{ runner.os }}-${{ steps.rust-cache.outputs.rust_version }}-
           cargo-target-${{ runner.os }}-
+
+    - name: Install wasm32-wasip1 target
+      run: rustup target add wasm32-wasip1
+      shell: bash
