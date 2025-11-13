@@ -19,6 +19,10 @@ runs:
         rustup default ${{ inputs.rust-channel }}
       shell: bash
 
+    - name: Install wasm32-wasip1 target
+      run: rustup target add wasm32-wasip1
+      shell: bash
+
     - name: Get Rust cache key
       id: rust-cache
       shell: bash
