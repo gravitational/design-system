@@ -26,7 +26,9 @@
     "generate": "pnpm generate-icons",
     "generate-icons": "jiti src/icons/generate.ts",
     "generate-theme": "chakra typegen src/themes/teleport/theme.ts --strict && jiti src/cli/generateComments.ts",
-    "create-storybook-doc": "jiti src/storybook/create.ts"
+    "create-storybook-doc": "jiti src/storybook/create.ts",
+    "taplo-check": "taplo fmt --check",
+    "taplo-write": "taplo fmt"
   },
   "dependencies": {
     "@chakra-ui/cli": "^3.26.0",
@@ -61,6 +63,7 @@
     "@storybook/react-vite": "^9.1.10",
     "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "@swc/core": "^1.13.5",
+    "@taplo/cli": "^0.7.0",
     "@types/hast": "^3.0.4",
     "@types/prismjs": "^1.26.5",
     "@types/node": "^24.3.0",

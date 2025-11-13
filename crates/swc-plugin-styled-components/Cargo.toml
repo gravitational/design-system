@@ -1,17 +1,17 @@
 [package]
-description = "styled-components plugin for https://swc.rs"
-edition = { workspace = true }
-license = { workspace = true }
-name = "swc_plugin_styled_components"
-publish = false
+description  = "styled-components plugin for https://swc.rs"
+edition      = { workspace = true }
+license      = { workspace = true }
+name         = "swc_plugin_styled_components"
+publish      = false
 rust-version = { workspace = true }
-version = "0.40.4"
+version      = "0.40.4"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-serde_json = { workspace = true }
+serde_json        = { workspace = true }
 styled_components = { path = "./transform" }
-swc_common = { workspace = true, features = ["concurrent"] }
-swc_core = { workspace = true, features = ["ecma_plugin_transform"] }
+swc_common        = { workspace = true, features = ["concurrent"] }
+swc_core          = { workspace = true, features = ["ecma_plugin_transform"] }

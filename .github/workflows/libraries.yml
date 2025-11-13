@@ -31,11 +31,8 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Install taplo
-        run: cargo install taplo-cli --locked
-
       - name: Check TOML formatting
-        run: taplo fmt --check
+        run: pnpm taplo-check
 
       - name: Check Rust formatting
         run: cargo fmt --all -- --check
