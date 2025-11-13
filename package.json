@@ -22,7 +22,6 @@
     "build-storybook": "storybook build",
     "test": "vitest --project=storybook && cd bot && pnpm test",
     "pack-release": "cd dist && pnpm pack --out package.tgz",
-    "preinstall": "pnpm --filter=\"@gravitational/swc-plugin-*\" build",
     "release": "changeset publish",
     "generate": "pnpm generate-icons",
     "generate-icons": "jiti src/icons/generate.ts",

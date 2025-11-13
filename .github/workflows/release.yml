@@ -34,6 +34,11 @@ jobs:
           rust-channel: ${{ env.RUST_CHANNEL }}
           save-cache: ${{ github.ref == 'refs/heads/main' }}
 
+      - name: Build libraries
+        run: |
+          ./crates/swc-plugin-jsx-marker/build.sh
+          ./crates/swc-plugin-styled-components/build.sh
+
       - name: Setup pnpm with cache
         uses: ./.github/actions/setup-pnpm
         with:
@@ -54,9 +59,6 @@ jobs:
 
       - name: Build design system
         run: pnpm build
-
-      - name: Build libraries
-        run: pnpm --filter="@gravitational/swc-plugin-*" build
 
       - name: Create release PR
         id: changesets
