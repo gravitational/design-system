@@ -41,7 +41,7 @@ importers:
         version: 5.2.8
       '@gravitational/swc-plugin-jsx-marker':
         specifier: file:crates/swc-plugin-jsx-marker/dist
-        version: file:crates/swc-plugin-jsx-marker/dist
+        version: dist@file:crates/swc-plugin-jsx-marker/dist
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^4.7.0
         version: 4.7.0(prettier@3.6.2)
@@ -787,9 +787,6 @@ packages:
 
   '@fontsource/ubuntu@5.2.8':
     resolution: {integrity: sha512-esSJCpgigwWOm4Ug9f7AMozUyBq5Iobea5C9QYsl2OlCb62wZABBUbXahHLdFv5Ru4lJCD9tUX6xEAeLwUTNBg==}
-
-  '@gravitational/swc-plugin-jsx-marker@file:crates/swc-plugin-jsx-marker/dist':
-    resolution: {directory: crates/swc-plugin-jsx-marker/dist, type: directory}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2146,6 +2143,9 @@ packages:
   dir-glob@3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
     engines: {node: '>=8'}
+
+  dist@file:crates/swc-plugin-jsx-marker/dist:
+    resolution: {directory: crates/swc-plugin-jsx-marker/dist, type: directory}
 
   doctrine@2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
@@ -4905,10 +4905,6 @@ snapshots:
 
   '@fontsource/ubuntu@5.2.8': {}
 
-  '@gravitational/swc-plugin-jsx-marker@file:crates/swc-plugin-jsx-marker/dist':
-    dependencies:
-      '@swc/counter': 0.1.3
-
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/node@0.16.7':
@@ -6608,6 +6604,8 @@ snapshots:
   dir-glob@3.0.1:
     dependencies:
       path-type: 4.0.0
+
+  dist@file:crates/swc-plugin-jsx-marker/dist: {}
 
   doctrine@2.1.0:
     dependencies:
