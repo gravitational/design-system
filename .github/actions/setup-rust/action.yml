@@ -14,7 +14,7 @@ runs:
   steps:
     - name: Install Rust toolchain
       run: |
-        rustup component add --toolchain ${{ inputs.rust-channel }:  rustfmt rust-src
+        rustup component add --toolchain ${{ inputs.rust-channel }} rustfmt rust-src
         rustup update --no-self-update ${{ inputs.rust-channel }}
         rustup default ${{ inputs.rust-channel }}
       shell: bash
