@@ -1,0 +1,44 @@
+name: Libraries
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  NODE_VERSION: 22.x
+  RUST_CHANNEL: stable
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v5
+
+      - name: Setup Rust
+        uses: ./.github/actions/setup-rust
+        with:
+          rust-channel: ${{ env.RUST_CHANNEL }}
+          save-cache: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Setup pnpm
+        uses: ./.github/actions/setup-pnpm
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Check TOML formatting
+        run: pnpm taplo-check
+
+      - name: Check Rust formatting
+        run: cargo fmt --all -- --check
+
+      - name: Vitest
+        run: pnpm --filter="@gravitational/swc-plugin-*" test
+
+      - name: Rust Tests
+        run: cargo test --all --locked

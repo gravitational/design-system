@@ -8,11 +8,7 @@ import type { UserConfig } from 'vite';
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const config: UserConfig = {
-  plugins: [
-    react({
-      plugins: [['@ryanclark/swc-plugin-jsx-marker', {}]],
-    }),
-  ],
+  plugins: [react()],
   optimizeDeps: {
     include: [
       'react',

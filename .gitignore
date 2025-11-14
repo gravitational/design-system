@@ -43,3 +43,7 @@ dist/
 
 # SWC
 .swc
+
+target/
+
+**/*.wasm

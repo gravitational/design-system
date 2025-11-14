@@ -1,0 +1,38 @@
+[package]
+
+description = "AST Transforms for styled-components"
+
+include = ["Cargo.toml", "src/**/*.rs"]
+
+name = "styled_components"
+
+authors      = { workspace = true }
+edition      = { workspace = true }
+homepage     = { workspace = true }
+license      = { workspace = true }
+repository   = { workspace = true }
+rust-version = { workspace = true }
+version      = "0.129.0"
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+Inflector      = { workspace = true }
+once_cell      = { workspace = true }
+regex          = { workspace = true, features = ["std", "perf"] }
+rustc-hash     = { workspace = true }
+serde          = { workspace = true, features = ["derive"] }
+swc_atoms      = { workspace = true }
+swc_common     = { workspace = true }
+swc_ecma_ast   = { workspace = true }
+swc_ecma_utils = { workspace = true }
+swc_ecma_visit = { workspace = true }
+tracing        = { workspace = true }
+
+[dev-dependencies]
+serde_json                  = { workspace = true }
+swc_ecma_parser             = { workspace = true }
+swc_ecma_transforms         = { workspace = true }
+swc_ecma_transforms_testing = { workspace = true }
+testing                     = { workspace = true }

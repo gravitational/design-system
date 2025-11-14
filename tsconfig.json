@@ -3,6 +3,8 @@
   "references": [
     { "path": "./tsconfig.build.json"},
     { "path": "./tsconfig.node.json" },
-    { "path": "./bot/tsconfig.json" }
+    { "path": "./bot/tsconfig.json" },
+    { "path": "./crates/swc-plugin-jsx-marker/tsconfig.json" },
+    { "path": "./crates/swc-plugin-styled-components/tsconfig.json" }
   ]
 }

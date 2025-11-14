@@ -1,0 +1,6 @@
+# https://taplo.tamasfe.dev/configuration/formatter-options.html
+include = ["Cargo.toml", "**/Cargo.toml"]
+
+[formatting]
+align_entries = true
+reorder_keys  = true
