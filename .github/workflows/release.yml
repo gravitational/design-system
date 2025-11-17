@@ -61,6 +61,9 @@ jobs:
           (cd crates/swc-plugin-styled-components && ./build.sh)
         shell: bash
 
+      - name: Remove executable permissions from files
+        run: git ls-files | while read -r file; do [ -x "$file" ] && chmod -x "$file" || true; done
+
       - name: Create release PR
         id: changesets
         uses: changesets/action@v1
