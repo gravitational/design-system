@@ -20,4 +20,7 @@ export {
 
 export * from '@chakra-ui/react/styled-system';
 
-export { LEGACY_THEME_COLORS_VARIABLES } from './themes/teleport/colors';
+export {
+  type LegacyThemeColors,
+  LEGACY_THEME_COLORS,
+} from './themes/teleport/colors';
