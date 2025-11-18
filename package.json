@@ -120,6 +120,7 @@
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
       }
-    }
+    },
+    "./ubuntu.css": "./ubuntu.css"
   }
 }
