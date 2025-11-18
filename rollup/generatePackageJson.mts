@@ -50,6 +50,7 @@ export function generatePackageJson({
                 default: './index.js',
               },
             },
+            './ubuntu.css': './ubuntu.css',
           },
         };
 
