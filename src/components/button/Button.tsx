@@ -2,7 +2,7 @@ import {
   Button,
   type ButtonProps as ChakraButtonProps,
 } from '@chakra-ui/react';
-import type { ComponentPropsWithoutRef, Ref, RefAttributes } from 'react';
+import type { ComponentProps, Ref, RefAttributes } from 'react';
 
 export { Button };
 
@@ -41,9 +41,7 @@ export function ButtonText(
 export function ButtonLink({
   ref,
   ...props
-}: Omit<ButtonProps, 'fill' | 'intent'> &
-  ComponentPropsWithoutRef<'a'> &
-  RefAttributes<HTMLAnchorElement>) {
+}: Omit<ButtonProps, 'fill' | 'intent'> & ComponentProps<'a'>) {
   return (
     <Button
       as="a"
