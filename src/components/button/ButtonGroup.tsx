@@ -3,17 +3,15 @@ import {
   useRecipe,
   type RecipeProps,
 } from '@chakra-ui/react';
-import { useMemo, type Ref } from 'react';
+import { useMemo, type RefAttributes } from 'react';
 
 import { Group, type GroupProps } from '../group/Group';
 
-export interface ButtonGroupProps
-  extends Omit<GroupProps, 'fill'>,
-    RecipeProps<'button'> {
-  ref?: Ref<HTMLElement>;
-}
+export type ButtonGroupProps = Omit<GroupProps, 'fill'> & RecipeProps<'button'>;
 
-export function ButtonGroup(props: ButtonGroupProps) {
+export function ButtonGroup(
+  props: ButtonGroupProps & RefAttributes<HTMLDivElement>
+) {
   const recipe = useRecipe({ key: 'button' });
   const [variantProps, otherProps] = useMemo(
     () => recipe.splitVariantProps(props),
