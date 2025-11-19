@@ -1,5 +1,13 @@
 # @gravitational/design-system
 
+## 0.0.11
+
+### Patch Changes
+
+- Change the legacy theme color type definitions so that `spotBackground` is properly marked as deprecated when used ([#79](https://github.com/gravitational/design-system/pull/79))
+
+- Add the colors for the session recording player ([#79](https://github.com/gravitational/design-system/pull/79))
+
 ## 0.0.10
 
 ### Patch Changes
