@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.0.10
+
+### Patch Changes
+
+- Add `spotBackground` (deprecated) back to the color definitions ([#77](https://github.com/gravitational/design-system/pull/77))
+
 ## 0.0.9
 
 ### Patch Changes
