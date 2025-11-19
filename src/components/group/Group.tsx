@@ -11,7 +11,7 @@ import {
   isValidElement,
   useMemo,
   type ReactElement,
-  type Ref,
+  type RefAttributes,
 } from 'react';
 
 export interface GroupProps
@@ -32,13 +32,9 @@ export interface GroupProps
    * A function that determines if a child should be skipped
    */
   skip?: (child: ReactElement) => boolean | undefined;
-  /**
-   * Ref to the underlying DOM element
-   */
-  ref?: Ref<HTMLElement>;
 }
 
-export function Group(props: GroupProps) {
+export function Group(props: GroupProps & RefAttributes<HTMLDivElement>) {
   const recipe = useRecipe({ key: 'group' });
   const [variantProps, otherProps] = recipe.splitVariantProps(props);
   const styles = recipe(variantProps);

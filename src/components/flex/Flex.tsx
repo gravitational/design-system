@@ -3,7 +3,7 @@ import {
   type HTMLChakraProps,
   type SystemStyleObject,
 } from '@chakra-ui/react';
-import type { Ref } from 'react';
+import type { RefAttributes } from 'react';
 
 export interface FlexOptions {
   /**
@@ -55,11 +55,9 @@ export interface FlexOptions {
   inline?: boolean | undefined;
 }
 
-export interface FlexProps extends HTMLChakraProps<'div', FlexOptions> {
-  ref?: Ref<HTMLDivElement>;
-}
+export type FlexProps = HTMLChakraProps<'div', FlexOptions>;
 
-export function Flex(props: FlexProps) {
+export function Flex(props: FlexProps & RefAttributes<HTMLDivElement>) {
   const {
     direction,
     align,

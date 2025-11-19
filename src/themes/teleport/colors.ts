@@ -1075,7 +1075,8 @@ export const colors = defineSemanticTokens.colors({
 
 // Convert the theme tokens to CSS variables so we can derive the legacy theme from the new Teleport
 // theme. This is a temporary solution until we migrate all components to use the new theme.
-export const LEGACY_THEME_COLORS_VARIABLES = tokensToCSSVariables(colors);
+export const LEGACY_THEME_COLORS = tokensToCSSVariables(colors);
+export type LegacyThemeColors = typeof LEGACY_THEME_COLORS;
 
 // Use the Teleport theme as the source of truth for the color types. Other themes will use
 // this type to ensure they implement all the required color tokens.
