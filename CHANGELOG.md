@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.0.9
+
+### Patch Changes
+
+- Add `ubuntu.css` to `package.json` exports so it can be imported ([#75](https://github.com/gravitational/design-system/pull/75))
+
 ## 0.0.8
 
 ### Patch Changes
