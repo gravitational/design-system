@@ -94,7 +94,7 @@ export async function runChangesetCommand(
     body:
       (hasChangeset
         ? getApproveMessage(latestCommitSha, addChangesetUrl, releasePlan)
-        : getAbsentMessage(latestCommitSha, addChangesetUrl, releasePlan)) +
+        : getAbsentMessage(latestCommitSha, addChangesetUrl)) +
       errFromFetchingChangedFiles,
   };
 
@@ -117,44 +117,54 @@ function getReleasePlanMessage(releasePlan: ReleasePlan | null) {
     return '';
   }
 
-  const publishableRelease = releasePlan.releases.find(
+  const publishableReleases = releasePlan.releases.filter(
     (x): x is ComprehensiveRelease & { type: Exclude<VersionType, 'none'> } =>
       x.type !== 'none'
   );
 
-  if (!publishableRelease) {
-    return `This PR includes no changesets
+  if (!publishableReleases.length) {
+    return `#### 📋 Release Plan
 
-When changesets are added to this PR, you'll see the package version type that will be released`;
+_No changesets found. When changesets are added to this PR, you'll see the packages and versions that will be released._`;
   }
 
-  const versionType = {
-    major: 'major',
-    minor: 'minor',
-    patch: 'patch',
-  }[publishableRelease.type];
+  if (!releasePlan.changesets.length) {
+    return `#### 📋 Release Plan
 
-  return releasePlan.changesets.length
-    ? `This PR includes changesets to release a ${versionType} version`
-    : `This PR includes no changesets
+_No changesets found. When changesets are added to this PR, you'll see the packages and versions that will be released._`;
+  }
 
-When changesets are added to this PR, you'll see the package version type that will be released`;
+  let versionTable = '| Package | Version | Type |\n';
+  versionTable += '| :--- | :--- | :--- |';
+
+  for (const release of publishableReleases) {
+    const versionType = release.type;
+
+    versionTable += `\n| **${release.name}** | \`${release.oldVersion}\` → \`${release.newVersion}\` | ${versionType} |`;
+  }
+
+  const changesetsCount = releasePlan.changesets.length;
+  const packagesCount = publishableReleases.length;
+
+  return `#### 📋 Release Plan
+
+This PR will trigger releases for **${packagesCount} package${packagesCount > 1 ? 's' : ''}** with **${changesetsCount} changeset${changesetsCount > 1 ? 's' : ''}**:
+
+${versionTable}`;
 }
 
-function getAbsentMessage(
-  commitSha: string,
-  addChangesetUrl: string,
-  releasePlan: ReleasePlan | null
-) {
-  return `###  ⚠️  No Changeset found
+function getAbsentMessage(commitSha: string, addChangesetUrl: string) {
+  return `### ⚠️ No changeset found
 
 Latest commit: ${commitSha}
 
-Merging this PR will not cause a version bump. If these changes should not result in a new version, you're good to go. **If these changes should result in a version bump, you need to add a changeset.**
+This PR will **not** trigger a version bump when merged.
 
-${getReleasePlanMessage(releasePlan)}
+---
 
-[Learn about changesets](https://github.com/gravitational/design-system/blob/main/guides/changesets.md) • [Add a changeset to this PR](${addChangesetUrl})
+If merging this PR should trigger a release, you need to add a changeset. If not, you can ignore this message.
+
+[**Add a changeset to this PR**](${addChangesetUrl}) • [**Learn about changesets**](https://github.com/gravitational/design-system/blob/main/guides/changesets.md)
 
 `;
 }
@@ -164,15 +174,15 @@ function getApproveMessage(
   addChangesetUrl: string,
   releasePlan: ReleasePlan | null
 ) {
-  return `###  📦️  Changeset detected
+  return `### ✅ Changeset detected
 
 Latest commit: ${commitSha}
 
-**The changes in this PR will be included in the next version bump.**
-
 ${getReleasePlanMessage(releasePlan)}
 
-[Learn about changesets](https://github.com/gravitational/design-system/blob/main/guides/changesets.md) • [Add another changeset to this PR](${addChangesetUrl})
+---
+
+[**Add another changeset to this PR**](${addChangesetUrl}) • [**Learn about changesets**](https://github.com/gravitational/design-system/blob/main/guides/changesets.md)
 
 `;
 }
