@@ -324,6 +324,19 @@ export const colors: SingleColorThemeColors = defineSemanticTokens.colors({
     },
   },
   sessionRecording: {
+    player: {
+      progressBar: {
+        background: {
+          value: 'rgba(255, 255, 255, 0.2)',
+        },
+        seeking: {
+          value: 'rgba(255, 255, 255, 0.17)',
+        },
+        progress: {
+          value: '#FFA028',
+        },
+      },
+    },
     resource: {
       value: '#66C5FF',
     },
