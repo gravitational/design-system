@@ -13,7 +13,7 @@ type SemanticTokenDefinition = Recursive<
   TokenSchema<PrimitiveTokenValue | Record<string, PrimitiveTokenValue>>
 >;
 
-type ProcessedTokens<T> =
+export type ProcessedTokens<T> =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   T extends TokenSchema<any>
     ? string
