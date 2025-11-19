@@ -29,16 +29,18 @@ type ExtractExtraKeys<T> = T extends { _light: any; _dark: any }
   : never;
 
 export type SingleColorTheme<T> = T extends TokenSchema
-  ? HasOnlyLightDark<T['value']> extends true
-    ? { value: number | string }
-    : T['value'] extends object
-      ? {
-          value: { base: number | string } & Record<
-            ExtractExtraKeys<T['value']>,
-            number | string
-          >;
-        }
-      : never
+  ? T['value'] extends string | number
+    ? T
+    : HasOnlyLightDark<T['value']> extends true
+      ? { value: number | string }
+      : T['value'] extends object
+        ? {
+            value: { base: number | string } & Record<
+              ExtractExtraKeys<T['value']>,
+              number | string
+            >;
+          }
+        : T
   : T extends object
     ? { [K in keyof T]: SingleColorTheme<T[K]> }
     : never;

@@ -1071,6 +1071,18 @@ export const colors = defineSemanticTokens.colors({
       _dark: 'rgba(255, 255, 255, 0.3)',
     },
   },
+  /** @deprecated Use {colors.interactive.tonal.neutral} instead. */
+  spotBackground: {
+    0: {
+      value: '{colors.interactive.tonal.neutral.0}',
+    },
+    1: {
+      value: '{colors.interactive.tonal.neutral.1}',
+    },
+    2: {
+      value: '{colors.interactive.tonal.neutral.2}',
+    },
+  },
 });
 
 // Convert the theme tokens to CSS variables so we can derive the legacy theme from the new Teleport
