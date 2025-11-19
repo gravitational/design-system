@@ -374,4 +374,16 @@ export const colors: SingleColorThemeColors = defineSemanticTokens.colors({
   highlightedNavigationItem: {
     value: 'rgba(255, 255, 255, 0.3)',
   },
+  /** @deprecated Use {colors.interactive.tonal.neutral} instead. */
+  spotBackground: {
+    0: {
+      value: '{colors.interactive.tonal.neutral.0}',
+    },
+    1: {
+      value: '{colors.interactive.tonal.neutral.1}',
+    },
+    2: {
+      value: '{colors.interactive.tonal.neutral.2}',
+    },
+  },
 });
