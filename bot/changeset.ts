@@ -44,7 +44,7 @@ export async function runChangesetCommand(
             repo: params.repo,
             issue_number: params.pull_number,
           })
-        : undefined,
+        : Promise.resolve(undefined),
       hasChangesetBeenAdded(octokit, {
         owner: params.owner,
         repo: params.repo,
