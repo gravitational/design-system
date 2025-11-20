@@ -1,28 +1,58 @@
 import * as core from '@actions/core';
 import { Octokit, type RestEndpointMethodTypes } from '@octokit/rest';
+import { command, number, option, string } from 'cmd-ts';
 
-export async function runStorybookCommand(
+import { createOctokit } from '../../util';
+
+export const storybookCommand = command({
+  name: 'storybook',
+  args: {
+    owner: option({
+      type: string,
+      long: 'owner',
+      short: 'o',
+      description: 'Repository owner',
+    }),
+    repo: option({
+      type: string,
+      long: 'repo',
+      short: 'r',
+      description: 'Repository name',
+    }),
+    pullNumber: option({
+      type: number,
+      long: 'pull-number',
+      short: 'p',
+      description: 'Pull request number',
+    }),
+  },
+  handler: async ({ owner, repo, pullNumber }) => {
+    const octokit = createOctokit();
+
+    await runStorybookCommand(octokit, owner, repo, pullNumber);
+  },
+});
+
+async function runStorybookCommand(
   octokit: Octokit,
-  params: {
-    owner: string;
-    repo: string;
-    pull_number: number;
-  }
+  owner: string,
+  repo: string,
+  pull_number: number
 ) {
   const baseUrl = 'https://design.teleport.dev';
-  const storybookUrl = `${baseUrl}/pr/${params.pull_number}`;
+  const storybookUrl = `${baseUrl}/pr/${pull_number}`;
 
   const commentId = await getStorybookCommentId(octokit, {
-    owner: params.owner,
-    repo: params.repo,
-    issue_number: params.pull_number,
+    owner,
+    repo,
+    issue_number: pull_number,
   });
 
   const prComment: RestEndpointMethodTypes['issues']['createComment']['parameters'] =
     {
-      owner: params.owner,
-      repo: params.repo,
-      issue_number: params.pull_number,
+      owner,
+      repo,
+      issue_number: pull_number,
       body: getStorybookMessage(storybookUrl),
     };
 

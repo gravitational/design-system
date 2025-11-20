@@ -31,7 +31,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pnpm bot assign-reviewers \
-            ${{ github.repository_owner }} \
-            ${{ github.event.repository.name }} \
-            ${{ github.event.pull_request.number }}
+          pnpm bot review assign \
+            --owner ${{ github.repository_owner }} \
+            --repo ${{ github.event.repository.name }} \
+            --pull-number ${{ github.event.pull_request.number }}

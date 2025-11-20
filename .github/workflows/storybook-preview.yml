@@ -111,6 +111,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pnpm bot storybook \
-            ${{ github.repository_owner }} \
-            ${{ github.event.repository.name }} \
-            ${{ github.event.pull_request.number }}
+            --owner ${{ github.repository_owner }} \
+            --repo ${{ github.event.repository.name }} \
+            --pull-number ${{ github.event.pull_request.number }}
