@@ -26,7 +26,6 @@ const config: ConfigArray = [
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
-        project: './tsconfig.json',
       },
     },
   },
