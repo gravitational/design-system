@@ -6,24 +6,58 @@ import type {
   VersionType,
 } from '@changesets/types';
 import { Octokit } from '@octokit/rest';
+import { command, number, option, string } from 'cmd-ts';
 import { humanId } from 'human-id';
 
-import { getChangedPackages } from './getChangedPackages.ts';
-import { resolveErrorMessage } from './util.ts';
+import { createOctokit, resolveErrorMessage } from '../../util';
+import { getChangedPackages } from './getChangedPackages';
 
-export async function runChangesetCommand(
+export const changesetCommand = command({
+  name: 'changeset',
+  args: {
+    owner: option({
+      type: string,
+      long: 'owner',
+      short: 'o',
+      description: 'Repository owner',
+    }),
+    repo: option({
+      type: string,
+      long: 'repo',
+      short: 'r',
+      description: 'Repository name',
+    }),
+    pullNumber: option({
+      type: number,
+      long: 'pull-number',
+      short: 'p',
+      description: 'Pull request number',
+    }),
+    action: option({
+      type: string,
+      long: 'action',
+      short: 'a',
+      description: 'Action to perform (e.g., synchronize)',
+    }),
+  },
+  handler: async ({ owner, repo, pullNumber, action }) => {
+    const octokit = createOctokit();
+
+    await runChangesetCommand(octokit, owner, repo, pullNumber, action);
+  },
+});
+
+async function runChangesetCommand(
   octokit: Octokit,
-  params: {
-    owner: string;
-    repo: string;
-    pull_number: number;
-    action: string;
-  }
+  owner: string,
+  repo: string,
+  pull_number: number,
+  action: string
 ) {
   const pullRequest = await octokit.rest.pulls.get({
-    owner: params.owner,
-    repo: params.repo,
-    pull_number: params.pull_number,
+    owner,
+    repo,
+    pull_number,
   });
 
   if (pullRequest.data.head.ref.startsWith('changeset-release')) {
@@ -38,17 +72,17 @@ export async function runChangesetCommand(
 
   const [commentId, hasChangeset, { changedPackages, releasePlan }] =
     await Promise.all([
-      params.action === 'synchronize'
+      action === 'synchronize'
         ? getCommentId(octokit, {
-            owner: params.owner,
-            repo: params.repo,
-            issue_number: params.pull_number,
+            owner,
+            repo,
+            issue_number: pull_number,
           })
         : Promise.resolve(undefined),
       hasChangesetBeenAdded(octokit, {
-        owner: params.owner,
-        repo: params.repo,
-        pull_number: params.pull_number,
+        owner,
+        repo,
+        pull_number,
       }),
       getChangedPackages({
         repo: headRepo.name,
@@ -56,9 +90,9 @@ export async function runChangesetCommand(
         ref: pullRequest.data.head.ref,
         changedFiles: octokit.rest.pulls
           .listFiles({
-            owner: params.owner,
-            repo: params.repo,
-            pull_number: params.pull_number,
+            owner,
+            repo,
+            pull_number,
           })
           .then(x => x.data.map(file => file.filename)),
         octokit,
@@ -88,9 +122,9 @@ export async function runChangesetCommand(
   })}.md&value=${getNewChangesetTemplate(packageName, pullRequest.data.title)}`;
 
   const prComment = {
-    owner: params.owner,
-    repo: params.repo,
-    issue_number: params.pull_number,
+    owner,
+    repo,
+    issue_number: pull_number,
     body:
       (hasChangeset
         ? getApproveMessage(latestCommitSha, addChangesetUrl, releasePlan)

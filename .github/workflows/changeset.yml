@@ -34,7 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pnpm bot changeset \
-            ${{ github.repository_owner }} \
-            ${{ github.event.repository.name }} \
-            ${{ github.event.pull_request.number }} \
-            ${{ github.event.action }}
+            --owner ${{ github.repository_owner }} \
+            --repo ${{ github.event.repository.name }} \
+            --pull-number ${{ github.event.pull_request.number }} \
+            --action ${{ github.event.action }}
