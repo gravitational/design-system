@@ -19,6 +19,7 @@ describe('validateApprovals', () => {
     isDraft: false,
     needsDesignReview: false,
     isRelease: false,
+    isDependabot: false,
     availableReviewers: {
       group1: GROUP1_REVIEWERS.eu,
       group2: GROUP2_REVIEWERS.eu,
