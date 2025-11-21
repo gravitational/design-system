@@ -236,6 +236,7 @@ describe('getReviewerPool', () => {
     isDraft: false,
     needsDesignReview: false,
     isRelease: false,
+    isDependabot: false,
     availableReviewers: {
       group1: ['ryanclark'],
       group2: ['bl-nero', 'ravicious'],
