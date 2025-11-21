@@ -107,7 +107,7 @@ export function validateApprovals(
 
   const group1Approved = allGroup1.some(u => reviewState.approvedBy.has(u));
 
-  if (context.isRelease) {
+  if (context.isRelease || context.isDependabot) {
     return {
       isValid: group1Approved,
       missingGroups: {

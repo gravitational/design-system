@@ -56,6 +56,7 @@ export interface PullRequestContext {
   isDraft: boolean;
   needsDesignReview: boolean;
   isRelease: boolean;
+  isDependabot: boolean;
   availableReviewers: {
     group1: string[];
     group2: string[];
@@ -105,6 +106,7 @@ export async function getPullRequestContext(
       l => l.name === 'needs-design-review'
     ),
     isRelease: pullRequest.user.login === 'design-system-release[bot]',
+    isDependabot: pullRequest.user.login === 'dependabot[bot]',
     availableReviewers,
     fallbackReviewers,
   };
