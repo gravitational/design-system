@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import react from '@vitejs/plugin-react-swc';
+import { playwright } from '@vitest/browser-playwright';
 import type { UserConfig } from 'vite';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -30,7 +31,7 @@ const config: UserConfig = {
           browser: {
             enabled: true,
             headless: true,
-            provider: 'playwright',
+            provider: playwright(),
             instances: [{ browser: 'chromium' }],
           },
           setupFiles: ['.storybook/vitest.setup.ts'],
