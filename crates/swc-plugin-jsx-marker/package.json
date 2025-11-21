@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@swc/core": "^1.15.2",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.12"
   },
   "publishConfig": {
     "directory": "dist"
