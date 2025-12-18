@@ -869,37 +869,37 @@ export const colors = defineSemanticTokens.colors({
   editor: {
     abbey: {
       value: {
-        _light: '{colors.dataVisualisation.primary.abbey}',
+        _light: '{colors.dataVisualisation.tertiary.abbey}',
         _dark: '{colors.dataVisualisation.tertiary.abbey}',
       },
     },
     purple: {
       value: {
-        _light: '{colors.dataVisualisation.primary.purple}',
+        _light: '{colors.dataVisualisation.tertiary.purple}',
         _dark: '{colors.dataVisualisation.tertiary.purple}',
       },
     },
     cyan: {
       value: {
-        _light: '{colors.dataVisualisation.primary.cyan}',
+        _light: '{colors.dataVisualisation.tertiary.cyan}',
         _dark: '{colors.dataVisualisation.tertiary.cyan}',
       },
     },
     picton: {
       value: {
-        _light: '{colors.dataVisualisation.primary.picton}',
+        _light: '{colors.dataVisualisation.tertiary.picton}',
         _dark: '{colors.dataVisualisation.tertiary.picton}',
       },
     },
     sunflower: {
       value: {
-        _light: '{colors.dataVisualisation.primary.sunflower}',
+        _light: '{colors.dataVisualisation.tertiary.sunflower}',
         _dark: '{colors.dataVisualisation.tertiary.sunflower}',
       },
     },
     caribbean: {
       value: {
-        _light: '{colors.dataVisualisation.primary.caribbean}',
+        _light: '{colors.dataVisualisation.tertiary.caribbean}',
         _dark: '{colors.dataVisualisation.tertiary.caribbean}',
       },
     },
