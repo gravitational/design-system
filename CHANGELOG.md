@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.0.12
+
+### Patch Changes
+
+- Use tertiary colors for editor in light theme ([#86](https://github.com/gravitational/design-system/pull/86))
+
 ## 0.0.11
 
 ### Patch Changes
