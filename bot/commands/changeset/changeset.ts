@@ -84,18 +84,10 @@ async function runChangesetCommand(
         repo,
         pull_number,
       }),
-      getChangedPackages({
-        repo: headRepo.name,
-        owner: headRepo.owner.login,
-        ref: pullRequest.data.head.ref,
-        changedFiles: octokit.rest.pulls
-          .listFiles({
-            owner,
-            repo,
-            pull_number,
-          })
-          .then(x => x.data.map(file => file.filename)),
-        octokit,
+      getChangedPackages(octokit, {
+        owner,
+        repo,
+        pull_number,
       }).catch((err: unknown) => {
         if (err instanceof ValidationError) {
           errFromFetchingChangedFiles = `<details><summary>💥 An error occurred when fetching the changed packages and changesets in this PR</summary>\n\n\`\`\`\n${err.message}\n\`\`\`\n\n</details>\n`;
@@ -112,14 +104,17 @@ async function runChangesetCommand(
       }),
     ] as const);
 
-  const packageName = changedPackages[0] ?? '@fake-scope/fake-pkg';
+  const packagesToInclude =
+    changedPackages.length > 0
+      ? changedPackages
+      : ['@gravitational/design-system'];
 
   const addChangesetUrl = `${headRepo.html_url}/new/${
     pullRequest.data.head.ref
   }?filename=.changeset/${humanId({
     separator: '-',
     capitalize: false,
-  })}.md&value=${getNewChangesetTemplate(packageName, pullRequest.data.title)}`;
+  })}.md&value=${getNewChangesetTemplate(packagesToInclude, pullRequest.data.title)}`;
 
   const prComment = {
     owner,
@@ -221,9 +216,13 @@ ${getReleasePlanMessage(releasePlan)}
 `;
 }
 
-function getNewChangesetTemplate(packageName: string, title: string) {
+function getNewChangesetTemplate(packageNames: string[], title: string) {
+  const packageEntries = packageNames
+    .map(name => `'${name}': patch`)
+    .join('\n');
+
   return encodeURIComponent(`---
-"${packageName}": patch
+${packageEntries}
 ---
 
 ${title}
