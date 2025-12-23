@@ -1,7 +1,9 @@
-onlyBuiltDependencies:
-  - '@swc/core'
-  - esbuild
 packages:
   - '.'
   - 'bot'
   - 'crates/*'
+onlyBuiltDependencies:
+  - '@swc/core'
+  - esbuild
+# Do not install packages released less than 2 days (2880 minutes) ago
+minimumReleaseAge: 2880
