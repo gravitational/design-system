@@ -1,164 +1,82 @@
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
+
 import assembleReleasePlan from '@changesets/assemble-release-plan';
 import { parse as parseConfig } from '@changesets/config';
 import parseChangeset from '@changesets/parse';
-import type {
-  NewChangeset,
-  PackageJSON,
-  PreState,
-  WrittenConfig,
-} from '@changesets/types';
-import type { Package, Packages } from '@manypkg/get-packages';
-import type { Octokit } from '@octokit/rest';
-import fetch from 'node-fetch';
+import type { NewChangeset, PreState, WrittenConfig } from '@changesets/types';
+import { getPackages } from '@manypkg/get-packages';
 
 export async function getChangedPackages({
-  owner,
-  repo,
-  ref,
   changedFiles: changedFilesPromise,
-  octokit,
 }: {
-  owner: string;
-  repo: string;
-  ref: string;
   changedFiles: string[] | Promise<string[]>;
-  octokit: InstanceType<typeof Octokit>;
 }) {
-  let hasErrored = false;
-
-  const githubToken = process.env.GITHUB_TOKEN;
-
-  function fetchFile(path: string) {
-    return fetch(
-      `https://raw.githubusercontent.com/${owner}/${repo}/${ref}/${path}`,
-      {
-        headers: {
-          Authorization: `Bearer ${githubToken}`,
-        },
-      }
-    );
-  }
-
-  async function fetchJsonFile<T>(path: string): Promise<T> {
-    try {
-      const x = await fetchFile(path);
-
-      return (await x.json()) as T;
-    } catch (err) {
-      hasErrored = true;
-
-      // eslint-disable-next-line no-console
-      console.error(err);
-
-      return {} as T;
-    }
-  }
-
-  async function fetchTextFile(path: string) {
-    try {
-      const x = await fetchFile(path);
-
-      return await x.text();
-    } catch (err) {
-      hasErrored = true;
-
-      // eslint-disable-next-line no-console
-      console.error(err);
-
-      return '';
-    }
-  }
-
-  const rootPackageJsonContentsPromise =
-    fetchJsonFile<PackageJSON>('package.json');
-  const configPromise: Promise<WrittenConfig> = fetchJsonFile(
-    '.changeset/config.json'
-  );
-
-  const tree = await octokit.rest.git.getTree({
-    owner,
-    repo,
-    recursive: '1',
-    tree_sha: ref,
-  });
-
   const changedFiles = await changedFilesPromise;
+  const packages = await getPackages(process.cwd());
 
-  let preStatePromise: Promise<PreState> | undefined;
-  let changesetPromises: Promise<NewChangeset>[] = [];
+  const configPromise = readFile(
+    join(process.cwd(), '.changeset/config.json'),
+    'utf-8'
+  ).then(content => JSON.parse(content) as WrittenConfig);
 
-  for (let item of tree.data.tree) {
-    if (!item.path) {
-      continue;
-    }
+  const preStatePromise = readFile(
+    join(process.cwd(), '.changeset/pre.json'),
+    'utf-8'
+  )
+    .then(content => JSON.parse(content) as PreState)
+    .catch(() => undefined);
 
-    if (item.path === '.changeset/pre.json') {
-      preStatePromise = fetchJsonFile('.changeset/pre.json');
-
-      continue;
-    }
-
-    if (
-      item.path !== '.changeset/README.md' &&
-      item.path.startsWith('.changeset') &&
-      item.path.endsWith('.md') &&
-      changedFiles.includes(item.path)
-    ) {
-      const res = /\.changeset\/([^.]+)\.md/.exec(item.path);
-      if (!res) {
+  const changesetPromises: Promise<NewChangeset>[] = changedFiles
+    .filter(
+      file =>
+        file.startsWith('.changeset/') &&
+        file.endsWith('.md') &&
+        file !== '.changeset/README.md'
+    )
+    .map(async file => {
+      const match = /\.changeset\/([^.]+)\.md/.exec(file);
+      if (!match) {
         throw new Error('could not get name from changeset filename');
       }
 
-      const id = res[1];
+      const id = match[1];
+      const content = await readFile(join(process.cwd(), file), 'utf-8');
 
-      changesetPromises.push(
-        fetchTextFile(item.path).then(text => {
-          return { ...parseChangeset(text), id };
-        })
-      );
-    }
-  }
-
-  let rootPackageJsonContent = await rootPackageJsonContentsPromise;
-
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (hasErrored) {
-    throw new Error('an error occurred when fetching files');
-  }
-
-  const root: Package = {
-    dir: '.',
-    packageJson: rootPackageJsonContent,
-  };
-
-  const packages: Packages = {
-    root,
-    tool: 'pnpm',
-    packages: [
-      root,
-      {
-        dir: 'bot',
-        packageJson: {
-          name: 'bot',
-          version: '0.0.0',
-        },
-      },
-    ],
-  };
+      return { ...parseChangeset(content), id };
+    });
 
   const releasePlan = assembleReleasePlan(
     await Promise.all(changesetPromises),
     packages,
-    await configPromise.then(rawConfig => parseConfig(rawConfig, packages)),
+    parseConfig(await configPromise, packages),
     await preStatePromise
   );
 
+  const changedPackages = packages.packages
+    .filter(pkg => {
+      if (pkg.packageJson.name === 'bot') {
+        return false;
+      }
+
+      const relativeDir = pkg.dir.replace(process.cwd(), '').replace(/^\//, '');
+
+      if (relativeDir === '') {
+        const otherPackageDirs = packages.packages
+          .filter(p => p.dir !== pkg.dir)
+          .map(p => p.dir.replace(process.cwd(), '').replace(/^\//, ''));
+
+        return changedFiles.some(
+          file => !otherPackageDirs.some(dir => file.startsWith(`${dir}/`))
+        );
+      }
+
+      return changedFiles.some(file => file.startsWith(`${relativeDir}/`));
+    })
+    .map(pkg => pkg.packageJson.name);
+
   return {
-    changedPackages: packages.packages
-      .filter(pkg =>
-        changedFiles.some(changedFile => changedFile.startsWith(`${pkg.dir}/`))
-      )
-      .map(x => x.packageJson.name),
+    changedPackages,
     releasePlan,
   };
 }
