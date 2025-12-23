@@ -84,14 +84,10 @@ async function runChangesetCommand(
         repo,
         pull_number,
       }),
-      getChangedPackages({
-        changedFiles: octokit.rest.pulls
-          .listFiles({
-            owner,
-            repo,
-            pull_number,
-          })
-          .then(x => x.data.map(file => file.filename)),
+      getChangedPackages(octokit, {
+        owner,
+        repo,
+        pull_number,
       }).catch((err: unknown) => {
         if (err instanceof ValidationError) {
           errFromFetchingChangedFiles = `<details><summary>💥 An error occurred when fetching the changed packages and changesets in this PR</summary>\n\n\`\`\`\n${err.message}\n\`\`\`\n\n</details>\n`;

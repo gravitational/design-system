@@ -6,13 +6,15 @@ import { parse as parseConfig } from '@changesets/config';
 import parseChangeset from '@changesets/parse';
 import type { NewChangeset, PreState, WrittenConfig } from '@changesets/types';
 import { getPackages } from '@manypkg/get-packages';
+import type { Octokit } from '@octokit/rest';
 
-export async function getChangedPackages({
-  changedFiles: changedFilesPromise,
-}: {
-  changedFiles: string[] | Promise<string[]>;
-}) {
-  const changedFiles = await changedFilesPromise;
+export async function getChangedPackages(
+  octokit: Octokit,
+  params: { repo: string; owner: string; pull_number: number }
+) {
+  const changedFiles = await octokit.rest.pulls
+    .listFiles(params)
+    .then(x => x.data.map(file => file.filename));
   const packages = await getPackages(process.cwd());
 
   const configPromise = readFile(
