@@ -223,7 +223,7 @@ ${getReleasePlanMessage(releasePlan)}
 
 function getNewChangesetTemplate(packageName: string, title: string) {
   return encodeURIComponent(`---
-"${packageName}": patch
+'${packageName}': patch
 ---
 
 ${title}
