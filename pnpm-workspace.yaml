@@ -1,7 +1,7 @@
-onlyBuiltDependencies:
-  - '@swc/core'
-  - esbuild
 packages:
   - '.'
   - 'bot'
   - 'crates/*'
+onlyBuiltDependencies:
+  - '@swc/core'
+  - esbuild
