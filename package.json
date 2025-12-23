@@ -13,7 +13,7 @@
     "bot": "jiti bot/index.ts",
     "dev": "rollup -c rollup.config.mts -w",
     "eslint": "eslint . --ext .ts,.tsx",
-    "prettier-check": "prettier --log-level silent --check \"**/*.{ts,tsx,mts,md,mdx}\"",
+    "prettier-check": "prettier --check \"**/*.{ts,tsx,mts,md,mdx}\"",
     "prettier-write": "prettier --log-level silent --write \"**/*.{ts,tsx,mts,md,mdx}\"",
     "lint": "pnpm eslint && pnpm prettier-check",
     "type-check": "tsc --build",
