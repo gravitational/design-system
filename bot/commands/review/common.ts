@@ -34,7 +34,7 @@ interface ReviewerDefinition {
 
 export const GROUP1_REVIEWERS: ReviewerDefinition = {
   eu: ['ryanclark'],
-  us: [],
+  us: ['avatus'],
 };
 
 export const GROUP2_REVIEWERS: ReviewerDefinition = {
