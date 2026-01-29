@@ -11,7 +11,7 @@ import {
   type SubmitHandler,
 } from 'react-hook-form';
 
-import { type UseFormReturn } from '../index';
+import { type UseFormReturn } from '../useForm';
 
 export interface FormProps<
   TFieldValues extends FieldValues,
