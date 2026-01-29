@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import { Field } from '../../../..';
+
+import * as FieldStories from './Field.stories';
+
+<Meta of={FieldStories} />
+
+<DocsHeader title="Field" description="" recipePath="" sourcePath="" />
+
+<Canvas of={FieldStories.Preview} />
+
+## Usage
+
+Information about usage here.
+
+```tsx
+import { Field } from '@gravitational/design-system';
+
+function Example() {
+  return <Field />;
+}
+```
+
+## Examples
+
+### Example
+
+<Canvas of={FieldStories.Example} />
+
+## Props
+
+<PropTypes of={Field} />

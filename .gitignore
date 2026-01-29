@@ -47,3 +47,6 @@ dist/
 target/
 
 **/*.wasm
+
+.envrc
+.DS_Store

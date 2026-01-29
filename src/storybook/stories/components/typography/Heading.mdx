@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import { Heading } from '../../../..';
+
+import * as HeadingStories from './Heading.stories';
+
+<Meta title="Components/Typography/Heading" />
+
+<DocsHeader title="Heading" description="" recipePath="" sourcePath="" />
+
+<Canvas of={HeadingStories.Preview} />
+
+## Usage
+
+Information about usage here.
+
+```tsx
+import { Heading } from '@gravitational/design-system';
+
+function Example() {
+  return <Heading />;
+}
+```
+
+## Examples
+
+### Sizes
+
+<Canvas of={HeadingStories.Sizes} />
+
+## Props
+
+<PropTypes of={Heading} />

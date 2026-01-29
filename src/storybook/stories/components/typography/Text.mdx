@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import { Text } from '../../../..';
+
+import * as TextStories from './Text.stories';
+
+<Meta title="Components/Typography/Text" />
+
+<DocsHeader title="Text" description="" recipePath="" sourcePath="" />
+
+<Canvas of={TextStories.Preview} />
+
+## Usage
+
+Information about usage here.
+
+```tsx
+import { Text } from '@gravitational/design-system';
+
+function Example() {
+  return <Text />;
+}
+```
+
+## Examples
+
+### Example
+
+<Canvas of={TextStories.Example} />
+
+## Props
+
+<PropTypes of={Text} />

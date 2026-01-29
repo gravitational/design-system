@@ -1,0 +1,66 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import { Stack } from '../../../..';
+
+import * as StackStories from './Stack.stories';
+
+<Meta title="Components/Layout/Stack" />
+
+<DocsHeader
+  title="Stack"
+  description="Used to layout elements in a horizontal or vertical stack."
+  sourcePath="src/components/layout/stack"
+/>
+
+<Canvas of={StackStories.Preview} />
+
+## Usage
+
+By default, `Stack` applies `flex-direction: column` and `gap: 8px` to its children.
+
+```tsx
+import { Stack } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <Stack>
+      <div>Item 1</div>
+      <div>Item 2</div>
+    </Stack>
+  );
+}
+```
+
+## Examples
+
+### Horizontal
+
+Use the `direction` prop to change the direction of the stack.
+
+<Canvas of={StackStories.Horizontal} />
+
+### HStack
+
+You can use `HStack` to create a horizontal stack with the children aligned horizontally.
+
+<Canvas of={StackStories.HStackExample} />
+
+### VStack
+
+Use `VStack` to create a vertical stack with the children aligned vertically.
+
+<Canvas of={StackStories.VStackExample} />
+
+### Separator
+
+Use the `separator` prop to add a separator between the stack items.
+
+<Canvas of={StackStories.Separator} />
+
+## Props
+
+<PropTypes of={Stack} />
