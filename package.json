@@ -23,7 +23,7 @@
     "test": "vitest --project=storybook && cd bot && pnpm test",
     "pack-release": "cd dist && pnpm pack --out package.tgz",
     "release": "changeset publish",
-    "generate": "pnpm generate-icons && pnpm generate-props",
+    "generate": "pnpm generate-icons && pnpm generate-theme && pnpm generate-props",
     "generate-icons": "jiti src/icons/generate.ts",
     "generate-props": "jiti src/storybook/props/generate.ts",
     "generate-theme": "chakra typegen src/themes/teleport/theme.ts --strict && jiti src/cli/generateComments.ts",

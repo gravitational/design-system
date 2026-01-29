@@ -10,12 +10,19 @@ const COMPONENTS_DIR = resolve(ROOT, 'src/components');
 const OUTPUT_FILE = resolve(ROOT, 'src/storybook/props/generated.json');
 const TSCONFIG_PATH = resolve(ROOT, 'tsconfig.build.json');
 
+type ComponentPropWithoutSourceFile = Omit<ComponentProp, 'sourceFile'>;
+
+interface ComponentEntryWithoutPropsSourceFile
+  extends Omit<ComponentEntry, 'props'> {
+  props: ComponentPropWithoutSourceFile[];
+}
+
 async function run() {
   const componentFiles = await findComponentFiles(COMPONENTS_DIR);
 
   const generator = new PropsGenerator(ROOT, TSCONFIG_PATH, componentFiles);
 
-  const components: ComponentEntry[] = [];
+  const components: ComponentEntryWithoutPropsSourceFile[] = [];
 
   for (const sourceFile of generator.getSourceFiles()) {
     if (!componentFiles.includes(sourceFile.fileName)) {
@@ -44,9 +51,12 @@ async function run() {
 
       await prettierAllExpandedTypes(filteredProps);
 
-      const entry: ComponentEntry = {
+      const entry: ComponentEntryWithoutPropsSourceFile = {
         name: component.name,
-        props: filteredProps,
+        props: filteredProps.map(prop => ({
+          ...prop,
+          sourceFile: undefined,
+        })),
         ref: refType,
       };
 

@@ -18,8 +18,7 @@
         "required": false,
         "readonly": false,
         "description": "The size of the button.",
-        "defaultValue": "md",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "md"
       },
       {
         "name": "fill",
@@ -37,8 +36,7 @@
         "required": false,
         "readonly": false,
         "description": "Fill specifies the desired shape of the button.",
-        "defaultValue": "filled",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "filled"
       },
       {
         "name": "spinner",
@@ -51,8 +49,7 @@
         "required": false,
         "readonly": false,
         "description": "The spinner to show while loading.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+        "defaultValue": null
       },
       {
         "name": "loading",
@@ -64,8 +61,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the button will show a loading spinner.",
-        "defaultValue": "false",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+        "defaultValue": "false"
       }
     ],
     "ref": null
@@ -89,8 +85,7 @@
         "required": false,
         "readonly": false,
         "description": "The size of the button.",
-        "defaultValue": "md",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "md"
       },
       {
         "name": "fill",
@@ -108,8 +103,7 @@
         "required": false,
         "readonly": false,
         "description": "Fill specifies the desired shape of the button.",
-        "defaultValue": "filled",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "filled"
       },
       {
         "name": "intent",
@@ -127,8 +121,7 @@
         "required": false,
         "readonly": false,
         "description": "Specifies the button's purpose class and affects its color palette.",
-        "defaultValue": "primary",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "primary"
       },
       {
         "name": "block",
@@ -140,8 +133,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the button will take the full width of its container.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "compact",
@@ -153,8 +145,7 @@
         "required": false,
         "readonly": false,
         "description": "Reduces the horizontal padding to make the button more compact.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "inputAlignment",
@@ -166,8 +157,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the button will have adjusted padding to align with input fields.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "loading",
@@ -179,8 +169,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the button will show a loading spinner.",
-        "defaultValue": "false",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+        "defaultValue": "false"
       },
       {
         "name": "loadingText",
@@ -193,8 +182,7 @@
         "required": false,
         "readonly": false,
         "description": "The text to show while loading.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+        "defaultValue": null
       },
       {
         "name": "spinner",
@@ -207,8 +195,7 @@
         "required": false,
         "readonly": false,
         "description": "The spinner to show while loading.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+        "defaultValue": null
       },
       {
         "name": "spinnerPlacement",
@@ -224,8 +211,7 @@
         "required": false,
         "readonly": false,
         "description": "The placement of the spinner",
-        "defaultValue": "start",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+        "defaultValue": "start"
       }
     ],
     "ref": {
@@ -248,8 +234,7 @@
         "required": false,
         "readonly": false,
         "description": "The `alignItems` style property",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+        "defaultValue": null
       },
       {
         "name": "justify",
@@ -261,8 +246,7 @@
         "required": false,
         "readonly": false,
         "description": "The `justifyContent` style property",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+        "defaultValue": null
       },
       {
         "name": "wrap",
@@ -274,8 +258,7 @@
         "required": false,
         "readonly": false,
         "description": "The `flexWrap` style property",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+        "defaultValue": null
       },
       {
         "name": "skip",
@@ -287,8 +270,7 @@
         "required": false,
         "readonly": false,
         "description": "A function that determines if a child should be skipped",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+        "defaultValue": null
       },
       {
         "name": "orientation",
@@ -304,8 +286,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": "horizontal",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "horizontal"
       },
       {
         "name": "attached",
@@ -317,8 +298,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "grow",
@@ -330,8 +310,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "stacking",
@@ -347,8 +326,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -370,8 +348,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": "horizontal",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "horizontal"
       },
       {
         "name": "attached",
@@ -383,8 +360,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "grow",
@@ -396,8 +372,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "stacking",
@@ -413,8 +388,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "align",
@@ -426,8 +400,7 @@
         "required": false,
         "readonly": false,
         "description": "The `alignItems` style property",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+        "defaultValue": null
       },
       {
         "name": "justify",
@@ -439,8 +412,7 @@
         "required": false,
         "readonly": false,
         "description": "The `justifyContent` style property",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+        "defaultValue": null
       },
       {
         "name": "wrap",
@@ -452,8 +424,7 @@
         "required": false,
         "readonly": false,
         "description": "The `flexWrap` style property",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+        "defaultValue": null
       },
       {
         "name": "skip",
@@ -465,8 +436,7 @@
         "required": false,
         "readonly": false,
         "description": "A function that determines if a child should be skipped",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+        "defaultValue": null
       },
       {
         "name": "size",
@@ -484,8 +454,7 @@
         "required": false,
         "readonly": false,
         "description": "The size of the button.",
-        "defaultValue": "md",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "md"
       },
       {
         "name": "fill",
@@ -503,8 +472,7 @@
         "required": false,
         "readonly": false,
         "description": "Fill specifies the desired shape of the button.",
-        "defaultValue": "filled",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "filled"
       },
       {
         "name": "intent",
@@ -522,8 +490,7 @@
         "required": false,
         "readonly": false,
         "description": "Specifies the button's purpose class and affects its color palette.",
-        "defaultValue": "primary",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "primary"
       },
       {
         "name": "block",
@@ -535,8 +502,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the button will take the full width of its container.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "compact",
@@ -548,8 +514,7 @@
         "required": false,
         "readonly": false,
         "description": "Reduces the horizontal padding to make the button more compact.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "inputAlignment",
@@ -561,8 +526,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the button will have adjusted padding to align with input fields.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -586,8 +550,7 @@
         "required": false,
         "readonly": false,
         "description": "Specifies the button's purpose class and affects its color palette.",
-        "defaultValue": "primary",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "primary"
       },
       {
         "name": "size",
@@ -605,8 +568,7 @@
         "required": false,
         "readonly": false,
         "description": "The size of the button.",
-        "defaultValue": "md",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "md"
       },
       {
         "name": "fill",
@@ -624,8 +586,7 @@
         "required": false,
         "readonly": false,
         "description": "Fill specifies the desired shape of the button.",
-        "defaultValue": "filled",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "filled"
       },
       {
         "name": "spinner",
@@ -638,8 +599,7 @@
         "required": false,
         "readonly": false,
         "description": "The spinner to show while loading.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+        "defaultValue": null
       },
       {
         "name": "loading",
@@ -651,8 +611,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the button will show a loading spinner.",
-        "defaultValue": "false",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+        "defaultValue": "false"
       }
     ],
     "ref": null
@@ -674,8 +633,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": "subtle",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "subtle"
       },
       {
         "name": "size",
@@ -693,8 +651,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": "sm",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "sm"
       }
     ],
     "ref": {
@@ -717,8 +674,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, center the content horizontally",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "fluid",
@@ -730,8 +686,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the container will take the full width of its parent",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -749,8 +704,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether the checkmark is checked",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/utilities/checkmark/Checkmark.tsx"
+        "defaultValue": null
       },
       {
         "name": "indeterminate",
@@ -762,8 +716,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether the checkmark is indeterminate",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/utilities/checkmark/Checkmark.tsx"
+        "defaultValue": null
       },
       {
         "name": "disabled",
@@ -775,8 +728,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether the checkmark is disabled",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/utilities/checkmark/Checkmark.tsx"
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -794,8 +746,7 @@
         "required": false,
         "readonly": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/factory.d.ts"
+        "defaultValue": null
       },
       {
         "name": "form",
@@ -807,8 +758,7 @@
         "required": false,
         "readonly": false,
         "description": "The id of the form that the checkbox belongs to.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "disabled",
@@ -820,8 +770,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether the checkbox is disabled",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "name",
@@ -833,8 +782,7 @@
         "required": false,
         "readonly": false,
         "description": "The name of the input field in a checkbox.\nUseful for form submission.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "value",
@@ -846,8 +794,7 @@
         "required": false,
         "readonly": false,
         "description": "The value of checkbox input. Useful for form submission.",
-        "defaultValue": "on",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+        "defaultValue": "on"
       },
       {
         "name": "defaultChecked",
@@ -860,8 +807,7 @@
         "required": false,
         "readonly": false,
         "description": "The initial checked state of the checkbox when rendered.\nUse when you don't need to control the checked state of the checkbox.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "id",
@@ -873,8 +819,7 @@
         "required": false,
         "readonly": false,
         "description": "The unique identifier of the machine.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+types@1.31.1/node_modules/@zag-js/types/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "ids",
@@ -887,8 +832,7 @@
         "required": false,
         "readonly": false,
         "description": "The ids of the elements in the checkbox. Useful for composition.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "invalid",
@@ -900,8 +844,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether the checkbox is invalid",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "required",
@@ -913,8 +856,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether the checkbox is required",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "checked",
@@ -927,8 +869,7 @@
         "required": false,
         "readonly": false,
         "description": "The controlled checked state of the checkbox",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "readOnly",
@@ -940,8 +881,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether the checkbox is read-only",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "onCheckedChange",
@@ -953,45 +893,7 @@
         "required": false,
         "readonly": false,
         "description": "The callback invoked when the checked state changes.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
-      },
-      {
-        "name": "size",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'xs' | 'sm' | 'md' | 'lg'",
-          "members": [
-            "'xs'",
-            "'sm'",
-            "'md'",
-            "'lg'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "md",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
-      },
-      {
-        "name": "variant",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'outline' | 'solid' | 'subtle'",
-          "members": [
-            "'outline'",
-            "'solid'",
-            "'subtle'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "solid",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": {
@@ -1014,8 +916,7 @@
         "required": false,
         "readonly": false,
         "description": "The initial value of `value` when uncontrolled",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+        "defaultValue": null
       },
       {
         "name": "value",
@@ -1027,8 +928,7 @@
         "required": false,
         "readonly": false,
         "description": "The controlled value of the checkbox group",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+        "defaultValue": null
       },
       {
         "name": "name",
@@ -1040,8 +940,7 @@
         "required": false,
         "readonly": false,
         "description": "The name of the input fields in the checkbox group\n(Useful for form submission).",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+        "defaultValue": null
       },
       {
         "name": "onValueChange",
@@ -1053,8 +952,7 @@
         "required": false,
         "readonly": false,
         "description": "The callback to call when the value changes",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+        "defaultValue": null
       },
       {
         "name": "disabled",
@@ -1066,8 +964,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the checkbox group is disabled",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+        "defaultValue": null
       },
       {
         "name": "readOnly",
@@ -1079,8 +976,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the checkbox group is read-only",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+        "defaultValue": null
       },
       {
         "name": "invalid",
@@ -1092,8 +988,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the checkbox group is invalid",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+        "defaultValue": null
       },
       {
         "name": "asChild",
@@ -1105,8 +1000,7 @@
         "required": false,
         "readonly": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/factory.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -1125,8 +1019,7 @@
         "required": true,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/forms/form/Form.tsx"
+        "defaultValue": null
       },
       {
         "name": "onSubmit",
@@ -1139,34 +1032,14 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/forms/form/Form.tsx"
+        "defaultValue": null
       }
     ],
     "ref": null
   },
   {
     "name": "Input",
-    "props": [
-      {
-        "name": "size",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'sm' | 'md' | 'lg'",
-          "members": [
-            "'sm'",
-            "'md'",
-            "'lg'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The size of the input.",
-        "defaultValue": "md",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
-      }
-    ],
+    "props": [],
     "ref": {
       "type": "RefAttributes<HTMLInputElement>",
       "elementType": "HTMLInputElement",
@@ -1188,8 +1061,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/forms/input/FieldInput.tsx"
+        "defaultValue": null
       },
       {
         "name": "name",
@@ -1202,8 +1074,7 @@
         "required": true,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/forms/input/FieldInput.tsx"
+        "defaultValue": null
       },
       {
         "name": "helperText",
@@ -1216,8 +1087,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/forms/input/FieldInput.tsx"
+        "defaultValue": null
       },
       {
         "name": "required",
@@ -1229,26 +1099,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/forms/input/FieldInput.tsx"
-      },
-      {
-        "name": "size",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'sm' | 'md' | 'lg'",
-          "members": [
-            "'sm'",
-            "'md'",
-            "'lg'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The size of the input.",
-        "defaultValue": "md",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": {
@@ -1276,8 +1127,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/absolute-center/absolute-center.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -1300,8 +1150,7 @@
         "required": false,
         "readonly": false,
         "description": "The size (width and height) of the square",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/square/index.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": {
@@ -1324,8 +1173,7 @@
         "required": false,
         "readonly": false,
         "description": "The size (width and height) of the square",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/square/index.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": {
@@ -1348,8 +1196,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS align-items property",
-        "defaultValue": "stretch",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+        "defaultValue": "stretch"
       },
       {
         "name": "justify",
@@ -1361,8 +1208,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS justify-content property",
-        "defaultValue": "flex-start",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+        "defaultValue": "flex-start"
       },
       {
         "name": "wrap",
@@ -1374,8 +1220,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS flex-wrap property",
-        "defaultValue": "nowrap",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+        "defaultValue": "nowrap"
       },
       {
         "name": "direction",
@@ -1387,8 +1232,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS flex-direction property",
-        "defaultValue": "row",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+        "defaultValue": "row"
       },
       {
         "name": "basis",
@@ -1400,8 +1244,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS flex-basis property",
-        "defaultValue": "auto",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+        "defaultValue": "auto"
       },
       {
         "name": "grow",
@@ -1413,8 +1256,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS flex-grow property",
-        "defaultValue": "0",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+        "defaultValue": "0"
       },
       {
         "name": "shrink",
@@ -1426,8 +1268,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS flex-shrink property",
-        "defaultValue": "1",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+        "defaultValue": "1"
       },
       {
         "name": "inline",
@@ -1439,8 +1280,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the flex container will be `display: inline-flex`",
-        "defaultValue": "false",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+        "defaultValue": "false"
       }
     ],
     "ref": null
@@ -1458,8 +1298,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-template-columns` property",
-        "defaultValue": "none",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+        "defaultValue": "none"
       },
       {
         "name": "autoFlow",
@@ -1471,8 +1310,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-auto-flow` property",
-        "defaultValue": "row",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+        "defaultValue": "row"
       },
       {
         "name": "autoRows",
@@ -1484,8 +1322,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-auto-rows` property",
-        "defaultValue": "auto",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+        "defaultValue": "auto"
       },
       {
         "name": "autoColumns",
@@ -1497,8 +1334,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-auto-columns` property",
-        "defaultValue": "auto",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+        "defaultValue": "auto"
       },
       {
         "name": "templateRows",
@@ -1510,8 +1346,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-template-rows` property",
-        "defaultValue": "",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+        "defaultValue": ""
       },
       {
         "name": "templateAreas",
@@ -1523,8 +1358,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-template-areas` property",
-        "defaultValue": "0",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+        "defaultValue": "0"
       },
       {
         "name": "column",
@@ -1536,8 +1370,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-column` property",
-        "defaultValue": "auto",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+        "defaultValue": "auto"
       },
       {
         "name": "row",
@@ -1549,8 +1382,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-row` property",
-        "defaultValue": "auto",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+        "defaultValue": "auto"
       },
       {
         "name": "inline",
@@ -1562,8 +1394,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the flex container will be `display: inline-flex`",
-        "defaultValue": "false",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+        "defaultValue": "false"
       }
     ],
     "ref": null
@@ -1581,8 +1412,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-area` property",
-        "defaultValue": "auto",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+        "defaultValue": "auto"
       },
       {
         "name": "colSpan",
@@ -1598,8 +1428,7 @@
         "required": false,
         "readonly": false,
         "description": "The column span of the grid item",
-        "defaultValue": "auto",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+        "defaultValue": "auto"
       },
       {
         "name": "colStart",
@@ -1611,8 +1440,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-column-start` property",
-        "defaultValue": "auto",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+        "defaultValue": "auto"
       },
       {
         "name": "colEnd",
@@ -1624,8 +1452,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-column-end` property",
-        "defaultValue": "auto",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+        "defaultValue": "auto"
       },
       {
         "name": "rowStart",
@@ -1637,8 +1464,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-row-start` property",
-        "defaultValue": "auto",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+        "defaultValue": "auto"
       },
       {
         "name": "rowEnd",
@@ -1650,8 +1476,7 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-row-end` property",
-        "defaultValue": "auto",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+        "defaultValue": "auto"
       },
       {
         "name": "rowSpan",
@@ -1667,8 +1492,7 @@
         "required": false,
         "readonly": false,
         "description": "The row span of the grid item",
-        "defaultValue": "auto",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+        "defaultValue": "auto"
       }
     ],
     "ref": null
@@ -1686,8 +1510,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+        "defaultValue": null
       },
       {
         "name": "inline",
@@ -1699,8 +1522,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+        "defaultValue": null
       },
       {
         "name": "templateColumns",
@@ -1712,8 +1534,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+        "defaultValue": null
       },
       {
         "name": "autoFlow",
@@ -1725,8 +1546,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+        "defaultValue": null
       },
       {
         "name": "autoRows",
@@ -1738,8 +1558,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+        "defaultValue": null
       },
       {
         "name": "autoColumns",
@@ -1751,8 +1570,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+        "defaultValue": null
       },
       {
         "name": "templateRows",
@@ -1764,8 +1582,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+        "defaultValue": null
       },
       {
         "name": "templateAreas",
@@ -1777,8 +1594,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+        "defaultValue": null
       },
       {
         "name": "column",
@@ -1790,8 +1606,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+        "defaultValue": null
       },
       {
         "name": "minChildWidth",
@@ -1803,8 +1618,7 @@
         "required": false,
         "readonly": false,
         "description": "The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/simple-grid/simple-grid.d.ts"
+        "defaultValue": null
       },
       {
         "name": "columns",
@@ -1816,8 +1630,7 @@
         "required": false,
         "readonly": false,
         "description": "The number of columns",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/simple-grid/simple-grid.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": {
@@ -1840,8 +1653,7 @@
         "required": false,
         "readonly": false,
         "description": "Shorthand for `alignItems` style prop",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/stack/stack.d.ts"
+        "defaultValue": null
       },
       {
         "name": "justify",
@@ -1853,8 +1665,7 @@
         "required": false,
         "readonly": false,
         "description": "Shorthand for `justifyContent` style prop",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/stack/stack.d.ts"
+        "defaultValue": null
       },
       {
         "name": "wrap",
@@ -1866,8 +1677,7 @@
         "required": false,
         "readonly": false,
         "description": "Shorthand for `flexWrap` style prop",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/stack/stack.d.ts"
+        "defaultValue": null
       },
       {
         "name": "direction",
@@ -1880,8 +1690,7 @@
         "required": false,
         "readonly": false,
         "description": "The direction to stack the items.",
-        "defaultValue": "column",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/stack/stack.d.ts"
+        "defaultValue": "column"
       },
       {
         "name": "separator",
@@ -1894,8 +1703,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, each stack item will show a separator",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/stack/stack.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -1913,8 +1721,7 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the table will style its descendants with nested selectors",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/table/table.d.ts"
+        "defaultValue": null
       },
       {
         "name": "interactive",
@@ -1926,8 +1733,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "stickyHeader",
@@ -1939,8 +1745,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "striped",
@@ -1952,8 +1757,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "showColumnBorder",
@@ -1965,8 +1769,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       },
       {
         "name": "variant",
@@ -1982,8 +1785,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": "line",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "line"
       },
       {
         "name": "size",
@@ -2000,8 +1802,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": "md",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "md"
       }
     ],
     "ref": null
@@ -2069,8 +1870,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/tooltip/Tooltip.tsx"
+        "defaultValue": null
       },
       {
         "name": "portalled",
@@ -2082,8 +1882,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/tooltip/Tooltip.tsx"
+        "defaultValue": null
       },
       {
         "name": "portalRef",
@@ -2096,8 +1895,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/tooltip/Tooltip.tsx"
+        "defaultValue": null
       },
       {
         "name": "content",
@@ -2110,8 +1908,7 @@
         "required": true,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/tooltip/Tooltip.tsx"
+        "defaultValue": null
       },
       {
         "name": "contentProps",
@@ -2124,8 +1921,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/tooltip/Tooltip.tsx"
+        "defaultValue": null
       },
       {
         "name": "disabled",
@@ -2137,8 +1933,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether the tooltip is disabled",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/tooltip/Tooltip.tsx"
+        "defaultValue": null
       },
       {
         "name": "children",
@@ -2151,8 +1946,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/tooltip/tooltip.d.ts"
+        "defaultValue": null
       },
       {
         "name": "id",
@@ -2164,8 +1958,7 @@
         "required": false,
         "readonly": false,
         "description": "The unique identifier of the machine.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+types@1.31.1/node_modules/@zag-js/types/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "aria-label",
@@ -2177,8 +1970,7 @@
         "required": false,
         "readonly": false,
         "description": "Custom label for the tooltip.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "ids",
@@ -2191,8 +1983,7 @@
         "required": false,
         "readonly": false,
         "description": "The ids of the elements in the tooltip. Useful for composition.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "interactive",
@@ -2204,8 +1995,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether the tooltip's content is interactive.\nIn this mode, the tooltip will remain open when user hovers over the content.",
-        "defaultValue": "false",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": "false"
       },
       {
         "name": "openDelay",
@@ -2217,8 +2007,7 @@
         "required": false,
         "readonly": false,
         "description": "The open delay of the tooltip.",
-        "defaultValue": "400",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": "400"
       },
       {
         "name": "closeDelay",
@@ -2230,8 +2019,7 @@
         "required": false,
         "readonly": false,
         "description": "The close delay of the tooltip.",
-        "defaultValue": "150",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": "150"
       },
       {
         "name": "closeOnPointerDown",
@@ -2243,8 +2031,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether to close the tooltip on pointerdown.",
-        "defaultValue": "true",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": "true"
       },
       {
         "name": "closeOnEscape",
@@ -2256,8 +2043,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether to close the tooltip when the Escape key is pressed.",
-        "defaultValue": "true",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": "true"
       },
       {
         "name": "closeOnScroll",
@@ -2269,8 +2055,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether the tooltip should close on scroll",
-        "defaultValue": "true",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": "true"
       },
       {
         "name": "closeOnClick",
@@ -2282,8 +2067,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether the tooltip should close on click",
-        "defaultValue": "true",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": "true"
       },
       {
         "name": "onOpenChange",
@@ -2295,8 +2079,7 @@
         "required": false,
         "readonly": false,
         "description": "Function called when the tooltip is opened.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "positioning",
@@ -2309,8 +2092,7 @@
         "required": false,
         "readonly": false,
         "description": "The user provided options used to position the popover content",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "open",
@@ -2322,8 +2104,7 @@
         "required": false,
         "readonly": false,
         "description": "The controlled open state of the tooltip",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "defaultOpen",
@@ -2335,8 +2116,7 @@
         "required": false,
         "readonly": false,
         "description": "The initial open state of the tooltip when rendered.\nUse when you don't need to control the open state of the tooltip.",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "present",
@@ -2348,8 +2128,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether the node is present (controlled by the user)",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+presence@1.31.1/node_modules/@zag-js/presence/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "onExitComplete",
@@ -2362,8 +2141,7 @@
         "required": false,
         "readonly": false,
         "description": "Function called when the animation ends in the closed state",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+presence@1.31.1/node_modules/@zag-js/presence/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "immediate",
@@ -2375,8 +2153,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether to synchronize the present change immediately or defer it to the next frame",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+presence@1.31.1/node_modules/@zag-js/presence/dist/index.d.mts"
+        "defaultValue": null
       },
       {
         "name": "skipAnimationOnMount",
@@ -2388,8 +2165,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether to allow the initial presence animation.",
-        "defaultValue": "false",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/presence/use-presence.d.ts"
+        "defaultValue": "false"
       },
       {
         "name": "lazyMount",
@@ -2401,8 +2177,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether to enable lazy mounting",
-        "defaultValue": "false",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/utils/render-strategy.d.ts"
+        "defaultValue": "false"
       },
       {
         "name": "unmountOnExit",
@@ -2414,8 +2189,7 @@
         "required": false,
         "readonly": false,
         "description": "Whether to unmount on exit.",
-        "defaultValue": "false",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/utils/render-strategy.d.ts"
+        "defaultValue": "false"
       }
     ],
     "ref": null
@@ -2441,8 +2215,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": "md",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "md"
       }
     ],
     "ref": {
@@ -2469,8 +2242,7 @@
         "required": true,
         "readonly": false,
         "description": "The array to iterate over",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/for/for.d.ts"
+        "defaultValue": null
       },
       {
         "name": "fallback",
@@ -2483,8 +2255,7 @@
         "required": false,
         "readonly": false,
         "description": "The fallback content to render when the array is empty",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/for/for.d.ts"
+        "defaultValue": null
       },
       {
         "name": "children",
@@ -2496,8 +2267,7 @@
         "required": true,
         "readonly": false,
         "description": "The render function to render each item in the array",
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/for/for.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -2519,8 +2289,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": "marker",
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": "marker"
       },
       {
         "name": "align",
@@ -2537,8 +2306,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": null,
-        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+        "defaultValue": null
       }
     ],
     "ref": null
