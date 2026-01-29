@@ -51,9 +51,13 @@ async function run() {
 
       await prettierAllExpandedTypes(filteredProps);
 
+      const sortedProps = filteredProps.toSorted((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+
       const entry: ComponentEntryWithoutPropsSourceFile = {
         name: component.name,
-        props: filteredProps.map(prop => ({
+        props: sortedProps.map(prop => ({
           ...prop,
           sourceFile: undefined,
         })),
@@ -64,7 +68,15 @@ async function run() {
     }
   }
 
-  await writeFile(OUTPUT_FILE, JSON.stringify(components, null, 2), 'utf-8');
+  const sortedComponents = components.toSorted((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+
+  await writeFile(
+    OUTPUT_FILE,
+    JSON.stringify(sortedComponents, null, 2),
+    'utf-8'
+  );
 
   process.stdout.write('\x1b[32mComplete\x1b[0m\n');
 }
@@ -104,7 +116,7 @@ async function findComponentFiles(dir: string): Promise<string[]> {
     }
   }
 
-  return files;
+  return files.toSorted((a, b) => a.localeCompare(b));
 }
 
 async function prettierAllExpandedTypes(props: ComponentProp[]) {

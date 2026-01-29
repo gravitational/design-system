@@ -1,67 +1,23 @@
 [
   {
-    "name": "CloseButton",
+    "name": "AbsoluteCenter",
     "props": [
       {
-        "name": "size",
+        "name": "axis",
         "typeInfo": {
           "kind": "union",
-          "type": "'sm' | 'md' | 'lg' | 'xl'",
+          "type": "'horizontal' | 'vertical' | 'both'",
           "members": [
-            "'sm'",
-            "'md'",
-            "'lg'",
-            "'xl'"
+            "'horizontal'",
+            "'vertical'",
+            "'both'"
           ]
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The size of the button.",
-        "defaultValue": "md"
-      },
-      {
-        "name": "fill",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'filled' | 'minimal' | 'border' | 'link'",
-          "members": [
-            "'filled'",
-            "'minimal'",
-            "'border'",
-            "'link'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Fill specifies the desired shape of the button.",
-        "defaultValue": "filled"
-      },
-      {
-        "name": "spinner",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "ReactNode",
-          "expanded": "ReactNode"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The spinner to show while loading.",
+        "description": null,
         "defaultValue": null
-      },
-      {
-        "name": "loading",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "If `true`, the button will show a loading spinner.",
-        "defaultValue": "false"
       }
     ],
     "ref": null
@@ -69,60 +25,6 @@
   {
     "name": "Button",
     "props": [
-      {
-        "name": "size",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'sm' | 'md' | 'lg' | 'xl'",
-          "members": [
-            "'sm'",
-            "'md'",
-            "'lg'",
-            "'xl'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The size of the button.",
-        "defaultValue": "md"
-      },
-      {
-        "name": "fill",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'filled' | 'minimal' | 'border' | 'link'",
-          "members": [
-            "'filled'",
-            "'minimal'",
-            "'border'",
-            "'link'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Fill specifies the desired shape of the button.",
-        "defaultValue": "filled"
-      },
-      {
-        "name": "intent",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'neutral' | 'primary' | 'danger' | 'success'",
-          "members": [
-            "'neutral'",
-            "'primary'",
-            "'danger'",
-            "'success'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Specifies the button's purpose class and affects its color palette.",
-        "defaultValue": "primary"
-      },
       {
         "name": "block",
         "typeInfo": {
@@ -148,6 +50,24 @@
         "defaultValue": null
       },
       {
+        "name": "fill",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'filled' | 'minimal' | 'border' | 'link'",
+          "members": [
+            "'filled'",
+            "'minimal'",
+            "'border'",
+            "'link'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Fill specifies the desired shape of the button.",
+        "defaultValue": "filled"
+      },
+      {
         "name": "inputAlignment",
         "typeInfo": {
           "kind": "primitive",
@@ -158,6 +78,24 @@
         "readonly": false,
         "description": "If `true`, the button will have adjusted padding to align with input fields.",
         "defaultValue": null
+      },
+      {
+        "name": "intent",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'neutral' | 'primary' | 'danger' | 'success'",
+          "members": [
+            "'neutral'",
+            "'primary'",
+            "'danger'",
+            "'success'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Specifies the button's purpose class and affects its color palette.",
+        "defaultValue": "primary"
       },
       {
         "name": "loading",
@@ -183,6 +121,24 @@
         "readonly": false,
         "description": "The text to show while loading.",
         "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md' | 'lg' | 'xl'",
+          "members": [
+            "'sm'",
+            "'md'",
+            "'lg'",
+            "'xl'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The size of the button.",
+        "defaultValue": "md"
       },
       {
         "name": "spinner",
@@ -222,175 +178,9 @@
     }
   },
   {
-    "name": "Group",
-    "props": [
-      {
-        "name": "align",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "JsxStyleProps['alignItems']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The `alignItems` style property",
-        "defaultValue": null
-      },
-      {
-        "name": "justify",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "JsxStyleProps['justifyContent']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The `justifyContent` style property",
-        "defaultValue": null
-      },
-      {
-        "name": "wrap",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "JsxStyleProps['flexWrap']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The `flexWrap` style property",
-        "defaultValue": null
-      },
-      {
-        "name": "skip",
-        "typeInfo": {
-          "kind": "function",
-          "type": "(child: ReactElement) => boolean | undefined"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "A function that determines if a child should be skipped",
-        "defaultValue": null
-      },
-      {
-        "name": "orientation",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'horizontal' | 'vertical'",
-          "members": [
-            "'horizontal'",
-            "'vertical'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "horizontal"
-      },
-      {
-        "name": "attached",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "grow",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "stacking",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'first-on-top' | 'last-on-top'",
-          "members": [
-            "'first-on-top'",
-            "'last-on-top'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      }
-    ],
-    "ref": null
-  },
-  {
     "name": "ButtonGroup",
     "props": [
       {
-        "name": "orientation",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'horizontal' | 'vertical'",
-          "members": [
-            "'horizontal'",
-            "'vertical'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "horizontal"
-      },
-      {
-        "name": "attached",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "grow",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "stacking",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'first-on-top' | 'last-on-top'",
-          "members": [
-            "'first-on-top'",
-            "'last-on-top'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
         "name": "align",
         "typeInfo": {
           "kind": "unknown",
@@ -403,94 +193,16 @@
         "defaultValue": null
       },
       {
-        "name": "justify",
+        "name": "attached",
         "typeInfo": {
-          "kind": "unknown",
-          "type": "JsxStyleProps['justifyContent']"
+          "kind": "primitive",
+          "type": "boolean"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The `justifyContent` style property",
+        "description": null,
         "defaultValue": null
-      },
-      {
-        "name": "wrap",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "JsxStyleProps['flexWrap']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The `flexWrap` style property",
-        "defaultValue": null
-      },
-      {
-        "name": "skip",
-        "typeInfo": {
-          "kind": "function",
-          "type": "(child: ReactElement) => boolean | undefined"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "A function that determines if a child should be skipped",
-        "defaultValue": null
-      },
-      {
-        "name": "size",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'sm' | 'md' | 'lg' | 'xl'",
-          "members": [
-            "'sm'",
-            "'md'",
-            "'lg'",
-            "'xl'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The size of the button.",
-        "defaultValue": "md"
-      },
-      {
-        "name": "fill",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'filled' | 'minimal' | 'border' | 'link'",
-          "members": [
-            "'filled'",
-            "'minimal'",
-            "'border'",
-            "'link'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Fill specifies the desired shape of the button.",
-        "defaultValue": "filled"
-      },
-      {
-        "name": "intent",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'neutral' | 'primary' | 'danger' | 'success'",
-          "members": [
-            "'neutral'",
-            "'primary'",
-            "'danger'",
-            "'success'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Specifies the button's purpose class and affects its color palette.",
-        "defaultValue": "primary"
       },
       {
         "name": "block",
@@ -517,6 +229,36 @@
         "defaultValue": null
       },
       {
+        "name": "fill",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'filled' | 'minimal' | 'border' | 'link'",
+          "members": [
+            "'filled'",
+            "'minimal'",
+            "'border'",
+            "'link'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Fill specifies the desired shape of the button.",
+        "defaultValue": "filled"
+      },
+      {
+        "name": "grow",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
         "name": "inputAlignment",
         "typeInfo": {
           "kind": "primitive",
@@ -527,13 +269,7 @@
         "readonly": false,
         "description": "If `true`, the button will have adjusted padding to align with input fields.",
         "defaultValue": null
-      }
-    ],
-    "ref": null
-  },
-  {
-    "name": "IconButton",
-    "props": [
+      },
       {
         "name": "intent",
         "typeInfo": {
@@ -551,6 +287,34 @@
         "readonly": false,
         "description": "Specifies the button's purpose class and affects its color palette.",
         "defaultValue": "primary"
+      },
+      {
+        "name": "justify",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "JsxStyleProps['justifyContent']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The `justifyContent` style property",
+        "defaultValue": null
+      },
+      {
+        "name": "orientation",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'horizontal' | 'vertical'",
+          "members": [
+            "'horizontal'",
+            "'vertical'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "horizontal"
       },
       {
         "name": "size",
@@ -571,131 +335,58 @@
         "defaultValue": "md"
       },
       {
-        "name": "fill",
+        "name": "skip",
         "typeInfo": {
-          "kind": "union",
-          "type": "'filled' | 'minimal' | 'border' | 'link'",
-          "members": [
-            "'filled'",
-            "'minimal'",
-            "'border'",
-            "'link'"
-          ]
+          "kind": "function",
+          "type": "(child: ReactElement) => boolean | undefined"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "Fill specifies the desired shape of the button.",
-        "defaultValue": "filled"
-      },
-      {
-        "name": "spinner",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "ReactNode",
-          "expanded": "ReactNode"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The spinner to show while loading.",
+        "description": "A function that determines if a child should be skipped",
         "defaultValue": null
       },
       {
-        "name": "loading",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "If `true`, the button will show a loading spinner.",
-        "defaultValue": "false"
-      }
-    ],
-    "ref": null
-  },
-  {
-    "name": "Code",
-    "props": [
-      {
-        "name": "variant",
+        "name": "stacking",
         "typeInfo": {
           "kind": "union",
-          "type": "'subtle' | 'outline'",
+          "type": "'first-on-top' | 'last-on-top'",
           "members": [
-            "'subtle'",
-            "'outline'"
+            "'first-on-top'",
+            "'last-on-top'"
           ]
         },
         "conditional": false,
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": "subtle"
-      },
-      {
-        "name": "size",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'xs' | 'sm' | 'md' | 'lg'",
-          "members": [
-            "'xs'",
-            "'sm'",
-            "'md'",
-            "'lg'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "sm"
-      }
-    ],
-    "ref": {
-      "type": "RefAttributes<HTMLElement>",
-      "elementType": "HTMLElement",
-      "expandedType": null,
-      "imperative": false
-    }
-  },
-  {
-    "name": "Container",
-    "props": [
-      {
-        "name": "centerContent",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "If `true`, center the content horizontally",
         "defaultValue": null
       },
       {
-        "name": "fluid",
+        "name": "wrap",
         "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
+          "kind": "unknown",
+          "type": "JsxStyleProps['flexWrap']"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "If `true`, the container will take the full width of its parent",
+        "description": "The `flexWrap` style property",
         "defaultValue": null
       }
     ],
     "ref": null
   },
   {
-    "name": "Checkmark",
+    "name": "Center",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "CheckboxGroup",
     "props": [
       {
-        "name": "checked",
+        "name": "asChild",
         "typeInfo": {
           "kind": "primitive",
           "type": "boolean"
@@ -703,19 +394,19 @@
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "Whether the checkmark is checked",
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
         "defaultValue": null
       },
       {
-        "name": "indeterminate",
+        "name": "defaultValue",
         "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
+          "kind": "array",
+          "type": "string[]"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "Whether the checkmark is indeterminate",
+        "description": "The initial value of `value` when uncontrolled",
         "defaultValue": null
       },
       {
@@ -727,7 +418,67 @@
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "Whether the checkmark is disabled",
+        "description": "If `true`, the checkbox group is disabled",
+        "defaultValue": null
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the checkbox group is invalid",
+        "defaultValue": null
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The name of the input fields in the checkbox group\n(Useful for form submission).",
+        "defaultValue": null
+      },
+      {
+        "name": "onValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(value: string[]) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The callback to call when the value changes",
+        "defaultValue": null
+      },
+      {
+        "name": "readOnly",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the checkbox group is read-only",
+        "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "array",
+          "type": "string[]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled value of the checkbox group",
         "defaultValue": null
       }
     ],
@@ -749,15 +500,29 @@
         "defaultValue": null
       },
       {
-        "name": "form",
+        "name": "checked",
         "typeInfo": {
-          "kind": "primitive",
-          "type": "string"
+          "kind": "reference",
+          "type": "CheckedState",
+          "expanded": "boolean | 'indeterminate'"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The id of the form that the checkbox belongs to.",
+        "description": "The controlled checked state of the checkbox",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultChecked",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "CheckedState",
+          "expanded": "boolean | 'indeterminate'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial checked state of the checkbox when rendered.\nUse when you don't need to control the checked state of the checkbox.",
         "defaultValue": null
       },
       {
@@ -773,7 +538,7 @@
         "defaultValue": null
       },
       {
-        "name": "name",
+        "name": "form",
         "typeInfo": {
           "kind": "primitive",
           "type": "string"
@@ -781,32 +546,7 @@
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The name of the input field in a checkbox.\nUseful for form submission.",
-        "defaultValue": null
-      },
-      {
-        "name": "value",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "string"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The value of checkbox input. Useful for form submission.",
-        "defaultValue": "on"
-      },
-      {
-        "name": "defaultChecked",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "CheckedState",
-          "expanded": "boolean | 'indeterminate'"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The initial checked state of the checkbox when rendered.\nUse when you don't need to control the checked state of the checkbox.",
+        "description": "The id of the form that the checkbox belongs to.",
         "defaultValue": null
       },
       {
@@ -847,28 +587,27 @@
         "defaultValue": null
       },
       {
-        "name": "required",
+        "name": "name",
         "typeInfo": {
           "kind": "primitive",
-          "type": "boolean"
+          "type": "string"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "Whether the checkbox is required",
+        "description": "The name of the input field in a checkbox.\nUseful for form submission.",
         "defaultValue": null
       },
       {
-        "name": "checked",
+        "name": "onCheckedChange",
         "typeInfo": {
-          "kind": "reference",
-          "type": "CheckedState",
-          "expanded": "boolean | 'indeterminate'"
+          "kind": "function",
+          "type": "(details: CheckedChangeDetails) => void"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The controlled checked state of the checkbox",
+        "description": "The callback invoked when the checked state changes.",
         "defaultValue": null
       },
       {
@@ -884,16 +623,28 @@
         "defaultValue": null
       },
       {
-        "name": "onCheckedChange",
+        "name": "required",
         "typeInfo": {
-          "kind": "function",
-          "type": "(details: CheckedChangeDetails) => void"
+          "kind": "primitive",
+          "type": "boolean"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The callback invoked when the checked state changes.",
+        "description": "Whether the checkbox is required",
         "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The value of checkbox input. Useful for form submission.",
+        "defaultValue": "on"
       }
     ],
     "ref": {
@@ -904,54 +655,18 @@
     }
   },
   {
-    "name": "CheckboxGroup",
+    "name": "Checkmark",
     "props": [
       {
-        "name": "defaultValue",
-        "typeInfo": {
-          "kind": "array",
-          "type": "string[]"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The initial value of `value` when uncontrolled",
-        "defaultValue": null
-      },
-      {
-        "name": "value",
-        "typeInfo": {
-          "kind": "array",
-          "type": "string[]"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The controlled value of the checkbox group",
-        "defaultValue": null
-      },
-      {
-        "name": "name",
+        "name": "checked",
         "typeInfo": {
           "kind": "primitive",
-          "type": "string"
+          "type": "boolean"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The name of the input fields in the checkbox group\n(Useful for form submission).",
-        "defaultValue": null
-      },
-      {
-        "name": "onValueChange",
-        "typeInfo": {
-          "kind": "function",
-          "type": "(value: string[]) => void"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The callback to call when the value changes",
+        "description": "Whether the checkmark is checked",
         "defaultValue": null
       },
       {
@@ -963,11 +678,11 @@
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "If `true`, the checkbox group is disabled",
+        "description": "Whether the checkmark is disabled",
         "defaultValue": null
       },
       {
-        "name": "readOnly",
+        "name": "indeterminate",
         "typeInfo": {
           "kind": "primitive",
           "type": "boolean"
@@ -975,11 +690,58 @@
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "If `true`, the checkbox group is read-only",
+        "description": "Whether the checkmark is indeterminate",
         "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Circle",
+    "props": [
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "BoxProps[\"boxSize\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The size (width and height) of the square",
+        "defaultValue": null
+      }
+    ],
+    "ref": {
+      "type": "RefAttributes<HTMLDivElement>",
+      "elementType": "HTMLDivElement",
+      "expandedType": null,
+      "imperative": false
+    }
+  },
+  {
+    "name": "CloseButton",
+    "props": [
+      {
+        "name": "fill",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'filled' | 'minimal' | 'border' | 'link'",
+          "members": [
+            "'filled'",
+            "'minimal'",
+            "'border'",
+            "'link'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Fill specifies the desired shape of the button.",
+        "defaultValue": "filled"
       },
       {
-        "name": "invalid",
+        "name": "loading",
         "typeInfo": {
           "kind": "primitive",
           "type": "boolean"
@@ -987,11 +749,93 @@
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "If `true`, the checkbox group is invalid",
-        "defaultValue": null
+        "description": "If `true`, the button will show a loading spinner.",
+        "defaultValue": "false"
       },
       {
-        "name": "asChild",
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md' | 'lg' | 'xl'",
+          "members": [
+            "'sm'",
+            "'md'",
+            "'lg'",
+            "'xl'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The size of the button.",
+        "defaultValue": "md"
+      },
+      {
+        "name": "spinner",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The spinner to show while loading.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Code",
+    "props": [
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'xs' | 'sm' | 'md' | 'lg'",
+          "members": [
+            "'xs'",
+            "'sm'",
+            "'md'",
+            "'lg'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "sm"
+      },
+      {
+        "name": "variant",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'subtle' | 'outline'",
+          "members": [
+            "'subtle'",
+            "'outline'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "subtle"
+      }
+    ],
+    "ref": {
+      "type": "RefAttributes<HTMLElement>",
+      "elementType": "HTMLElement",
+      "expandedType": null,
+      "imperative": false
+    }
+  },
+  {
+    "name": "Container",
+    "props": [
+      {
+        "name": "centerContent",
         "typeInfo": {
           "kind": "primitive",
           "type": "boolean"
@@ -999,7 +843,230 @@
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "description": "If `true`, center the content horizontally",
+        "defaultValue": null
+      },
+      {
+        "name": "fluid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the container will take the full width of its parent",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "FieldInput",
+    "props": [
+      {
+        "name": "helperText",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "label",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "TName",
+          "expanded": "TName"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "required",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": {
+      "type": "Ref<T> | undefined",
+      "elementType": "T",
+      "expandedType": "T | null",
+      "imperative": true
+    }
+  },
+  {
+    "name": "Flex",
+    "props": [
+      {
+        "name": "align",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['alignItems']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS align-items property",
+        "defaultValue": "stretch"
+      },
+      {
+        "name": "basis",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['flexBasis']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS flex-basis property",
+        "defaultValue": "auto"
+      },
+      {
+        "name": "direction",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['flexDirection']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS flex-direction property",
+        "defaultValue": "row"
+      },
+      {
+        "name": "grow",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['flexGrow']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS flex-grow property",
+        "defaultValue": "0"
+      },
+      {
+        "name": "inline",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the flex container will be `display: inline-flex`",
+        "defaultValue": "false"
+      },
+      {
+        "name": "justify",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['justifyContent']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS justify-content property",
+        "defaultValue": "flex-start"
+      },
+      {
+        "name": "shrink",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['flexShrink']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS flex-shrink property",
+        "defaultValue": "1"
+      },
+      {
+        "name": "wrap",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['flexWrap']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS flex-wrap property",
+        "defaultValue": "nowrap"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "For",
+    "props": [
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(item: Exclude<T, undefined>, index: number) => ReactNode"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": "The render function to render each item in the array",
+        "defaultValue": null
+      },
+      {
+        "name": "each",
+        "typeInfo": {
+          "kind": "union",
+          "type": "T[] | readonly T[]",
+          "members": [
+            "T[]",
+            "readonly T[]"
+          ]
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": "The array to iterate over",
+        "defaultValue": null
+      },
+      {
+        "name": "fallback",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The fallback content to render when the array is empty",
         "defaultValue": null
       }
     ],
@@ -1038,267 +1105,19 @@
     "ref": null
   },
   {
-    "name": "Input",
-    "props": [],
-    "ref": {
-      "type": "RefAttributes<HTMLInputElement>",
-      "elementType": "HTMLInputElement",
-      "expandedType": null,
-      "imperative": false
-    }
-  },
-  {
-    "name": "FieldInput",
-    "props": [
-      {
-        "name": "label",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "ReactNode",
-          "expanded": "ReactNode"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "name",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "TName",
-          "expanded": "TName"
-        },
-        "conditional": false,
-        "required": true,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "helperText",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "ReactNode",
-          "expanded": "ReactNode"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "required",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      }
-    ],
-    "ref": {
-      "type": "Ref<T> | undefined",
-      "elementType": "T",
-      "expandedType": "T | null",
-      "imperative": true
-    }
-  },
-  {
-    "name": "AbsoluteCenter",
-    "props": [
-      {
-        "name": "axis",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'horizontal' | 'vertical' | 'both'",
-          "members": [
-            "'horizontal'",
-            "'vertical'",
-            "'both'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      }
-    ],
-    "ref": null
-  },
-  {
-    "name": "Center",
-    "props": [],
-    "ref": null
-  },
-  {
-    "name": "Square",
-    "props": [
-      {
-        "name": "size",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "BoxProps[\"boxSize\"]"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The size (width and height) of the square",
-        "defaultValue": null
-      }
-    ],
-    "ref": {
-      "type": "RefAttributes<HTMLDivElement>",
-      "elementType": "HTMLDivElement",
-      "expandedType": null,
-      "imperative": false
-    }
-  },
-  {
-    "name": "Circle",
-    "props": [
-      {
-        "name": "size",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "BoxProps[\"boxSize\"]"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The size (width and height) of the square",
-        "defaultValue": null
-      }
-    ],
-    "ref": {
-      "type": "RefAttributes<HTMLDivElement>",
-      "elementType": "HTMLDivElement",
-      "expandedType": null,
-      "imperative": false
-    }
-  },
-  {
-    "name": "Flex",
-    "props": [
-      {
-        "name": "align",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject['alignItems']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The CSS align-items property",
-        "defaultValue": "stretch"
-      },
-      {
-        "name": "justify",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject['justifyContent']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The CSS justify-content property",
-        "defaultValue": "flex-start"
-      },
-      {
-        "name": "wrap",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject['flexWrap']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The CSS flex-wrap property",
-        "defaultValue": "nowrap"
-      },
-      {
-        "name": "direction",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject['flexDirection']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The CSS flex-direction property",
-        "defaultValue": "row"
-      },
-      {
-        "name": "basis",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject['flexBasis']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The CSS flex-basis property",
-        "defaultValue": "auto"
-      },
-      {
-        "name": "grow",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject['flexGrow']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The CSS flex-grow property",
-        "defaultValue": "0"
-      },
-      {
-        "name": "shrink",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject['flexShrink']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The CSS flex-shrink property",
-        "defaultValue": "1"
-      },
-      {
-        "name": "inline",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "If `true`, the flex container will be `display: inline-flex`",
-        "defaultValue": "false"
-      }
-    ],
-    "ref": null
-  },
-  {
     "name": "Grid",
     "props": [
       {
-        "name": "templateColumns",
+        "name": "autoColumns",
         "typeInfo": {
           "kind": "unknown",
-          "type": "SystemStyleObject['gridTemplateColumns']"
+          "type": "SystemStyleObject['gridAutoColumns']"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The CSS `grid-template-columns` property",
-        "defaultValue": "none"
+        "description": "The CSS `grid-auto-columns` property",
+        "defaultValue": "auto"
       },
       {
         "name": "autoFlow",
@@ -1325,42 +1144,6 @@
         "defaultValue": "auto"
       },
       {
-        "name": "autoColumns",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject['gridAutoColumns']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The CSS `grid-auto-columns` property",
-        "defaultValue": "auto"
-      },
-      {
-        "name": "templateRows",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject['gridTemplateRows']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The CSS `grid-template-rows` property",
-        "defaultValue": ""
-      },
-      {
-        "name": "templateAreas",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject['gridTemplateAreas']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The CSS `grid-template-areas` property",
-        "defaultValue": "0"
-      },
-      {
         "name": "column",
         "typeInfo": {
           "kind": "unknown",
@@ -1371,6 +1154,18 @@
         "readonly": false,
         "description": "The CSS `grid-column` property",
         "defaultValue": "auto"
+      },
+      {
+        "name": "inline",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the flex container will be `display: inline-flex`",
+        "defaultValue": "false"
       },
       {
         "name": "row",
@@ -1385,16 +1180,40 @@
         "defaultValue": "auto"
       },
       {
-        "name": "inline",
+        "name": "templateAreas",
         "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridTemplateAreas']"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "If `true`, the flex container will be `display: inline-flex`",
-        "defaultValue": "false"
+        "description": "The CSS `grid-template-areas` property",
+        "defaultValue": "0"
+      },
+      {
+        "name": "templateColumns",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridTemplateColumns']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-template-columns` property",
+        "defaultValue": "none"
+      },
+      {
+        "name": "templateRows",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridTemplateRows']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-template-rows` property",
+        "defaultValue": ""
       }
     ],
     "ref": null
@@ -1412,6 +1231,18 @@
         "required": false,
         "readonly": false,
         "description": "The CSS `grid-area` property",
+        "defaultValue": "auto"
+      },
+      {
+        "name": "colEnd",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridColumnEnd']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-column-end` property",
         "defaultValue": "auto"
       },
       {
@@ -1443,30 +1274,6 @@
         "defaultValue": "auto"
       },
       {
-        "name": "colEnd",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject['gridColumnEnd']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The CSS `grid-column-end` property",
-        "defaultValue": "auto"
-      },
-      {
-        "name": "rowStart",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject['gridRowStart']"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The CSS `grid-row-start` property",
-        "defaultValue": "auto"
-      },
-      {
         "name": "rowEnd",
         "typeInfo": {
           "kind": "unknown",
@@ -1493,27 +1300,39 @@
         "readonly": false,
         "description": "The row span of the grid item",
         "defaultValue": "auto"
+      },
+      {
+        "name": "rowStart",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridRowStart']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-row-start` property",
+        "defaultValue": "auto"
       }
     ],
     "ref": null
   },
   {
-    "name": "SimpleGrid",
+    "name": "Group",
     "props": [
       {
-        "name": "row",
+        "name": "align",
         "typeInfo": {
           "kind": "unknown",
-          "type": "SystemStyleObject[\"gridRow\"]"
+          "type": "JsxStyleProps['alignItems']"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": null,
+        "description": "The `alignItems` style property",
         "defaultValue": null
       },
       {
-        "name": "inline",
+        "name": "attached",
         "typeInfo": {
           "kind": "primitive",
           "type": "boolean"
@@ -1525,10 +1344,235 @@
         "defaultValue": null
       },
       {
-        "name": "templateColumns",
+        "name": "grow",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "justify",
         "typeInfo": {
           "kind": "unknown",
-          "type": "SystemStyleObject[\"gridTemplateColumns\"]"
+          "type": "JsxStyleProps['justifyContent']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The `justifyContent` style property",
+        "defaultValue": null
+      },
+      {
+        "name": "orientation",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'horizontal' | 'vertical'",
+          "members": [
+            "'horizontal'",
+            "'vertical'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "horizontal"
+      },
+      {
+        "name": "skip",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(child: ReactElement) => boolean | undefined"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "A function that determines if a child should be skipped",
+        "defaultValue": null
+      },
+      {
+        "name": "stacking",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'first-on-top' | 'last-on-top'",
+          "members": [
+            "'first-on-top'",
+            "'last-on-top'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "wrap",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "JsxStyleProps['flexWrap']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The `flexWrap` style property",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "IconButton",
+    "props": [
+      {
+        "name": "fill",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'filled' | 'minimal' | 'border' | 'link'",
+          "members": [
+            "'filled'",
+            "'minimal'",
+            "'border'",
+            "'link'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Fill specifies the desired shape of the button.",
+        "defaultValue": "filled"
+      },
+      {
+        "name": "intent",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'neutral' | 'primary' | 'danger' | 'success'",
+          "members": [
+            "'neutral'",
+            "'primary'",
+            "'danger'",
+            "'success'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Specifies the button's purpose class and affects its color palette.",
+        "defaultValue": "primary"
+      },
+      {
+        "name": "loading",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the button will show a loading spinner.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md' | 'lg' | 'xl'",
+          "members": [
+            "'sm'",
+            "'md'",
+            "'lg'",
+            "'xl'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The size of the button.",
+        "defaultValue": "md"
+      },
+      {
+        "name": "spinner",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The spinner to show while loading.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Input",
+    "props": [],
+    "ref": {
+      "type": "RefAttributes<HTMLInputElement>",
+      "elementType": "HTMLInputElement",
+      "expandedType": null,
+      "imperative": false
+    }
+  },
+  {
+    "name": "ListItem",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "ListRoot",
+    "props": [
+      {
+        "name": "align",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'center' | 'start' | 'end'",
+          "members": [
+            "'center'",
+            "'start'",
+            "'end'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "variant",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'marker' | 'plain'",
+          "members": [
+            "'marker'",
+            "'plain'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "marker"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "SimpleGrid",
+    "props": [
+      {
+        "name": "autoColumns",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridAutoColumns\"]"
         },
         "conditional": false,
         "required": false,
@@ -1561,46 +1605,34 @@
         "defaultValue": null
       },
       {
-        "name": "autoColumns",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject[\"gridAutoColumns\"]"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "templateRows",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject[\"gridTemplateRows\"]"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "templateAreas",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject[\"gridTemplateAreas\"]"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
         "name": "column",
         "typeInfo": {
           "kind": "unknown",
           "type": "SystemStyleObject[\"gridColumn\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "columns",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": true,
+        "required": false,
+        "readonly": false,
+        "description": "The number of columns",
+        "defaultValue": null
+      },
+      {
+        "name": "inline",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
         },
         "conditional": false,
         "required": false,
@@ -1621,15 +1653,51 @@
         "defaultValue": null
       },
       {
-        "name": "columns",
+        "name": "row",
         "typeInfo": {
-          "kind": "primitive",
-          "type": "number"
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridRow\"]"
         },
-        "conditional": true,
+        "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The number of columns",
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "templateAreas",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridTemplateAreas\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "templateColumns",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridTemplateColumns\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "templateRows",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridTemplateRows\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
         "defaultValue": null
       }
     ],
@@ -1639,560 +1707,6 @@
       "expandedType": null,
       "imperative": false
     }
-  },
-  {
-    "name": "Stack",
-    "props": [
-      {
-        "name": "align",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject[\"alignItems\"]"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Shorthand for `alignItems` style prop",
-        "defaultValue": null
-      },
-      {
-        "name": "justify",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject[\"justifyContent\"]"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Shorthand for `justifyContent` style prop",
-        "defaultValue": null
-      },
-      {
-        "name": "wrap",
-        "typeInfo": {
-          "kind": "unknown",
-          "type": "SystemStyleObject[\"flexWrap\"]"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Shorthand for `flexWrap` style prop",
-        "defaultValue": null
-      },
-      {
-        "name": "direction",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "StackDirection",
-          "expanded": "type t =\n  | 'row'\n  | 'column'\n  | 'row-reverse'\n  | 'column-reverse'\n  | ('row' | 'column' | 'row-reverse' | 'column-reverse' | null)[]\n  | {\n      _hover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _active?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _disabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _visited?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _target?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _readOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _readWrite?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _empty?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _checked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _enabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _expanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _highlighted?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _complete?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _incomplete?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _dragging?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _before?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _after?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _firstLetter?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _firstLine?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _marker?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _selection?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _file?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _backdrop?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _first?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _last?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _notFirst?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _notLast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _only?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _even?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _odd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerHover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerActive?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerDisabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerChecked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerInvalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerExpanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerPlaceholderShown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupHover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupActive?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupDisabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupChecked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupExpanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupInvalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _indeterminate?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _required?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _valid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _invalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _autofill?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _inRange?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _outOfRange?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _placeholder?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _placeholderShown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _pressed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _selected?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _grabbed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _underValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _overValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _atValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _default?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _optional?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _open?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _closed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _fullscreen?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _loading?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _hidden?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _current?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _currentPage?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _currentStep?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _today?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _unavailable?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rangeStart?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rangeEnd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _now?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _topmost?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _motionReduce?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _motionSafe?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _print?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _landscape?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _portrait?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _dark?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _light?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _osDark?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _osLight?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _highContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _lessContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _moreContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _ltr?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rtl?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbar?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbarThumb?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbarTrack?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _horizontal?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _vertical?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _icon?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _starting?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      sm?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      md?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lgOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lgDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smToMd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smToLg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdToLg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      base?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n    }"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The direction to stack the items.",
-        "defaultValue": "column"
-      },
-      {
-        "name": "separator",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "ReactElement",
-          "expanded": "ReactElement"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "If `true`, each stack item will show a separator",
-        "defaultValue": null
-      }
-    ],
-    "ref": null
-  },
-  {
-    "name": "TableRoot",
-    "props": [
-      {
-        "name": "native",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "If `true`, the table will style its descendants with nested selectors",
-        "defaultValue": null
-      },
-      {
-        "name": "interactive",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "stickyHeader",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "striped",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "showColumnBorder",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "variant",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'line' | 'outline'",
-          "members": [
-            "'line'",
-            "'outline'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "line"
-      },
-      {
-        "name": "size",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'sm' | 'md' | 'lg'",
-          "members": [
-            "'sm'",
-            "'md'",
-            "'lg'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "md"
-      }
-    ],
-    "ref": null
-  },
-  {
-    "name": "TableCaption",
-    "props": [],
-    "ref": null
-  },
-  {
-    "name": "TableScrollArea",
-    "props": [],
-    "ref": null
-  },
-  {
-    "name": "TableColumnHeader",
-    "props": [],
-    "ref": null
-  },
-  {
-    "name": "TableFooter",
-    "props": [],
-    "ref": null
-  },
-  {
-    "name": "TableRow",
-    "props": [],
-    "ref": null
-  },
-  {
-    "name": "TableCell",
-    "props": [],
-    "ref": null
-  },
-  {
-    "name": "TableHeader",
-    "props": [],
-    "ref": null
-  },
-  {
-    "name": "TableBody",
-    "props": [],
-    "ref": null
-  },
-  {
-    "name": "TableColumn",
-    "props": [],
-    "ref": null
-  },
-  {
-    "name": "TableColumnGroup",
-    "props": [],
-    "ref": null
-  },
-  {
-    "name": "Tooltip",
-    "props": [
-      {
-        "name": "showArrow",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "portalled",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "portalRef",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "RefObject",
-          "expanded": "RefObject"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "content",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "ReactNode",
-          "expanded": "ReactNode"
-        },
-        "conditional": false,
-        "required": true,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "contentProps",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "ContentProps",
-          "expanded": "TooltipContentProps"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "disabled",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Whether the tooltip is disabled",
-        "defaultValue": null
-      },
-      {
-        "name": "children",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "ReactNode",
-          "expanded": "ReactNode"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "id",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "string"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The unique identifier of the machine.",
-        "defaultValue": null
-      },
-      {
-        "name": "aria-label",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "string"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Custom label for the tooltip.",
-        "defaultValue": null
-      },
-      {
-        "name": "ids",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  content?: string | undefined;\n  arrow?: string | undefined;\n  positioner?: string | undefined;\n}"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The ids of the elements in the tooltip. Useful for composition.",
-        "defaultValue": null
-      },
-      {
-        "name": "interactive",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Whether the tooltip's content is interactive.\nIn this mode, the tooltip will remain open when user hovers over the content.",
-        "defaultValue": "false"
-      },
-      {
-        "name": "openDelay",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "number"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The open delay of the tooltip.",
-        "defaultValue": "400"
-      },
-      {
-        "name": "closeDelay",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "number"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The close delay of the tooltip.",
-        "defaultValue": "150"
-      },
-      {
-        "name": "closeOnPointerDown",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Whether to close the tooltip on pointerdown.",
-        "defaultValue": "true"
-      },
-      {
-        "name": "closeOnEscape",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Whether to close the tooltip when the Escape key is pressed.",
-        "defaultValue": "true"
-      },
-      {
-        "name": "closeOnScroll",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Whether the tooltip should close on scroll",
-        "defaultValue": "true"
-      },
-      {
-        "name": "closeOnClick",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Whether the tooltip should close on click",
-        "defaultValue": "true"
-      },
-      {
-        "name": "onOpenChange",
-        "typeInfo": {
-          "kind": "function",
-          "type": "(details: OpenChangeDetails) => void"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Function called when the tooltip is opened.",
-        "defaultValue": null
-      },
-      {
-        "name": "positioning",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "PositioningOptions",
-          "expanded": "PositioningOptions"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The user provided options used to position the popover content",
-        "defaultValue": null
-      },
-      {
-        "name": "open",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The controlled open state of the tooltip",
-        "defaultValue": null
-      },
-      {
-        "name": "defaultOpen",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The initial open state of the tooltip when rendered.\nUse when you don't need to control the open state of the tooltip.",
-        "defaultValue": null
-      },
-      {
-        "name": "present",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Whether the node is present (controlled by the user)",
-        "defaultValue": null
-      },
-      {
-        "name": "onExitComplete",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "VoidFunction",
-          "expanded": "VoidFunction"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Function called when the animation ends in the closed state",
-        "defaultValue": null
-      },
-      {
-        "name": "immediate",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Whether to synchronize the present change immediately or defer it to the next frame",
-        "defaultValue": null
-      },
-      {
-        "name": "skipAnimationOnMount",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Whether to allow the initial presence animation.",
-        "defaultValue": "false"
-      },
-      {
-        "name": "lazyMount",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Whether to enable lazy mounting",
-        "defaultValue": "false"
-      },
-      {
-        "name": "unmountOnExit",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Whether to unmount on exit.",
-        "defaultValue": "false"
-      }
-    ],
-    "ref": null
   },
   {
     "name": "Spinner",
@@ -2226,26 +1740,262 @@
     }
   },
   {
-    "name": "For",
+    "name": "Square",
     "props": [
       {
-        "name": "each",
+        "name": "size",
         "typeInfo": {
-          "kind": "union",
-          "type": "T[] | readonly T[]",
-          "members": [
-            "T[]",
-            "readonly T[]"
-          ]
+          "kind": "unknown",
+          "type": "BoxProps[\"boxSize\"]"
         },
         "conditional": false,
-        "required": true,
+        "required": false,
         "readonly": false,
-        "description": "The array to iterate over",
+        "description": "The size (width and height) of the square",
+        "defaultValue": null
+      }
+    ],
+    "ref": {
+      "type": "RefAttributes<HTMLDivElement>",
+      "elementType": "HTMLDivElement",
+      "expandedType": null,
+      "imperative": false
+    }
+  },
+  {
+    "name": "Stack",
+    "props": [
+      {
+        "name": "align",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"alignItems\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Shorthand for `alignItems` style prop",
         "defaultValue": null
       },
       {
-        "name": "fallback",
+        "name": "direction",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "StackDirection",
+          "expanded": "type t =\n  | 'row'\n  | 'column'\n  | 'row-reverse'\n  | 'column-reverse'\n  | ('row' | 'column' | 'row-reverse' | 'column-reverse' | null)[]\n  | {\n      _hover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _active?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _disabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _visited?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _target?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _readOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _readWrite?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _empty?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _checked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _enabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _expanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _highlighted?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _complete?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _incomplete?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _dragging?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _before?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _after?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _firstLetter?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _firstLine?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _marker?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _selection?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _file?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _backdrop?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _first?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _last?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _notFirst?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _notLast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _only?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _even?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _odd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerHover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerActive?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerDisabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerChecked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerInvalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerExpanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerPlaceholderShown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupHover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupActive?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupDisabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupChecked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupExpanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupInvalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _indeterminate?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _required?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _valid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _invalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _autofill?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _inRange?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _outOfRange?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _placeholder?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _placeholderShown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _pressed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _selected?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _grabbed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _underValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _overValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _atValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _default?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _optional?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _open?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _closed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _fullscreen?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _loading?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _hidden?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _current?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _currentPage?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _currentStep?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _today?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _unavailable?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rangeStart?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rangeEnd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _now?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _topmost?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _motionReduce?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _motionSafe?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _print?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _landscape?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _portrait?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _dark?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _light?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _osDark?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _osLight?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _highContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _lessContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _moreContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _ltr?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rtl?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbar?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbarThumb?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbarTrack?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _horizontal?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _vertical?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _icon?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _starting?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      sm?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      md?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lgOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lgDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smToMd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smToLg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdToLg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      base?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n    }"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The direction to stack the items.",
+        "defaultValue": "column"
+      },
+      {
+        "name": "justify",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"justifyContent\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Shorthand for `justifyContent` style prop",
+        "defaultValue": null
+      },
+      {
+        "name": "separator",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactElement",
+          "expanded": "ReactElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, each stack item will show a separator",
+        "defaultValue": null
+      },
+      {
+        "name": "wrap",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"flexWrap\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Shorthand for `flexWrap` style prop",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "TableBody",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableCaption",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableCell",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableColumn",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableColumnGroup",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableColumnHeader",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableFooter",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableHeader",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableRoot",
+    "props": [
+      {
+        "name": "interactive",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "native",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the table will style its descendants with nested selectors",
+        "defaultValue": null
+      },
+      {
+        "name": "showColumnBorder",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md' | 'lg'",
+          "members": [
+            "'sm'",
+            "'md'",
+            "'lg'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "md"
+      },
+      {
+        "name": "stickyHeader",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "striped",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "variant",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'line' | 'outline'",
+          "members": [
+            "'line'",
+            "'outline'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "line"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "TableRow",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableScrollArea",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Tooltip",
+    "props": [
+      {
+        "name": "aria-label",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Custom label for the tooltip.",
+        "defaultValue": null
+      },
+      {
+        "name": "children",
         "typeInfo": {
           "kind": "reference",
           "type": "ReactNode",
@@ -2254,66 +2004,316 @@
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The fallback content to render when the array is empty",
+        "description": null,
         "defaultValue": null
       },
       {
-        "name": "children",
+        "name": "closeDelay",
         "typeInfo": {
-          "kind": "function",
-          "type": "(item: Exclude<T, undefined>, index: number) => ReactNode"
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The close delay of the tooltip.",
+        "defaultValue": "150"
+      },
+      {
+        "name": "closeOnClick",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the tooltip should close on click",
+        "defaultValue": "true"
+      },
+      {
+        "name": "closeOnEscape",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the tooltip when the Escape key is pressed.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "closeOnPointerDown",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the tooltip on pointerdown.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "closeOnScroll",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the tooltip should close on scroll",
+        "defaultValue": "true"
+      },
+      {
+        "name": "content",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
         },
         "conditional": false,
         "required": true,
         "readonly": false,
-        "description": "The render function to render each item in the array",
-        "defaultValue": null
-      }
-    ],
-    "ref": null
-  },
-  {
-    "name": "ListRoot",
-    "props": [
-      {
-        "name": "variant",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'marker' | 'plain'",
-          "members": [
-            "'marker'",
-            "'plain'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
         "description": null,
-        "defaultValue": "marker"
+        "defaultValue": null
       },
       {
-        "name": "align",
+        "name": "contentProps",
         "typeInfo": {
-          "kind": "union",
-          "type": "'center' | 'start' | 'end'",
-          "members": [
-            "'center'",
-            "'start'",
-            "'end'"
-          ]
+          "kind": "reference",
+          "type": "ContentProps",
+          "expanded": "TooltipContentProps"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
         "description": null,
         "defaultValue": null
+      },
+      {
+        "name": "defaultOpen",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial open state of the tooltip when rendered.\nUse when you don't need to control the open state of the tooltip.",
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the tooltip is disabled",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  trigger?: string | undefined;\n  content?: string | undefined;\n  arrow?: string | undefined;\n  positioner?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the tooltip. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "immediate",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame",
+        "defaultValue": null
+      },
+      {
+        "name": "interactive",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the tooltip's content is interactive.\nIn this mode, the tooltip will remain open when user hovers over the content.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "lazyMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to enable lazy mounting",
+        "defaultValue": "false"
+      },
+      {
+        "name": "onExitComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "VoidFunction"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the closed state",
+        "defaultValue": null
+      },
+      {
+        "name": "onOpenChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: OpenChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the tooltip is opened.",
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled open state of the tooltip",
+        "defaultValue": null
+      },
+      {
+        "name": "openDelay",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The open delay of the tooltip.",
+        "defaultValue": "400"
+      },
+      {
+        "name": "portalled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "portalRef",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "RefObject",
+          "expanded": "RefObject"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "positioning",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "PositioningOptions",
+          "expanded": "PositioningOptions"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The user provided options used to position the popover content",
+        "defaultValue": null
+      },
+      {
+        "name": "present",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the node is present (controlled by the user)",
+        "defaultValue": null
+      },
+      {
+        "name": "showArrow",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "skipAnimationOnMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to allow the initial presence animation.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "unmountOnExit",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to unmount on exit.",
+        "defaultValue": "false"
       }
     ],
-    "ref": null
-  },
-  {
-    "name": "ListItem",
-    "props": [],
     "ref": null
   }
 ]
