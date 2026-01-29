@@ -1,0 +1,2551 @@
+[
+  {
+    "name": "CloseButton",
+    "props": [
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md' | 'lg' | 'xl'",
+          "members": [
+            "'sm'",
+            "'md'",
+            "'lg'",
+            "'xl'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The size of the button.",
+        "defaultValue": "md",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "fill",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'filled' | 'minimal' | 'border' | 'link'",
+          "members": [
+            "'filled'",
+            "'minimal'",
+            "'border'",
+            "'link'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Fill specifies the desired shape of the button.",
+        "defaultValue": "filled",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "spinner",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The spinner to show while loading.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+      },
+      {
+        "name": "loading",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the button will show a loading spinner.",
+        "defaultValue": "false",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Button",
+    "props": [
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md' | 'lg' | 'xl'",
+          "members": [
+            "'sm'",
+            "'md'",
+            "'lg'",
+            "'xl'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The size of the button.",
+        "defaultValue": "md",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "fill",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'filled' | 'minimal' | 'border' | 'link'",
+          "members": [
+            "'filled'",
+            "'minimal'",
+            "'border'",
+            "'link'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Fill specifies the desired shape of the button.",
+        "defaultValue": "filled",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "intent",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'neutral' | 'primary' | 'danger' | 'success'",
+          "members": [
+            "'neutral'",
+            "'primary'",
+            "'danger'",
+            "'success'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Specifies the button's purpose class and affects its color palette.",
+        "defaultValue": "primary",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "block",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the button will take the full width of its container.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "compact",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Reduces the horizontal padding to make the button more compact.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "inputAlignment",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the button will have adjusted padding to align with input fields.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "loading",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the button will show a loading spinner.",
+        "defaultValue": "false",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+      },
+      {
+        "name": "loadingText",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The text to show while loading.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+      },
+      {
+        "name": "spinner",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The spinner to show while loading.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+      },
+      {
+        "name": "spinnerPlacement",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'start' | 'end'",
+          "members": [
+            "'start'",
+            "'end'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The placement of the spinner",
+        "defaultValue": "start",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+      }
+    ],
+    "ref": {
+      "type": "RefAttributes<HTMLButtonElement>",
+      "elementType": "HTMLButtonElement",
+      "expandedType": null,
+      "imperative": false
+    }
+  },
+  {
+    "name": "Group",
+    "props": [
+      {
+        "name": "align",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "JsxStyleProps['alignItems']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The `alignItems` style property",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+      },
+      {
+        "name": "justify",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "JsxStyleProps['justifyContent']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The `justifyContent` style property",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+      },
+      {
+        "name": "wrap",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "JsxStyleProps['flexWrap']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The `flexWrap` style property",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+      },
+      {
+        "name": "skip",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(child: ReactElement) => boolean | undefined"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "A function that determines if a child should be skipped",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+      },
+      {
+        "name": "orientation",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'horizontal' | 'vertical'",
+          "members": [
+            "'horizontal'",
+            "'vertical'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "horizontal",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "attached",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "grow",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "stacking",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'first-on-top' | 'last-on-top'",
+          "members": [
+            "'first-on-top'",
+            "'last-on-top'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "ButtonGroup",
+    "props": [
+      {
+        "name": "orientation",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'horizontal' | 'vertical'",
+          "members": [
+            "'horizontal'",
+            "'vertical'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "horizontal",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "attached",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "grow",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "stacking",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'first-on-top' | 'last-on-top'",
+          "members": [
+            "'first-on-top'",
+            "'last-on-top'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "align",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "JsxStyleProps['alignItems']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The `alignItems` style property",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+      },
+      {
+        "name": "justify",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "JsxStyleProps['justifyContent']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The `justifyContent` style property",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+      },
+      {
+        "name": "wrap",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "JsxStyleProps['flexWrap']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The `flexWrap` style property",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+      },
+      {
+        "name": "skip",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(child: ReactElement) => boolean | undefined"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "A function that determines if a child should be skipped",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/group/Group.tsx"
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md' | 'lg' | 'xl'",
+          "members": [
+            "'sm'",
+            "'md'",
+            "'lg'",
+            "'xl'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The size of the button.",
+        "defaultValue": "md",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "fill",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'filled' | 'minimal' | 'border' | 'link'",
+          "members": [
+            "'filled'",
+            "'minimal'",
+            "'border'",
+            "'link'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Fill specifies the desired shape of the button.",
+        "defaultValue": "filled",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "intent",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'neutral' | 'primary' | 'danger' | 'success'",
+          "members": [
+            "'neutral'",
+            "'primary'",
+            "'danger'",
+            "'success'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Specifies the button's purpose class and affects its color palette.",
+        "defaultValue": "primary",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "block",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the button will take the full width of its container.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "compact",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Reduces the horizontal padding to make the button more compact.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "inputAlignment",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the button will have adjusted padding to align with input fields.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "IconButton",
+    "props": [
+      {
+        "name": "intent",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'neutral' | 'primary' | 'danger' | 'success'",
+          "members": [
+            "'neutral'",
+            "'primary'",
+            "'danger'",
+            "'success'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Specifies the button's purpose class and affects its color palette.",
+        "defaultValue": "primary",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md' | 'lg' | 'xl'",
+          "members": [
+            "'sm'",
+            "'md'",
+            "'lg'",
+            "'xl'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The size of the button.",
+        "defaultValue": "md",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "fill",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'filled' | 'minimal' | 'border' | 'link'",
+          "members": [
+            "'filled'",
+            "'minimal'",
+            "'border'",
+            "'link'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Fill specifies the desired shape of the button.",
+        "defaultValue": "filled",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "spinner",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The spinner to show while loading.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+      },
+      {
+        "name": "loading",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the button will show a loading spinner.",
+        "defaultValue": "false",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/button/button.d.ts"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Code",
+    "props": [
+      {
+        "name": "variant",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'subtle' | 'outline'",
+          "members": [
+            "'subtle'",
+            "'outline'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "subtle",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'xs' | 'sm' | 'md' | 'lg'",
+          "members": [
+            "'xs'",
+            "'sm'",
+            "'md'",
+            "'lg'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "sm",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      }
+    ],
+    "ref": {
+      "type": "RefAttributes<HTMLElement>",
+      "elementType": "HTMLElement",
+      "expandedType": null,
+      "imperative": false
+    }
+  },
+  {
+    "name": "Container",
+    "props": [
+      {
+        "name": "centerContent",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, center the content horizontally",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "fluid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the container will take the full width of its parent",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Checkmark",
+    "props": [
+      {
+        "name": "checked",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the checkmark is checked",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/utilities/checkmark/Checkmark.tsx"
+      },
+      {
+        "name": "indeterminate",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the checkmark is indeterminate",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/utilities/checkmark/Checkmark.tsx"
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the checkmark is disabled",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/utilities/checkmark/Checkmark.tsx"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "CheckboxRoot",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/factory.d.ts"
+      },
+      {
+        "name": "form",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The id of the form that the checkbox belongs to.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the checkbox is disabled",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The name of the input field in a checkbox.\nUseful for form submission.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The value of checkbox input. Useful for form submission.",
+        "defaultValue": "on",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+      },
+      {
+        "name": "defaultChecked",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "CheckedState",
+          "expanded": "boolean | 'indeterminate'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial checked state of the checkbox when rendered.\nUse when you don't need to control the checked state of the checkbox.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+types@1.31.1/node_modules/@zag-js/types/dist/index.d.mts"
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  root?: string | undefined;\n  hiddenInput?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the checkbox. Useful for composition.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the checkbox is invalid",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+      },
+      {
+        "name": "required",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the checkbox is required",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+      },
+      {
+        "name": "checked",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "CheckedState",
+          "expanded": "boolean | 'indeterminate'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled checked state of the checkbox",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+      },
+      {
+        "name": "readOnly",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the checkbox is read-only",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+      },
+      {
+        "name": "onCheckedChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: CheckedChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The callback invoked when the checked state changes.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+checkbox@1.31.1/node_modules/@zag-js/checkbox/dist/index.d.mts"
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'xs' | 'sm' | 'md' | 'lg'",
+          "members": [
+            "'xs'",
+            "'sm'",
+            "'md'",
+            "'lg'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "md",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "variant",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'outline' | 'solid' | 'subtle'",
+          "members": [
+            "'outline'",
+            "'solid'",
+            "'subtle'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "solid",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      }
+    ],
+    "ref": {
+      "type": "RefAttributes<HTMLLabelElement>",
+      "elementType": "HTMLLabelElement",
+      "expandedType": null,
+      "imperative": false
+    }
+  },
+  {
+    "name": "CheckboxGroup",
+    "props": [
+      {
+        "name": "defaultValue",
+        "typeInfo": {
+          "kind": "array",
+          "type": "string[]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial value of `value` when uncontrolled",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "array",
+          "type": "string[]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled value of the checkbox group",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The name of the input fields in the checkbox group\n(Useful for form submission).",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+      },
+      {
+        "name": "onValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(value: string[]) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The callback to call when the value changes",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the checkbox group is disabled",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+      },
+      {
+        "name": "readOnly",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the checkbox group is read-only",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the checkbox group is invalid",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/checkbox/use-checkbox-group.d.ts"
+      },
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/factory.d.ts"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Form",
+    "props": [
+      {
+        "name": "form",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "UseFormReturn<TFieldValues, TContext, TTransformedValues>",
+          "expanded": "UseFormReturn<TFieldValues, TContext, TTransformedValues>"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/forms/form/Form.tsx"
+      },
+      {
+        "name": "onSubmit",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "SubmitHandler<TTransformedValues>",
+          "expanded": "(\n  data: TTransformedValues,\n  event?: BaseSyntheticEvent<object, any, any> | undefined\n) => unknown"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/forms/form/Form.tsx"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Input",
+    "props": [
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md' | 'lg'",
+          "members": [
+            "'sm'",
+            "'md'",
+            "'lg'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The size of the input.",
+        "defaultValue": "md",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      }
+    ],
+    "ref": {
+      "type": "RefAttributes<HTMLInputElement>",
+      "elementType": "HTMLInputElement",
+      "expandedType": null,
+      "imperative": false
+    }
+  },
+  {
+    "name": "FieldInput",
+    "props": [
+      {
+        "name": "label",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/forms/input/FieldInput.tsx"
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "TName",
+          "expanded": "TName"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/forms/input/FieldInput.tsx"
+      },
+      {
+        "name": "helperText",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/forms/input/FieldInput.tsx"
+      },
+      {
+        "name": "required",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/forms/input/FieldInput.tsx"
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md' | 'lg'",
+          "members": [
+            "'sm'",
+            "'md'",
+            "'lg'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The size of the input.",
+        "defaultValue": "md",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      }
+    ],
+    "ref": {
+      "type": "Ref<T> | undefined",
+      "elementType": "T",
+      "expandedType": "T | null",
+      "imperative": true
+    }
+  },
+  {
+    "name": "AbsoluteCenter",
+    "props": [
+      {
+        "name": "axis",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'horizontal' | 'vertical' | 'both'",
+          "members": [
+            "'horizontal'",
+            "'vertical'",
+            "'both'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/absolute-center/absolute-center.d.ts"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Center",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Square",
+    "props": [
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "BoxProps[\"boxSize\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The size (width and height) of the square",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/square/index.d.ts"
+      }
+    ],
+    "ref": {
+      "type": "RefAttributes<HTMLDivElement>",
+      "elementType": "HTMLDivElement",
+      "expandedType": null,
+      "imperative": false
+    }
+  },
+  {
+    "name": "Circle",
+    "props": [
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "BoxProps[\"boxSize\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The size (width and height) of the square",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/square/index.d.ts"
+      }
+    ],
+    "ref": {
+      "type": "RefAttributes<HTMLDivElement>",
+      "elementType": "HTMLDivElement",
+      "expandedType": null,
+      "imperative": false
+    }
+  },
+  {
+    "name": "Flex",
+    "props": [
+      {
+        "name": "align",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['alignItems']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS align-items property",
+        "defaultValue": "stretch",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+      },
+      {
+        "name": "justify",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['justifyContent']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS justify-content property",
+        "defaultValue": "flex-start",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+      },
+      {
+        "name": "wrap",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['flexWrap']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS flex-wrap property",
+        "defaultValue": "nowrap",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+      },
+      {
+        "name": "direction",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['flexDirection']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS flex-direction property",
+        "defaultValue": "row",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+      },
+      {
+        "name": "basis",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['flexBasis']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS flex-basis property",
+        "defaultValue": "auto",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+      },
+      {
+        "name": "grow",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['flexGrow']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS flex-grow property",
+        "defaultValue": "0",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+      },
+      {
+        "name": "shrink",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['flexShrink']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS flex-shrink property",
+        "defaultValue": "1",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+      },
+      {
+        "name": "inline",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the flex container will be `display: inline-flex`",
+        "defaultValue": "false",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/flex/Flex.tsx"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Grid",
+    "props": [
+      {
+        "name": "templateColumns",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridTemplateColumns']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-template-columns` property",
+        "defaultValue": "none",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+      },
+      {
+        "name": "autoFlow",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridAutoFlow']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-auto-flow` property",
+        "defaultValue": "row",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+      },
+      {
+        "name": "autoRows",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridAutoRows']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-auto-rows` property",
+        "defaultValue": "auto",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+      },
+      {
+        "name": "autoColumns",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridAutoColumns']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-auto-columns` property",
+        "defaultValue": "auto",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+      },
+      {
+        "name": "templateRows",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridTemplateRows']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-template-rows` property",
+        "defaultValue": "",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+      },
+      {
+        "name": "templateAreas",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridTemplateAreas']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-template-areas` property",
+        "defaultValue": "0",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+      },
+      {
+        "name": "column",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridColumn']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-column` property",
+        "defaultValue": "auto",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+      },
+      {
+        "name": "row",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridRow']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-row` property",
+        "defaultValue": "auto",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+      },
+      {
+        "name": "inline",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the flex container will be `display: inline-flex`",
+        "defaultValue": "false",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/Grid.tsx"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "GridItem",
+    "props": [
+      {
+        "name": "area",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridArea']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-area` property",
+        "defaultValue": "auto",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+      },
+      {
+        "name": "colSpan",
+        "typeInfo": {
+          "kind": "union",
+          "type": "number | 'auto'",
+          "members": [
+            "number",
+            "'auto'"
+          ]
+        },
+        "conditional": true,
+        "required": false,
+        "readonly": false,
+        "description": "The column span of the grid item",
+        "defaultValue": "auto",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+      },
+      {
+        "name": "colStart",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridColumnStart']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-column-start` property",
+        "defaultValue": "auto",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+      },
+      {
+        "name": "colEnd",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridColumnEnd']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-column-end` property",
+        "defaultValue": "auto",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+      },
+      {
+        "name": "rowStart",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridRowStart']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-row-start` property",
+        "defaultValue": "auto",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+      },
+      {
+        "name": "rowEnd",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject['gridRowEnd']"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The CSS `grid-row-end` property",
+        "defaultValue": "auto",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+      },
+      {
+        "name": "rowSpan",
+        "typeInfo": {
+          "kind": "union",
+          "type": "number | 'auto'",
+          "members": [
+            "number",
+            "'auto'"
+          ]
+        },
+        "conditional": true,
+        "required": false,
+        "readonly": false,
+        "description": "The row span of the grid item",
+        "defaultValue": "auto",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/layout/grid/GridItem.tsx"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "SimpleGrid",
+    "props": [
+      {
+        "name": "row",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridRow\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+      },
+      {
+        "name": "inline",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+      },
+      {
+        "name": "templateColumns",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridTemplateColumns\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+      },
+      {
+        "name": "autoFlow",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridAutoFlow\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+      },
+      {
+        "name": "autoRows",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridAutoRows\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+      },
+      {
+        "name": "autoColumns",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridAutoColumns\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+      },
+      {
+        "name": "templateRows",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridTemplateRows\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+      },
+      {
+        "name": "templateAreas",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridTemplateAreas\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+      },
+      {
+        "name": "column",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"gridColumn\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/grid/grid.d.ts"
+      },
+      {
+        "name": "minChildWidth",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "GridProps[\"minWidth\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/simple-grid/simple-grid.d.ts"
+      },
+      {
+        "name": "columns",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": true,
+        "required": false,
+        "readonly": false,
+        "description": "The number of columns",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/simple-grid/simple-grid.d.ts"
+      }
+    ],
+    "ref": {
+      "type": "RefAttributes<HTMLDivElement>",
+      "elementType": "HTMLDivElement",
+      "expandedType": null,
+      "imperative": false
+    }
+  },
+  {
+    "name": "Stack",
+    "props": [
+      {
+        "name": "align",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"alignItems\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Shorthand for `alignItems` style prop",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/stack/stack.d.ts"
+      },
+      {
+        "name": "justify",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"justifyContent\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Shorthand for `justifyContent` style prop",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/stack/stack.d.ts"
+      },
+      {
+        "name": "wrap",
+        "typeInfo": {
+          "kind": "unknown",
+          "type": "SystemStyleObject[\"flexWrap\"]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Shorthand for `flexWrap` style prop",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/stack/stack.d.ts"
+      },
+      {
+        "name": "direction",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "StackDirection",
+          "expanded": "type t =\n  | 'row'\n  | 'column'\n  | 'row-reverse'\n  | 'column-reverse'\n  | ('row' | 'column' | 'row-reverse' | 'column-reverse' | null)[]\n  | {\n      _hover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _active?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _disabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _visited?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _target?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _readOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _readWrite?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _empty?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _checked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _enabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _expanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _highlighted?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _complete?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _incomplete?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _dragging?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _before?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _after?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _firstLetter?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _firstLine?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _marker?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _selection?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _file?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _backdrop?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _first?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _last?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _notFirst?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _notLast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _only?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _even?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _odd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerHover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerActive?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerDisabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerChecked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerInvalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerExpanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerPlaceholderShown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupHover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupActive?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupDisabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupChecked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupExpanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupInvalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _indeterminate?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _required?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _valid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _invalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _autofill?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _inRange?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _outOfRange?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _placeholder?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _placeholderShown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _pressed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _selected?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _grabbed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _underValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _overValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _atValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _default?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _optional?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _open?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _closed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _fullscreen?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _loading?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _hidden?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _current?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _currentPage?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _currentStep?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _today?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _unavailable?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rangeStart?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rangeEnd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _now?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _topmost?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _motionReduce?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _motionSafe?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _print?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _landscape?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _portrait?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _dark?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _light?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _osDark?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _osLight?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _highContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _lessContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _moreContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _ltr?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rtl?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbar?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbarThumb?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbarTrack?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _horizontal?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _vertical?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _icon?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _starting?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      sm?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      md?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lgOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lgDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smToMd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smToLg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdToLg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      base?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n    }"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The direction to stack the items.",
+        "defaultValue": "column",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/stack/stack.d.ts"
+      },
+      {
+        "name": "separator",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactElement",
+          "expanded": "ReactElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, each stack item will show a separator",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/stack/stack.d.ts"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "TableRoot",
+    "props": [
+      {
+        "name": "native",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the table will style its descendants with nested selectors",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/table/table.d.ts"
+      },
+      {
+        "name": "interactive",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "stickyHeader",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "striped",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "showColumnBorder",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "variant",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'line' | 'outline'",
+          "members": [
+            "'line'",
+            "'outline'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "line",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md' | 'lg'",
+          "members": [
+            "'sm'",
+            "'md'",
+            "'lg'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "md",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "TableCaption",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableScrollArea",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableColumnHeader",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableFooter",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableRow",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableCell",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableHeader",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableBody",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableColumn",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "TableColumnGroup",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Tooltip",
+    "props": [
+      {
+        "name": "showArrow",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/tooltip/Tooltip.tsx"
+      },
+      {
+        "name": "portalled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/tooltip/Tooltip.tsx"
+      },
+      {
+        "name": "portalRef",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "RefObject",
+          "expanded": "RefObject"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/tooltip/Tooltip.tsx"
+      },
+      {
+        "name": "content",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/tooltip/Tooltip.tsx"
+      },
+      {
+        "name": "contentProps",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ContentProps",
+          "expanded": "TooltipContentProps"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/tooltip/Tooltip.tsx"
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the tooltip is disabled",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/src/components/tooltip/Tooltip.tsx"
+      },
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/tooltip/tooltip.d.ts"
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+types@1.31.1/node_modules/@zag-js/types/dist/index.d.mts"
+      },
+      {
+        "name": "aria-label",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Custom label for the tooltip.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  trigger?: string | undefined;\n  content?: string | undefined;\n  arrow?: string | undefined;\n  positioner?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the tooltip. Useful for composition.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "interactive",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the tooltip's content is interactive.\nIn this mode, the tooltip will remain open when user hovers over the content.",
+        "defaultValue": "false",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "openDelay",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The open delay of the tooltip.",
+        "defaultValue": "400",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "closeDelay",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The close delay of the tooltip.",
+        "defaultValue": "150",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "closeOnPointerDown",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the tooltip on pointerdown.",
+        "defaultValue": "true",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "closeOnEscape",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the tooltip when the Escape key is pressed.",
+        "defaultValue": "true",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "closeOnScroll",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the tooltip should close on scroll",
+        "defaultValue": "true",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "closeOnClick",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the tooltip should close on click",
+        "defaultValue": "true",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "onOpenChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: OpenChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the tooltip is opened.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "positioning",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "PositioningOptions",
+          "expanded": "PositioningOptions"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The user provided options used to position the popover content",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "open",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled open state of the tooltip",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "defaultOpen",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial open state of the tooltip when rendered.\nUse when you don't need to control the open state of the tooltip.",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+tooltip@1.31.1/node_modules/@zag-js/tooltip/dist/index.d.mts"
+      },
+      {
+        "name": "present",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the node is present (controlled by the user)",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+presence@1.31.1/node_modules/@zag-js/presence/dist/index.d.mts"
+      },
+      {
+        "name": "onExitComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "VoidFunction"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the closed state",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+presence@1.31.1/node_modules/@zag-js/presence/dist/index.d.mts"
+      },
+      {
+        "name": "immediate",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@zag-js+presence@1.31.1/node_modules/@zag-js/presence/dist/index.d.mts"
+      },
+      {
+        "name": "skipAnimationOnMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to allow the initial presence animation.",
+        "defaultValue": "false",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/components/presence/use-presence.d.ts"
+      },
+      {
+        "name": "lazyMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to enable lazy mounting",
+        "defaultValue": "false",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/utils/render-strategy.d.ts"
+      },
+      {
+        "name": "unmountOnExit",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to unmount on exit.",
+        "defaultValue": "false",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@ark-ui+react@5.30.0_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@ark-ui/react/dist/utils/render-strategy.d.ts"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Spinner",
+    "props": [
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'inherit' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+          "members": [
+            "'inherit'",
+            "'xs'",
+            "'sm'",
+            "'md'",
+            "'lg'",
+            "'xl'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "md",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      }
+    ],
+    "ref": {
+      "type": "RefAttributes<HTMLSpanElement>",
+      "elementType": "HTMLSpanElement",
+      "expandedType": null,
+      "imperative": false
+    }
+  },
+  {
+    "name": "For",
+    "props": [
+      {
+        "name": "each",
+        "typeInfo": {
+          "kind": "union",
+          "type": "T[] | readonly T[]",
+          "members": [
+            "T[]",
+            "readonly T[]"
+          ]
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": "The array to iterate over",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/for/for.d.ts"
+      },
+      {
+        "name": "fallback",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The fallback content to render when the array is empty",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/for/for.d.ts"
+      },
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(item: Exclude<T, undefined>, index: number) => ReactNode"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": "The render function to render each item in the array",
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/components/for/for.d.ts"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "ListRoot",
+    "props": [
+      {
+        "name": "variant",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'marker' | 'plain'",
+          "members": [
+            "'marker'",
+            "'plain'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "marker",
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      },
+      {
+        "name": "align",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'center' | 'start' | 'end'",
+          "members": [
+            "'center'",
+            "'start'",
+            "'end'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null,
+        "sourceFile": "/Users/ryan/go/src/remote/gravitational/design-system/node_modules/.pnpm/@chakra-ui+react@3.29.0_@emotion+react@11.14.0_@types+react@19.2.6_react@19.2.0__react-_0c4e2646f3fce336b89d4a09193a4d27/node_modules/@chakra-ui/react/dist/types/styled-system/generated/recipes.gen.d.ts"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "ListItem",
+    "props": [],
+    "ref": null
+  }
+]

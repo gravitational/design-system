@@ -1,0 +1,44 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import { Input, Test } from '../../../..';
+
+import * as InputStories from './Input.stories';
+
+<Meta of={InputStories} />
+
+<DocsHeader
+  title="Input"
+  description=""
+  recipePath="src/components/input/recipe.ts"
+  sourcePath="src/components/input/Input.tsx"
+/>
+
+<Canvas of={InputStories.Preview} />
+
+## Usage
+
+Information about usage here.
+
+```tsx
+import { Input } from '@gravitational/design-system';
+
+function Example() {
+  return <Input />;
+}
+```
+
+<Test />
+
+## Examples
+
+### Example
+
+<Canvas of={InputStories.Example} />
+
+## Props
+
+<PropTypes of={Input} />

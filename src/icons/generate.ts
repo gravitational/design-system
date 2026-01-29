@@ -17,7 +17,14 @@ async function collectGeneratedIcons() {
   );
 }
 
-function findIcons(node: ts.Node): Set<string> {
+type IconWeight = 'thin' | 'light' | 'regular' | 'bold' | 'fill' | 'duotone';
+
+interface IconEntry {
+  name: string;
+  weights: IconWeight[];
+}
+
+function findIcons(node: ts.Node): IconEntry[] {
   if (ts.isVariableStatement(node)) {
     const declaration = node.declarationList.declarations[0];
     if (
@@ -26,19 +33,48 @@ function findIcons(node: ts.Node): Set<string> {
       declaration.initializer &&
       ts.isArrayLiteralExpression(declaration.initializer)
     ) {
-      return new Set(
-        declaration.initializer.elements
-          .filter(ts.isPropertyAccessExpression)
-          .map(element => element.name.getText())
-      );
+      const entries: IconEntry[] = [];
+
+      for (const element of declaration.initializer.elements) {
+        if (ts.isObjectLiteralExpression(element)) {
+          let iconName: string | null = null;
+          let weights: IconWeight[] = ['regular'];
+
+          for (const prop of element.properties) {
+            if (ts.isPropertyAssignment(prop)) {
+              const propName = prop.name.getText();
+
+              if (
+                propName === 'icon' &&
+                ts.isPropertyAccessExpression(prop.initializer)
+              ) {
+                iconName = prop.initializer.name.getText();
+              } else if (
+                propName === 'weights' &&
+                ts.isArrayLiteralExpression(prop.initializer)
+              ) {
+                weights = prop.initializer.elements
+                  .filter(ts.isStringLiteral)
+                  .map(el => el.text as IconWeight);
+              }
+            }
+          }
+
+          if (iconName) {
+            entries.push({ name: iconName, weights });
+          }
+        }
+      }
+
+      return entries;
     }
   }
 
-  let result = new Set<string>();
+  let result: IconEntry[] = [];
 
   ts.forEachChild(node, child => {
     const childResult = findIcons(child);
-    if (childResult.size > 0) {
+    if (childResult.length > 0) {
       result = childResult;
     }
   });
@@ -48,8 +84,30 @@ function findIcons(node: ts.Node): Set<string> {
 
 const currentYear = new Date().getFullYear();
 
-async function createIconFile(iconName: string) {
-  const iconNameWithoutSuffix = iconName.replace(/Icon$/, '');
+function capitalizeFirstLetter(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+async function createIconFile(baseIconName: string, weights: IconWeight[]) {
+  const iconNameWithoutIconSuffix = baseIconName.replace(/Icon$/, '');
+
+  const functionDefinitions = weights
+    .map(weight => {
+      const exportedIconName =
+        weight === 'regular'
+          ? baseIconName
+          : `${iconNameWithoutIconSuffix}${capitalizeFirstLetter(weight)}Icon`;
+      const weightProp = weight === 'regular' ? '' : ` weight="${weight}"`;
+
+      return `export function ${exportedIconName}(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <Phosphor${baseIconName}${weightProp} />
+    </Icon>
+  );
+}`;
+    })
+    .join('\n\n');
 
   const content = `/**
  * Teleport
@@ -94,7 +152,7 @@ SOFTWARE.
 */
 
 import { Icon, type IconProps } from '@chakra-ui/react';
-import { ${iconName} as Phosphor${iconName} } from '@phosphor-icons/react/dist/csr/${iconNameWithoutSuffix}';
+import { ${baseIconName} as Phosphor${baseIconName} } from '@phosphor-icons/react/dist/ssr/${iconNameWithoutIconSuffix}';
 
 /*
 
@@ -102,17 +160,11 @@ THIS FILE IS GENERATED. DO NOT EDIT.
 
 */
 
-export function ${iconName}(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <Phosphor${iconName} />
-    </Icon>
-  );
-}
+${functionDefinitions}
 `;
 
   await writeFormattedFile(
-    resolve(generatedDirectory, `${iconName}.tsx`),
+    resolve(generatedDirectory, `${baseIconName}.tsx`),
     content
   );
 }
@@ -125,11 +177,22 @@ async function makeGeneratedDirectory() {
   }
 }
 
-async function makeIndexFile(icons: Set<string>) {
-  const lines = Array.from(icons)
-    .toSorted((a, b) => a.localeCompare(b))
-    .map(icon => `export { ${icon} } from './generated/${icon}';`)
-    .join('\n');
+async function makeIndexFile(iconEntries: IconEntry[]) {
+  const allExports: string[] = [];
+
+  for (const entry of iconEntries) {
+    const iconNameWithoutSuffix = entry.name.replace(/Icon$/, '');
+    const exportNames = entry.weights.map(weight =>
+      weight === 'regular'
+        ? entry.name
+        : `${iconNameWithoutSuffix}${capitalizeFirstLetter(weight)}Icon`
+    );
+    allExports.push(
+      `export { ${exportNames.join(', ')} } from './generated/${entry.name}';`
+    );
+  }
+
+  const lines = allExports.toSorted((a, b) => a.localeCompare(b)).join('\n');
 
   const content = `/**
  * Teleport
@@ -163,17 +226,58 @@ ${lines}
   await writeFormattedFile(resolve(import.meta.dirname, 'index.ts'), content);
 }
 
-async function makeStorybookFile(icons: Set<string>) {
+async function makeIconsFile(iconEntries: IconEntry[]) {
+  const lines = iconEntries
+    .toSorted((a, b) => a.name.localeCompare(b.name))
+    .map(entry => {
+      if (entry.weights.length === 1 && entry.weights[0] === 'regular') {
+        return `  { icon: icons.${entry.name} },`;
+      }
+
+      const weightsStr = entry.weights.map(w => `'${w}'`).join(', ');
+
+      return `  { icon: icons.${entry.name}, weights: [${weightsStr}] },`;
+    })
+    .join('\n');
+
+  const content = `import * as icons from '@phosphor-icons/react';
+import type { IconWeight } from '@phosphor-icons/react';
+
+export interface IconConfig {
+  icon: (typeof icons)[keyof typeof icons];
+  weights?: IconWeight[];
+}
+
+export const AVAILABLE_ICONS: IconConfig[] = [
+  // Automatically sorted when running pnpm generate-icons
+${lines}
+];
+`;
+
+  await writeFormattedFile(resolve(import.meta.dirname, 'icons.ts'), content);
+}
+
+async function makeStorybookFile(iconEntries: IconEntry[]) {
   // Chakra icons do not work nicely with `import * as icons from ...`, so instead we
   // generate the file
 
-  const lines = Array.from(icons)
+  const allIconItems: string[] = [];
+
+  for (const entry of iconEntries) {
+    for (const weight of entry.weights) {
+      const iconNameWithoutSuffix = entry.name.replace(/Icon$/, '');
+      const exportedName =
+        weight === 'regular'
+          ? entry.name
+          : `${iconNameWithoutSuffix}${capitalizeFirstLetter(weight)}Icon`;
+      allIconItems.push(`<IconItem name="${exportedName}">
+    <icons.${exportedName} />
+  </IconItem>`);
+    }
+  }
+
+  const lines = allIconItems
     .toSorted((a, b) => a.localeCompare(b))
-    .map(
-      icon => `<IconItem name="${icon}">
-    <icons.${icon} />
-  </IconItem>`
-    )
     .join('\n  ');
 
   const content = `import { IconGallery, IconItem, Meta } from '@storybook/addon-docs/blocks';
@@ -212,23 +316,28 @@ async function run() {
   );
 
   const existingIcons = await collectGeneratedIcons();
-  const icons = findIcons(sourceFile);
+  const iconEntries = findIcons(sourceFile);
 
+  // Collect base icon names that should exist
+  const expectedIcons = new Set(iconEntries.map(entry => entry.name));
+
+  // Remove icon files that are no longer needed
   for (const existingIcon of existingIcons) {
-    if (!icons.has(existingIcon)) {
+    if (!expectedIcons.has(existingIcon)) {
       await fs.rm(resolve(generatedDirectory, `${existingIcon}.tsx`));
     }
   }
 
-  for (const icon of icons) {
-    if (!existingIcons.has(icon)) {
-      await createIconFile(icon);
-    }
+  // Create or update icon files (one file per base icon)
+  for (const entry of iconEntries) {
+    await createIconFile(entry.name, entry.weights);
   }
 
-  await makeIndexFile(icons);
+  await makeIconsFile(iconEntries);
 
-  await makeStorybookFile(icons);
+  await makeIndexFile(iconEntries);
+
+  await makeStorybookFile(iconEntries);
 }
 
 void run();

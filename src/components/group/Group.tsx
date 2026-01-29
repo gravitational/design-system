@@ -14,6 +14,8 @@ import {
   type RefAttributes,
 } from 'react';
 
+import { dataAttr } from '../../utils/attr';
+
 export interface GroupProps
   extends HTMLChakraProps<'div', RecipeProps<'group'>> {
   /**
@@ -105,10 +107,4 @@ export function Group(props: GroupProps & RefAttributes<HTMLDivElement>) {
       {_children}
     </chakra.div>
   );
-}
-
-type Booleanish = boolean | 'true' | 'false';
-
-function dataAttr(condition: boolean | undefined) {
-  return (condition ? '' : undefined) as Booleanish;
 }

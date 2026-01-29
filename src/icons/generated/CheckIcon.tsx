@@ -1,6 +1,6 @@
 /**
  * Teleport
- * Copyright (C) 2025  Gravitational, Inc.
+ * Copyright (C) 2026  Gravitational, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -41,7 +41,7 @@ SOFTWARE.
 */
 
 import { Icon, type IconProps } from '@chakra-ui/react';
-import { CheckIcon as PhosphorCheckIcon } from '@phosphor-icons/react/dist/csr/Check';
+import { CheckIcon as PhosphorCheckIcon } from '@phosphor-icons/react/dist/ssr/Check';
 
 /*
 
@@ -53,6 +53,14 @@ export function CheckIcon(props: IconProps) {
   return (
     <Icon {...props}>
       <PhosphorCheckIcon />
+    </Icon>
+  );
+}
+
+export function CheckBoldIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <PhosphorCheckIcon weight="bold" />
     </Icon>
   );
 }
