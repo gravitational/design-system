@@ -18,3 +18,15 @@ export async function writeFormattedFile(path: string, content: string) {
 
   await writeFile(path, formatted, 'utf-8');
 }
+
+export async function formatString(content: string) {
+  const configFile = await resolveConfigFile(import.meta.dirname);
+  const config = await resolveConfig(import.meta.dirname, {
+    config: configFile ?? undefined,
+  });
+
+  return prettier.format(content, {
+    ...config,
+    parser: 'babel-ts',
+  });
+}

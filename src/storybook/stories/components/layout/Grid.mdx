@@ -1,0 +1,57 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import { Grid, GridItem } from '../../../..';
+
+import * as GridStories from './Grid.stories';
+
+<Meta title="Components/Layout/Grid" />
+
+<DocsHeader
+  title="Grid"
+  description=""
+  recipePath=""
+  sourcePath="src/components/layout/grid"
+/>
+
+<Canvas of={GridStories.Preview} />
+
+## Usage
+
+```tsx
+import { Grid, GridItem } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <Grid>
+      <GridItem>Item 1</GridItem>
+      <GridItem>Item 2</GridItem>
+    </Grid>
+  );
+}
+```
+
+## Examples
+
+### Col Span
+
+Pass the `colSpan` prop to `GridItem` to control how many columns an item spans.
+
+<Canvas of={GridStories.ColSpan} />
+
+### Spanning Columns
+
+In some layouts, you may need certain grid items to span specific amount of columns or rows instead of an even distribution.
+
+<Canvas of={GridStories.SpanningColumns} />
+
+## Props
+
+<PropTypes of={Grid} />
+
+### GridItem Props
+
+<PropTypes of={GridItem} />

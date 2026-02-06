@@ -43,10 +43,8 @@ describe('Integration scenarios', () => {
 
     const validation = validateApprovals(context, reviewState);
 
-    expect(validation.eligibleReviewers.group1).toEqual(['ryanclark']);
-    expect(validation.eligibleReviewers.group2).toContain('bl-nero');
-    expect(validation.eligibleReviewers.group2).toContain('ravicious');
-    expect(validation.eligibleReviewers.group2).toContain('nicholasmarais1158');
+    expect(validation.eligibleReviewers.group1).toEqual(GROUP1_REVIEWERS.eu);
+    expect(validation.eligibleReviewers.group2).toEqual(GROUP2_REVIEWERS.eu);
 
     vi.useRealTimers();
   });
@@ -77,13 +75,16 @@ describe('Integration scenarios', () => {
     const reviewState: ReviewState = {
       humanReviews: [],
       requestedReviewers: { users: [], teams: [] },
-      approvedBy: new Set(['ryanclark']),
+      approvedBy: new Set([GROUP1_REVIEWERS.eu[0]]),
     };
 
     const validation = validateApprovals(context, reviewState);
 
-    expect(validation.eligibleReviewers.group2).not.toContain('bl-nero');
-    expect(validation.eligibleReviewers.group2).toContain('ravicious');
+    // Author (bl-nero) should be excluded from eligible reviewers
+    expect(validation.eligibleReviewers.group2).not.toContain(context.author);
+    expect(validation.eligibleReviewers.group2).toEqual(
+      GROUP2_REVIEWERS.eu.filter(r => r !== context.author)
+    );
     expect(validation.missingGroups.group2).toBe(true);
   });
 });

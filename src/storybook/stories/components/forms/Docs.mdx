@@ -1,0 +1,275 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { DocsHeader } from '../../../components/DocsHeader';
+
+import { Box } from '@chakra-ui/react';
+
+import { CodeBlock } from '../../../../../.storybook/docs/CodeBlock';
+import { FormExample } from './FormExample';
+import ExampleFormSource from './FormExample.tsx?raw';
+
+<Meta title="Components/Forms/Docs" />
+
+<DocsHeader title="Forms" />
+
+## Using Forms
+
+Form components come in two variants: base components for standalone use, and `Field` components that integrate with React Hook Form.
+
+## React Hook Form Integration
+
+The design system exports a few helpers to make working with React Hook Form easier. It also exports the following hooks from React Hook Form directly:
+
+- [`useController`](https://react-hook-form.com/docs/usecontroller)
+- [`useFieldArray`](https://react-hook-form.com/docs/usefieldarray)
+- [`useFormContext`](https://react-hook-form.com/docs/useformcontext)
+- [`useFormState`](https://react-hook-form.com/docs/useformstate)
+- [`useWatch`](https://react-hook-form.com/docs/usewatch)
+
+### useForm hook
+
+Instead of exporting React Hook Form's `useForm` directly, there is a wrapper hook that sets some defaults, as well as inferring types from a Zod schema if provided.
+
+The main difference is the resolver/schema is passed in as the second argument to the hook, instead of inside the options object. This allows
+for the Zod schema to be inferred and referenced directly, instead of wrapping in the `zodResolver` manually.
+
+```tsx
+import { Form, useForm } from '@gravitational/design-system';
+
+const schema = z.object({
+  email: z.string().email(),
+});
+
+function Example() {
+  const form = useForm({ defaultValues: { email: '' } }, schema);
+
+  return (
+    <Form form={form}>
+      <form.FieldInput name="email" label="Email" />
+    </Form>
+  );
+}
+```
+
+It also sets the `mode` to `onChange` for validation by default, so fields are validated whenever their value is changed. This can be overridden by passing a different `mode` in the options object.
+
+### &lt;Field\* /&gt; Components
+
+`Field` components are wrappers around the base form components that connect them to React Hook Form. They take a `name` prop that corresponds to a field in the form's data.
+They display an error message automatically if the field has an error, and optionally a label and/or help text.
+
+The `useForm` hook also returns typed versions of the `Field` components, so the `name` prop is type-checked against the form's schema. As a bonus, certain
+field components will only show values that are valid for the field type (`FieldInput` will only allow string fields, `FieldCheckbox` will only allow boolean fields, etc.).
+
+```tsx
+const schema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  age: z
+    .number()
+    .min(0, 'Age must be at least 0')
+    .max(120, 'Age must be at most 120'),
+});
+
+function Example() {
+  const form = useForm(
+    {
+      defaultValues: {
+        name: '',
+      },
+    },
+    schema
+  );
+
+  return (
+    <Form form={form}>
+      <form.FieldInput name="age" label="Age" required />
+      {/* TS2322: Type "age" is not assignable to type */}
+      <form.FieldInput name="name" label="Name" required />
+    </Form>
+  );
+}
+```
+
+If you need to use these typed components in a different component than where the form was created, you can either use the `useFieldComponents<T>()` hook, or import them directly
+and specify the generic type parameter manually.
+
+```tsx
+import { FieldInput, useFieldComponents } from '@gravitational/design-system';
+
+import type { FormSchema } from './form';
+
+function SubComponent() {
+  return <FieldInput<FormSchema> name="someField" label="Some Field" />;
+}
+
+function OtherComponent() {
+  // useful when using many field components to avoid repeating the generic
+  const { FieldInput } = useFieldComponents<FormSchema>();
+
+  return <FieldInput name="someField" label="Some Field" />;
+}
+```
+
+> [!NOTE]
+> You do not necessarily need to use the typed `Field` components. It only provides additional type safety on the `name` prop. You _can_ still use the untyped versions if absolutely necessary,
+> but it's nice to have the extra safety when working with forms.
+
+### &lt;Form /&gt;
+
+The `<Form />` component is a simple wrapper that provides the form context to its children. It takes the `form` object returned by `useForm`, and an optional `onSubmit` handler.
+
+```tsx
+import {
+  Button,
+  Form,
+  useForm,
+  type SubmitHandler,
+} from '@gravitational/design-system';
+import { useCallback } from 'react';
+import { z } from 'zod';
+
+const schema = z.object({
+  email: z.string().email(),
+});
+
+export type FormSchema = z.infer<typeof schema>;
+
+function Example() {
+  const form = useForm({ defaultValues: { email: '' } }, schema);
+
+  const handleSubmit = useCallback<SubmitHandler<FormSchema>>((data, evt) => {
+    console.log('Email:', data.email, evt);
+  }, []);
+
+  return (
+    <Form form={form} onSubmit={handleSubmit}>
+      <form.FieldInput name="email" label="Email" />
+
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
+}
+```
+
+### &lt;SubmitButton /&gt;
+
+The `<SubmitButton />` component is a button that has its `type` set to `submit` automatically, and also shows a loading state when the form is submitting.
+It is disabled when the form is not valid.
+
+```tsx
+import { Form, SubmitButton, useForm } from '@gravitational/design-system';
+import { z } from 'zod';
+
+const schema = z.object({
+  email: z.string().email(),
+});
+
+function Example() {
+  const form = useForm({ defaultValues: { email: '' } }, schema);
+
+  return (
+    <Form form={form}>
+      <form.FieldInput name="email" label="Email" />
+
+      <SubmitButton>Submit</SubmitButton>
+    </Form>
+  );
+}
+```
+
+It accepts all the props of a regular button (except `type`), so you can customize it as needed. The `disabled` prop can also be used to disable the button manually - if it is `true`,
+the button will be disabled regardless of the form state. If it is `false`, the button will be enabled/disabled based on the form state as usual.
+
+### Example
+
+When submitting the form, the data is logged to the console and the submit button shows a loading state for 5 seconds. The form is then reset and the `name` input is focused.
+Note that all fields are automatically disabled while the form is submitting.
+
+<Box
+  p={4}
+  borderWidth="1px"
+  borderColor="interactive.tonal.neutral.1"
+  borderRadius="md"
+>
+  <FormExample />
+</Box>
+
+<CodeBlock>{ExampleFormSource}</CodeBlock>
+
+#### With TanStack Query
+
+When using TanStack Query to mutate data on form submission, you can call the `mutateAsync` method inside the `onSubmit` handler. This will then
+disable the form and show the loading state on the submit button while the mutation is in progress.
+
+```tsx
+import {
+  Alert,
+  Box,
+  Form,
+  Stack,
+  SubmitButton,
+  useForm,
+} from '@gravitational/design-system';
+import { useCallback, useRef } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
+import { z } from 'zod';
+
+import { useSubmitFormMutation } from './mutations';
+
+const schema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  githubHandle: z
+    .string()
+    .min(2, 'GitHub handle must be at least 2 characters')
+    .regex(/^[^@].*$/, 'GitHub handle cannot start with @'),
+});
+
+type FormSchema = z.infer<typeof schema>;
+
+export function ExampleForm() {
+  const form = useForm(
+    {
+      defaultValues: {
+        name: '',
+        githubHandle: '',
+      },
+    },
+    schema
+  );
+
+  const submit = useSubmitFormMutation();
+
+  const handleSubmit = useCallback<SubmitHandler<FormSchema>>(
+    async data => {
+      await submit.mutateAsync(data);
+
+      form.reset();
+    },
+    [form, submit]
+  );
+
+  return (
+    <Form form={form} onSubmit={handleSubmit}>
+      <Stack gap={4}>
+        <form.FieldInput name="name" label="Name" required />
+        <form.FieldInput
+          name="githubHandle"
+          label="GitHub Handle"
+          helperText="Do not include the @"
+          required
+        />
+
+        {submit.isError && (
+          <Alert>There was an error submitting the form.</Alert>
+        )}
+
+        <Box>
+          <SubmitButton>Submit</SubmitButton>
+        </Box>
+
+        {submit.isSuccess && <Box>Form submitted successfully!</Box>}
+      </Stack>
+    </Form>
+  );
+}
+```

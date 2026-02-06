@@ -1,6 +1,6 @@
 /**
  * Teleport
- * Copyright (C) 2025  Gravitational, Inc.
+ * Copyright (C) 2026  Gravitational, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -41,7 +41,7 @@ SOFTWARE.
 */
 
 import { Icon, type IconProps } from '@chakra-ui/react';
-import { ArrowUpRightIcon as PhosphorArrowUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowUpRight';
+import { ArrowUpRightIcon as PhosphorArrowUpRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowUpRight';
 
 /*
 

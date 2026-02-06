@@ -33,18 +33,25 @@ interface ReviewerDefinition {
 }
 
 export const GROUP1_REVIEWERS: ReviewerDefinition = {
-  eu: ['ryanclark'],
-  us: ['avatus'],
+  eu: ['ryanclark', 'ravicious'],
+  us: ['avatus', 'kimlisa'],
 };
 
 export const GROUP2_REVIEWERS: ReviewerDefinition = {
-  eu: ['bl-nero', 'ravicious', 'nicholasmarais1158'],
-  us: ['rudream', 'mcbattirola', 'michellescripts'],
+  eu: ['bl-nero', 'nicholasmarais1158', 'gzdunek'],
+  us: [
+    'rudream',
+    'mcbattirola',
+    'michellescripts',
+    'kiosion',
+    'flyinghermit',
+    'alexhemard',
+  ],
 };
 
 export const DESIGN_REVIEWERS: ReviewerDefinition = {
   eu: [],
-  us: ['roraback'],
+  us: ['roraback', 'neilm-teleport', 'michxsung'],
 };
 
 export interface PullRequestContext {

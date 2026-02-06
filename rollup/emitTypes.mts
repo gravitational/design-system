@@ -44,6 +44,20 @@ export function emitTypes({ cwd, tsconfig }: EmitTypesOptions): Plugin {
           return;
         }
 
+        const srcDir = path.resolve(cwd, 'src');
+        const baseCompilerOptions: ts.CompilerOptions = {
+          ...(configFile.config as { compilerOptions: CompilerOptions })
+            .compilerOptions,
+          moduleResolution: ts.ModuleResolutionKind.Bundler,
+          baseUrl: cwd,
+        };
+
+        const allFiles = collectAllImportedFiles(
+          bundledFiles,
+          baseCompilerOptions,
+          srcDir
+        );
+
         const parsedConfig = ts.parseJsonConfigFileContent(
           {
             ...configFile.config,
@@ -55,7 +69,7 @@ export function emitTypes({ cwd, tsconfig }: EmitTypesOptions): Plugin {
               tsBuildInfoFile: '.typescript/tsconfig.release.tsbuildinfo',
             },
             include: undefined,
-            files: bundledFiles,
+            files: allFiles,
           },
           ts.sys,
           path.dirname(tsconfig)
@@ -107,4 +121,68 @@ export function emitTypes({ cwd, tsconfig }: EmitTypesOptions): Plugin {
       },
     },
   };
+}
+
+function collectAllImportedFiles(
+  entryFiles: string[],
+  compilerOptions: ts.CompilerOptions,
+  srcDir: string
+) {
+  const allFiles = new Set<string>(entryFiles);
+  const toProcess = [...entryFiles];
+
+  while (toProcess.length > 0) {
+    const file = toProcess.pop();
+
+    if (!file || !ts.sys.fileExists(file)) {
+      continue;
+    }
+
+    const sourceText = ts.sys.readFile(file);
+    if (!sourceText) {
+      continue;
+    }
+
+    const sourceFile = ts.createSourceFile(
+      file,
+      sourceText,
+      ts.ScriptTarget.Latest,
+      true
+    );
+
+    ts.forEachChild(sourceFile, node => {
+      if (
+        (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
+        node.moduleSpecifier &&
+        ts.isStringLiteral(node.moduleSpecifier)
+      ) {
+        const moduleName = node.moduleSpecifier.text;
+
+        if (moduleName.startsWith('.')) {
+          const resolvedModule = ts.resolveModuleName(
+            moduleName,
+            file,
+            compilerOptions,
+            ts.sys
+          );
+
+          if (resolvedModule.resolvedModule) {
+            const resolvedPath = path.resolve(
+              resolvedModule.resolvedModule.resolvedFileName
+            );
+
+            if (
+              resolvedPath.startsWith(srcDir) &&
+              !allFiles.has(resolvedPath)
+            ) {
+              allFiles.add(resolvedPath);
+              toProcess.push(resolvedPath);
+            }
+          }
+        }
+      }
+    });
+  }
+
+  return Array.from(allFiles);
 }

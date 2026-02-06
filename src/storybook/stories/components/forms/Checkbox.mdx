@@ -1,0 +1,64 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import { Checkbox, CheckboxRoot } from '../../../..';
+
+import { checkboxAnatomy } from '@chakra-ui/react/anatomy';
+
+import { Explorer } from '../../../components/Explorer';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+<DocsHeader
+  title="Checkbox"
+  description="Used in forms when a user needs to select multiple values from several options"
+  recipePath="src/components/form/checkbox/recipe.ts"
+  sourcePath="src/components/form/checkbox/Checkbox.tsx"
+/>
+
+<Canvas of={CheckboxStories.Preview} />
+
+## Usage
+
+Information about usage here.
+
+```tsx
+import { Checkbox, FieldCheckbox } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <Checkbox.Root>
+      <Checkbox.HiddenInput />
+      <Checkbox.Control>
+        <Checkbox.Indicator />
+      </Checkbox.Control>
+      <Checkbox.Label />
+    </Checkbox.Root>
+  );
+}
+
+// FieldCheckbox
+function FieldExample() {
+  return <FieldCheckbox name="example" label="Example Checkbox" />;
+}
+```
+
+## Examples
+
+### Example
+
+<Canvas of={CheckboxStories.Example} />
+
+## Props
+
+### Root
+
+<PropTypes name="CheckboxRoot" />
+
+## Explorer
+
+<Explorer of={CheckboxStories.ExplorerExample} keys={checkboxAnatomy.keys()} />

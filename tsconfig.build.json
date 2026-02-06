@@ -10,10 +10,7 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "jsx": "react-jsx",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "noEmit": true,
@@ -30,11 +27,12 @@
     "strict": true,
     "target": "esnext",
     "tsBuildInfoFile": ".typescript/tsconfig.build.tsbuildinfo",
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": true
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
+    "src/**/*.json",
     ".storybook/**/*.ts",
     ".storybook/**/*.tsx"
   ]
