@@ -12,8 +12,10 @@ const TSCONFIG_PATH = resolve(ROOT, 'tsconfig.build.json');
 
 type ComponentPropWithoutSourceFile = Omit<ComponentProp, 'sourceFile'>;
 
-interface ComponentEntryWithoutPropsSourceFile
-  extends Omit<ComponentEntry, 'props'> {
+interface ComponentEntryWithoutPropsSourceFile extends Omit<
+  ComponentEntry,
+  'props'
+> {
   props: ComponentPropWithoutSourceFile[];
 }
 

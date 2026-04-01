@@ -46,8 +46,11 @@ jobs:
       - name: Type Check
         run: pnpm type-check
 
+      - name: Check formatting
+        run: pnpm format-check
+
       - name: Lint
-        run: pnpm lint
+        run: pnpm oxlint --format github
 
   generate:
     runs-on: ubuntu-latest

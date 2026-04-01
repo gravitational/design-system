@@ -1,14 +1,11 @@
 import { resolve } from 'node:path';
 
-import commonjs from '@rollup/plugin-commonjs';
-import nodeResolve from '@rollup/plugin-node-resolve';
-import type { RollupOptions } from 'rollup';
+import { defineConfig } from 'rolldown';
 import copy from 'rollup-plugin-copy';
-import esbuild from 'rollup-plugin-esbuild';
 
 import packageJson from './package.json' with { type: 'json' };
-import { emitTypes } from './rollup/emitTypes.mts';
-import { generatePackageJson } from './rollup/generatePackageJson.mts';
+import { emitTypes } from './rolldown/emitTypes.mts';
+import { generatePackageJson } from './rolldown/generatePackageJson.mts';
 
 const deps = [
   ...Object.keys(packageJson.dependencies),
@@ -20,32 +17,21 @@ const external = deps.length ? new RegExp(`^(${deps.join('|')})`) : undefined;
 
 const tsconfig = resolve(import.meta.dirname, 'tsconfig.build.json');
 
-const config: RollupOptions[] = [
+export default defineConfig([
   // Main library build
   {
     input: 'src/index.ts',
-    output: [
-      {
-        format: 'es',
-        exports: 'named',
-        entryFileNames: '[name].js',
-        dir: resolve(import.meta.dirname, 'dist'),
-        preserveModules: true,
-        preserveModulesRoot: 'src',
-      },
-    ],
+    output: {
+      format: 'es',
+      exports: 'named',
+      entryFileNames: '[name].js',
+      dir: resolve(import.meta.dirname, 'dist'),
+      preserveModules: true,
+      preserveModulesRoot: 'src',
+      sourcemap: true,
+    },
     external,
     plugins: [
-      nodeResolve({
-        preferBuiltins: true,
-        dedupe: ['react'],
-      }),
-      commonjs(),
-      esbuild({
-        sourceMap: true,
-        tsconfig,
-        platform: 'browser',
-      }),
       emitTypes({
         cwd: import.meta.dirname,
         tsconfig,
@@ -74,17 +60,8 @@ const config: RollupOptions[] = [
       banner: '#!/usr/bin/env node',
     },
     external: [/^node:/, 'typescript'],
-    plugins: [
-      nodeResolve({
-        preferBuiltins: true,
-      }),
-      commonjs(),
-      esbuild({
-        tsconfig,
-        platform: 'node',
-        target: 'node22',
-      }),
-    ],
+    platform: 'node',
+    plugins: [],
     onwarn(warning, warn) {
       if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
         return;
@@ -92,6 +69,4 @@ const config: RollupOptions[] = [
       warn(warning);
     },
   },
-];
-
-export { config as default };
+]);

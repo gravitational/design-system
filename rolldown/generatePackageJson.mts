@@ -1,7 +1,7 @@
 import { writeFile } from 'node:fs/promises';
 import * as path from 'node:path';
 
-import type { Plugin } from 'rollup';
+import type { Plugin } from 'rolldown';
 
 interface PackageJson {
   name: string;
@@ -20,7 +20,7 @@ interface GeneratePackageJsonOptions {
 }
 
 /**
- * A Rollup plugin to generate a package.json file in the output directory.
+ * A Rolldown plugin to generate a package.json file in the output directory.
  * This is useful so that the built package can be published with only the necessary fields.
  */
 export function generatePackageJson({

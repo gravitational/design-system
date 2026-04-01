@@ -5,7 +5,6 @@ import {
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 
 export interface InputProps
-  extends ChakraInputProps,
-    RefAttributes<HTMLInputElement> {}
+  extends ChakraInputProps, RefAttributes<HTMLInputElement> {}
 
 export const Input: ForwardRefExoticComponent<InputProps> = ChakraInput;
