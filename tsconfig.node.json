@@ -23,8 +23,6 @@
     "lint-staged.config.mts",
     "shims/react-hook-plugins.shim.d.ts",
     "shims/vitest.shims.d.ts",
-    "prettier.config.mts",
-    "eslint.config.mts",
     "rolldown.config.mts",
     "rolldown/**/*.mts",
     "vite.config.mts",

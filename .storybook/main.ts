@@ -24,6 +24,13 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
+  viteFinal(config) {
+    config.build ??= {};
+    config.build.rolldownOptions ??= {};
+    config.build.rolldownOptions.external ??= [];
+    (config.build.rolldownOptions.external as string[]).push('oxfmt');
+    return config;
+  },
   refs: {
     '@chakra-ui/react': { disable: true },
   },
