@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Generate
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup pnpm
         uses: ./.github/actions/setup-pnpm
