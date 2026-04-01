@@ -209,11 +209,10 @@ const { withProvider, withContext } = createSlotRecipeContext({
 You can then create the root component that provides the recipe context.
 
 ```tsx
-interface CheckboxRootProps
-  extends HTMLChakraProps<
-    'label',
-    RecipeVariantProps<typeof checkboxSlotRecipe>
-  > {
+interface CheckboxRootProps extends HTMLChakraProps<
+  'label',
+  RecipeVariantProps<typeof checkboxSlotRecipe>
+> {
   // other props here
 }
 

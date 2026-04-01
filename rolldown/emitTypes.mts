@@ -1,6 +1,6 @@
 import * as path from 'node:path';
 
-import type { Plugin } from 'rollup';
+import type { Plugin } from 'rolldown';
 import ts, { type CompilerOptions } from 'typescript';
 
 interface EmitTypesOptions {
@@ -14,7 +14,7 @@ export function emitTypes({ cwd, tsconfig }: EmitTypesOptions): Plugin {
   return {
     name: 'emit-types',
     moduleParsed(moduleInfo) {
-      if (!moduleInfo.isExternal && moduleInfo.id) {
+      if (moduleInfo.id) {
         bundledModules.add(path.resolve(moduleInfo.id));
       }
     },

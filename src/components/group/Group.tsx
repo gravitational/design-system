@@ -16,8 +16,10 @@ import {
 
 import { dataAttr } from '../../utils/attr';
 
-export interface GroupProps
-  extends HTMLChakraProps<'div', RecipeProps<'group'>> {
+export interface GroupProps extends HTMLChakraProps<
+  'div',
+  RecipeProps<'group'>
+> {
   /**
    * The `alignItems` style property
    */

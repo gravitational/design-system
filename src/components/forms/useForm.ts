@@ -34,8 +34,10 @@ type BaseFormProps<
   'defaultValues' | 'resolver'
 >;
 
-interface UseFormPropsWithSchema<TSchema extends FormSchema, TContext = any>
-  extends BaseFormProps<input<TSchema>, TContext, output<TSchema>> {
+interface UseFormPropsWithSchema<
+  TSchema extends FormSchema,
+  TContext = any,
+> extends BaseFormProps<input<TSchema>, TContext, output<TSchema>> {
   resolver?: never;
   defaultValues?: DefaultValues<input<TSchema>>;
 }
@@ -70,7 +72,9 @@ export interface UseFormReturn<
   TFieldValues extends FieldValues = FieldValues,
   TContext = unknown,
   TTransformedValues = TFieldValues,
-> extends UseFormReturnInternal<TFieldValues, TContext, TTransformedValues>,
+>
+  extends
+    UseFormReturnInternal<TFieldValues, TContext, TTransformedValues>,
     FieldComponents<TFieldValues> {}
 
 /**
