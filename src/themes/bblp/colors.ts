@@ -167,6 +167,9 @@ export const colors: SingleColorThemeColors = defineSemanticTokens.colors({
     inverseBackground: {
       value: 'color-mix(in srgb, black 50%, {colors.levels.sunken})',
     },
+    inverseLinkDefault: {
+      value: '#0073BA',
+    },
   },
   progressBarColor: {
     value: '#00BFA5',
@@ -342,6 +345,12 @@ export const colors: SingleColorThemeColors = defineSemanticTokens.colors({
     },
     user: {
       value: '#C5B6FF',
+    },
+    riskLevels: {
+      low: { value: '#00A223' },
+      medium: { value: '#FA5A28' },
+      high: { value: '#FD2D4A' },
+      critical: { value: '#E51E3C' },
     },
   },
   sessionRecordingTimeline: {

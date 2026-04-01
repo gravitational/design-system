@@ -465,6 +465,12 @@ export const colors = defineSemanticTokens.colors({
         _dark: 'color-mix(in srgb, black 50%, {colors.levels.sunken})',
       },
     },
+    inverseLinkDefault: {
+      value: {
+        _light: '#009EFF',
+        _dark: '#0073BA',
+      },
+    },
   },
   progressBarColor: {
     value: {
@@ -937,6 +943,32 @@ export const colors = defineSemanticTokens.colors({
       value: {
         _light: '#311C79',
         _dark: '#C5B6FF',
+      },
+    },
+    riskLevels: {
+      low: {
+        value: {
+          _light: '#007D6B',
+          _dark: '#00BFA6',
+        },
+      },
+      medium: {
+        value: {
+          _light: '#FFAB00',
+          _dark: '#FFAB00',
+        },
+      },
+      high: {
+        value: {
+          _light: '#CC372D',
+          _dark: '#FF8179',
+        },
+      },
+      critical: {
+        value: {
+          _light: '#A32C24',
+          _dark: '#FF6257',
+        },
       },
     },
   },
