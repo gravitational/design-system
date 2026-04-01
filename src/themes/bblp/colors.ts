@@ -343,6 +343,12 @@ export const colors: SingleColorThemeColors = defineSemanticTokens.colors({
     user: {
       value: '#C5B6FF',
     },
+    riskLevels: {
+      low: { value: '#00A223' },
+      medium: { value: '#FA5A28' },
+      high: { value: '#FD2D4A' },
+      critical: { value: '#E51E3C' },
+    },
   },
   sessionRecordingTimeline: {
     background: { value: '#1f2549' },

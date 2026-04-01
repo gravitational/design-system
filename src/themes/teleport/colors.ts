@@ -939,6 +939,32 @@ export const colors = defineSemanticTokens.colors({
         _dark: '#C5B6FF',
       },
     },
+    riskLevels: {
+      low: {
+        value: {
+          _light: '#007D6B',
+          _dark: '#00BFA6',
+        },
+      },
+      medium: {
+        value: {
+          _light: '#FFAB00',
+          _dark: '#FFAB00',
+        },
+      },
+      high: {
+        value: {
+          _light: '#CC372D',
+          _dark: '#FF8179',
+        },
+      },
+      critical: {
+        value: {
+          _light: '#A32C24',
+          _dark: '#FF6257',
+        },
+      },
+    },
   },
   sessionRecordingTimeline: {
     background: {
