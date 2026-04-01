@@ -167,6 +167,9 @@ export const colors: SingleColorThemeColors = defineSemanticTokens.colors({
     inverseBackground: {
       value: 'color-mix(in srgb, black 50%, {colors.levels.sunken})',
     },
+    inverseLinkDefault: {
+      value: '#0073BA',
+    },
   },
   progressBarColor: {
     value: '#00BFA5',

@@ -465,6 +465,12 @@ export const colors = defineSemanticTokens.colors({
         _dark: 'color-mix(in srgb, black 50%, {colors.levels.sunken})',
       },
     },
+    inverseLinkDefault: {
+      value: {
+        _light: '#009EFF',
+        _dark: '#0073BA',
+      },
+    },
   },
   progressBarColor: {
     value: {
