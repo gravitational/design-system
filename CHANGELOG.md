@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.0.13
+
+### Patch Changes
+
+- Add risk level colors, tooltip.inverseLinkDefault to theme ([#95](https://github.com/gravitational/design-system/pull/95))
+
 ## 0.0.12
 
 ### Patch Changes
