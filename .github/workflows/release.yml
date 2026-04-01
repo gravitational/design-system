@@ -1,16 +1,14 @@
 name: Release
 
 on:
+  workflow_dispatch:
   push:
-    paths:
-      - ".changeset/**"
-      - ".github/workflows/release.yml"
-      - "crates/**"
-      - "src/**"
     branches:
       - main
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+concurrency:
+  group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   NODE_VERSION: 22.x
@@ -18,6 +16,7 @@ env:
 
 jobs:
   release:
+    if: github.ref == 'refs/heads/main'
     name: Release
     runs-on: ubuntu-latest
     permissions:
