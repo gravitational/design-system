@@ -1,32 +1,25 @@
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 
-import prettier, { resolveConfig, resolveConfigFile } from 'prettier';
+import { format, type FormatOptions } from 'oxfmt';
 
-export async function writeFormattedFile(path: string, content: string) {
-  const configFile = await resolveConfigFile(import.meta.dirname);
-  const config = await resolveConfig(path, {
-    config: configFile ?? undefined,
-  });
+async function loadConfig(): Promise<FormatOptions> {
+  const configPath = resolve(import.meta.dirname, '../../.oxfmtrc.json');
+  const raw = await readFile(configPath, 'utf-8');
 
-  const parser = path.endsWith('.mdx') ? 'mdx' : 'babel-ts';
-
-  const formatted = await prettier.format(content, {
-    ...config,
-    parser,
-    filepath: path,
-  });
-
-  await writeFile(path, formatted, 'utf-8');
+  return JSON.parse(raw) as FormatOptions;
 }
 
-export async function formatString(content: string) {
-  const configFile = await resolveConfigFile(import.meta.dirname);
-  const config = await resolveConfig(import.meta.dirname, {
-    config: configFile ?? undefined,
-  });
+export async function writeFormattedFile(path: string, content: string) {
+  const config = await loadConfig();
+  const result = await format(path, content, config);
 
-  return prettier.format(content, {
-    ...config,
-    parser: 'babel-ts',
-  });
+  await writeFile(path, result.code, 'utf-8');
+}
+
+export async function formatString(content: string): Promise<string> {
+  const config = await loadConfig();
+  const result = await format('file.tsx', content, config);
+
+  return result.code;
 }

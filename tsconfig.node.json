@@ -25,8 +25,8 @@
     "shims/vitest.shims.d.ts",
     "prettier.config.mts",
     "eslint.config.mts",
-    "rollup.config.mts",
-    "rollup/**/*.mts",
+    "rolldown.config.mts",
+    "rolldown/**/*.mts",
     "vite.config.mts",
     "vitest.config.mts"
   ]

@@ -20,21 +20,25 @@ import * as BoxStories from './Box.stories';
 ```tsx
 import { Box } from '@gravitational/design-system';
 
-<Box
-  display="flex"
-  flexDirection="column"
-  alignItems="center"
-  justifyContent="center"
-  width="sm"
-  height="sm"
-  bg="brand"
-  color="textPrimary"
-  p={4}
-  borderRadius="md"
-  boxShadow="md"
->
-  Content goes here
-</Box>;
+function Example() {
+  return (
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      width="sm"
+      height="sm"
+      bg="brand"
+      color="textPrimary"
+      p={4}
+      borderRadius="md"
+      boxShadow="md"
+    >
+      Content goes here
+    </Box>
+  );
+}
 ```
 
 ### Shorthand

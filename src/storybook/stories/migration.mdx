@@ -592,8 +592,10 @@ const { withProvider, withContext } = createSlotRecipeContext({
   recipe: cardSlotRecipe,
 });
 
-interface CardRootProps
-  extends HTMLChakraProps<'div', RecipeVariantProps<typeof cardSlotRecipe>> {
+interface CardRootProps extends HTMLChakraProps<
+  'div',
+  RecipeVariantProps<typeof cardSlotRecipe>
+> {
   // other props here
 }
 

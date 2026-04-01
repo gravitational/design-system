@@ -65,17 +65,11 @@ const preview: PreviewWithStorySort = {
         format: false,
         excludeDecorators: true,
         transform: async (source: string) => {
-          const prettier = await import('prettier/standalone');
-          const prettierPluginBabel = await import('prettier/plugins/babel');
-          const prettierPluginEstree = await import('prettier/plugins/estree');
-
           try {
-            return await prettier.format(source, {
-              parser: 'babel',
-              // @ts-expect-error the prettierPluginEstree types are wrong, but this is the
-              // official example from Storybook
-              plugins: [prettierPluginBabel, prettierPluginEstree],
-            });
+            const { format } = await import('oxfmt');
+            const result = await format('source.tsx', source);
+
+            return result.code;
           } catch {
             return source;
           }

@@ -23,9 +23,13 @@ The parent element must have a `position` of `relative`, `absolute`, or `fixed` 
 ```tsx
 import { AbsoluteCenter, Box } from '@gravitational/design-system';
 
-<Box pos="relative" h="200px">
-  <AbsoluteCenter>Centered Content</AbsoluteCenter>
-</Box>;
+function Example() {
+  return (
+    <Box pos="relative" h="200px">
+      <AbsoluteCenter>Centered Content</AbsoluteCenter>
+    </Box>
+  );
+}
 ```
 
 ### With content
