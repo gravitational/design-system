@@ -1,6 +1,7 @@
 import { defineConfig } from '@chakra-ui/react';
 
 import { createThemeSystem } from '../../theme';
+import { resolveColorToken, type ColorMode } from '../../theme';
 import { UiThemeMode, type UiTheme } from '../theme';
 import { colors } from './colors';
 
@@ -19,3 +20,13 @@ export const TELEPORT_THEME: UiTheme = {
   name: 'teleport',
   config,
 };
+
+/**
+ * Resolves a teleport color token to its literal hex for the given color mode.
+ * Thin wrapper over {@link resolveColorToken} bound to the teleport system,
+ * for callers that can't rely on CSS custom properties (e.g. the Electron
+ * main process).
+ */
+export function resolveTeleportColor(tokenName: string, mode: ColorMode) {
+  return resolveColorToken(system, tokenName, mode);
+}

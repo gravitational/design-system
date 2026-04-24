@@ -1,10 +1,10 @@
 import { BBLP_THEME } from './bblp';
 import { MC_THEME } from './mc';
-import { system, TELEPORT_THEME } from './teleport';
+import { resolveTeleportColor, system, TELEPORT_THEME } from './teleport';
 
 export const THEMES = [BBLP_THEME, MC_THEME, TELEPORT_THEME];
 
-export { BBLP_THEME, MC_THEME, TELEPORT_THEME };
+export { BBLP_THEME, MC_THEME, resolveTeleportColor, TELEPORT_THEME };
 
 // This is nonsense, but rollup will remove the `system` export from the Teleport theme if
 // it is not exported or doesn't modify the global state. We need `system` to be exported
