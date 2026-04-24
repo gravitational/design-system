@@ -22,10 +22,11 @@ export const TELEPORT_THEME: UiTheme = {
 };
 
 /**
- * Resolves a teleport color token to its literal hex for the given color mode.
- * Thin wrapper over {@link resolveColorToken} bound to the teleport system,
- * for callers that can't rely on CSS custom properties (e.g. the Electron
- * main process).
+ * Resolves a teleport color token to a CSS color string for the given color
+ * mode, substituting any embedded `{token.path}` references. Thin wrapper
+ * over {@link resolveColorToken} bound to the teleport system, for callers
+ * that can't rely on CSS custom properties (e.g. canvas/WebGL painting or
+ * the Electron main process).
  */
 export function resolveTeleportColor(tokenName: string, mode: ColorMode) {
   return resolveColorToken(system, tokenName, mode);
