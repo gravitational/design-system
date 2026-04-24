@@ -1,0 +1,95 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as TooltipStories from './Tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+<DocsHeader
+  title="Tooltip"
+  description="Displays a short hint floating near its trigger when the user hovers or focuses it."
+  sourcePath="src/components/overlays/tooltip/Tooltip.tsx"
+  recipePath="src/components/overlays/tooltip/recipe.ts"
+/>
+
+## Usage
+
+Wrap the trigger element in `<Tooltip>` and pass the hint as the `content` prop.
+
+```tsx
+import { Button, Tooltip } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <Tooltip content="Save your changes">
+      <Button>Save</Button>
+    </Tooltip>
+  );
+}
+```
+
+`content` accepts any `ReactNode`, so rich content (bold text, icons, multiple lines) works.
+
+### Placements
+
+Use the `placement` prop to position the tooltip relative to its trigger. Accepts any Chakra placement value (`top`, `top-start`, `top-end`, `right`, `bottom-start`, ...).
+
+<Canvas of={TooltipStories.Placements} />
+
+### Arrow
+
+`showArrow` toggles the arrow. Default is `true`.
+
+<Canvas of={TooltipStories.Arrow} />
+
+### Gutter
+
+`gutter` controls the distance (in pixels) between the trigger and the tooltip.
+
+<Canvas of={TooltipStories.Gutter} />
+
+### Disabled
+
+Set `disabled` to opt out of rendering the tooltip entirely. The trigger is rendered without any wrapper.
+
+<Canvas of={TooltipStories.DisabledTooltip} />
+
+### Rich content
+
+`content` accepts any `ReactNode`.
+
+<Canvas of={TooltipStories.RichContentTooltip} />
+
+### Controlled
+
+Drive the tooltip's visibility from parent state by passing `open` + `onOpenChange`.
+
+```tsx
+import { useState } from 'react';
+import { Button, Tooltip } from '@gravitational/design-system';
+
+function Example() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(o => !o)}>Toggle</Button>
+      <Tooltip
+        open={open}
+        onOpenChange={details => setOpen(details.open)}
+        content="Driven by parent state"
+      >
+        <Button>Hover target</Button>
+      </Tooltip>
+    </>
+  );
+}
+```
+
+<Canvas of={TooltipStories.ControlledTooltip} />
+
+## Props
+
+<PropTypes name="Tooltip" />

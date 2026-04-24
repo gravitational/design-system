@@ -11,7 +11,7 @@ import Prism from 'prismjs';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useCopyToClipboard } from 'usehooks-ts';
 
-import { HStack, IconButton, StarIcon, Tooltip } from '../..';
+import { Tooltip, HStack, IconButton, StarIcon } from '../..';
 import { DocsLink } from '../../../.storybook/docs/DocsContainerWrapper';
 import { CheckIcon, ClipboardIcon } from '../../icons';
 import generated from '../props/generated.json' with { type: 'json' };

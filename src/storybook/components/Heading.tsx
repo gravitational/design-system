@@ -6,7 +6,7 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import { useCopyToClipboard } from 'usehooks-ts';
 
-import { IconButton, Tooltip } from '../../components';
+import { Tooltip, IconButton } from '../../components';
 import { ClipboardIcon } from '../../icons';
 
 export function Heading({ id, mt, mb, my, children, ...props }: HeadingProps) {

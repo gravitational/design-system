@@ -5,7 +5,7 @@ import { listSlotRecipe } from '../components/list/recipe';
 import { dialogSlotRecipe } from '../components/overlays/dialog/recipe';
 import { popoverSlotRecipe } from '../components/overlays/popover/recipe';
 import { tableSlotRecipe } from '../components/table/recipe';
-import { tooltipSlotRecipe } from '../components/tooltip/recipe';
+import { tooltipSlotRecipe } from '../components/overlays/tooltip/recipe';
 
 export const slotRecipes = {
   alert: alertSlotRecipe,
