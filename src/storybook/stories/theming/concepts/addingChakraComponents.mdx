@@ -141,3 +141,89 @@ export * from './component-name';
 export * from './table';
 export * from './tooltip';
 ```
+
+## Slot components (Dialog, Popover, ...)
+
+Chakra components with multiple slot parts expose both a dotted namespace (`Dialog.Root`, `Dialog.ContentProps`) and flat names (`DialogRoot`, `DialogContentProps`). When we wrap one of these, re-export the namespace directly from Chakra and add a `Composed<Name>` convenience wrapper for the common scaffolded layout. Typical file layout:
+
+```
+component-name/
+  component-name.ts           // re-exports the Chakra namespace + hooks + utility types
+  ComposedComponentName.tsx   // optional convenience wrapper
+  index.ts
+  recipe.ts
+```
+
+### Flat file (`component-name.ts`)
+
+Re-export Chakra's namespace, hooks, and any event/detail types you want to surface. Add any helper types (e.g., `Positioning`, `Placement` derivations) here too.
+
+```ts
+// src/components/overlays/foo/foo.ts
+import type { Foo as ChakraFoo } from '@chakra-ui/react';
+
+export { Foo, useFoo, useFooContext } from '@chakra-ui/react';
+
+export type {
+  FooInteractOutsideEvent,
+  FooOpenChangeDetails,
+  UseFooProps,
+  UseFooReturn,
+} from '@chakra-ui/react';
+
+// Optional: local helper types derived from the Chakra namespace
+export type FooPositioning = NonNullable<ChakraFoo.RootProps['positioning']>;
+export type FooPlacement = NonNullable<FooPositioning['placement']>;
+```
+
+Consumers access slots and their props through the namespace:
+
+```tsx
+import { Foo } from '@gravitational/design-system';
+
+type ContentProps = Foo.ContentProps;
+
+<Foo.Root>
+  <Foo.Trigger />
+  <Foo.Content />
+</Foo.Root>;
+```
+
+### Composed wrapper (optional, `ComposedComponentName.tsx`)
+
+If the component has a common usage pattern that benefits from auto-injecting slots (e.g., a dialog's Backdrop + Positioner + Content scaffolding), add a convenience wrapper. The wrapper lives in its own `.tsx` file and uses the `Composed` prefix so it doesn't collide with the namespace name:
+
+```tsx
+// src/components/overlays/foo/ComposedFoo.tsx
+import { Foo as ChakraFoo } from '@chakra-ui/react';
+import type { ReactNode, RefAttributes } from 'react';
+
+export interface ComposedFooProps extends ChakraFoo.RootProps {
+  trigger?: ReactNode;
+}
+
+export function ComposedFoo({
+  trigger,
+  children,
+  ...rest
+}: ComposedFooProps & RefAttributes<HTMLDivElement>) {
+  return (
+    <ChakraFoo.Root {...rest}>
+      {trigger !== undefined && (
+        <ChakraFoo.Trigger asChild>{trigger}</ChakraFoo.Trigger>
+      )}
+      <ChakraFoo.Content>{children}</ChakraFoo.Content>
+    </ChakraFoo.Root>
+  );
+}
+```
+
+### index.ts
+
+Aggregate the re-exports:
+
+```ts
+// src/components/overlays/foo/index.ts
+export * from './foo'; // Foo namespace, useFoo, helper types
+export * from './ComposedFoo'; // ComposedFoo + ComposedFooProps
+```

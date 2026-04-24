@@ -66,10 +66,16 @@ const preview: PreviewWithStorySort = {
         excludeDecorators: true,
         transform: async (source: string) => {
           try {
-            const { format } = await import('oxfmt');
-            const result = await format('source.tsx', source);
+            const { format } = await import('prettier/standalone');
+            const [babelPlugin, estreePlugin] = await Promise.all([
+              import('prettier/plugins/babel'),
+              import('prettier/plugins/estree'),
+            ]);
 
-            return result.code;
+            return await format(source, {
+              parser: 'babel-ts',
+              plugins: [babelPlugin.default, estreePlugin.default],
+            });
           } catch {
             return source;
           }

@@ -3,7 +3,46 @@ import { resolve } from 'node:path';
 
 import * as ts from 'typescript';
 
-import { writeFormattedFile } from '../utils/writeFormattedFile';
+import { formatForPath, writeFormattedFile } from '../utils/writeFormattedFile';
+
+const checkMode = process.argv.includes('--check');
+let outOfDate = false;
+
+async function writeOrCheck(path: string, content: string) {
+  const formatted = await formatForPath(path, content);
+  const existing = await fs.readFile(path, 'utf-8').catch(() => null);
+  if (existing === formatted) {
+    return;
+  }
+
+  if (checkMode) {
+    outOfDate = true;
+    process.stderr.write(`\x1b[31mOut of date: ${path}\x1b[0m\n`);
+    return;
+  }
+
+  await writeFormattedFile(path, content);
+}
+
+async function removeOrCheck(path: string) {
+  if (checkMode) {
+    const exists = await fs
+      .stat(path)
+      .then(() => true)
+      .catch(() => false);
+
+    if (exists) {
+      outOfDate = true;
+      process.stderr.write(
+        `\x1b[31mStale icon file (should be removed): ${path}\x1b[0m\n`
+      );
+    }
+
+    return;
+  }
+
+  await fs.rm(path);
+}
 
 const generatedDirectory = resolve(import.meta.dirname, 'generated');
 
@@ -163,7 +202,7 @@ THIS FILE IS GENERATED. DO NOT EDIT.
 ${functionDefinitions}
 `;
 
-  await writeFormattedFile(
+  await writeOrCheck(
     resolve(generatedDirectory, `${baseIconName}.tsx`),
     content
   );
@@ -223,7 +262,7 @@ export { Icon, type IconProps } from '@chakra-ui/react';
 ${lines}
 `;
 
-  await writeFormattedFile(resolve(import.meta.dirname, 'index.ts'), content);
+  await writeOrCheck(resolve(import.meta.dirname, 'index.ts'), content);
 }
 
 async function makeIconsFile(iconEntries: IconEntry[]) {
@@ -254,7 +293,7 @@ ${lines}
 ];
 `;
 
-  await writeFormattedFile(resolve(import.meta.dirname, 'icons.ts'), content);
+  await writeOrCheck(resolve(import.meta.dirname, 'icons.ts'), content);
 }
 
 async function makeStorybookFile(iconEntries: IconEntry[]) {
@@ -294,7 +333,7 @@ import { DocsHeader } from '../../components/DocsHeader';
 </IconGallery>
 `;
 
-  await writeFormattedFile(
+  await writeOrCheck(
     resolve(import.meta.dirname, '../storybook/stories/icons/icons.mdx'),
     content
   );
@@ -324,7 +363,7 @@ async function run() {
   // Remove icon files that are no longer needed
   for (const existingIcon of existingIcons) {
     if (!expectedIcons.has(existingIcon)) {
-      await fs.rm(resolve(generatedDirectory, `${existingIcon}.tsx`));
+      await removeOrCheck(resolve(generatedDirectory, `${existingIcon}.tsx`));
     }
   }
 
@@ -338,6 +377,13 @@ async function run() {
   await makeIndexFile(iconEntries);
 
   await makeStorybookFile(iconEntries);
+
+  if (outOfDate) {
+    process.stderr.write(
+      `\x1b[31mRun \`pnpm generate-icons\` and commit the result.\x1b[0m\n`
+    );
+    process.exit(1);
+  }
 }
 
 void run();

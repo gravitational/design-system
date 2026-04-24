@@ -23,3 +23,10 @@ export async function formatString(content: string): Promise<string> {
 
   return result.code;
 }
+
+export async function formatForPath(path: string, content: string) {
+  const config = await loadConfig();
+  const result = await format(path, content, config);
+
+  return result.code;
+}
