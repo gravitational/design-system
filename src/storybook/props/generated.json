@@ -1445,6 +1445,406 @@
     "ref": null
   },
   {
+    "name": "ComposedPopover",
+    "props": [
+      {
+        "name": "anchorRef",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "RefObject",
+          "expanded": "RefObject"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Imperative anchor element. When set, no `<Popover.Trigger>` is\nrendered; the popover positions itself against the ref.",
+        "defaultValue": null
+      },
+      {
+        "name": "autoFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to automatically set focus on the first focusable\ncontent within the popover when opened.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Popover body (auto-wrapped in `<Popover.Content>`).",
+        "defaultValue": null
+      },
+      {
+        "name": "closeOnEscape",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the popover when the escape key is pressed.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "closeOnInteractOutside",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the popover when the user clicks outside of the popover.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "contentProps",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "Popover.ContentProps",
+          "expanded": "export interface PopoverContentProps\n  extends HTMLChakraProps<'div', ArkPopover.ContentBaseProps>, UnstyledProp {}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Forwarded to the auto-injected `<Popover.Content>`.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultOpen",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial open state of the popover when rendered.\nUse when you don't need to control the open state of the popover.",
+        "defaultValue": null
+      },
+      {
+        "name": "gutter",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Distance-from-anchor shortcut (px). Feeds `positioning.gutter`. A\nuser-supplied `positioning.gutter` wins on conflict.",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the popover. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "immediate",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame",
+        "defaultValue": null
+      },
+      {
+        "name": "initialFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => HTMLElement | null"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The element to focus on when the popover is opened.",
+        "defaultValue": null
+      },
+      {
+        "name": "lazyMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to enable lazy mounting",
+        "defaultValue": "false"
+      },
+      {
+        "name": "modal",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the popover should be modal. When set to `true`:\n- interaction with outside elements will be disabled\n- only popover content will be visible to screen readers\n- scrolling is blocked\n- focus is trapped within the popover",
+        "defaultValue": "false"
+      },
+      {
+        "name": "onEscapeKeyDown",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: KeyboardEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the escape key is pressed",
+        "defaultValue": null
+      },
+      {
+        "name": "onExitComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the closed state",
+        "defaultValue": null
+      },
+      {
+        "name": "onFocusOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: Popover.FocusOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the focus is moved outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onInteractOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: Popover.InteractOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when an interaction happens outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onOpenChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: Popover.OpenChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function invoked when the popover opens or closes",
+        "defaultValue": null
+      },
+      {
+        "name": "onPointerDownOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: Popover.PointerDownOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the pointer is pressed down outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onRequestDismiss",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: LayerDismissEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when this layer is closed due to a parent layer being closed",
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled open state of the popover",
+        "defaultValue": null
+      },
+      {
+        "name": "persistentElements",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "Array<() => Element | null>",
+          "expanded": "Array<() => Element | null>"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Returns the persistent elements that:\n- should not have pointer-events disabled\n- should not trigger the dismiss event",
+        "defaultValue": null
+      },
+      {
+        "name": "placement",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "PopoverPlacement",
+          "expanded": "| 'bottom'\n  | 'left'\n  | 'right'\n  | 'top'\n  | 'bottom-end'\n  | 'bottom-start'\n  | 'left-end'\n  | 'left-start'\n  | 'right-end'\n  | 'right-start'\n  | 'top-end'\n  | 'top-start'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Placement shortcut. Feeds `positioning.placement`. A user-supplied\n`positioning.placement` wins on conflict.",
+        "defaultValue": null
+      },
+      {
+        "name": "portalled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Render content in a Portal. Default `true`.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "portalRef",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "RefObject",
+          "expanded": "RefObject"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Target container for the Portal.",
+        "defaultValue": null
+      },
+      {
+        "name": "positioning",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "PopoverPositioning",
+          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Full Chakra positioning config. Overrides flat shortcuts.",
+        "defaultValue": null
+      },
+      {
+        "name": "present",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the node is present (controlled by the user)",
+        "defaultValue": null
+      },
+      {
+        "name": "showArrow",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Render an arrow.",
+        "defaultValue": null
+      },
+      {
+        "name": "skipAnimationOnMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to allow the initial presence animation.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "trigger",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Convenience: element wrapped in `<Popover.Trigger asChild>`. Ignored\nwhen `anchorRef` is provided.",
+        "defaultValue": null
+      },
+      {
+        "name": "unmountOnExit",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to unmount on exit.",
+        "defaultValue": "false"
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "Container",
     "props": [
       {
@@ -2961,6 +3361,612 @@
     "ref": null
   },
   {
+    "name": "Popover",
+    "props": [
+      {
+        "name": "autoFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to automatically set focus on the first focusable\ncontent within the popover when opened.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "closeOnEscape",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the popover when the escape key is pressed.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "closeOnInteractOutside",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the popover when the user clicks outside of the popover.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "defaultOpen",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial open state of the popover when rendered.\nUse when you don't need to control the open state of the popover.",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the popover. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "immediate",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame",
+        "defaultValue": null
+      },
+      {
+        "name": "initialFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => HTMLElement | null"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The element to focus on when the popover is opened.",
+        "defaultValue": null
+      },
+      {
+        "name": "lazyMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to enable lazy mounting",
+        "defaultValue": "false"
+      },
+      {
+        "name": "modal",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the popover should be modal. When set to `true`:\n- interaction with outside elements will be disabled\n- only popover content will be visible to screen readers\n- scrolling is blocked\n- focus is trapped within the popover",
+        "defaultValue": "false"
+      },
+      {
+        "name": "onEscapeKeyDown",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: KeyboardEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the escape key is pressed",
+        "defaultValue": null
+      },
+      {
+        "name": "onExitComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the closed state",
+        "defaultValue": null
+      },
+      {
+        "name": "onFocusOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: Popover.FocusOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the focus is moved outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onInteractOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: Popover.InteractOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when an interaction happens outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onOpenChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: Popover.OpenChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function invoked when the popover opens or closes",
+        "defaultValue": null
+      },
+      {
+        "name": "onPointerDownOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: Popover.PointerDownOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the pointer is pressed down outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onRequestDismiss",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: LayerDismissEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when this layer is closed due to a parent layer being closed",
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled open state of the popover",
+        "defaultValue": null
+      },
+      {
+        "name": "persistentElements",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "Array<() => Element | null>",
+          "expanded": "Array<() => Element | null>"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Returns the persistent elements that:\n- should not have pointer-events disabled\n- should not trigger the dismiss event",
+        "defaultValue": null
+      },
+      {
+        "name": "portalled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the popover is portalled. This will proxy the tabbing behavior regardless of the DOM position\nof the popover content.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "positioning",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "PositioningOptions",
+          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The user provided options used to position the popover content",
+        "defaultValue": null
+      },
+      {
+        "name": "present",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the node is present (controlled by the user)",
+        "defaultValue": null
+      },
+      {
+        "name": "skipAnimationOnMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to allow the initial presence animation.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "unmountOnExit",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to unmount on exit.",
+        "defaultValue": "false"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Popover.Anchor",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Popover.Arrow",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Popover.ArrowTip",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Popover.Body",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Popover.CloseTrigger",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Popover.Content",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Popover.Description",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Popover.Footer",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Popover.Header",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Popover.Positioner",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Popover.RootProvider",
+    "props": [
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "immediate",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame",
+        "defaultValue": null
+      },
+      {
+        "name": "lazyMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to enable lazy mounting",
+        "defaultValue": "false"
+      },
+      {
+        "name": "onExitComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the closed state",
+        "defaultValue": null
+      },
+      {
+        "name": "present",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the node is present (controlled by the user)",
+        "defaultValue": null
+      },
+      {
+        "name": "skipAnimationOnMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to allow the initial presence animation.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "unmountOnExit",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to unmount on exit.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "UsePopoverReturn",
+          "expanded": "export interface UsePopoverReturn extends popover.Api<PropTypes> {}\n"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Popover.Title",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Popover.Trigger",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "SimpleGrid",
     "props": [
       {
@@ -4002,6 +5008,231 @@
         "required": false,
         "readonly": false,
         "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "UsePopover",
+    "props": [
+      {
+        "name": "autoFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to automatically set focus on the first focusable\ncontent within the popover when opened.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "closeOnEscape",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the popover when the escape key is pressed.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "closeOnInteractOutside",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the popover when the user clicks outside of the popover.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "defaultOpen",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial open state of the popover when rendered.\nUse when you don't need to control the open state of the popover.",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the popover. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "initialFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => HTMLElement | null"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The element to focus on when the popover is opened.",
+        "defaultValue": null
+      },
+      {
+        "name": "modal",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the popover should be modal. When set to `true`:\n- interaction with outside elements will be disabled\n- only popover content will be visible to screen readers\n- scrolling is blocked\n- focus is trapped within the popover",
+        "defaultValue": "false"
+      },
+      {
+        "name": "onEscapeKeyDown",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: KeyboardEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the escape key is pressed",
+        "defaultValue": null
+      },
+      {
+        "name": "onFocusOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: FocusOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the focus is moved outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onInteractOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: InteractOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when an interaction happens outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onOpenChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: OpenChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function invoked when the popover opens or closes",
+        "defaultValue": null
+      },
+      {
+        "name": "onPointerDownOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: PointerDownOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the pointer is pressed down outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onRequestDismiss",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: LayerDismissEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when this layer is closed due to a parent layer being closed",
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled open state of the popover",
+        "defaultValue": null
+      },
+      {
+        "name": "persistentElements",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "Array<() => Element | null>",
+          "expanded": "Array<() => Element | null>"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Returns the persistent elements that:\n- should not have pointer-events disabled\n- should not trigger the dismiss event",
+        "defaultValue": null
+      },
+      {
+        "name": "portalled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the popover is portalled. This will proxy the tabbing behavior regardless of the DOM position\nof the popover content.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "positioning",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "PositioningOptions",
+          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The user provided options used to position the popover content",
         "defaultValue": null
       }
     ],
