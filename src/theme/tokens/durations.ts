@@ -22,4 +22,7 @@ export const durations = defineTokens.durations({
   slowest: {
     value: '500ms',
   },
+  dialog: {
+    value: '225ms',
+  },
 });

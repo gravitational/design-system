@@ -832,6 +832,407 @@
     }
   },
   {
+    "name": "ComposedDialog",
+    "props": [
+      {
+        "name": "aria-label",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Human readable label for the dialog, in event the dialog title is not rendered",
+        "defaultValue": null
+      },
+      {
+        "name": "backdropProps",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "Dialog.BackdropProps",
+          "expanded": "export interface DialogBackdropProps\n  extends HTMLChakraProps<'div', ArkDialog.BackdropBaseProps>, UnstyledProp {}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Props forwarded to the auto-injected `<Dialog.Backdrop>`.",
+        "defaultValue": null
+      },
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Dialog body (auto-wrapped in `<Dialog.Content>`).",
+        "defaultValue": null
+      },
+      {
+        "name": "closeOnEscape",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the dialog when the escape key is pressed",
+        "defaultValue": "true"
+      },
+      {
+        "name": "closeOnInteractOutside",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the dialog when the outside is clicked",
+        "defaultValue": "true"
+      },
+      {
+        "name": "contentProps",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "Dialog.ContentProps",
+          "expanded": "export interface DialogContentProps\n  extends\n    HTMLChakraProps<'section', ArkDialog.ContentBaseProps>,\n    UnstyledProp {}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Props forwarded to the auto-injected `<Dialog.Content>`.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultOpen",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial open state of the dialog when rendered.\nUse when you don't need to control the open state of the dialog.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "finalFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => MaybeElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Element to receive focus when the dialog is closed",
+        "defaultValue": null
+      },
+      {
+        "name": "hideBackdrop",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the backdrop is not rendered.",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  trigger?: string | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the dialog. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "immediate",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame",
+        "defaultValue": null
+      },
+      {
+        "name": "initialFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => MaybeElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Element to receive focus when the dialog is opened",
+        "defaultValue": null
+      },
+      {
+        "name": "lazyMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to enable lazy mounting",
+        "defaultValue": "false"
+      },
+      {
+        "name": "modal",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to prevent pointer interaction outside the element and hide all content below it",
+        "defaultValue": "true"
+      },
+      {
+        "name": "onEscapeKeyDown",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: KeyboardEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the escape key is pressed",
+        "defaultValue": null
+      },
+      {
+        "name": "onExitComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the closed state",
+        "defaultValue": null
+      },
+      {
+        "name": "onFocusOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: Dialog.FocusOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the focus is moved outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onInteractOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: Dialog.InteractOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when an interaction happens outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onOpenChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: Dialog.OpenChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to call when the dialog's open state changes",
+        "defaultValue": null
+      },
+      {
+        "name": "onPointerDownOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: Dialog.PointerDownOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the pointer is pressed down outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onRequestDismiss",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: LayerDismissEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when this layer is closed due to a parent layer being closed",
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled open state of the dialog",
+        "defaultValue": null
+      },
+      {
+        "name": "persistentElements",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "Array<() => Element | null>",
+          "expanded": "Array<() => Element | null>"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Returns the persistent elements that:\n- should not have pointer-events disabled\n- should not trigger the dismiss event",
+        "defaultValue": null
+      },
+      {
+        "name": "present",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the node is present (controlled by the user)",
+        "defaultValue": null
+      },
+      {
+        "name": "preventScroll",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to prevent scrolling behind the dialog when it's opened",
+        "defaultValue": "true"
+      },
+      {
+        "name": "restoreFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to restore focus to the element that had focus before the dialog was opened",
+        "defaultValue": null
+      },
+      {
+        "name": "role",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'dialog' | 'alertdialog'",
+          "members": [
+            "'dialog'",
+            "'alertdialog'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The dialog's role",
+        "defaultValue": "dialog"
+      },
+      {
+        "name": "skipAnimationOnMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to allow the initial presence animation.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "trapFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to trap focus inside the dialog when it's opened",
+        "defaultValue": "true"
+      },
+      {
+        "name": "trigger",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Convenience: element wrapped in `<Dialog.Trigger asChild>`.",
+        "defaultValue": null
+      },
+      {
+        "name": "unmountOnExit",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to unmount on exit.",
+        "defaultValue": "false"
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "Container",
     "props": [
       {
@@ -856,6 +1257,619 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the container will take the full width of its parent",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Dialog",
+    "props": [
+      {
+        "name": "aria-label",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Human readable label for the dialog, in event the dialog title is not rendered",
+        "defaultValue": null
+      },
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "closeOnEscape",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the dialog when the escape key is pressed",
+        "defaultValue": "true"
+      },
+      {
+        "name": "closeOnInteractOutside",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the dialog when the outside is clicked",
+        "defaultValue": "true"
+      },
+      {
+        "name": "defaultOpen",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial open state of the dialog when rendered.\nUse when you don't need to control the open state of the dialog.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "finalFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => MaybeElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Element to receive focus when the dialog is closed",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  trigger?: string | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the dialog. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "immediate",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame",
+        "defaultValue": null
+      },
+      {
+        "name": "initialFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => MaybeElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Element to receive focus when the dialog is opened",
+        "defaultValue": null
+      },
+      {
+        "name": "lazyMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to enable lazy mounting",
+        "defaultValue": "false"
+      },
+      {
+        "name": "modal",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to prevent pointer interaction outside the element and hide all content below it",
+        "defaultValue": "true"
+      },
+      {
+        "name": "onEscapeKeyDown",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: KeyboardEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the escape key is pressed",
+        "defaultValue": null
+      },
+      {
+        "name": "onExitComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the closed state",
+        "defaultValue": null
+      },
+      {
+        "name": "onFocusOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: Dialog.FocusOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the focus is moved outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onInteractOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: Dialog.InteractOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when an interaction happens outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onOpenChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: Dialog.OpenChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to call when the dialog's open state changes",
+        "defaultValue": null
+      },
+      {
+        "name": "onPointerDownOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: Dialog.PointerDownOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the pointer is pressed down outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onRequestDismiss",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: LayerDismissEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when this layer is closed due to a parent layer being closed",
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled open state of the dialog",
+        "defaultValue": null
+      },
+      {
+        "name": "persistentElements",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "Array<() => Element | null>",
+          "expanded": "Array<() => Element | null>"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Returns the persistent elements that:\n- should not have pointer-events disabled\n- should not trigger the dismiss event",
+        "defaultValue": null
+      },
+      {
+        "name": "present",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the node is present (controlled by the user)",
+        "defaultValue": null
+      },
+      {
+        "name": "preventScroll",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to prevent scrolling behind the dialog when it's opened",
+        "defaultValue": "true"
+      },
+      {
+        "name": "restoreFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to restore focus to the element that had focus before the dialog was opened",
+        "defaultValue": null
+      },
+      {
+        "name": "role",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'dialog' | 'alertdialog'",
+          "members": [
+            "'dialog'",
+            "'alertdialog'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The dialog's role",
+        "defaultValue": "dialog"
+      },
+      {
+        "name": "skipAnimationOnMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to allow the initial presence animation.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "trapFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to trap focus inside the dialog when it's opened",
+        "defaultValue": "true"
+      },
+      {
+        "name": "unmountOnExit",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to unmount on exit.",
+        "defaultValue": "false"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Dialog.ActionTrigger",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Dialog.Backdrop",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Dialog.Body",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Dialog.CloseTrigger",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Dialog.Content",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Dialog.Description",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Dialog.Footer",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Dialog.Header",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Dialog.Positioner",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Dialog.RootProvider",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "immediate",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame",
+        "defaultValue": null
+      },
+      {
+        "name": "lazyMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to enable lazy mounting",
+        "defaultValue": "false"
+      },
+      {
+        "name": "onExitComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the closed state",
+        "defaultValue": null
+      },
+      {
+        "name": "present",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the node is present (controlled by the user)",
+        "defaultValue": null
+      },
+      {
+        "name": "skipAnimationOnMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to allow the initial presence animation.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "unmountOnExit",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to unmount on exit.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "UseDialogReturn",
+          "expanded": "export interface UseDialogReturn extends dialog.Api<PropTypes> {}\n"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Dialog.Title",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Dialog.Trigger",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
         "defaultValue": null
       }
     ],
@@ -2481,6 +3495,270 @@
         "readonly": false,
         "description": "Whether to unmount on exit.",
         "defaultValue": "false"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "UseDialog",
+    "props": [
+      {
+        "name": "aria-label",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Human readable label for the dialog, in event the dialog title is not rendered",
+        "defaultValue": null
+      },
+      {
+        "name": "closeOnEscape",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the dialog when the escape key is pressed",
+        "defaultValue": "true"
+      },
+      {
+        "name": "closeOnInteractOutside",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the dialog when the outside is clicked",
+        "defaultValue": "true"
+      },
+      {
+        "name": "defaultOpen",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial open state of the dialog when rendered.\nUse when you don't need to control the open state of the dialog.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "finalFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => MaybeElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Element to receive focus when the dialog is closed",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  trigger?: string | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the dialog. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "initialFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => MaybeElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Element to receive focus when the dialog is opened",
+        "defaultValue": null
+      },
+      {
+        "name": "modal",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to prevent pointer interaction outside the element and hide all content below it",
+        "defaultValue": "true"
+      },
+      {
+        "name": "onEscapeKeyDown",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: KeyboardEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the escape key is pressed",
+        "defaultValue": null
+      },
+      {
+        "name": "onFocusOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: FocusOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the focus is moved outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onInteractOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: InteractOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when an interaction happens outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onOpenChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: OpenChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to call when the dialog's open state changes",
+        "defaultValue": null
+      },
+      {
+        "name": "onPointerDownOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: PointerDownOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the pointer is pressed down outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onRequestDismiss",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: LayerDismissEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when this layer is closed due to a parent layer being closed",
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled open state of the dialog",
+        "defaultValue": null
+      },
+      {
+        "name": "persistentElements",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "Array<() => Element | null>",
+          "expanded": "Array<() => Element | null>"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Returns the persistent elements that:\n- should not have pointer-events disabled\n- should not trigger the dismiss event",
+        "defaultValue": null
+      },
+      {
+        "name": "preventScroll",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to prevent scrolling behind the dialog when it's opened",
+        "defaultValue": "true"
+      },
+      {
+        "name": "restoreFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to restore focus to the element that had focus before the dialog was opened",
+        "defaultValue": null
+      },
+      {
+        "name": "role",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'dialog' | 'alertdialog'",
+          "members": [
+            "'dialog'",
+            "'alertdialog'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The dialog's role",
+        "defaultValue": "dialog"
+      },
+      {
+        "name": "trapFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to trap focus inside the dialog when it's opened",
+        "defaultValue": "true"
       }
     ],
     "ref": null

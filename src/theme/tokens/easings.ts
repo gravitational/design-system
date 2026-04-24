@@ -13,4 +13,7 @@ export const easings = defineTokens.easings({
   'ease-in-smooth': {
     value: 'cubic-bezier(0.32, 0.72, 0, 1)',
   },
+  'material-standard': {
+    value: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  },
 });
