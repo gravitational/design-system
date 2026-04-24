@@ -8,7 +8,7 @@ type ResolvedTheme<T> = T extends string
       ? { [K in keyof T]: ResolvedTheme<T[K]> }
       : never;
 
-export function resolveThemeToColors<T extends Record<string, ThemeValue>>(
+export function resolveThemeToColors<T extends ThemeValue>(
   theme: T
 ): ResolvedTheme<T> {
   const styles = getComputedStyle(document.documentElement);
