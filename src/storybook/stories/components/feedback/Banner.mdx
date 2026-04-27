@@ -1,0 +1,76 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as BannerStories from './Banner.stories';
+
+<Meta of={BannerStories} />
+
+<DocsHeader
+  title="Banner"
+  description="Displays a banner at the top of the page"
+  sourcePath="src/components/feedback/banner/ComposedBanner.tsx"
+  recipePath="src/components/feedback/banner/recipe.ts"
+/>
+
+## Usage
+
+```tsx
+import { ComposedBanner } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <ComposedBanner kind="danger" title="Your license is about to expire" />
+  );
+}
+```
+
+### Compose mode
+
+For full compositional control over every slot, use `Banner.Root` with the slot parts directly.
+
+```tsx
+import { Banner, WarningCircleIcon } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <Banner.Root kind="danger">
+      <Banner.Indicator>
+        <WarningCircleIcon />
+      </Banner.Indicator>
+      <Banner.Content>
+        <Banner.Title>Title</Banner.Title>
+        <Banner.Description>Description</Banner.Description>
+      </Banner.Content>
+    </Banner.Root>
+  );
+}
+```
+
+<Canvas of={BannerStories.ComposeExample} />
+
+### Kinds
+
+<Canvas of={BannerStories.KindsExample} />
+
+### With Description
+
+<Canvas of={BannerStories.WithDescriptionExample} />
+
+### Closable
+
+<Canvas of={BannerStories.ClosableExample} />
+
+### With Spinner
+
+<Canvas of={BannerStories.WithSpinnerExample} />
+
+### With Custom Icon
+
+<Canvas of={BannerStories.WithCustomIconExample} />
+
+## Props
+
+<PropTypes name="ComposedBanner" />

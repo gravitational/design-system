@@ -1,6 +1,7 @@
 export * from './button';
 export * from './code';
 export * from './container';
+export * from './feedback';
 export * from './forms';
 export * from './layout';
 export * from './overlays';

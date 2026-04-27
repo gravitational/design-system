@@ -115,8 +115,9 @@ const preview: PreviewWithStorySort = {
             'Slot Recipes',
             'Adding Chakra Components',
           ],
-          Components: ['Buttons'],
+          Components: ['Buttons', 'Notices'],
           'Components/Buttons': ['Button', 'Close Button'],
+          'Components/Notices': ['Alert', 'Banner'],
         };
         const pathA = a.title.split('/');
         const pathB = b.title.split('/');
