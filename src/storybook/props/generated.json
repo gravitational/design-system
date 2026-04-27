@@ -1126,6 +1126,541 @@
     "ref": null
   },
   {
+    "name": "ComposedDatePicker",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "closeOnSelect",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the calendar should close after the date selection is complete.\nThis is ignored when the selection mode is `multiple`.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "defaultFocusedValue",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateValue",
+          "expanded": "CalendarDate | CalendarDateTime | ZonedDateTime"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial focused date when rendered.\nUse when you don't need to control the focused date of the date picker.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultOpen",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial open state of the date picker when rendered.\nUse when you don't need to control the open state of the date picker.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultValue",
+        "typeInfo": {
+          "kind": "array",
+          "type": "DateValue[]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial selected date(s) when rendered.\nUse when you don't need to control the selected date(s) of the date picker.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultView",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateView",
+          "expanded": "'day' | 'month' | 'year'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The default view of the calendar",
+        "defaultValue": "day"
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the calendar is disabled.",
+        "defaultValue": null
+      },
+      {
+        "name": "focusedValue",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateValue",
+          "expanded": "CalendarDate | CalendarDateTime | ZonedDateTime"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled focused date.",
+        "defaultValue": null
+      },
+      {
+        "name": "format",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(date: DateValue, details: LocaleDetails) => string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The format of the date to display in the input.",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  root?: string | undefined;\n  label?: ((index: number) => string) | undefined;\n  table?: ((id: string) => string) | undefined;\n  tableHeader?: ((id: string) => string) | undefined;\n  tableBody?: ((id: string) => string) | undefined;\n  tableRow?: ((id: string) => string) | undefined;\n  content?: string | undefined;\n  cellTrigger?: ((id: string) => string) | undefined;\n  prevTrigger?: ((view: DateView) => string) | undefined;\n  nextTrigger?: ((view: DateView) => string) | undefined;\n  viewTrigger?: ((view: DateView) => string) | undefined;\n  clearTrigger?: string | undefined;\n  control?: string | undefined;\n  input?: ((index: number) => string) | undefined;\n  trigger?: string | undefined;\n  monthSelect?: string | undefined;\n  yearSelect?: string | undefined;\n  positioner?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the date picker. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "immediate",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame",
+        "defaultValue": null
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the date picker is invalid",
+        "defaultValue": null
+      },
+      {
+        "name": "isDateUnavailable",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(date: DateValue, locale: string) => boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Returns whether a date of the calendar is available.",
+        "defaultValue": null
+      },
+      {
+        "name": "lazyMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to enable lazy mounting",
+        "defaultValue": "false"
+      },
+      {
+        "name": "locale",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The locale (BCP 47 language tag) to use when formatting the date.",
+        "defaultValue": "en-US"
+      },
+      {
+        "name": "max",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateValue",
+          "expanded": "CalendarDate | CalendarDateTime | ZonedDateTime"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The maximum date that can be selected.",
+        "defaultValue": null
+      },
+      {
+        "name": "maxView",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateView",
+          "expanded": "'day' | 'month' | 'year'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The maximum view of the calendar",
+        "defaultValue": "year"
+      },
+      {
+        "name": "min",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateValue",
+          "expanded": "CalendarDate | CalendarDateTime | ZonedDateTime"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The minimum date that can be selected.",
+        "defaultValue": null
+      },
+      {
+        "name": "minView",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateView",
+          "expanded": "'day' | 'month' | 'year'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The minimum view of the calendar",
+        "defaultValue": "day"
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The `name` attribute of the input element.",
+        "defaultValue": null
+      },
+      {
+        "name": "numOfMonths",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The number of months to display.",
+        "defaultValue": null
+      },
+      {
+        "name": "onExitComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the closed state",
+        "defaultValue": null
+      },
+      {
+        "name": "onFocusChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: DatePicker.FocusChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the focused date changes.",
+        "defaultValue": null
+      },
+      {
+        "name": "onOpenChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: DatePicker.OpenChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the calendar opens or closes.",
+        "defaultValue": null
+      },
+      {
+        "name": "onValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: DatePicker.ValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the value changes.",
+        "defaultValue": null
+      },
+      {
+        "name": "onViewChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: DatePicker.ViewChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the view changes.",
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled open state of the date picker",
+        "defaultValue": null
+      },
+      {
+        "name": "outsideDaySelectable",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether day outside the visible range can be selected.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "parse",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(value: string, details: LocaleDetails) => DateValue | undefined"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to parse the date from the input back to a DateValue.",
+        "defaultValue": null
+      },
+      {
+        "name": "placeholder",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The placeholder text to display in the input.",
+        "defaultValue": null
+      },
+      {
+        "name": "positioning",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "PositioningOptions",
+          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The user provided options used to position the date picker content",
+        "defaultValue": null
+      },
+      {
+        "name": "present",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the node is present (controlled by the user)",
+        "defaultValue": null
+      },
+      {
+        "name": "readOnly",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the calendar is read-only.",
+        "defaultValue": null
+      },
+      {
+        "name": "required",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the date picker is required",
+        "defaultValue": null
+      },
+      {
+        "name": "selectionMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "SelectionMode",
+          "expanded": "'single' | 'multiple' | 'range'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The selection mode of the calendar.\n- `single` - only one date can be selected\n- `multiple` - multiple dates can be selected\n- `range` - a range of dates can be selected",
+        "defaultValue": "single"
+      },
+      {
+        "name": "skipAnimationOnMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to allow the initial presence animation.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "startOfWeek",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The first day of the week.\n `0` - Sunday\n `1` - Monday\n `2` - Tuesday\n `3` - Wednesday\n `4` - Thursday\n `5` - Friday\n `6` - Saturday",
+        "defaultValue": null
+      },
+      {
+        "name": "timeZone",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The time zone to use",
+        "defaultValue": "UTC"
+      },
+      {
+        "name": "translations",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "IntlTranslations",
+          "expanded": "interface IntlTranslations {\n  dayCell: (state: DayTableCellState) => string;\n  nextTrigger: (view: DateView) => string;\n  monthSelect: string;\n  yearSelect: string;\n  viewTrigger: (view: DateView) => string;\n  prevTrigger: (view: DateView) => string;\n  presetTrigger: (value: string[]) => string;\n  clearTrigger: string;\n  trigger: (open: boolean) => string;\n  content: string;\n  placeholder: (locale: string) => {\n    year: string;\n    month: string;\n    day: string;\n  };\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The localized messages to use.",
+        "defaultValue": null
+      },
+      {
+        "name": "unmountOnExit",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to unmount on exit.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "array",
+          "type": "DateValue[]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled selected date(s).",
+        "defaultValue": null
+      },
+      {
+        "name": "view",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateView",
+          "expanded": "'day' | 'month' | 'year'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The view of the calendar",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "ComposedDialog",
     "props": [
       {
@@ -1951,6 +2486,1091 @@
         "required": false,
         "readonly": false,
         "description": "If `true`, the container will take the full width of its parent",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "closeOnSelect",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the calendar should close after the date selection is complete.\nThis is ignored when the selection mode is `multiple`.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "defaultFocusedValue",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateValue",
+          "expanded": "CalendarDate | CalendarDateTime | ZonedDateTime"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial focused date when rendered.\nUse when you don't need to control the focused date of the date picker.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultOpen",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial open state of the date picker when rendered.\nUse when you don't need to control the open state of the date picker.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultValue",
+        "typeInfo": {
+          "kind": "array",
+          "type": "DateValue[]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial selected date(s) when rendered.\nUse when you don't need to control the selected date(s) of the date picker.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultView",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateView",
+          "expanded": "'day' | 'month' | 'year'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The default view of the calendar",
+        "defaultValue": "day"
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the calendar is disabled.",
+        "defaultValue": null
+      },
+      {
+        "name": "fixedWeeks",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the calendar should have a fixed number of weeks.\nThis renders the calendar with 6 weeks instead of 5 or 6.",
+        "defaultValue": null
+      },
+      {
+        "name": "focusedValue",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateValue",
+          "expanded": "CalendarDate | CalendarDateTime | ZonedDateTime"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled focused date.",
+        "defaultValue": null
+      },
+      {
+        "name": "format",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(date: DateValue, details: LocaleDetails) => string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The format of the date to display in the input.",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  root?: string | undefined;\n  label?: ((index: number) => string) | undefined;\n  table?: ((id: string) => string) | undefined;\n  tableHeader?: ((id: string) => string) | undefined;\n  tableBody?: ((id: string) => string) | undefined;\n  tableRow?: ((id: string) => string) | undefined;\n  content?: string | undefined;\n  cellTrigger?: ((id: string) => string) | undefined;\n  prevTrigger?: ((view: DateView) => string) | undefined;\n  nextTrigger?: ((view: DateView) => string) | undefined;\n  viewTrigger?: ((view: DateView) => string) | undefined;\n  clearTrigger?: string | undefined;\n  control?: string | undefined;\n  input?: ((index: number) => string) | undefined;\n  trigger?: string | undefined;\n  monthSelect?: string | undefined;\n  yearSelect?: string | undefined;\n  positioner?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the date picker. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "immediate",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame",
+        "defaultValue": null
+      },
+      {
+        "name": "inline",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to render the date picker inline",
+        "defaultValue": null
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the date picker is invalid",
+        "defaultValue": null
+      },
+      {
+        "name": "isDateUnavailable",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(date: DateValue, locale: string) => boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Returns whether a date of the calendar is available.",
+        "defaultValue": null
+      },
+      {
+        "name": "lazyMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to enable lazy mounting",
+        "defaultValue": "false"
+      },
+      {
+        "name": "locale",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The locale (BCP 47 language tag) to use when formatting the date.",
+        "defaultValue": "en-US"
+      },
+      {
+        "name": "max",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateValue",
+          "expanded": "CalendarDate | CalendarDateTime | ZonedDateTime"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The maximum date that can be selected.",
+        "defaultValue": null
+      },
+      {
+        "name": "maxView",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateView",
+          "expanded": "'day' | 'month' | 'year'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The maximum view of the calendar",
+        "defaultValue": "year"
+      },
+      {
+        "name": "min",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateValue",
+          "expanded": "CalendarDate | CalendarDateTime | ZonedDateTime"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The minimum date that can be selected.",
+        "defaultValue": null
+      },
+      {
+        "name": "minView",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateView",
+          "expanded": "'day' | 'month' | 'year'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The minimum view of the calendar",
+        "defaultValue": "day"
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The `name` attribute of the input element.",
+        "defaultValue": null
+      },
+      {
+        "name": "numOfMonths",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The number of months to display.",
+        "defaultValue": null
+      },
+      {
+        "name": "onExitComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the closed state",
+        "defaultValue": null
+      },
+      {
+        "name": "onFocusChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: DatePicker.FocusChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the focused date changes.",
+        "defaultValue": null
+      },
+      {
+        "name": "onOpenChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: DatePicker.OpenChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the calendar opens or closes.",
+        "defaultValue": null
+      },
+      {
+        "name": "onValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: DatePicker.ValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the value changes.",
+        "defaultValue": null
+      },
+      {
+        "name": "onViewChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: DatePicker.ViewChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the view changes.",
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled open state of the date picker",
+        "defaultValue": null
+      },
+      {
+        "name": "outsideDaySelectable",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether day outside the visible range can be selected.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "parse",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(value: string, details: LocaleDetails) => DateValue | undefined"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to parse the date from the input back to a DateValue.",
+        "defaultValue": null
+      },
+      {
+        "name": "placeholder",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The placeholder text to display in the input.",
+        "defaultValue": null
+      },
+      {
+        "name": "positioning",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "PositioningOptions",
+          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The user provided options used to position the date picker content",
+        "defaultValue": null
+      },
+      {
+        "name": "present",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the node is present (controlled by the user)",
+        "defaultValue": null
+      },
+      {
+        "name": "readOnly",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the calendar is read-only.",
+        "defaultValue": null
+      },
+      {
+        "name": "required",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the date picker is required",
+        "defaultValue": null
+      },
+      {
+        "name": "selectionMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "SelectionMode",
+          "expanded": "'single' | 'multiple' | 'range'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The selection mode of the calendar.\n- `single` - only one date can be selected\n- `multiple` - multiple dates can be selected\n- `range` - a range of dates can be selected",
+        "defaultValue": "single"
+      },
+      {
+        "name": "skipAnimationOnMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to allow the initial presence animation.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "startOfWeek",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The first day of the week.\n `0` - Sunday\n `1` - Monday\n `2` - Tuesday\n `3` - Wednesday\n `4` - Thursday\n `5` - Friday\n `6` - Saturday",
+        "defaultValue": null
+      },
+      {
+        "name": "timeZone",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The time zone to use",
+        "defaultValue": "UTC"
+      },
+      {
+        "name": "translations",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "IntlTranslations",
+          "expanded": "interface IntlTranslations {\n  dayCell: (state: DayTableCellState) => string;\n  nextTrigger: (view: DateView) => string;\n  monthSelect: string;\n  yearSelect: string;\n  viewTrigger: (view: DateView) => string;\n  prevTrigger: (view: DateView) => string;\n  presetTrigger: (value: string[]) => string;\n  clearTrigger: string;\n  trigger: (open: boolean) => string;\n  content: string;\n  placeholder: (locale: string) => {\n    year: string;\n    month: string;\n    day: string;\n  };\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The localized messages to use.",
+        "defaultValue": null
+      },
+      {
+        "name": "unmountOnExit",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to unmount on exit.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "array",
+          "type": "DateValue[]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled selected date(s).",
+        "defaultValue": null
+      },
+      {
+        "name": "view",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateView",
+          "expanded": "'day' | 'month' | 'year'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The view of the calendar",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.ClearTrigger",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.Content",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.Control",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.Input",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "fixOnBlur",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to fix the input value on blur.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "index",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The index of the input to focus.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.Label",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.MonthSelect",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.NextTrigger",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.Positioner",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.PresetTrigger",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "PresetTriggerValue",
+          "expanded": "DateValue[] | DateRangePreset"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.PrevTrigger",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.RangeText",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.Table",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "columns",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.TableBody",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.TableCell",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "columns",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateValue",
+          "expanded": "CalendarDate | CalendarDateTime | ZonedDateTime"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "visibleRange",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VisibleRange",
+          "expanded": "Range<DateValue>"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.TableCellTrigger",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.TableHead",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.TableHeader",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.TableRow",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.Trigger",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.View",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "view",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DateView",
+          "expanded": "'day' | 'month' | 'year'"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.ViewControl",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.ViewTrigger",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "DatePicker.YearSelect",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
         "defaultValue": null
       }
     ],

@@ -1,0 +1,116 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as DatePickerStories from './DatePicker.stories';
+
+<Meta of={DatePickerStories} />
+
+<DocsHeader
+  title="Date Picker"
+  description="A calendar date picker for selecting date(s)"
+  sourcePath="src/components/forms/datePicker/ComposedDatePicker.tsx"
+  recipePath="src/components/forms/datePicker/recipe.ts"
+/>
+
+## Usage
+
+```tsx
+import { ComposedDatePicker } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <ComposedDatePicker
+      onValueChange={({ valueAsString }) => console.log(valueAsString[0])}
+    />
+  );
+}
+```
+
+### Compose mode
+
+For full compositional control over every slot, use `DatePicker.Root` with the slot parts directly. Use `DatePicker.Context` to read calendar state and call actions on the underlying api.
+
+```tsx
+import { DatePicker } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <DatePicker.Root inline>
+      <DatePicker.Content>{/*...*/}</DatePicker.Content>
+      <DatePicker.Context>
+        {api => (
+          <>
+            <span>{api.valueAsString.join(', ') || 'No date selected'}</span>
+            <button onClick={() => api.goToPrev()}>Previous month</button>
+            <button onClick={() => api.goToNext()}>Next month</button>
+            <button onClick={() => api.clearValue()}>Clear</button>
+          </>
+        )}
+      </DatePicker.Context>
+    </DatePicker.Root>
+  );
+}
+```
+
+<Canvas of={DatePickerStories.ComposeExample} />
+
+### Listening for changes
+
+`onValueChange` receives the selected date(s) as an array of `DateValue`
+objects (from `@internationalized/date`). For a single date selection
+the array has one element; for range selection it has two (start and
+end).
+
+```tsx
+<ComposedDatePicker
+  onValueChange={({ value, valueAsString }) => {
+    console.log(value[0].year, value[0].month, value[0].day); // e.g. 2026 9 25
+    console.log(valueAsString[0]); // e.g. "2026-09-25"
+  }}
+/>
+```
+
+### Setting an initial value
+
+```tsx
+import { CalendarDate } from '@internationalized/date';
+
+<ComposedDatePicker defaultValue={[new CalendarDate(2026, 9, 25)]} />;
+```
+
+### Setting the selectable range
+
+```tsx
+import { CalendarDate } from '@internationalized/date';
+
+<ComposedDatePicker
+  min={new CalendarDate(2020, 9, 25)}
+  max={new CalendarDate(2026, 9, 25)}
+/>;
+```
+
+### Disabling specific dates
+
+```tsx
+// Disable odd days
+<ComposedDatePicker isDateUnavailable={date => date.day % 2 !== 0} />
+```
+
+### Single date selection
+
+<Canvas of={DatePickerStories.SingleExample} />
+
+### Range selection
+
+<Canvas of={DatePickerStories.RangeExample} />
+
+### Multiple months view
+
+<Canvas of={DatePickerStories.MultiMonthExample} />
+
+## Props
+
+<PropTypes name="ComposedDatePicker" />
