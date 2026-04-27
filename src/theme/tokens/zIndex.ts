@@ -22,6 +22,9 @@ export const zIndex = defineTokens.zIndex({
   overlay: {
     value: 1100,
   },
+  menu: {
+    value: 1350,
+  },
   modal: {
     value: 1200,
   },
