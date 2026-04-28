@@ -7,12 +7,14 @@ export const dialogSlotRecipe = defineSlotRecipe({
   base: {
     backdrop: {
       bg: 'blackAlpha.600',
-      zIndex: 'modal',
+      '--dialog-z-index': 'zIndex.popover',
+      zIndex: 'calc(var(--dialog-z-index) + var(--layer-index, 0) - 1)',
       position: 'fixed',
       inset: 0,
     },
     positioner: {
-      zIndex: 'modal',
+      '--dialog-z-index': 'zIndex.popover',
+      zIndex: 'calc(var(--dialog-z-index) + var(--layer-index, 0))',
       position: 'fixed',
       inset: 0,
       display: 'flex',
@@ -34,7 +36,8 @@ export const dialogSlotRecipe = defineSlotRecipe({
       position: 'relative',
       maxH: 'calc(100% - 96px)',
       overflowY: 'auto',
-      zIndex: 'modal',
+      '--dialog-z-index': 'zIndex.popover',
+      zIndex: 'calc(var(--dialog-z-index) + var(--layer-index, 0))',
       _open: {
         animationStyle: 'fade-in',
         animationDuration: 'dialog',
