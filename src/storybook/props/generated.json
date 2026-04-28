@@ -24,28 +24,7 @@
   },
   {
     "name": "Alert",
-    "props": [
-      {
-        "name": "kind",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'success' | 'danger' | 'info' | 'warning' | 'neutral' | 'cta'",
-          "members": [
-            "'success'",
-            "'danger'",
-            "'info'",
-            "'warning'",
-            "'neutral'",
-            "'cta'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "danger"
-      }
-    ],
+    "props": [],
     "ref": null
   },
   {
@@ -85,28 +64,7 @@
   },
   {
     "name": "BannerRoot",
-    "props": [
-      {
-        "name": "kind",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'primary' | 'neutral' | 'danger' | 'warning' | 'info' | 'success'",
-          "members": [
-            "'primary'",
-            "'neutral'",
-            "'danger'",
-            "'warning'",
-            "'info'",
-            "'success'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "danger"
-      }
-    ],
+    "props": [],
     "ref": null
   },
   {
@@ -977,26 +935,6 @@
         "defaultValue": null
       },
       {
-        "name": "kind",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'success' | 'danger' | 'info' | 'warning' | 'neutral' | 'cta'",
-          "members": [
-            "'success'",
-            "'danger'",
-            "'info'",
-            "'warning'",
-            "'neutral'",
-            "'cta'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "danger"
-      },
-      {
         "name": "onClose",
         "typeInfo": {
           "kind": "function",
@@ -1076,26 +1014,6 @@
         "readonly": false,
         "description": "If `true`, replaces the icon with a loading spinner.",
         "defaultValue": null
-      },
-      {
-        "name": "kind",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'primary' | 'neutral' | 'danger' | 'warning' | 'info' | 'success'",
-          "members": [
-            "'primary'",
-            "'neutral'",
-            "'danger'",
-            "'warning'",
-            "'info'",
-            "'success'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "danger"
       },
       {
         "name": "onClose",
