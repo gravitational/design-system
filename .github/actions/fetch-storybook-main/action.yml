@@ -1,8 +1,8 @@
 name: 'Fetch Main Storybook Artifact'
-description: 'Fetches the latest main storybook artifact from the storybook.yml workflow'
+description: 'Fetches the latest main storybook artifact from the storybook.yml workflow. Sets found=false (without erroring) if no main has ever been deployed; fails the step on download errors so callers do not overwrite Pages with empty content.'
 outputs:
   found:
-    description: 'Whether the artifact was found'
+    description: 'Whether a main storybook artifact exists (true/false)'
     value: ${{ steps.get-main-run.outputs.found }}
   run-id:
     description: 'The workflow run ID where the artifact was found'
@@ -10,7 +10,7 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - name: Get latest main storybook workflow run
+    - name: Locate latest main storybook workflow run
       id: get-main-run
       uses: actions/github-script@v7
       with:
@@ -21,16 +21,16 @@ runs:
             workflow_id: '.github/workflows/storybook.yml',
             branch: 'main',
             status: 'success',
-            per_page: 1
+            per_page: 1,
           });
 
           if (runs.data.workflow_runs.length > 0) {
             const runId = runs.data.workflow_runs[0].id;
-            console.log(`Found main storybook run: ${runId}`);
+            core.info(`Found main storybook run: ${runId}`);
             core.setOutput('run_id', runId);
             core.setOutput('found', 'true');
           } else {
-            console.log('No main storybook runs found');
+            core.info('No successful main storybook runs found.');
             core.setOutput('found', 'false');
           }
 
@@ -43,4 +43,3 @@ runs:
         github-token: ${{ github.token }}
         repository: ${{ github.repository }}
         run-id: ${{ steps.get-main-run.outputs.run_id }}
-      continue-on-error: true

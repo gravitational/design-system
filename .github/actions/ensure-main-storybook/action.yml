@@ -1,0 +1,53 @@
+name: 'Ensure Main Storybook Build Exists'
+description: |
+  Ensures ./storybook-static-main contains a main storybook build. Tries the latest
+  storybook-main artifact first; if no main has ever been deployed it falls back to
+  building from the main branch. Download errors fail the step so callers do not
+  overwrite Pages with empty content.
+inputs:
+  node-version:
+    description: 'Node.js version to use when falling back to a fresh build'
+    required: false
+    default: '22.x'
+runs:
+  using: 'composite'
+  steps:
+    - name: Fetch latest main storybook artifact
+      id: fetch-main
+      uses: ./.github/actions/fetch-storybook-main
+
+    - name: Checkout main branch for fallback build
+      if: steps.fetch-main.outputs.found != 'true'
+      uses: actions/checkout@v5
+      with:
+        ref: main
+        path: ./_main-build
+
+    - name: Setup Node.js for fallback build
+      if: steps.fetch-main.outputs.found != 'true'
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Enable Corepack for fallback build
+      if: steps.fetch-main.outputs.found != 'true'
+      shell: bash
+      run: corepack enable
+
+    - name: Install dependencies and build main storybook
+      if: steps.fetch-main.outputs.found != 'true'
+      shell: bash
+      working-directory: ./_main-build
+      run: |
+        pnpm install --frozen-lockfile
+        pnpm build-storybook
+
+    - name: Move fallback build into ./storybook-static-main
+      if: steps.fetch-main.outputs.found != 'true'
+      shell: bash
+      run: |
+        set -euo pipefail
+        rm -rf ./storybook-static-main
+        mv ./_main-build/storybook-static ./storybook-static-main
+        rm -rf ./_main-build
+        echo "Built main storybook from main branch (no prior artifact)."

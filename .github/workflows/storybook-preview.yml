@@ -35,76 +35,36 @@ jobs:
       - name: Build Storybook
         run: pnpm build-storybook
 
-      - name: Fetch main storybook
-        uses: ./.github/actions/fetch-storybook-main
+      - name: Upload this PR's storybook artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-pr-${{ github.event.pull_request.number }}
+          path: ./storybook-static
+          retention-days: 90
+          overwrite: true
 
-      - name: Fetch previous PR previews
+      - name: Ensure main storybook build is available
+        uses: ./.github/actions/ensure-main-storybook
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Fetch other open PR previews
         uses: ./.github/actions/fetch-pr-previews
+        with:
+          exclude-pr: ${{ github.event.pull_request.number }}
 
-      - name: Add current PR storybook to previews
+      - name: Add this PR's freshly-built storybook to previews
         run: |
+          set -euo pipefail
           PR_NUMBER=${{ github.event.pull_request.number }}
-
-          # Create or update PR previews directory
           mkdir -p ./pr-previews
+          rm -rf "./pr-previews/${PR_NUMBER}"
+          mkdir -p "./pr-previews/${PR_NUMBER}"
+          cp -r ./storybook-static/. "./pr-previews/${PR_NUMBER}/"
+          echo "Staged PR #${PR_NUMBER} preview from this run's build."
 
-          # Add this PR's storybook
-          rm -rf ./pr-previews/${PR_NUMBER}
-          mkdir -p ./pr-previews/${PR_NUMBER}
-          cp -r ./storybook-static/* ./pr-previews/${PR_NUMBER}/
-          echo "Added PR #${PR_NUMBER} preview"
-
-      - name: Upload PR previews artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: storybook-pr-previews
-          path: ./pr-previews
-          retention-days: 30
-          overwrite: true
-
-      - name: Combine main storybook with PR previews
-        run: |
-          mkdir -p ./combined-pages
-
-          # Add main storybook if it exists
-          if [ -d ./storybook-static-main ]; then
-            cp -r ./storybook-static-main/* ./combined-pages/
-            echo "Added main storybook"
-          else
-            echo "Warning: No main storybook found. Main branch needs to be deployed."
-          fi
-
-          # Add all PR previews
-          if [ -d ./pr-previews ]; then
-            cp -r ./pr-previews ./combined-pages/pr
-            echo "Added PR previews to combined pages"
-          fi
-
-      - name: Archive pages artifact
-        shell: sh
-        run: |
-          echo ::group::Archive artifact
-          tar \
-            --dereference --hard-dereference \
-            --directory "./combined-pages" \
-            -cvf "$RUNNER_TEMP/artifact.tar" \
-            --exclude=.git \
-            --exclude=.github \
-            --exclude=".[^/]*" \
-            .
-          echo ::endgroup::
-
-      - name: Upload pages artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: ${{ runner.temp }}/artifact.tar
-          retention-days: 1
-          overwrite: true
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Assemble and deploy combined pages
+        uses: ./.github/actions/deploy-combined-pages
 
       - name: Post deployment comment
         env:
