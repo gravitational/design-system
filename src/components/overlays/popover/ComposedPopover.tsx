@@ -1,5 +1,10 @@
 import { Popover as ChakraPopover, Portal } from '@chakra-ui/react';
-import type { ReactNode, RefAttributes, RefObject } from 'react';
+import {
+  isValidElement,
+  type ReactNode,
+  type RefAttributes,
+  type RefObject,
+} from 'react';
 
 export type PopoverPositioning = NonNullable<
   ChakraPopover.RootProps['positioning']
@@ -66,8 +71,12 @@ export function ComposedPopover({
   );
 
   return (
-    <ChakraPopover.Root positioning={mergedPositioning} {...rest}>
-      {anchorRef === undefined && trigger !== undefined && (
+    <ChakraPopover.Root
+      positioning={mergedPositioning}
+      portalled={portalled}
+      {...rest}
+    >
+      {anchorRef === undefined && isValidElement(trigger) && (
         <ChakraPopover.Trigger asChild>{trigger}</ChakraPopover.Trigger>
       )}
 

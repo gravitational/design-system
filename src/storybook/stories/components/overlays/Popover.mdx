@@ -100,11 +100,17 @@ Popovers can be nested. The parent stays open, the child stacks on top, and focu
 
 <Canvas of={PopoverStories.NestedPopover} />
 
-### Controlled with `anchorRef`
+### Controlled
 
-Drive the popover programmatically by supplying `open` / `onOpenChange` plus an `anchorRef`. No trigger is rendered - the popover positions itself against the referenced element.
+Drive the popover programmatically by supplying `open` / `onOpenChange`.
 
 <Canvas of={PopoverStories.ControlledPopover} />
+
+### Anchor ref
+
+Position the popover against an arbitrary element by passing an `anchorRef`. No `<Popover.Trigger>` is rendered - the popover positions itself against the referenced element, leaving open/close behavior to you.
+
+<Canvas of={PopoverStories.AnchorRefPopover} />
 
 ### Layout
 

@@ -1,4 +1,4 @@
-import { Grid, HStack, Portal, Stack } from '@chakra-ui/react';
+import { Portal } from '@chakra-ui/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useRef, useState } from 'react';
 import { expect, fn, waitFor, within } from 'storybook/test';
@@ -9,8 +9,11 @@ import {
   ComposedPopover,
   type ComposedPopoverProps,
   Field,
+  Grid,
+  HStack,
   Input,
   Popover,
+  Stack,
 } from '../../../../components';
 
 const hiddenTags = ['!dev', '!docs', '!test'];
@@ -218,6 +221,51 @@ export const Controlled: StoryObj<typeof meta> = {
     });
   },
   render: ControlledPopover,
+};
+
+export function AnchorRefPopover(args: ComposedPopoverProps) {
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef<HTMLButtonElement>(null);
+  return (
+    <Stack gap={3} align="flex-start">
+      <Button
+        ref={anchorRef}
+        onClick={() => {
+          setOpen(o => !o);
+        }}
+      >
+        Toggle (anchored)
+      </Button>
+      <ComposedPopover
+        {...args}
+        anchorRef={anchorRef}
+        open={open}
+        onOpenChange={details => {
+          setOpen(details.open);
+          args.onOpenChange?.(details);
+        }}
+        placement="bottom"
+      >
+        <Popover.Body>
+          Positioned against an external anchor ref - no trigger is rendered.
+        </Popover.Body>
+      </ComposedPopover>
+    </Stack>
+  );
+}
+AnchorRefPopover.tags = hiddenTags;
+
+export const AnchorRef: StoryObj<typeof meta> = {
+  parameters: { layout: 'centered', controls: { disable: true } },
+  play: async ({ canvas, userEvent }) => {
+    const toggle = canvas.getByRole('button', { name: 'Toggle (anchored)' });
+    await userEvent.click(toggle);
+    await waitFor(async () => {
+      const body = within(document.body).getByText(/external anchor ref/);
+      await expect(body).toBeVisible();
+    });
+  },
+  render: AnchorRefPopover,
 };
 
 export function Layout() {
