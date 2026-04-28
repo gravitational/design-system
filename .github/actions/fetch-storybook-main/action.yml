@@ -1,5 +1,5 @@
 name: 'Fetch Main Storybook Artifact'
-description: 'Fetches the latest main storybook artifact from the storybook.yml workflow. Sets found=false (without erroring) if no main has ever been deployed; fails the step on download errors so callers do not overwrite Pages with empty content.'
+description: 'Fetches the latest available main storybook artifact from the storybook.yml workflow. Sets found=false (without erroring) when no usable artifact exists — either no main has ever been deployed, or the most recent artifacts have expired or been deleted. Fails the step on download errors so callers do not overwrite Pages with empty content.'
 outputs:
   found:
     description: 'Whether a main storybook artifact exists (true/false)'
@@ -10,7 +10,7 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - name: Locate latest main storybook workflow run
+    - name: Locate latest main storybook workflow run with available artifact
       id: get-main-run
       uses: actions/github-script@v7
       with:
@@ -21,18 +21,28 @@ runs:
             workflow_id: '.github/workflows/storybook.yml',
             branch: 'main',
             status: 'success',
-            per_page: 1,
+            per_page: 30,
           });
 
-          if (runs.data.workflow_runs.length > 0) {
-            const runId = runs.data.workflow_runs[0].id;
-            core.info(`Found main storybook run: ${runId}`);
-            core.setOutput('run_id', runId);
-            core.setOutput('found', 'true');
-          } else {
-            core.info('No successful main storybook runs found.');
-            core.setOutput('found', 'false');
+          for (const run of runs.data.workflow_runs) {
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: run.id,
+            });
+            const artifact = artifacts.data.artifacts.find(
+              a => a.name === 'storybook-main' && !a.expired
+            );
+            if (artifact) {
+              core.info(`Found main storybook artifact in run: ${run.id}`);
+              core.setOutput('run_id', run.id);
+              core.setOutput('found', 'true');
+              return;
+            }
           }
+
+          core.info('No available main storybook artifact found.');
+          core.setOutput('found', 'false');
 
     - name: Download main storybook artifact
       if: steps.get-main-run.outputs.found == 'true'

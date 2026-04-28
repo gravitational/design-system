@@ -1,8 +1,9 @@
 name: 'Ensure Main Storybook Build Exists'
 description: |
   Ensures ./storybook-static-main contains a main storybook build. Tries the latest
-  storybook-main artifact first; if no main has ever been deployed it falls back to
-  building from the main branch. Download errors fail the step so callers do not
+  available storybook-main artifact first; if no usable artifact exists (no main has
+  ever been deployed, or recent artifacts have expired or been deleted) it falls back
+  to building from the main branch. Download errors fail the step so callers do not
   overwrite Pages with empty content.
 inputs:
   node-version:
