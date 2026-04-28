@@ -1,0 +1,80 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as AlertStories from './Alert.stories';
+
+<Meta of={AlertStories} />
+
+<DocsHeader
+  title="Alert"
+  description="Displays an in-page notice"
+  sourcePath="src/components/feedback/alert/ComposedAlert.tsx"
+  recipePath="src/components/feedback/alert/recipe.ts"
+/>
+
+## Usage
+
+```tsx
+import { ComposedAlert } from '@gravitational/design-system';
+
+function Example() {
+  return <ComposedAlert kind="danger" title="Something went wrong" />;
+}
+```
+
+### Compose mode
+
+For full compositional control over every slot, use `Alert.Root` with the slot parts directly.
+
+```tsx
+import { Alert, WarningCircleIcon } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <Alert.Root kind="warning">
+      <Alert.Indicator>
+        <WarningCircleIcon />
+      </Alert.Indicator>
+      <Alert.Content>
+        <Alert.Title>Title</Alert.Title>
+        <Alert.Description>Description</Alert.Description>
+      </Alert.Content>
+    </Alert.Root>
+  );
+}
+```
+
+<Canvas of={AlertStories.ComposeExample} />
+
+### Kinds
+
+<Canvas of={AlertStories.KindsExample} />
+
+### With Description
+
+<Canvas of={AlertStories.WithDescriptionExample} />
+
+### Closable
+
+<Canvas of={AlertStories.ClosableExample} />
+
+### With Spinner
+
+<Canvas of={AlertStories.WithSpinnerExample} />
+
+### With Custom Icon
+
+<Canvas of={AlertStories.WithCustomIconExample} />
+
+## Props
+
+### ComposedAlert
+
+<PropTypes name="ComposedAlert" />
+
+### Root
+
+<PropTypes name="Alert" />
