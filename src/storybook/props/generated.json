@@ -832,6 +832,472 @@
     }
   },
   {
+    "name": "ComposedMenu",
+    "props": [
+      {
+        "name": "anchorPoint",
+        "typeInfo": {
+          "kind": "union",
+          "type": "Point | null",
+          "members": [
+            "Point",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The positioning point for the menu. Can be set by the context menu trigger or the button trigger.",
+        "defaultValue": null
+      },
+      {
+        "name": "aria-label",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The accessibility label for the menu",
+        "defaultValue": null
+      },
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Menu items (auto-wrapped in `<Menu.Content>`).",
+        "defaultValue": null
+      },
+      {
+        "name": "closeOnSelect",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to close the menu when an option is selected",
+        "defaultValue": "true"
+      },
+      {
+        "name": "composite",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the menu is a composed with other composite widgets like a combobox or tabs",
+        "defaultValue": "true"
+      },
+      {
+        "name": "contentProps",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ContentProps",
+          "expanded": "MenuContentProps"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Forwarded to the auto-injected `<Menu.Content>`.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultHighlightedValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial highlighted value of the menu item when rendered.\nUse when you don't need to control the highlighted value of the menu item.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultOpen",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial open state of the menu when rendered.\nUse when you don't need to control the open state of the menu.",
+        "defaultValue": null
+      },
+      {
+        "name": "gutter",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Distance from anchor in px.",
+        "defaultValue": null
+      },
+      {
+        "name": "highlightedValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled highlighted value of the menu item.",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  trigger?: string | undefined;\n  contextTrigger?: string | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the menu. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "immediate",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to synchronize the present change immediately or defer it to the next frame",
+        "defaultValue": null
+      },
+      {
+        "name": "lazyMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to enable lazy mounting",
+        "defaultValue": "false"
+      },
+      {
+        "name": "loopFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to loop the keyboard navigation.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "navigate",
+        "typeInfo": {
+          "kind": "union",
+          "type": "((details: NavigateDetails) => void) | null",
+          "members": [
+            "((details: NavigateDetails) => void)",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to navigate to the selected item if it's an anchor element",
+        "defaultValue": null
+      },
+      {
+        "name": "onEscapeKeyDown",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: KeyboardEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the escape key is pressed",
+        "defaultValue": null
+      },
+      {
+        "name": "onExitComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "VoidFunction"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the closed state",
+        "defaultValue": null
+      },
+      {
+        "name": "onFocusOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: FocusOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the focus is moved outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onHighlightChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: HighlightChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the highlighted menu item changes.",
+        "defaultValue": null
+      },
+      {
+        "name": "onInteractOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: InteractOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when an interaction happens outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onOpenChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: OpenChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the menu opens or closes",
+        "defaultValue": null
+      },
+      {
+        "name": "onPointerDownOutside",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: PointerDownOutsideEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the pointer is pressed down outside the component",
+        "defaultValue": null
+      },
+      {
+        "name": "onRequestDismiss",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(event: LayerDismissEvent) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when this layer is closed due to a parent layer being closed",
+        "defaultValue": null
+      },
+      {
+        "name": "onSelect",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: SelectionDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when a menu item is selected.",
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled open state of the menu",
+        "defaultValue": null
+      },
+      {
+        "name": "placement",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "MenuPlacement",
+          "expanded": "type t =\n  | 'bottom'\n  | 'left'\n  | 'right'\n  | 'top'\n  | 'bottom-end'\n  | 'bottom-start'\n  | 'left-end'\n  | 'left-start'\n  | 'right-end'\n  | 'right-start'\n  | 'top-end'\n  | 'top-start'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "bottom-start"
+      },
+      {
+        "name": "portalled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Render content in a Portal. Default `true`.",
+        "defaultValue": null
+      },
+      {
+        "name": "portalRef",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "RefObject",
+          "expanded": "RefObject"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Target container for the Portal.",
+        "defaultValue": null
+      },
+      {
+        "name": "positioning",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "MenuPositioning",
+          "expanded": "PositioningOptions"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Full positioning config. Overrides `placement` and `gutter`.",
+        "defaultValue": null
+      },
+      {
+        "name": "present",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the node is present (controlled by the user)",
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md'",
+          "members": [
+            "'sm'",
+            "'md'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "md"
+      },
+      {
+        "name": "skipAnimationOnMount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to allow the initial presence animation.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "trigger",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Convenience: element wrapped in `<Menu.Trigger asChild>`. Typically a\nButton.",
+        "defaultValue": null
+      },
+      {
+        "name": "typeahead",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the pressing printable characters should trigger typeahead navigation",
+        "defaultValue": "true"
+      },
+      {
+        "name": "unmountOnExit",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to unmount on exit.",
+        "defaultValue": "false"
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "Container",
     "props": [
       {

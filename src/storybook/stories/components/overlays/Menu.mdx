@@ -1,0 +1,118 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as MenuStories from './Menu.stories';
+
+<Meta of={MenuStories} />
+
+<DocsHeader
+  title="Menu"
+  description="Displays a list of actions or options anchored to a trigger element. Supports nested submenus, keyboard navigation, checkbox/radio items, and hover-to-open."
+  sourcePath="src/components/overlays/menu/ComposedMenu.tsx"
+  recipePath="src/components/overlays/menu/recipe.ts"
+/>
+
+## Usage
+
+Use `ComposedMenu` for the convenience API: pass a `trigger` and menu items as children.
+
+```tsx
+import { Button, ComposedMenu, Menu } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <ComposedMenu placement="bottom-start" trigger={<Button>Actions</Button>}>
+      <Menu.Item value="copy">Copy</Menu.Item>
+      <Menu.Item value="paste">Paste</Menu.Item>
+      <Menu.Item value="delete" color="fg.error">
+        Delete
+      </Menu.Item>
+    </ComposedMenu>
+  );
+}
+```
+
+### Icons and Commands
+
+Add icons as leading children, and optionally provide keyboard shortcut hints.
+
+<Canvas of={MenuStories.WithIcons} />
+
+### Item groups
+
+Use `Menu.ItemGroup`, `Menu.ItemGroupLabel`, and `Menu.Separator` to organize related items.
+
+<Canvas of={MenuStories.ItemGroups} />
+
+### Checkbox items
+
+`Menu.CheckboxItem` supports multi-select patterns like column pickers.
+
+<Canvas of={MenuStories.CheckboxItems} />
+
+### Radio items
+
+`Menu.RadioItemGroup` + `Menu.RadioItem` for single-select patterns like sort order.
+
+<Canvas of={MenuStories.RadioItems} />
+
+### Commands
+
+`Menu.ItemCommand` renders keyboard shortcut hints aligned to the end of each item.
+
+<Canvas of={MenuStories.WithCommands} />
+
+### Nested submenus
+
+Use the namespace API with `Menu.TriggerItem` and a nested `Menu.Root`. Keyboard navigation (arrow keys) and hover intent are handled automatically.
+
+<Canvas of={MenuStories.NestedSubmenu} />
+
+### Context menu
+
+Use `Menu.ContextTrigger` with the namespace API for right-click menus.
+
+<Canvas of={MenuStories.ContextMenu} />
+
+### Compose mode
+
+For full control, use `Menu.Root` with slot parts directly, skipping the `ComposedMenu` wrapper.
+
+<Canvas of={MenuStories.Compose} />
+
+### Placements
+
+<Canvas of={MenuStories.Placements} />
+
+### Sizes
+
+<Canvas of={MenuStories.Sizes} />
+
+### Disabled items
+
+<Canvas of={MenuStories.DisabledItems} />
+
+### Overflowing text
+
+Long labels truncate with an ellipsis when the content is constrained. Set `maxW` via `contentProps`.
+
+<Canvas of={MenuStories.OverflowingText} />
+
+### Controlled
+
+Drive the menu with external `open` / `onOpenChange` state.
+
+<Canvas of={MenuStories.ControlledMenu} />
+
+## Props
+
+### ComposedMenu
+
+<PropTypes name="ComposedMenu" />
+
+### Root
+
+<PropTypes name="Menu" />
