@@ -1,5 +1,5 @@
 import { Dialog as ChakraDialog, Portal } from '@chakra-ui/react';
-import type { ReactNode, RefAttributes } from 'react';
+import { isValidElement, type ReactNode, type RefAttributes } from 'react';
 
 export interface ComposedDialogProps extends Omit<
   ChakraDialog.RootProps,
@@ -28,7 +28,7 @@ export function ComposedDialog({
 }: ComposedDialogProps & RefAttributes<HTMLDivElement>) {
   return (
     <ChakraDialog.Root {...rest}>
-      {trigger !== undefined && (
+      {isValidElement(trigger) && (
         <ChakraDialog.Trigger asChild>{trigger}</ChakraDialog.Trigger>
       )}
 
