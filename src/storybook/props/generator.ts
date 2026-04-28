@@ -144,6 +144,8 @@ export class PropsGenerator {
 
   discoverExportedPropsTypes(sourceFile: ts.SourceFile): DiscoveredComponent[] {
     const results: DiscoveredComponent[] = [];
+    const seenNames = new Set<string>();
+    const seenSymbols = new Set<ts.Symbol>();
 
     const moduleSymbol = this.typeChecker.getSymbolAtLocation(sourceFile);
     if (!moduleSymbol) {
@@ -152,53 +154,186 @@ export class PropsGenerator {
 
     const exports = this.typeChecker.getExportsOfModule(moduleSymbol);
 
+    // First pass: namespace walks (e.g., `Dialog.RootProps` → "Dialog",
+    // `Dialog.BackdropProps` → "Dialog.Backdrop"). Dotted names win over
+    // any flat alias with the same underlying symbol.
     for (const exportedSymbol of exports) {
       const name = exportedSymbol.getName();
+      const resolvedSymbol = this.resolveAlias(exportedSymbol);
 
+      const members = this.namespaceMembers(resolvedSymbol);
+      if (members.length === 0) {
+        continue;
+      }
+
+      for (const memberSymbol of members) {
+        const memberNameStr = memberSymbol.getName();
+        if (!memberNameStr.endsWith('Props')) {
+          continue;
+        }
+
+        const resolvedMember = this.resolveAlias(memberSymbol);
+        const subName = memberNameStr.replace(/Props$/, '');
+        const componentName = subName === 'Root' ? name : `${name}.${subName}`;
+
+        this.record(
+          resolvedMember,
+          memberNameStr,
+          componentName,
+          sourceFile,
+          results,
+          seenNames,
+          seenSymbols
+        );
+      }
+    }
+
+    // Second pass: flat `FooProps` exports → component "Foo". Skipped
+    // if the underlying symbol was already captured under a dotted name.
+    for (const exportedSymbol of exports) {
+      const name = exportedSymbol.getName();
       if (!name.endsWith('Props')) {
         continue;
       }
 
-      const componentName = name.replace(/Props$/, '');
+      const resolvedSymbol = this.resolveAlias(exportedSymbol);
 
-      let resolvedSymbol = exportedSymbol;
-      if (exportedSymbol.flags & ts.SymbolFlags.Alias) {
-        resolvedSymbol = this.typeChecker.getAliasedSymbol(exportedSymbol);
-      }
-
-      const declarations = resolvedSymbol.getDeclarations();
-      if (!declarations || declarations.length === 0) {
-        continue;
-      }
-
-      for (const declaration of declarations) {
-        let typeNode: ts.TypeAliasDeclaration | ts.InterfaceDeclaration | null =
-          null;
-
-        if (ts.isTypeAliasDeclaration(declaration)) {
-          typeNode = declaration;
-        } else if (ts.isInterfaceDeclaration(declaration)) {
-          typeNode = declaration;
-        }
-
-        if (
-          !(resolvedSymbol.flags & ts.SymbolFlags.TypeAlias) &&
-          !(resolvedSymbol.flags & ts.SymbolFlags.Interface)
-        ) {
-          continue;
-        }
-
-        results.push({
-          name: componentName,
-          propsTypeName: name,
-          sourceFile,
-          typeNode,
-          symbol: resolvedSymbol,
-        });
-      }
+      this.record(
+        resolvedSymbol,
+        name,
+        name.replace(/Props$/, ''),
+        sourceFile,
+        results,
+        seenNames,
+        seenSymbols
+      );
     }
 
     return results;
+  }
+
+  /**
+   * Collect the full set of type names exposed under each namespace export
+   * (e.g., `Dialog` → {RootProps, BackdropProps, InteractOutsideEvent, ...}).
+   * Used downstream to qualify bare type references in prop signatures with
+   * their owning namespace (so `(event: InteractOutsideEvent) => void`
+   * renders as `(event: Dialog.InteractOutsideEvent) => void`).
+   */
+  collectNamespaceTypes(sourceFile: ts.SourceFile): Map<string, Set<string>> {
+    const result = new Map<string, Set<string>>();
+    const moduleSymbol = this.typeChecker.getSymbolAtLocation(sourceFile);
+    if (!moduleSymbol) {
+      return result;
+    }
+
+    const exports = this.typeChecker.getExportsOfModule(moduleSymbol);
+
+    for (const exportedSymbol of exports) {
+      const name = exportedSymbol.getName();
+      const resolvedSymbol = this.resolveAlias(exportedSymbol);
+      const members = this.namespaceMembers(resolvedSymbol);
+      if (members.length === 0) {
+        continue;
+      }
+
+      const typeNames = result.get(name) ?? new Set<string>();
+      for (const member of members) {
+        typeNames.add(member.getName());
+      }
+      result.set(name, typeNames);
+    }
+
+    return result;
+  }
+
+  private resolveAlias(symbol: ts.Symbol): ts.Symbol {
+    if (symbol.flags & ts.SymbolFlags.Alias) {
+      return this.typeChecker.getAliasedSymbol(symbol);
+    }
+    return symbol;
+  }
+
+  private namespaceMembers(symbol: ts.Symbol): ts.Symbol[] {
+    // For module-level namespaces (e.g., `export * as Dialog from './namespace'`),
+    // exports live in the module's export table.
+    if (symbol.flags & ts.SymbolFlags.ValueModule) {
+      return this.typeChecker.getExportsOfModule(symbol);
+    }
+    // Nested `namespace Foo { ... }` or similar expose their members via
+    // the `exports` SymbolTable.
+    if (symbol.exports) {
+      return Array.from(symbol.exports.values());
+    }
+    return [];
+  }
+
+  private record(
+    resolvedSymbol: ts.Symbol,
+    propsTypeName: string,
+    componentName: string,
+    sourceFile: ts.SourceFile,
+    results: DiscoveredComponent[],
+    seenNames: Set<string>,
+    seenSymbols: Set<ts.Symbol>
+  ): void {
+    if (seenSymbols.has(resolvedSymbol)) {
+      return;
+    }
+    if (seenNames.has(componentName)) {
+      return;
+    }
+
+    const discovered = this.toDiscoveredComponent(
+      resolvedSymbol,
+      propsTypeName,
+      componentName,
+      sourceFile
+    );
+
+    if (!discovered) {
+      return;
+    }
+
+    seenSymbols.add(resolvedSymbol);
+    seenNames.add(componentName);
+    results.push(discovered);
+  }
+
+  private toDiscoveredComponent(
+    resolvedSymbol: ts.Symbol,
+    propsTypeName: string,
+    componentName: string,
+    sourceFile: ts.SourceFile
+  ): DiscoveredComponent | null {
+    const declarations = resolvedSymbol.getDeclarations();
+    if (!declarations || declarations.length === 0) {
+      return null;
+    }
+
+    if (
+      !(resolvedSymbol.flags & ts.SymbolFlags.TypeAlias) &&
+      !(resolvedSymbol.flags & ts.SymbolFlags.Interface)
+    ) {
+      return null;
+    }
+
+    const declaration = declarations[0];
+    let typeNode: ts.TypeAliasDeclaration | ts.InterfaceDeclaration | null =
+      null;
+
+    if (ts.isTypeAliasDeclaration(declaration)) {
+      typeNode = declaration;
+    } else if (ts.isInterfaceDeclaration(declaration)) {
+      typeNode = declaration;
+    }
+
+    return {
+      name: componentName,
+      propsTypeName,
+      sourceFile,
+      typeNode,
+      symbol: resolvedSymbol,
+    };
   }
 
   getSourceFiles(): readonly ts.SourceFile[] {
@@ -297,10 +432,86 @@ export class PropsGenerator {
   private formatType(type: ts.Type, multiline = false): string {
     const flags =
       ts.TypeFormatFlags.NoTruncation | ts.TypeFormatFlags.InTypeAlias;
-    return this.typeChecker.typeToString(
+    const shallow = this.typeChecker.typeToString(
       type,
       undefined,
       multiline ? flags | ts.TypeFormatFlags.MultilineObjectLiterals : flags
+    );
+
+    // If TypeScript reduced to a bare identifier (e.g. `DialogContentProps`,
+    // `PositioningOptions`), try showing the original interface/type-alias
+    // declaration so readers can see how the type is defined (heritage
+    // clauses, mapped types, etc.).
+    if (/^[A-Za-z_$][\w$]*$/.test(shallow.trim())) {
+      const callable = this.asFunctionType(type);
+      if (callable !== null) {
+        return callable;
+      }
+
+      const source = this.printTypeDeclaration(type);
+      if (source !== null) {
+        return source;
+      }
+    }
+
+    return shallow;
+  }
+
+  /**
+   * If the type is an interface with a single call signature and no other
+   * properties (like TypeScript's built-in `VoidFunction`), synthesize a
+   * function-type string so the expansion is `() => void` rather than the
+   * noisier `interface VoidFunction { (): void; }` form.
+   */
+  private asFunctionType(type: ts.Type): string | null {
+    const callSignatures = type.getCallSignatures();
+    if (callSignatures.length !== 1) {
+      return null;
+    }
+
+    const properties = this.typeChecker.getPropertiesOfType(type);
+    if (properties.length > 0) {
+      return null;
+    }
+
+    const signature = callSignatures[0];
+    const params = signature.parameters
+      .map(param => {
+        const declaration =
+          param.valueDeclaration ?? param.getDeclarations()?.[0];
+        const paramType = declaration
+          ? this.typeChecker.getTypeOfSymbolAtLocation(param, declaration)
+          : this.typeChecker.getDeclaredTypeOfSymbol(param);
+        return `${param.getName()}: ${this.typeChecker.typeToString(paramType)}`;
+      })
+      .join(', ');
+
+    const returnType = this.typeChecker.typeToString(signature.getReturnType());
+    return `(${params}) => ${returnType}`;
+  }
+
+  private printTypeDeclaration(type: ts.Type): string | null {
+    const symbol = type.aliasSymbol ?? type.getSymbol();
+    const declarations = symbol?.getDeclarations();
+    if (!declarations || declarations.length === 0) {
+      return null;
+    }
+
+    // A symbol can have multiple declarations (original + re-exports). Walk
+    // them and pick the first one that's an actual interface or type alias -
+    // re-export statements themselves aren't useful to print.
+    const declaration = declarations.find(
+      d => ts.isInterfaceDeclaration(d) || ts.isTypeAliasDeclaration(d)
+    );
+    if (!declaration) {
+      return null;
+    }
+
+    const printer = ts.createPrinter({ removeComments: true });
+    return printer.printNode(
+      ts.EmitHint.Unspecified,
+      declaration,
+      declaration.getSourceFile()
     );
   }
 
