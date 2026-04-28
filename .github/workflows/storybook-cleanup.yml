@@ -12,89 +12,65 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  actions: read
+  actions: write
   contents: read
   pages: write
   id-token: write
-  pull-requests: write
-  issues: write
+  pull-requests: read
 
 jobs:
   cleanup:
     name: Remove PR preview
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout branch
+      - name: Checkout main branch
         uses: actions/checkout@v5
+        with:
+          ref: main
 
-      - name: Fetch main storybook
-        uses: ./.github/actions/fetch-storybook-main
+      - name: Delete this PR's storybook artifacts
+        uses: actions/github-script@v7
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        with:
+          script: |
+            const artifactName = `storybook-pr-${process.env.PR_NUMBER}`;
 
-      - name: Fetch previous PR previews
+            const artifacts = await github.paginate(
+              github.rest.actions.listArtifactsForRepo,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: artifactName,
+                per_page: 100,
+              }
+            );
+
+            if (artifacts.length === 0) {
+              core.info(`No artifacts named ${artifactName} found; nothing to delete.`);
+              return;
+            }
+
+            for (const artifact of artifacts) {
+              try {
+                await github.rest.actions.deleteArtifact({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  artifact_id: artifact.id,
+                });
+                core.info(`Deleted artifact ${artifactName} (id ${artifact.id}).`);
+              } catch (err) {
+                core.warning(`Failed to delete artifact ${artifact.id}: ${err.message}`);
+              }
+            }
+
+      - name: Ensure main storybook build is available
+        uses: ./.github/actions/ensure-main-storybook
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Fetch remaining open PR previews
         uses: ./.github/actions/fetch-pr-previews
 
-      - name: Remove PR preview
-        run: |
-          PR_NUMBER=${{ github.event.pull_request.number }}
-
-          # Remove the specific PR directory if it exists
-          if [ -d "./pr-previews/${PR_NUMBER}" ]; then
-            rm -rf "./pr-previews/${PR_NUMBER}"
-            echo "Removed PR preview for PR #${PR_NUMBER}"
-          else
-            echo "No preview found for PR #${PR_NUMBER}"
-          fi
-
-      - name: Upload updated PR previews artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: storybook-pr-previews
-          path: ./pr-previews
-          retention-days: 30
-          overwrite: true
-
-      - name: Combine main storybook with remaining PR previews
-        run: |
-          mkdir -p ./combined-pages
-
-          # Add main storybook if it exists
-          if [ -d ./storybook-static-main ]; then
-            cp -r ./storybook-static-main/* ./combined-pages/
-            echo "Added main storybook"
-          else
-            echo "Warning: No main storybook found. Main branch needs to be deployed."
-          fi
-
-          # Add remaining PR previews
-          if [ -d ./pr-previews ] && [ "$(ls -A ./pr-previews)" ]; then
-            cp -r ./pr-previews ./combined-pages/pr
-            echo "Added remaining PR previews to combined pages"
-          else
-            echo "No PR previews remaining"
-          fi
-
-      - name: Archive pages artifact
-        shell: sh
-        run: |
-          echo ::group::Archive artifact
-          tar \
-            --dereference --hard-dereference \
-            --directory "./combined-pages" \
-            -cvf "$RUNNER_TEMP/artifact.tar" \
-            --exclude=.git \
-            --exclude=.github \
-            --exclude=".[^/]*" \
-            .
-          echo ::endgroup::
-
-      - name: Upload pages artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: ${{ runner.temp }}/artifact.tar
-          retention-days: 1
-          overwrite: true
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Assemble and deploy combined pages
+        uses: ./.github/actions/deploy-combined-pages

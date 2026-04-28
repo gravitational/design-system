@@ -1,68 +1,108 @@
-name: 'Fetch PR Previews Artifact'
-description: 'Fetches the latest PR previews artifact from either storybook-preview.yml or storybook-cleanup.yml workflows'
-outputs:
-  found:
-    description: 'Whether the artifact was found'
-    value: ${{ steps.get-pr-run.outputs.found }}
-  run-id:
-    description: 'The workflow run ID where the artifact was found'
-    value: ${{ steps.get-pr-run.outputs.run_id }}
-  workflow-name:
-    description: 'The name of the workflow where the artifact was found'
-    value: ${{ steps.get-pr-run.outputs.workflow_name }}
+name: 'Fetch Open PR Storybook Previews'
+description: 'Downloads the latest storybook-pr-{N} artifact for every open pull request into ./pr-previews/{N}/'
+inputs:
+  exclude-pr:
+    description: 'PR number to skip when fetching (used when the caller is supplying that PR''s build directly).'
+    required: false
+    default: ''
 runs:
   using: 'composite'
   steps:
-    - name: Get latest PR previews from previous runs
-      id: get-pr-run
+    - name: Download per-PR storybook artifacts for open PRs
       uses: actions/github-script@v7
+      env:
+        EXCLUDE_PR: ${{ inputs.exclude-pr }}
       with:
         script: |
-          // Get previous successful runs from both preview and cleanup workflows
-          const [previewRuns, cleanupRuns] = await Promise.all([
-            github.rest.actions.listWorkflowRuns({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: '.github/workflows/storybook-preview.yml',
-              status: 'success',
-              per_page: 5
-            }),
-            github.rest.actions.listWorkflowRuns({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: '.github/workflows/storybook-cleanup.yml',
-              status: 'success',
-              per_page: 5
-            })
-          ]);
+          const fs = require('fs');
+          const path = require('path');
 
-          // Combine and sort by created_at to find the most recent
-          const allRuns = [
-            ...previewRuns.data.workflow_runs,
-            ...cleanupRuns.data.workflow_runs
-          ].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+          const excludePr = (process.env.EXCLUDE_PR || '').trim();
 
-          // Get the most recent successful run
-          const targetRun = allRuns[0];
+          const openPrs = await github.paginate(github.rest.pulls.list, {
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open',
+            per_page: 100,
+          });
 
-          if (targetRun) {
-            const runId = targetRun.id;
-            console.log(`Found PR previews run: ${runId} from ${targetRun.name}`);
-            core.setOutput('run_id', runId);
-            core.setOutput('found', 'true');
-            core.setOutput('workflow_name', targetRun.name);
-          } else {
-            console.log('No PR preview runs found');
-            core.setOutput('found', 'false');
+          const wantedPrNumbers = openPrs
+            .map(pr => pr.number)
+            .filter(n => String(n) !== excludePr);
+
+          core.info(`Found ${openPrs.length} open PR(s); will look up previews for ${wantedPrNumbers.length}.`);
+
+          fs.mkdirSync('./pr-previews', { recursive: true });
+
+          if (wantedPrNumbers.length === 0) {
+            return;
           }
 
-    - name: Download PR previews artifact
-      if: steps.get-pr-run.outputs.found == 'true'
-      uses: actions/download-artifact@v5
-      with:
-        name: storybook-pr-previews
-        path: ./pr-previews
-        github-token: ${{ github.token }}
-        repository: ${{ github.repository }}
-        run-id: ${{ steps.get-pr-run.outputs.run_id }}
-      continue-on-error: true
+          const settled = await Promise.allSettled(
+            wantedPrNumbers.map(async prNum => {
+              const artifacts = await github.paginate(
+                github.rest.actions.listArtifactsForRepo,
+                {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: `storybook-pr-${prNum}`,
+                  per_page: 100,
+                }
+              );
+              const fresh = artifacts
+                .filter(a => !a.expired)
+                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
+              return { prNum, artifact: fresh || null };
+            })
+          );
+
+          const lookups = [];
+          for (let i = 0; i < settled.length; i++) {
+            const result = settled[i];
+            const prNum = wantedPrNumbers[i];
+            if (result.status === 'fulfilled') {
+              lookups.push(result.value);
+            } else {
+              core.warning(`Failed to list artifacts for PR #${prNum}: ${result.reason?.message || result.reason}. Its preview will be missing from this deploy.`);
+            }
+          }
+
+          const missing = lookups.filter(l => !l.artifact).map(l => l.prNum);
+          if (missing.length) {
+            core.info(`No artifact yet for open PR(s): ${missing.join(', ')}.`);
+          }
+
+          for (const { prNum, artifact } of lookups) {
+            if (!artifact) continue;
+
+            const dest = path.resolve(`./pr-previews/${prNum}`);
+            const zipPath = path.join(process.env.RUNNER_TEMP, `storybook-pr-${prNum}.zip`);
+
+            let downloaded = false;
+            for (let attempt = 1; attempt <= 3 && !downloaded; attempt++) {
+              try {
+                const { data } = await github.rest.actions.downloadArtifact({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  artifact_id: artifact.id,
+                  archive_format: 'zip',
+                });
+                fs.writeFileSync(zipPath, Buffer.from(data));
+                fs.mkdirSync(dest, { recursive: true });
+                await exec.exec('unzip', ['-q', '-o', zipPath, '-d', dest]);
+                fs.unlinkSync(zipPath);
+                downloaded = true;
+                core.info(`Downloaded preview for PR #${prNum} (artifact ${artifact.id}).`);
+              } catch (err) {
+                core.warning(`Attempt ${attempt}/3 failed for PR #${prNum}: ${err.message}`);
+                if (attempt < 3) {
+                  await new Promise(r => setTimeout(r, 2000 * attempt));
+                }
+              }
+            }
+
+            if (!downloaded) {
+              core.warning(`Skipping PR #${prNum} after repeated download failures; it will be restored on its next push.`);
+              fs.rmSync(dest, { recursive: true, force: true });
+            }
+          }

@@ -1,0 +1,62 @@
+name: 'Assemble and Deploy Storybook Pages'
+description: 'Combines the main storybook (root) with per-PR previews (under /pr/{N}) and deploys the result to GitHub Pages.'
+inputs:
+  main-dir:
+    description: 'Directory containing the main storybook build (served at root). May be empty if no main has ever been deployed.'
+    required: false
+    default: './storybook-static-main'
+  previews-dir:
+    description: 'Directory containing per-PR preview directories (each named with the PR number). Served under /pr/.'
+    required: false
+    default: './pr-previews'
+runs:
+  using: 'composite'
+  steps:
+    - name: Combine main storybook with PR previews
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        rm -rf ./combined-pages
+        mkdir -p ./combined-pages
+
+        if [ -d "${{ inputs.main-dir }}" ] && [ -n "$(ls -A "${{ inputs.main-dir }}" 2>/dev/null)" ]; then
+          cp -r "${{ inputs.main-dir }}"/. ./combined-pages/
+          echo "Copied main storybook from ${{ inputs.main-dir }}."
+        else
+          echo "::warning::No main storybook found at ${{ inputs.main-dir }}; deploying with an empty root."
+        fi
+
+        if [ -d "${{ inputs.previews-dir }}" ] && [ -n "$(ls -A "${{ inputs.previews-dir }}" 2>/dev/null)" ]; then
+          mkdir -p ./combined-pages/pr
+          cp -r "${{ inputs.previews-dir }}"/. ./combined-pages/pr/
+          echo "Copied PR previews from ${{ inputs.previews-dir }}."
+        else
+          echo "No PR previews to include."
+        fi
+
+    - name: Archive pages artifact
+      shell: bash
+      run: |
+        echo "::group::Archive artifact"
+        tar \
+          --dereference --hard-dereference \
+          --directory ./combined-pages \
+          -cvf "$RUNNER_TEMP/artifact.tar" \
+          --exclude=.git \
+          --exclude=.github \
+          --exclude=".[^/]*" \
+          .
+        echo "::endgroup::"
+
+    - name: Upload pages artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: github-pages
+        path: ${{ runner.temp }}/artifact.tar
+        retention-days: 1
+        overwrite: true
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
