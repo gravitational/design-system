@@ -47,4 +47,16 @@ export const animationStyles = defineAnimationStyles({
       animationName: 'scale-out, fade-out',
     },
   },
+  'fade-in': {
+    value: {
+      animationName: 'fade-in',
+      animationTimingFunction: '{easings.material-standard}',
+    },
+  },
+  'fade-out': {
+    value: {
+      animationName: 'fade-out',
+      animationTimingFunction: '{easings.material-standard}',
+    },
+  },
 });

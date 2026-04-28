@@ -11,31 +11,31 @@ export const zIndex = defineTokens.zIndex({
     value: 10,
   },
   dropdown: {
-    value: 1000,
+    value: 700,
   },
   sticky: {
-    value: 1100,
+    value: 800,
   },
   banner: {
-    value: 1200,
+    value: 900,
   },
   overlay: {
-    value: 1300,
+    value: 1100,
   },
   modal: {
-    value: 1400,
+    value: 1200,
   },
   popover: {
-    value: 1500,
+    value: 1300,
   },
   skipNav: {
-    value: 1600,
+    value: 1400,
   },
   toast: {
-    value: 1700,
+    value: 1500,
   },
   tooltip: {
-    value: 1800,
+    value: 1600,
   },
   max: {
     value: 2147483647,

@@ -1,0 +1,216 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as DialogStories from './Dialog.stories';
+
+<Meta of={DialogStories} />
+
+<DocsHeader
+  title="Dialog"
+  description="Displays modal content above the page with focus trap, focus restore, and dismiss handling built in."
+  sourcePath="src/components/overlays/dialog/ComposedDialog.tsx"
+  recipePath="src/components/overlays/dialog/recipe.ts"
+/>
+
+## Usage
+
+Use `ComposedDialog` for the convenience API: pass a `trigger` and the body; Backdrop, Positioner, and Content are auto-injected. Wrap footer buttons in `Dialog.ActionTrigger` so they close the dialog automatically.
+
+```tsx
+import { Button, ComposedDialog, Dialog } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <ComposedDialog trigger={<Button>Invite team members</Button>}>
+      <Dialog.Header>
+        <Dialog.Title>Invite team members</Dialog.Title>
+      </Dialog.Header>
+      <Dialog.Body>
+        Add collaborators to this workspace. They'll receive an email with a
+        link to join.
+      </Dialog.Body>
+      <Dialog.Footer>
+        <Dialog.ActionTrigger asChild>
+          <Button intent="neutral" fill="border">
+            Cancel
+          </Button>
+        </Dialog.ActionTrigger>
+        <Dialog.ActionTrigger asChild>
+          <Button>Send invites</Button>
+        </Dialog.ActionTrigger>
+      </Dialog.Footer>
+    </ComposedDialog>
+  );
+}
+```
+
+For a fully controlled dialog (no DOM trigger), omit `trigger` and drive it via `open` / `onOpenChange`. Backdrop + Positioner + Content are still auto-injected.
+
+### Compose mode
+
+For full compositional control over every slot, use `Dialog.Root` with the slot parts directly. This skips the auto-injection in `ComposedDialog`, letting you place the backdrop, positioner, and content wherever you want.
+
+```tsx
+import { Button, CloseButton, Dialog } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
+        <Button>Update billing details</Button>
+      </Dialog.Trigger>
+      <Dialog.Backdrop />
+      <Dialog.Positioner>
+        <Dialog.Content>
+          <Dialog.CloseTrigger asChild>
+            <CloseButton size="sm" />
+          </Dialog.CloseTrigger>
+          <Dialog.Header>
+            <Dialog.Title>Update billing details</Dialog.Title>
+          </Dialog.Header>
+          <Dialog.Body>Body content here.</Dialog.Body>
+          <Dialog.Footer>
+            <Dialog.ActionTrigger asChild>
+              <Button intent="neutral" fill="border">
+                Cancel
+              </Button>
+            </Dialog.ActionTrigger>
+            <Dialog.ActionTrigger asChild>
+              <Button>Save changes</Button>
+            </Dialog.ActionTrigger>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Positioner>
+    </Dialog.Root>
+  );
+}
+```
+
+<Canvas of={DialogStories.ComposeDialog} />
+
+### Alert dialog
+
+For destructive or irreversible actions, set `role="alertdialog"`. Screen readers announce the dialog more assertively, and it's conventional to pair with a `danger` intent button and no close affordance in the header.
+
+<Canvas of={DialogStories.AlertDialogDialog} />
+
+### With a form
+
+Put form fields in `Dialog.Body`. Use `Dialog.ActionTrigger` on the submit button so a successful submission dismisses the dialog for free.
+
+<Canvas of={DialogStories.WithForm} />
+
+### Initial focus
+
+By default the first focusable element receives focus on open. Pass `initialFocusEl` with a ref to target a specific element - usually the primary input for forms.
+
+```tsx
+import { useRef } from 'react';
+import {
+  Button,
+  ComposedDialog,
+  Dialog,
+  Field,
+  Input,
+} from '@gravitational/design-system';
+
+function Example() {
+  const emailRef = useRef<HTMLInputElement>(null);
+  return (
+    <ComposedDialog
+      initialFocusEl={() => emailRef.current}
+      trigger={<Button>Invite a teammate</Button>}
+    >
+      <Dialog.Header>
+        <Dialog.Title>Invite a teammate</Dialog.Title>
+      </Dialog.Header>
+      <Dialog.Body>
+        <Field.Root>
+          <Field.Label>Email</Field.Label>
+          <Input ref={emailRef} type="email" />
+        </Field.Root>
+      </Dialog.Body>
+    </ComposedDialog>
+  );
+}
+```
+
+<Canvas of={DialogStories.InitialFocusDialog} />
+
+### Nested dialogs
+
+Dialogs can be nested. The parent stays mounted, the child stacks on top, and focus returns to the trigger in the parent when the child closes.
+
+<Canvas of={DialogStories.NestedDialog} />
+
+### Hide backdrop
+
+Set `hideBackdrop` to render without a dimmed overlay. Clicks behind the dialog pass through.
+
+<Canvas of={DialogStories.HideBackdrop} />
+
+### Persist content
+
+Pass `unmountOnExit={false}` to preserve the dialog's subtree (and any internal state) across close cycles.
+
+<Canvas of={DialogStories.PersistContentDialog} />
+
+### Disable close affordances
+
+Pair `closeOnInteractOutside={false}` and `closeOnEscape={false}` for destructive confirmations where accidental dismissal is unacceptable - force users to pick an explicit action.
+
+<Canvas of={DialogStories.DisableCloseDialog} />
+
+### Open change
+
+`onOpenChange` fires with the new open state for every dismissal (Escape, outside click, close button). Inspect `onEscapeKeyDown` and `onInteractOutside` if you need to distinguish the source.
+
+<Canvas of={DialogStories.OpenChangeDialog} />
+
+### Controlled
+
+Drive the dialog from parent state by passing `open` + `onOpenChange`. Omit the `trigger` prop; the dialog renders no DOM trigger of its own.
+
+```tsx
+import { useState } from 'react';
+import { Button, ComposedDialog, Dialog } from '@gravitational/design-system';
+
+function Example() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open</Button>
+      <ComposedDialog
+        open={open}
+        onOpenChange={details => setOpen(details.open)}
+      >
+        <Dialog.Header>
+          <Dialog.Title>Controlled dialog</Dialog.Title>
+        </Dialog.Header>
+        <Dialog.Body>Driven by parent state.</Dialog.Body>
+        <Dialog.Footer>
+          <Button intent="neutral" fill="border" onClick={() => setOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={() => setOpen(false)}>Save</Button>
+        </Dialog.Footer>
+      </ComposedDialog>
+    </>
+  );
+}
+```
+
+<Canvas of={DialogStories.ControlledDialog} />
+
+## Props
+
+### ComposedDialog
+
+<PropTypes name="ComposedDialog" />
+
+### Root
+
+<PropTypes name="Dialog" />
