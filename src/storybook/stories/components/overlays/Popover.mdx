@@ -1,0 +1,135 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as PopoverStories from './Popover.stories';
+
+<Meta of={PopoverStories} />
+
+<DocsHeader
+  title="Popover"
+  description="Displays floating content anchored to a trigger - ideal for menus, dropdown details, or confirmation prompts."
+  sourcePath="src/components/overlays/popover/ComposedPopover.tsx"
+  recipePath="src/components/overlays/popover/recipe.ts"
+/>
+
+## Usage
+
+Use `ComposedPopover` for the convenience API: pass a `trigger` and the body; Content (portal + positioner + arrow) is auto-injected.
+
+```tsx
+import { Button, ComposedPopover, Popover } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <ComposedPopover
+      placement="bottom-start"
+      trigger={<Button>Resource tips</Button>}
+    >
+      <Popover.Body>
+        <Popover.Title fontWeight="bold">Finding resources</Popover.Title>
+        <div>Filter by labels, names, or kinds.</div>
+      </Popover.Body>
+    </ComposedPopover>
+  );
+}
+```
+
+### Placements
+
+Use the `placement` prop to position the popover relative to its trigger. Accepts any Chakra placement value (`top`, `top-start`, `top-end`, `right`, …).
+
+<Canvas of={PopoverStories.Placements} />
+
+### Arrow
+
+`showArrow` toggles the arrow on the auto-injected `<Popover.Content>`.
+
+<Canvas of={PopoverStories.ArrowPopover} />
+
+### Compose mode
+
+For full compositional control, use `Popover.Root` with the slot parts directly. This skips the auto-injection in `ComposedPopover`, giving you control over the positioner, arrow, and any custom header/footer structure.
+
+```tsx
+import { Button, CloseButton, Popover } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <Popover.Root positioning={{ placement: 'bottom-start' }}>
+      <Popover.Trigger asChild>
+        <Button>Session recording</Button>
+      </Popover.Trigger>
+      <Popover.Positioner>
+        <Popover.Content>
+          <Popover.Arrow>
+            <Popover.ArrowTip />
+          </Popover.Arrow>
+          <Popover.CloseTrigger asChild>
+            <CloseButton size="sm" />
+          </Popover.CloseTrigger>
+          <Popover.Header>Session recording</Popover.Header>
+          <Popover.Body>Body content here.</Popover.Body>
+          <Popover.Footer>Last sync: 2m ago</Popover.Footer>
+        </Popover.Content>
+      </Popover.Positioner>
+    </Popover.Root>
+  );
+}
+```
+
+<Canvas of={PopoverStories.ComposePopover} />
+
+### With a form
+
+Popovers are a natural fit for quick-edit UIs. Put fields in `Popover.Body` and actions in `Popover.Footer`. Widen the content with `contentProps={{ minW: '...' }}` if the default is too tight.
+
+<Canvas of={PopoverStories.WithForm} />
+
+### Initial focus
+
+By default the first focusable element in the popover receives focus on open. Pass `initialFocusEl` with a ref to target a specific element - useful for tours where the primary action is halfway down the content.
+
+<Canvas of={PopoverStories.InitialFocusPopover} />
+
+### Nested popovers
+
+Popovers can be nested. The parent stays open, the child stacks on top, and focus returns to the child's trigger on dismiss.
+
+<Canvas of={PopoverStories.NestedPopover} />
+
+### Controlled
+
+Drive the popover programmatically by supplying `open` / `onOpenChange`.
+
+<Canvas of={PopoverStories.ControlledPopover} />
+
+### Anchor ref
+
+Position the popover against an arbitrary element by passing an `anchorRef`. No `<Popover.Trigger>` is rendered - the popover positions itself against the referenced element, leaving open/close behavior to you.
+
+<Canvas of={PopoverStories.AnchorRefPopover} />
+
+### Layout
+
+Compose `Popover.Header`, `Popover.Body`, `Popover.Footer`, and `Popover.CloseTrigger` for richer content.
+
+<Canvas of={PopoverStories.Layout} />
+
+### Positioning
+
+Use `gutter` for a simple distance-from-anchor, or the full `positioning` config for fine-grained control (offset, flip, overflow padding, …). `positioning` spreads last and wins over flat shortcuts.
+
+<Canvas of={PopoverStories.Positioning} />
+
+## Props
+
+### ComposedPopover
+
+<PropTypes name="ComposedPopover" />
+
+### Root
+
+<PropTypes name="Popover" />

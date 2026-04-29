@@ -15,6 +15,8 @@ export {
   VStack,
   Grid,
   type GridProps,
+  Portal,
+  type PortalProps,
   useToken,
 } from '@chakra-ui/react';
 
