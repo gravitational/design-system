@@ -4601,6 +4601,18 @@
         "defaultValue": null
       },
       {
+        "name": "gutter",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Distance-from-anchor shortcut (px). Feeds `positioning.gutter`.",
+        "defaultValue": null
+      },
+      {
         "name": "id",
         "typeInfo": {
           "kind": "primitive",
@@ -4678,7 +4690,7 @@
         "name": "onOpenChange",
         "typeInfo": {
           "kind": "function",
-          "type": "(details: OpenChangeDetails) => void"
+          "type": "(details: Tooltip.OpenChangeDetails) => void"
         },
         "conditional": false,
         "required": false,
@@ -4711,6 +4723,19 @@
         "defaultValue": "400"
       },
       {
+        "name": "placement",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "Tooltip.Placement",
+          "expanded": "type Placement =\n  | 'bottom'\n  | 'left'\n  | 'right'\n  | 'top'\n  | 'bottom-end'\n  | 'bottom-start'\n  | 'left-end'\n  | 'left-start'\n  | 'right-end'\n  | 'right-start'\n  | 'top-end'\n  | 'top-start'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Placement shortcut. Feeds `positioning.placement`. A user-supplied\n`positioning.placement` wins on conflict.",
+        "defaultValue": null
+      },
+      {
         "name": "portalled",
         "typeInfo": {
           "kind": "primitive",
@@ -4739,13 +4764,13 @@
         "name": "positioning",
         "typeInfo": {
           "kind": "reference",
-          "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "type": "Tooltip.Positioning",
+          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Tooltip.Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Tooltip.Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The user provided options used to position the popover content",
+        "description": "Full Chakra positioning config. Overrides flat shortcuts.",
         "defaultValue": null
       },
       {

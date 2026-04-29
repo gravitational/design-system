@@ -6,5 +6,4 @@ export * from './forms';
 export * from './layout';
 export * from './overlays';
 export * from './table';
-export * from './tooltip';
 export * from './typography';
