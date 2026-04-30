@@ -60,6 +60,14 @@ export const keyframes = {
       strokeDashoffset: '-260%',
     },
   },
+  shimmer: {
+    from: {
+      transform: 'translateX(-100%)',
+    },
+    to: {
+      transform: 'translateX(100%)',
+    },
+  },
   'expand-height': {
     from: {
       height: '0',
