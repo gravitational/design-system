@@ -15,7 +15,10 @@ export const storybookTheme = ensure(
 
 const globalStorybookCss = defineGlobalStyles({
   html: {
-    textStyle: 'body2',
+    fontSize: '14px',
+    fontWeight: '{fontWeights.light}',
+    lineHeight: '24px',
+    letterSpacing: '0.035px',
   },
   body: {
     margin: 0,

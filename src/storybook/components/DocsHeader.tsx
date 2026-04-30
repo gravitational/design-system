@@ -1,5 +1,6 @@
-import { Box, Heading, HStack, Text } from '@chakra-ui/react';
+import { Box, HStack, Text } from '@chakra-ui/react';
 
+import { DocsHeading } from '../../../.storybook/docs/Typography';
 import { GithubLogoIcon } from '../../icons';
 import { GitHubLink } from './GitHubLink';
 import { RecipeLink } from './RecipeLink';
@@ -19,9 +20,9 @@ export function DocsHeader({
 }: DocsHeaderProps) {
   return (
     <Box>
-      <Heading as="h1" mt={3} mb={4} size="3xl">
+      <DocsHeading as="h1" mt={3} mb={4} size="3xl">
         {title}
-      </Heading>
+      </DocsHeading>
 
       {description && <Text mb={3}>{description}</Text>}
 

@@ -4,34 +4,52 @@ import { Canvas } from '../../../components/Canvas';
 import { DocsHeader } from '../../../components/DocsHeader';
 import { PropTypes } from '../../../components/PropTypes';
 
-import { Text } from '../../../..';
+import * as Stories from './Text.stories';
 
-import * as TextStories from './Text.stories';
+<Meta of={Stories} />
 
-<Meta title="Components/Typography/Text" />
-
-<DocsHeader title="Text" description="" recipePath="" sourcePath="" />
-
-<Canvas of={TextStories.Preview} />
+<DocsHeader
+  title="Text"
+  description="Typography for heading, subtitle, body, caption, and overline text"
+  sourcePath="src/components/typography/text/Text.tsx"
+/>
 
 ## Usage
 
-Information about usage here.
-
 ```tsx
-import { Text } from '@gravitational/design-system';
+import { H1, P1, Subtitle1 } from '@gravitational/design-system';
 
-function Example() {
-  return <Text />;
-}
+<H1>Heading</H1>
+<Subtitle1>Subtitle</Subtitle1>
+<P1>Body text</P1>
 ```
 
-## Examples
+## Heading
 
-### Example
+Used for page and section titles.
 
-<Canvas of={TextStories.Example} />
+<Canvas of={Stories.Headings} />
+
+## Subtitle
+
+Used for text under a heading.
+
+<Canvas of={Stories.Subtitles} />
+
+## Body
+
+Used for paragraphs and most content text.
+
+<Canvas of={Stories.Body} />
+
+## Caption
+
+<Canvas of={Stories.CaptionExample} />
+
+## Overline
+
+<Canvas of={Stories.OverlineExample} />
 
 ## Props
 
-<PropTypes of={Text} />
+<PropTypes name="Text" />
