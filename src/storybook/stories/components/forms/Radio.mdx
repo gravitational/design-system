@@ -1,0 +1,90 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as Stories from './Radio.stories';
+
+<Meta title="Components/Forms/Radio" />
+
+<DocsHeader
+  title="Radio"
+  description="A control for selecting one option out of a list"
+  sourcePath="src/components/forms/radio/ComposedRadioGroup.tsx"
+  recipePath="src/components/forms/radio/recipe.ts"
+/>
+
+## Usage
+
+```tsx
+import { ComposedRadioGroup } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <ComposedRadioGroup
+      label="Radio group"
+      defaultValue="one"
+      options={[
+        { value: 'one', label: 'Option 1' },
+        { value: 'two', label: 'Option 2' },
+        { value: 'three', label: 'Option 3' },
+      ]}
+    />
+  );
+}
+```
+
+### Compose mode
+
+For full compositional control over every slot, use `RadioGroup.Root` with the slot parts directly.
+
+```tsx
+import { RadioGroup } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <RadioGroup.Root defaultValue="one">
+      <RadioGroup.Label>Radio group</RadioGroup.Label>
+      <RadioGroup.Item value="one">
+        <RadioGroup.ItemHiddenInput />
+        <RadioGroup.ItemIndicator />
+        <RadioGroup.ItemText>Option 1</RadioGroup.ItemText>
+      </RadioGroup.Item>
+      <RadioGroup.Item value="two">
+        <RadioGroup.ItemHiddenInput />
+        <RadioGroup.ItemIndicator />
+        <RadioGroup.ItemText>Option 2</RadioGroup.ItemText>
+      </RadioGroup.Item>
+    </RadioGroup.Root>
+  );
+}
+```
+
+<Canvas of={Stories.ComposeExample} />
+
+### Sizes
+
+<Canvas of={Stories.Sizes} />
+
+### Selected
+
+<Canvas of={Stories.Selected} />
+
+### Focused
+
+<Canvas of={Stories.Focused} />
+
+### Disabled
+
+<Canvas of={Stories.Disabled} />
+
+## Props
+
+### ComposedRadioGroup
+
+<PropTypes name="ComposedRadioGroup" />
+
+### Root
+
+<PropTypes name="RadioGroup" />

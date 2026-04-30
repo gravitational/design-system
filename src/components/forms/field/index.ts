@@ -1,1 +1,2 @@
-export * from './Field';
+export * from './ComposedField';
+export * from './field';

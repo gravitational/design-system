@@ -475,109 +475,7 @@
     "ref": null
   },
   {
-    "name": "CheckboxGroup",
-    "props": [
-      {
-        "name": "asChild",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
-        "defaultValue": null
-      },
-      {
-        "name": "defaultValue",
-        "typeInfo": {
-          "kind": "array",
-          "type": "string[]"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The initial value of `value` when uncontrolled",
-        "defaultValue": null
-      },
-      {
-        "name": "disabled",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "If `true`, the checkbox group is disabled",
-        "defaultValue": null
-      },
-      {
-        "name": "invalid",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "If `true`, the checkbox group is invalid",
-        "defaultValue": null
-      },
-      {
-        "name": "name",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "string"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The name of the input fields in the checkbox group\n(Useful for form submission).",
-        "defaultValue": null
-      },
-      {
-        "name": "onValueChange",
-        "typeInfo": {
-          "kind": "function",
-          "type": "(value: string[]) => void"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The callback to call when the value changes",
-        "defaultValue": null
-      },
-      {
-        "name": "readOnly",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "If `true`, the checkbox group is read-only",
-        "defaultValue": null
-      },
-      {
-        "name": "value",
-        "typeInfo": {
-          "kind": "array",
-          "type": "string[]"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The controlled value of the checkbox group",
-        "defaultValue": null
-      }
-    ],
-    "ref": null
-  },
-  {
-    "name": "CheckboxRoot",
+    "name": "Checkbox",
     "props": [
       {
         "name": "asChild",
@@ -694,7 +592,7 @@
         "name": "onCheckedChange",
         "typeInfo": {
           "kind": "function",
-          "type": "(details: CheckedChangeDetails) => void"
+          "type": "(details: Checkbox.CheckedChangeDetails) => void"
         },
         "conditional": false,
         "required": false,
@@ -727,6 +625,22 @@
         "defaultValue": null
       },
       {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md'",
+          "members": [
+            "'sm'",
+            "'md'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "md"
+      },
+      {
         "name": "value",
         "typeInfo": {
           "kind": "primitive",
@@ -739,12 +653,224 @@
         "defaultValue": "on"
       }
     ],
-    "ref": {
-      "type": "RefAttributes<HTMLLabelElement>",
-      "elementType": "HTMLLabelElement",
-      "expandedType": null,
-      "imperative": false
-    }
+    "ref": null
+  },
+  {
+    "name": "Checkbox.Control",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Checkbox.Group",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultValue",
+        "typeInfo": {
+          "kind": "array",
+          "type": "string[]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial value of `value` when uncontrolled",
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the checkbox group is disabled",
+        "defaultValue": null
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the checkbox group is invalid",
+        "defaultValue": null
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The name of the input fields in the checkbox group\n(Useful for form submission).",
+        "defaultValue": null
+      },
+      {
+        "name": "onValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(value: string[]) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The callback to call when the value changes",
+        "defaultValue": null
+      },
+      {
+        "name": "readOnly",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the checkbox group is read-only",
+        "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "array",
+          "type": "string[]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled value of the checkbox group",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Checkbox.Indicator",
+    "props": [
+      {
+        "name": "checked",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactElement",
+          "expanded": "ReactElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "indeterminate",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactElement",
+          "expanded": "ReactElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Checkbox.Label",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Checkbox.RootProvider",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md'",
+          "members": [
+            "'sm'",
+            "'md'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "md"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "UseCheckboxReturn",
+          "expanded": "export interface UseCheckboxReturn extends checkbox.Api<PropTypes> {}\n"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
   },
   {
     "name": "Checkmark",
@@ -1121,6 +1247,200 @@
         "readonly": false,
         "description": "The title text of the banner.",
         "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "ComposedCheckbox",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "checked",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "CheckedState",
+          "expanded": "boolean | 'indeterminate'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled checked state of the checkbox",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultChecked",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "CheckedState",
+          "expanded": "boolean | 'indeterminate'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial checked state of the checkbox when rendered.\nUse when you don't need to control the checked state of the checkbox.",
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the checkbox is disabled",
+        "defaultValue": null
+      },
+      {
+        "name": "form",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The id of the form that the checkbox belongs to.",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  root?: string | undefined;\n  hiddenInput?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the checkbox. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the checkbox is invalid",
+        "defaultValue": null
+      },
+      {
+        "name": "label",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Label rendered next to the checkbox.",
+        "defaultValue": null
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The name of the input field in a checkbox.\nUseful for form submission.",
+        "defaultValue": null
+      },
+      {
+        "name": "onCheckedChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: Checkbox.CheckedChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The callback invoked when the checked state changes.",
+        "defaultValue": null
+      },
+      {
+        "name": "readOnly",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the checkbox is read-only",
+        "defaultValue": null
+      },
+      {
+        "name": "required",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the checkbox is required",
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md'",
+          "members": [
+            "'sm'",
+            "'md'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "md"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The value of checkbox input. Useful for form submission.",
+        "defaultValue": "on"
       }
     ],
     "ref": null
@@ -1527,6 +1847,136 @@
     "ref": null
   },
   {
+    "name": "ComposedField",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Indicates whether the field is disabled.",
+        "defaultValue": null
+      },
+      {
+        "name": "errorMessage",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Error message rendered below the field when invalid.",
+        "defaultValue": null
+      },
+      {
+        "name": "helperText",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Helper text rendered below the field.",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The id of the field.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "export interface ElementIds {\n  root?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n  errorText?: string | undefined;\n  helperText?: string | undefined;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the field parts.",
+        "defaultValue": null
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Indicates whether the field is invalid.",
+        "defaultValue": null
+      },
+      {
+        "name": "label",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Label rendered above the field.",
+        "defaultValue": null
+      },
+      {
+        "name": "readOnly",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Indicates whether the field is read-only.",
+        "defaultValue": null
+      },
+      {
+        "name": "required",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Indicates whether the field is required.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "ComposedPopover",
     "props": [
       {
@@ -1922,6 +2372,415 @@
         "readonly": false,
         "description": "Whether to unmount on exit.",
         "defaultValue": "false"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "ComposedRadioGroup",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial value of the checked radio when rendered.\nUse when you don't need to control the value of the radio group.",
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the radio group will be disabled",
+        "defaultValue": null
+      },
+      {
+        "name": "form",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The associate form of the underlying input.",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  root?: string | undefined;\n  label?: string | undefined;\n  indicator?: string | undefined;\n  item?: ((value: string) => string) | undefined;\n  itemLabel?: ((value: string) => string) | undefined;\n  itemControl?: ((value: string) => string) | undefined;\n  itemHiddenInput?: ((value: string) => string) | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the radio. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the radio group is marked as invalid.",
+        "defaultValue": null
+      },
+      {
+        "name": "label",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Label rendered above the radio group.",
+        "defaultValue": null
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The name of the input fields in the radio\n(Useful for form submission).",
+        "defaultValue": null
+      },
+      {
+        "name": "onValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: RadioGroup.ValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called once a radio is checked",
+        "defaultValue": null
+      },
+      {
+        "name": "options",
+        "typeInfo": {
+          "kind": "array",
+          "type": "RadioOption[]"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Radio options to render.",
+        "defaultValue": null
+      },
+      {
+        "name": "orientation",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'horizontal' | 'vertical'",
+          "members": [
+            "'horizontal'",
+            "'vertical'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Orientation of the radio group",
+        "defaultValue": null
+      },
+      {
+        "name": "readOnly",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the radio group is read-only",
+        "defaultValue": null
+      },
+      {
+        "name": "required",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the radio group is marked as required.",
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md'",
+          "members": [
+            "'sm'",
+            "'md'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "md"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled value of the radio group",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "ComposedToggle",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultChecked",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial checked state of the switch when rendered.\nUse when you don't need to control the checked state of the switch.",
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the switch is disabled.",
+        "defaultValue": null
+      },
+      {
+        "name": "form",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The id of the form that the switch belongs to",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  root?: string | undefined;\n  hiddenInput?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n  thumb?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the switch. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the switch is marked as invalid.",
+        "defaultValue": null
+      },
+      {
+        "name": "isToggled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": "Whether the toggle is toggled.",
+        "defaultValue": null
+      },
+      {
+        "name": "label",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Label rendered next to the toggle.",
+        "defaultValue": null
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The name of the input field in a switch\n(Useful for form submission).",
+        "defaultValue": null
+      },
+      {
+        "name": "onToggle",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => void"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": "Called when the toggle is clicked.",
+        "defaultValue": null
+      },
+      {
+        "name": "readOnly",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the switch is read-only",
+        "defaultValue": null
+      },
+      {
+        "name": "required",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the switch input is marked as required,",
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ToggleSize",
+          "expanded": "'sm' | 'lg'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | number",
+          "members": [
+            "string",
+            "number"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The value of switch input. Useful for form submission.",
+        "defaultValue": "on"
       }
     ],
     "ref": null
@@ -2742,6 +3601,18 @@
     "name": "FieldInput",
     "props": [
       {
+        "name": "hasError",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether this input has an error.",
+        "defaultValue": null
+      },
+      {
         "name": "helperText",
         "typeInfo": {
           "kind": "reference",
@@ -2752,6 +3623,19 @@
         "required": false,
         "readonly": false,
         "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "icon",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ComponentType<IconProps>",
+          "expanded": "ComponentClass<IconProps, any> | FunctionComponent<IconProps>"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Optional icon to render on the left side of the input.",
         "defaultValue": null
       },
       {
@@ -2791,14 +3675,22 @@
         "readonly": false,
         "description": null,
         "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "InputSize",
+          "expanded": "'sm' | 'md' | 'lg'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
       }
     ],
-    "ref": {
-      "type": "Ref<T> | undefined",
-      "elementType": "T",
-      "expandedType": "T | null",
-      "imperative": true
-    }
+    "ref": null
   },
   {
     "name": "Flex",
@@ -3390,13 +4282,47 @@
   },
   {
     "name": "Input",
-    "props": [],
-    "ref": {
-      "type": "RefAttributes<HTMLInputElement>",
-      "elementType": "HTMLInputElement",
-      "expandedType": null,
-      "imperative": false
-    }
+    "props": [
+      {
+        "name": "hasError",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether this input has an error.",
+        "defaultValue": null
+      },
+      {
+        "name": "icon",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ComponentType<IconProps>",
+          "expanded": "ComponentClass<IconProps, any> | FunctionComponent<IconProps>"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Optional icon to render on the left side of the input.",
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "InputSize",
+          "expanded": "'sm' | 'md' | 'lg'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
   },
   {
     "name": "List",
@@ -4049,6 +4975,352 @@
     "ref": null
   },
   {
+    "name": "RadioGroup",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial value of the checked radio when rendered.\nUse when you don't need to control the value of the radio group.",
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the radio group will be disabled",
+        "defaultValue": null
+      },
+      {
+        "name": "form",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The associate form of the underlying input.",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  root?: string | undefined;\n  label?: string | undefined;\n  indicator?: string | undefined;\n  item?: ((value: string) => string) | undefined;\n  itemLabel?: ((value: string) => string) | undefined;\n  itemControl?: ((value: string) => string) | undefined;\n  itemHiddenInput?: ((value: string) => string) | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the radio. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the radio group is marked as invalid.",
+        "defaultValue": null
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The name of the input fields in the radio\n(Useful for form submission).",
+        "defaultValue": null
+      },
+      {
+        "name": "onValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: RadioGroup.ValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called once a radio is checked",
+        "defaultValue": null
+      },
+      {
+        "name": "orientation",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'horizontal' | 'vertical'",
+          "members": [
+            "'horizontal'",
+            "'vertical'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Orientation of the radio group",
+        "defaultValue": null
+      },
+      {
+        "name": "readOnly",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the radio group is read-only",
+        "defaultValue": null
+      },
+      {
+        "name": "required",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the radio group is marked as required.",
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md'",
+          "members": [
+            "'sm'",
+            "'md'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "md"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled value of the radio group",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "RadioGroup.Item",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "RadioGroup.ItemControl",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "RadioGroup.ItemText",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "RadioGroup.Label",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "RadioGroup.RootProvider",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'md'",
+          "members": [
+            "'sm'",
+            "'md'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "md"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "UseRadioGroupReturn",
+          "expanded": "export interface UseRadioGroupReturn extends radio.Api<PropTypes> {}\n"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "SimpleGrid",
     "props": [
       {
@@ -4265,7 +5537,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "StackDirection",
-          "expanded": "| 'row'\n  | 'column'\n  | 'row-reverse'\n  | 'column-reverse'\n  | ('row' | 'column' | 'row-reverse' | 'column-reverse' | null)[]\n  | {\n      _hover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _active?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _disabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _visited?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _target?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _readOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _readWrite?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _empty?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _checked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _enabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _expanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _highlighted?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _complete?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _incomplete?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _dragging?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _before?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _after?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _firstLetter?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _firstLine?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _marker?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _selection?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _file?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _backdrop?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _first?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _last?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _notFirst?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _notLast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _only?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _even?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _odd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerHover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerActive?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerDisabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerChecked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerInvalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerExpanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerPlaceholderShown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupHover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupActive?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupDisabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupChecked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupExpanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupInvalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _indeterminate?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _required?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _valid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _invalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _autofill?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _inRange?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _outOfRange?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _placeholder?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _placeholderShown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _pressed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _selected?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _grabbed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _underValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _overValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _atValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _default?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _optional?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _open?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _closed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _fullscreen?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _loading?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _hidden?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _current?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _currentPage?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _currentStep?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _today?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _unavailable?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rangeStart?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rangeEnd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _now?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _topmost?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _motionReduce?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _motionSafe?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _print?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _landscape?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _portrait?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _dark?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _light?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _osDark?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _osLight?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _highContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _lessContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _moreContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _ltr?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rtl?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbar?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbarThumb?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbarTrack?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _horizontal?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _vertical?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _icon?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _starting?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      sm?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      md?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lgOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lgDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smToMd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smToLg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdToLg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      base?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n    }"
+          "expanded": "| 'row'\n  | 'column'\n  | 'row-reverse'\n  | 'column-reverse'\n  | ('row' | 'column' | 'row-reverse' | 'column-reverse' | null)[]\n  | {\n      _hover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _active?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _focusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _disabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _visited?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _target?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _readOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _readWrite?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _empty?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _checked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _enabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _expanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _highlighted?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _complete?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _incomplete?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _dragging?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _before?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _after?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _firstLetter?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _firstLine?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _marker?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _selection?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _file?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _backdrop?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _first?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _last?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _notFirst?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _notLast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _only?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _even?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _odd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerHover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerActive?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerFocusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerDisabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerChecked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerInvalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerExpanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _peerPlaceholderShown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocus?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupHover?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupActive?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocusWithin?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupFocusVisible?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupDisabled?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupChecked?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupExpanded?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _groupInvalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _indeterminate?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _required?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _valid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _invalid?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _autofill?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _inRange?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _outOfRange?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _placeholder?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _placeholderShown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _pressed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _selected?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _grabbed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _underValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _overValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _atValue?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _default?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _optional?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _open?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _closed?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _fullscreen?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _loading?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _hidden?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _current?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _currentPage?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _currentStep?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _today?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _unavailable?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rangeStart?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rangeEnd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _now?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _topmost?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _motionReduce?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _motionSafe?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _print?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _landscape?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _portrait?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _dark?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _light?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _osDark?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _osLight?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _highContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _lessContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _moreContrast?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _ltr?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _rtl?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbar?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbarThumb?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _scrollbarTrack?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _horizontal?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _vertical?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _icon?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _starting?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      _hasIcon?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      sm?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      md?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lgOnly?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      lgDown?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smToMd?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      smToLg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      mdToLg?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n      base?:\n        | ConditionalValue<'row' | 'column' | 'row-reverse' | 'column-reverse'>\n        | undefined;\n    }"
         },
         "conditional": false,
         "required": false,
@@ -4460,6 +5732,340 @@
   {
     "name": "Table.ScrollArea",
     "props": [],
+    "ref": null
+  },
+  {
+    "name": "Toggle",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "checked",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled checked state of the switch",
+        "defaultValue": null
+      },
+      {
+        "name": "defaultChecked",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial checked state of the switch when rendered.\nUse when you don't need to control the checked state of the switch.",
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the switch is disabled.",
+        "defaultValue": null
+      },
+      {
+        "name": "form",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The id of the form that the switch belongs to",
+        "defaultValue": null
+      },
+      {
+        "name": "id",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The unique identifier of the machine.",
+        "defaultValue": null
+      },
+      {
+        "name": "ids",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ElementIds",
+          "expanded": "{\n  root?: string | undefined;\n  hiddenInput?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n  thumb?: string | undefined;\n}"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The ids of the elements in the switch. Useful for composition.",
+        "defaultValue": null
+      },
+      {
+        "name": "invalid",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the switch is marked as invalid.",
+        "defaultValue": null
+      },
+      {
+        "name": "label",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states",
+        "defaultValue": null
+      },
+      {
+        "name": "name",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The name of the input field in a switch\n(Useful for form submission).",
+        "defaultValue": null
+      },
+      {
+        "name": "onCheckedChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: Toggle.CheckedChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to call when the switch is clicked.",
+        "defaultValue": null
+      },
+      {
+        "name": "readOnly",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether the switch is read-only",
+        "defaultValue": null
+      },
+      {
+        "name": "required",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "If `true`, the switch input is marked as required,",
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'lg'",
+          "members": [
+            "'sm'",
+            "'lg'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "sm"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | number",
+          "members": [
+            "string",
+            "number"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The value of switch input. Useful for form submission.",
+        "defaultValue": "on"
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Toggle.Control",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Toggle.Indicator",
+    "props": [
+      {
+        "name": "fallback",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Toggle.Label",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Toggle.RootProvider",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'sm' | 'lg'",
+          "members": [
+            "'sm'",
+            "'lg'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "sm"
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "UseSwitchReturn",
+          "expanded": "export interface UseSwitchReturn extends zagSwitch.Api<PropTypes> {}\n"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Toggle.Thumb",
+    "props": [
+      {
+        "name": "asChild",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Toggle.ThumbIndicator",
+    "props": [
+      {
+        "name": "fallback",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
     "ref": null
   },
   {

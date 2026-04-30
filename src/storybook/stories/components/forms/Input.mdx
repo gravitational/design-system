@@ -4,39 +4,47 @@ import { Canvas } from '../../../components/Canvas';
 import { DocsHeader } from '../../../components/DocsHeader';
 import { PropTypes } from '../../../components/PropTypes';
 
-import { Input } from '../../../..';
+import * as Stories from './Input.stories';
 
-import * as InputStories from './Input.stories';
-
-<Meta of={InputStories} />
+<Meta title="Components/Forms/Input" />
 
 <DocsHeader
   title="Input"
-  description=""
-  recipePath="src/components/input/recipe.ts"
-  sourcePath="src/components/input/Input.tsx"
+  description="A single-line text input field"
+  sourcePath="src/components/forms/input/Input.tsx"
+  recipePath="src/components/forms/input/recipe.ts"
 />
 
-<Canvas of={InputStories.Preview} />
-
 ## Usage
-
-Information about usage here.
 
 ```tsx
 import { Input } from '@gravitational/design-system';
 
 function Example() {
-  return <Input />;
+  return <Input placeholder="Enter text..." />;
 }
 ```
 
-## Examples
+### Sizes
 
-### Example
+<Canvas of={Stories.Sizes} />
 
-<Canvas of={InputStories.Example} />
+### With Icon
+
+<Canvas of={Stories.WithIcon} />
+
+### Error
+
+<Canvas of={Stories.HasError} />
+
+### Disabled
+
+<Canvas of={Stories.Disabled} />
+
+### Read-Only
+
+<Canvas of={Stories.ReadOnly} />
 
 ## Props
 
-<PropTypes of={Input} />
+<PropTypes name="Input" />
