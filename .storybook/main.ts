@@ -4,6 +4,8 @@ import remarkGfm from 'remark-gfm';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  // Needed for the msw service worker
+  staticDirs: ['./public'],
   addons: [
     {
       name: '@storybook/addon-docs',

@@ -1,7 +1,9 @@
 // @ts-check
+/// <reference types="vite/client" />
 import '@storybook/addon-themes';
 
 import type { Preview } from '@storybook/react-vite';
+import { initialize, mswLoader } from 'msw-storybook-addon';
 import type { DecoratorFunction } from 'storybook/internal/csf';
 
 import { StorybookThemeProvider } from './StorybookThemeProvider';
@@ -13,6 +15,12 @@ import type { IndexEntry } from 'storybook/internal/types';
 import { DocsContainerWrapper } from './docs/DocsContainerWrapper';
 import { DocsStory } from './docs/Story';
 import { getThemes } from './themes';
+
+initialize({
+  serviceWorker: {
+    url: `${import.meta.env.BASE_URL}mockServiceWorker.js`,
+  },
+});
 
 function themeDecorator(): DecoratorFunction {
   const themes = getThemes();
@@ -41,6 +49,7 @@ interface PreviewWithStorySort extends Preview {
 
 const preview: PreviewWithStorySort = {
   decorators: [themeDecorator()],
+  loaders: [mswLoader],
   parameters: {
     actions: {
       disable: true,
@@ -126,6 +135,7 @@ const preview: PreviewWithStorySort = {
             'Toggle',
             'Date Picker',
           ],
+          'Components/Data Display': ['Data Table', 'Label'],
         };
         const pathA = a.title.split('/');
         const pathB = b.title.split('/');
