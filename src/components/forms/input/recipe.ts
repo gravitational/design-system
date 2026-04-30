@@ -3,74 +3,84 @@ import { defineRecipe } from '@chakra-ui/react';
 export const inputRecipe = defineRecipe({
   className: 'teleport-input',
   base: {
-    bg: 'transparent',
-    borderWidth: '1px',
-    borderColor: 'interactive.tonal.neutral.2',
-    focusVisibleRing: 'inside',
-    focusRingColor: 'interactive.solid.primary.default',
+    appearance: 'none',
     width: '100%',
     minWidth: '0',
     outline: '0',
     position: 'relative',
-    appearance: 'none',
     textAlign: 'start',
-    borderRadius: 'l2',
-    _disabled: {
-      layerStyle: 'disabled',
-    },
+    display: 'block',
+    borderRadius: 'sm',
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: 'interactive.tonal.neutral.2',
+    bg: 'transparent',
+    color: 'text.main',
     height: 'var(--input-height)',
-    minW: 'var(--input-height)',
-    '--focus-color': 'colors.colorPalette.focusRing',
-    '--error-color': {
-      _light: 'colors.red.600',
-      _dark: 'colors.red.300',
-    },
-    _invalid: {
-      focusRingColor: 'var(--error-color)',
-      borderColor: 'var(--error-color)',
-      _hover: {
-        borderColor: 'var(--error-color)',
-      },
+    minH: 'var(--input-height)',
+    transitionProperty: 'border-color, background-color, box-shadow',
+    transitionDuration: 'moderate',
+    px: 4,
+    _placeholder: {
+      color: 'text.muted',
+      opacity: 1,
     },
     _hover: {
       borderColor: 'text.muted',
     },
-    _icon: {
-      display: 'flex',
-      alignItems: 'center',
-      pos: 'absolute',
-      top: 0,
-      bottom: 0,
+    _focusVisible: {
+      borderColor: 'interactive.solid.primary.default',
+      _hover: {
+        borderColor: 'interactive.solid.primary.default',
+      },
+    },
+    _readOnly: {
+      cursor: 'not-allowed',
+      _hover: {
+        borderColor: 'interactive.tonal.neutral.2',
+      },
+      _focusVisible: {
+        borderColor: 'interactive.tonal.neutral.2',
+      },
+    },
+    _disabled: {
+      bg: 'interactive.tonal.neutral.0',
+      color: 'text.disabled',
+      borderColor: 'transparent',
+      cursor: 'not-allowed',
+      _placeholder: {
+        color: 'text.disabled',
+      },
+    },
+    _invalid: {
+      borderColor: 'interactive.solid.danger.default',
+      _hover: {
+        borderColor: 'interactive.solid.danger.default',
+      },
+    },
+    '&::-ms-clear': {
+      display: 'none',
     },
   },
   variants: {
-    /**
-     * The size of the input.
-     */
     size: {
       sm: {
-        textStyle: 'sm',
-        px: '2.5',
-        '--input-height': 'sizes.9',
-        _icon: {
-          fontSize: '16px',
-        },
+        textStyle: 'body3',
+        '--input-height': 'sizes.8',
+        _hasIcon: { paddingInlineStart: '40px' },
+        _invalid: { paddingInlineEnd: '32px' },
       },
       md: {
-        textStyle: 'md',
-        px: '4',
+        textStyle: 'body2',
         '--input-height': 'sizes.10',
-        _icon: {
-          fontSize: '18px',
-        },
+        _hasIcon: { paddingInlineStart: '42px' },
+        _invalid: { paddingInlineEnd: '34px' },
       },
       lg: {
-        textStyle: 'md',
-        px: '4',
-        '--input-height': 'sizes.11',
-        _icon: {
-          fontSize: '20px',
-        },
+        textStyle: 'body1',
+        '--input-height': 'sizes.12',
+        _hasIcon: { paddingInlineStart: '48px' },
+        _invalid: { paddingInlineEnd: '40px' },
       },
     },
   },

@@ -1,6 +1,7 @@
 import { buttonRecipe } from '../components/button/recipe';
 import { codeRecipe } from '../components/code/recipe';
 import { containerRecipe } from '../components/container/recipe';
+import { inputRecipe } from '../components/forms/input/recipe';
 import { groupRecipe } from '../components/group/recipe';
 import { iconRecipe } from '../components/icon/recipe';
 import { linkRecipe } from '../components/link/recipe';
@@ -14,6 +15,7 @@ export const recipes = {
   group: groupRecipe,
   heading: headingRecipe,
   icon: iconRecipe,
+  input: inputRecipe,
   link: linkRecipe,
   spinner: spinnerRecipe,
 };

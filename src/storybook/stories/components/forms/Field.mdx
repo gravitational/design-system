@@ -4,34 +4,67 @@ import { Canvas } from '../../../components/Canvas';
 import { DocsHeader } from '../../../components/DocsHeader';
 import { PropTypes } from '../../../components/PropTypes';
 
-import { Field } from '../../../..';
+import * as Stories from './Field.stories';
 
-import * as FieldStories from './Field.stories';
+<Meta title="Components/Forms/Field" />
 
-<Meta of={FieldStories} />
-
-<DocsHeader title="Field" description="" recipePath="" sourcePath="" />
-
-<Canvas of={FieldStories.Preview} />
+<DocsHeader
+  title="Field"
+  description="A wrapper for form controls and inputs"
+  sourcePath="src/components/forms/field/ComposedField.tsx"
+  recipePath="src/components/forms/field/recipe.ts"
+/>
 
 ## Usage
 
-Information about usage here.
-
 ```tsx
-import { Field } from '@gravitational/design-system';
+import { ComposedField, Input } from '@gravitational/design-system';
 
 function Example() {
-  return <Field />;
+  return (
+    <ComposedField label="Field label" helperText="Helper text">
+      <Input placeholder="Input" />
+    </ComposedField>
+  );
 }
 ```
 
-## Examples
+### Compose mode
 
-### Example
+For full compositional control over every slot, use `Field.Root` with the slot parts directly.
 
-<Canvas of={FieldStories.Example} />
+```tsx
+import { Field, Input } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <Field.Root required>
+      <Field.Label>
+        Field label <Field.RequiredIndicator />
+      </Field.Label>
+      <Input placeholder="Input" />
+      <Field.HelperText>Helper text</Field.HelperText>
+    </Field.Root>
+  );
+}
+```
+
+<Canvas of={Stories.ComposeExample} />
+
+### Required
+
+<Canvas of={Stories.Required} />
+
+### With Error
+
+<Canvas of={Stories.WithError} />
 
 ## Props
 
-<PropTypes of={Field} />
+### ComposedField
+
+<PropTypes name="ComposedField" />
+
+### Root
+
+<PropTypes name="Field" />

@@ -118,6 +118,7 @@ const preview: PreviewWithStorySort = {
           Components: ['Buttons', 'Notices'],
           'Components/Buttons': ['Button', 'Close Button'],
           'Components/Notices': ['Alert', 'Banner'],
+          'Components/Forms': ['Input', 'Field', 'Checkbox', 'Radio', 'Toggle'],
         };
         const pathA = a.title.split('/');
         const pathB = b.title.split('/');
