@@ -1,0 +1,81 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as Stories from './Table.stories';
+
+<Meta title="Components/Data Display/Data Table" />
+
+<DocsHeader
+  title="Table"
+  description="A data table that supports sorting, filtering, and pagination"
+  sourcePath="src/components/table/DataTable.tsx"
+  recipePath="src/components/table/recipe.ts"
+/>
+
+## Usage
+
+Uses [TanStack Table](https://tanstack.com/table) for state and [TanStack Query](https://tanstack.com/query) for data loading.
+
+```tsx
+import {
+  DataTable,
+  TextCell,
+  type ColumnDef,
+} from '@gravitational/design-system';
+
+interface Row {
+  id: number;
+  name: string;
+}
+
+const columns: ColumnDef<Row, unknown>[] = [
+  {
+    accessorKey: 'name',
+    header: 'Name',
+    cell: ({ row }) => <TextCell data={row.original.name} />,
+  },
+];
+
+function Example() {
+  return <DataTable data={data} columns={columns} emptyText="No rows" />;
+}
+```
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+
+### Client-side Search
+
+<Canvas of={Stories.Searchable} />
+
+### Client-side Pagination
+
+<Canvas of={Stories.ClientSidePagination} />
+
+### Custom Sorting
+
+<Canvas of={Stories.CustomSorting} />
+
+### No Data
+
+<Canvas of={Stories.EmptyState} />
+
+### Loading
+
+<Canvas of={Stories.LoadingState} />
+
+### Interactive Rows
+
+<Canvas of={Stories.InteractiveRows} />
+
+### Server-side Pagination
+
+<Canvas of={Stories.ServerSidePagination} />
+
+## Props
+
+<PropTypes name="DataTable" />

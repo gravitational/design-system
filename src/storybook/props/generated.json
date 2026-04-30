@@ -2492,6 +2492,149 @@
     "ref": null
   },
   {
+    "name": "DataTable",
+    "props": [
+      {
+        "name": "className",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "clientSidePagination",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DataTablePagination",
+          "expanded": "export interface DataTablePagination {\n  pageSize?: number;\n  pagerPosition?: PagerPosition;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "columns",
+        "typeInfo": {
+          "kind": "array",
+          "type": "ColumnDef<TData>[]"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "data",
+        "typeInfo": {
+          "kind": "array",
+          "type": "TData[]"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "emptyText",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "isLoading",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "isSearchable",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to include the client-side search input.",
+        "defaultValue": null
+      },
+      {
+        "name": "row",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DataTableRowOptions<TData>",
+          "expanded": "DataTableRowOptions<TData>"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "searchPanel",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Custom search input.",
+        "defaultValue": null
+      },
+      {
+        "name": "serverSidePagination",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DataTableServerSidePagination",
+          "expanded": "export interface DataTableServerSidePagination {\n  onPrev?: () => void;\n  onNext?: () => void;\n  isLoading: boolean;\n  from: number;\n  to: number;\n  totalCount?: number;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "style",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "CSSProperties",
+          "expanded": "CSSProperties"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "DatePicker",
     "props": [
       {
@@ -5019,6 +5162,124 @@
     }
   },
   {
+    "name": "InputSearch",
+    "props": [
+      {
+        "name": "autoFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "bigInputSize",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "isDisabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "placeholder",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "searchValue",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "setSearchValue",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(searchValue: string) => void"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Label",
+    "props": [
+      {
+        "name": "kind",
+        "typeInfo": {
+          "kind": "union",
+          "type": "\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | (\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | null | undefined)[] | { _hover?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _active?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _focus?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _focusWithin?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _focusVisible?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _disabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _visited?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _target?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _readOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _readWrite?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _empty?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _checked?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _enabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _expanded?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _highlighted?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _complete?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _incomplete?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _dragging?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _before?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _after?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _firstLetter?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _firstLine?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _marker?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _selection?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _file?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _backdrop?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _first?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _last?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _notFirst?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _notLast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _only?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _even?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _odd?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerFocus?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerHover?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerActive?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerFocusWithin?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerFocusVisible?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerDisabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerChecked?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerInvalid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerExpanded?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerPlaceholderShown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupFocus?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupHover?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupActive?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupFocusWithin?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupFocusVisible?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupDisabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupChecked?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupExpanded?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupInvalid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _indeterminate?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _required?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _valid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _invalid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _autofill?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _inRange?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _outOfRange?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _placeholder?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _placeholderShown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _pressed?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _selected?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _grabbed?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _underValue?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _overValue?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _atValue?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _default?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _optional?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _open?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _closed?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _fullscreen?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _loading?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _hidden?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _current?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _currentPage?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _currentStep?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _today?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _unavailable?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _rangeStart?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _rangeEnd?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _now?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _topmost?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _motionReduce?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _motionSafe?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _print?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _landscape?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _portrait?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _dark?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _light?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _osDark?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _osLight?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _highContrast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _lessContrast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _moreContrast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _ltr?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _rtl?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _scrollbar?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _scrollbarThumb?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _scrollbarTrack?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _horizontal?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _vertical?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _icon?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _starting?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; sm?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smDown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; md?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; mdOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; mdDown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; lg?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; lgOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; lgDown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smToMd?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smToLg?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; mdToLg?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; base?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; }",
+          "members": [
+            "\"primary\"",
+            "\"secondary\"",
+            "\"success\"",
+            "\"warning\"",
+            "\"danger\"",
+            "(\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | null | undefined)[]",
+            "{ _hover?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _active?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _focus?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _focusWithin?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _focusVisible?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _disabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _visited?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _target?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _readOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _readWrite?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _empty?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _checked?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _enabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _expanded?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _highlighted?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _complete?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _incomplete?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _dragging?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _before?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _after?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _firstLetter?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _firstLine?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _marker?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _selection?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _file?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _backdrop?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _first?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _last?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _notFirst?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _notLast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _only?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _even?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _odd?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerFocus?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerHover?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerActive?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerFocusWithin?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerFocusVisible?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerDisabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerChecked?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerInvalid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerExpanded?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerPlaceholderShown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupFocus?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupHover?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupActive?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupFocusWithin?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupFocusVisible?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupDisabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupChecked?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupExpanded?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupInvalid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _indeterminate?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _required?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _valid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _invalid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _autofill?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _inRange?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _outOfRange?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _placeholder?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _placeholderShown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _pressed?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _selected?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _grabbed?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _underValue?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _overValue?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _atValue?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _default?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _optional?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _open?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _closed?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _fullscreen?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _loading?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _hidden?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _current?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _currentPage?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _currentStep?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _today?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _unavailable?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _rangeStart?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _rangeEnd?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _now?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _topmost?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _motionReduce?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _motionSafe?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _print?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _landscape?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _portrait?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _dark?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _light?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _osDark?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _osLight?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _highContrast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _lessContrast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _moreContrast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _ltr?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _rtl?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _scrollbar?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _scrollbarThumb?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _scrollbarTrack?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _horizontal?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _vertical?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _icon?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _starting?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; sm?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smDown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; md?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; mdOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; mdDown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; lg?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; lgOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; lgDown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smToMd?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smToLg?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; mdToLg?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; base?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; }"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "List",
     "props": [
       {
@@ -5060,6 +5321,84 @@
   {
     "name": "List.Item",
     "props": [],
+    "ref": null
+  },
+  {
+    "name": "Pager",
+    "props": [
+      {
+        "name": "from",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Index of the first row on the current page.",
+        "defaultValue": null
+      },
+      {
+        "name": "isLoading",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "onNext",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "onPrev",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "to",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Index of the last row on the current page.",
+        "defaultValue": null
+      },
+      {
+        "name": "totalCount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Total count of rows.",
+        "defaultValue": null
+      }
+    ],
     "ref": null
   },
   {
@@ -5812,6 +6151,38 @@
     }
   },
   {
+    "name": "SortableHeader",
+    "props": [
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "header",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "Header<TData, TValue>",
+          "expanded": "Header<TData, TValue>"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "Spinner",
     "props": [
       {
@@ -5937,18 +6308,6 @@
     "name": "Table",
     "props": [
       {
-        "name": "interactive",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
         "name": "native",
         "typeInfo": {
           "kind": "primitive",
@@ -5961,18 +6320,6 @@
         "defaultValue": null
       },
       {
-        "name": "showColumnBorder",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
         "name": "size",
         "typeInfo": {
           "kind": "union",
@@ -5982,30 +6329,6 @@
             "'md'",
             "'lg'"
           ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "md"
-      },
-      {
-        "name": "stickyHeader",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "striped",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
         },
         "conditional": false,
         "required": false,
@@ -6027,7 +6350,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": "line"
+        "defaultValue": null
       }
     ],
     "ref": null
