@@ -1,5 +1,17 @@
 # @gravitational/design-system
 
+## 0.1.0
+
+### Minor Changes
+
+- Add Alert and Banner components ([#101](https://github.com/gravitational/design-system/pull/101))
+
+- Add Popover component ([#111](https://github.com/gravitational/design-system/pull/111))
+
+- Add Dialog component ([#110](https://github.com/gravitational/design-system/pull/110))
+
+- add date picker to design system ([#102](https://github.com/gravitational/design-system/pull/102))
+
 ## 0.0.14
 
 ### Patch Changes
