@@ -118,7 +118,14 @@ const preview: PreviewWithStorySort = {
           Components: ['Buttons', 'Feedback', 'Forms'],
           'Components/Buttons': ['Button', 'Close Button'],
           'Components/Feedback': ['Alert', 'Banner', 'Shimmer Box'],
-          'Components/Forms': ['Date Picker'],
+          'Components/Forms': [
+            'Input',
+            'Field',
+            'Checkbox',
+            'Radio',
+            'Toggle',
+            'Date Picker',
+          ],
         };
         const pathA = a.title.split('/');
         const pathB = b.title.split('/');

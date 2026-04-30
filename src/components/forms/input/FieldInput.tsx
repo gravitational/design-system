@@ -55,11 +55,11 @@ export function FieldInput<
 
       <Input
         disabled={isSubmitting}
+        hasError={fieldState.invalid}
         {...rest}
         {...field}
         ref={mergedRef}
-        // oxlint-disable-next-line typescript/no-unnecessary-condition - field.value can be undefined
-        value={field.value ?? ''}
+        value={(field.value as string | undefined) ?? ''}
       />
 
       <Field.ErrorText>{fieldState.error?.message}</Field.ErrorText>

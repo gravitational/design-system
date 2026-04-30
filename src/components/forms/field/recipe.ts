@@ -5,45 +5,41 @@ export const fieldSlotRecipe = defineSlotRecipe({
   className: 'teleport-field',
   slots: fieldAnatomy.keys(),
   base: {
-    requiredIndicator: {
-      color: {
-        _light: 'red.500',
-        _dark: 'red.200',
-      },
-      lineHeight: '1',
-    },
     root: {
       display: 'flex',
       width: '100%',
       position: 'relative',
-      gap: '1.5',
+      gap: 1,
     },
     label: {
       display: 'flex',
       alignItems: 'center',
       textAlign: 'start',
-      textStyle: 'sm',
-      fontWeight: 'medium',
-      gap: '1',
+      textStyle: 'body3',
+      color: 'text.main',
+      gap: 0,
       userSelect: 'none',
+      _invalid: {
+        color: 'interactive.solid.danger.default',
+      },
       _disabled: {
         opacity: '0.5',
       },
     },
+    requiredIndicator: {
+      color: 'interactive.solid.danger.default',
+      lineHeight: '1',
+      marginStart: 1,
+    },
     errorText: {
       display: 'inline-flex',
       alignItems: 'center',
-      fontWeight: 'medium',
-      gap: '1',
-      color: {
-        _light: 'red.600',
-        _dark: 'red.300',
-      },
-      fontSize: 'sm',
+      textStyle: 'body3',
+      color: 'interactive.solid.danger.default',
     },
     helperText: {
-      color: 'text.muted',
-      fontSize: 'sm',
+      textStyle: 'body3',
+      color: 'text.slightlyMuted',
     },
   },
   variants: {

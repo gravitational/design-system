@@ -1,0 +1,78 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as Stories from './Toggle.stories';
+
+<Meta title="Components/Forms/Toggle" />
+
+<DocsHeader
+  title="Toggle"
+  description="A switch for toggling between on and off states"
+  sourcePath="src/components/forms/toggle/ComposedToggle.tsx"
+  recipePath="src/components/forms/toggle/recipe.ts"
+/>
+
+## Usage
+
+```tsx
+import { ComposedToggle } from '@gravitational/design-system';
+import { useState } from 'react';
+
+function Example() {
+  const [on, setOn] = useState(false);
+  return (
+    <ComposedToggle
+      isToggled={on}
+      onToggle={() => setOn(v => !v)}
+      label="Toggle"
+    />
+  );
+}
+```
+
+### Compose mode
+
+For full compositional control over every slot, use `Toggle.Root` with the slot parts directly.
+
+```tsx
+import { Toggle } from '@gravitational/design-system';
+
+function Example() {
+  return (
+    <Toggle.Root>
+      <Toggle.HiddenInput />
+      <Toggle.Control>
+        <Toggle.Thumb />
+      </Toggle.Control>
+      <Toggle.Label>Toggle</Toggle.Label>
+    </Toggle.Root>
+  );
+}
+```
+
+<Canvas of={Stories.ComposeExample} />
+
+### Sizes
+
+<Canvas of={Stories.Sizes} />
+
+### Toggled
+
+<Canvas of={Stories.Toggled} />
+
+### Disabled
+
+<Canvas of={Stories.Disabled} />
+
+## Props
+
+### ComposedToggle
+
+<PropTypes name="ComposedToggle" />
+
+### Root
+
+<PropTypes name="Toggle" />
