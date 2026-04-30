@@ -470,6 +470,36 @@
     "ref": null
   },
   {
+    "name": "Card",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Card.Body",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Card.Description",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Card.Footer",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Card.Header",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "Card.Title",
+    "props": [],
+    "ref": null
+  },
+  {
     "name": "Center",
     "props": [],
     "ref": null
@@ -1246,6 +1276,38 @@
         "required": false,
         "readonly": false,
         "description": "The title text of the banner.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "ComposedCard",
+    "props": [
+      {
+        "name": "footer",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Optional content rendered in the card footer.",
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Optional title rendered in the card header.",
         "defaultValue": null
       }
     ],

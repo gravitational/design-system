@@ -6,6 +6,7 @@ import { datePickerSlotRecipe } from '../components/forms/datePicker/recipe';
 import { fieldSlotRecipe } from '../components/forms/field/recipe';
 import { radioGroupSlotRecipe } from '../components/forms/radio/recipe';
 import { toggleSlotRecipe } from '../components/forms/toggle/recipe';
+import { cardSlotRecipe } from '../components/layout/card/recipe';
 import { listSlotRecipe } from '../components/list/recipe';
 import { dialogSlotRecipe } from '../components/overlays/dialog/recipe';
 import { popoverSlotRecipe } from '../components/overlays/popover/recipe';
@@ -16,6 +17,7 @@ export const slotRecipes = {
   alert: alertSlotRecipe,
   banner: bannerSlotRecipe,
   blockquote: blockquoteSlotRecipe,
+  card: cardSlotRecipe,
   dialog: dialogSlotRecipe,
   datePicker: datePickerSlotRecipe,
   list: listSlotRecipe,
