@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as Stories from './ShimmerBox.stories';
+
+<Meta of={Stories} />
+
+<DocsHeader
+  title="Shimmer Box"
+  description="A loading skeleton box to be used as a placeholder for content being loaded"
+  sourcePath="src/components/feedback/shimmerBox/ShimmerBox.tsx"
+  recipePath="src/components/feedback/shimmerBox/recipe.ts"
+/>
+
+## Usage
+
+Set the size of the box with `width` / `height`.
+
+```tsx
+import { ShimmerBox } from '@gravitational/design-system';
+
+function Example() {
+  return <ShimmerBox width="320px" height="40px" />;
+}
+```
+
+<Canvas of={Stories.Default} />
+
+### List item placeholder
+
+Stack multiple `ShimmerBox` instances if loading a list of items.
+
+<Canvas of={Stories.ListItem} />
+
+## Props
+
+<PropTypes name="ShimmerBox" />
