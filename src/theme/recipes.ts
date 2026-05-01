@@ -2,6 +2,7 @@ import { buttonRecipe } from '../components/button/recipe';
 import { codeRecipe } from '../components/code/recipe';
 import { containerRecipe } from '../components/container/recipe';
 import { groupRecipe } from '../components/group/recipe';
+import { shimmerBoxRecipe } from '../components/feedback/shimmerBox/recipe';
 import { iconRecipe } from '../components/icon/recipe';
 import { linkRecipe } from '../components/link/recipe';
 import { spinnerRecipe } from '../components/spinner/recipe';
@@ -15,5 +16,6 @@ export const recipes = {
   heading: headingRecipe,
   icon: iconRecipe,
   link: linkRecipe,
+  shimmerBox: shimmerBoxRecipe,
   spinner: spinnerRecipe,
 };

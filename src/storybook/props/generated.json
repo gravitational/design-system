@@ -5669,6 +5669,11 @@
     "ref": null
   },
   {
+    "name": "ShimmerBox",
+    "props": [],
+    "ref": null
+  },
+  {
     "name": "SimpleGrid",
     "props": [
       {

@@ -8,7 +8,7 @@ import { HorseIcon, WarningCircleIcon } from '../../../../icons';
 const hiddenTags = ['!dev'];
 
 const meta = {
-  title: 'Components/Notices/Banner',
+  title: 'Components/Feedback/Banner',
   component: ComposedBanner,
   args: {
     kind: 'danger',
