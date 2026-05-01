@@ -2,13 +2,10 @@ import {
   Blockquote,
   Box,
   Code,
-  Heading,
   HStack,
   Link,
   List,
-  Text,
   VStack,
-  type HeadingProps,
   type HTMLChakraProps,
 } from '@chakra-ui/react';
 import { MDXProvider } from '@mdx-js/react';
@@ -42,6 +39,7 @@ import { getThemes } from '../themes';
 import { CodeBlock } from './CodeBlock';
 import { DocsNavigation } from './DocsNavigation';
 import { TableOfContents } from './TableOfContents';
+import { DocsHeading, DocsText, type DocsHeadingProps } from './Typography';
 
 interface ContextOverride extends DocsContextProps {
   store: {
@@ -174,7 +172,14 @@ export function DocsLink(props: HTMLChakraProps<'a'>) {
   return <Link {...props} onClick={handleClick} />;
 }
 
-function HeadingWrapper({ id, mt, mb, my, children, ...props }: HeadingProps) {
+function HeadingWrapper({
+  id,
+  mt,
+  mb,
+  my,
+  children,
+  ...props
+}: DocsHeadingProps) {
   const [copied, setCopied] = useState(false);
   const [, copy] = useCopyToClipboard();
 
@@ -241,9 +246,9 @@ function HeadingWrapper({ id, mt, mb, my, children, ...props }: HeadingProps) {
         </IconButton>
       </Tooltip>
 
-      <Heading {...props} id={id} cursor="pointer">
+      <DocsHeading {...props} id={id} cursor="pointer">
         <a href={url}>{children}</a>
-      </Heading>
+      </DocsHeading>
     </Box>
   );
 }
@@ -345,8 +350,8 @@ export function DocsContainerWrapper({
               <HeadingWrapper {...props} as="h5" mt={4} mb={0} size="md" />
             ),
             h6: props => <HeadingWrapper {...props} as="h6" size="sm" />,
-            p: props => <Text {...props} mb={2} />,
-            em: props => <Text as="em" fontStyle="italic" {...props} />,
+            p: props => <DocsText {...props} mb={2} />,
+            em: props => <DocsText as="em" fontStyle="italic" {...props} />,
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             pre: props => <CodeBlock {...props.children.props} />,
             ul: props => <List.Root mt={4} mb={6} pl={4} {...props} />,

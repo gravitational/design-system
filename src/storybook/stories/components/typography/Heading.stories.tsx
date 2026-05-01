@@ -17,13 +17,10 @@ Preview.tags = ['!dev'];
 export function Sizes() {
   return (
     <Stack>
-      <Heading size="xs">Heading (xs)</Heading>
-      <Heading size="sm">Heading (sm)</Heading>
-      <Heading size="md">Heading (md)</Heading>
-      <Heading size="lg">Heading (lg)</Heading>
-      <Heading size="xl">Heading (xl)</Heading>
-      <Heading size="2xl">Heading (2xl)</Heading>
-      <Heading size="3xl">Heading (3xl)</Heading>
+      <Heading size="lg">Heading 1 (lg)</Heading>
+      <Heading size="md">Heading 2 (md)</Heading>
+      <Heading size="sm">Heading 3 (sm)</Heading>
+      <Heading size="xs">Heading 4 (xs)</Heading>
     </Stack>
   );
 }
