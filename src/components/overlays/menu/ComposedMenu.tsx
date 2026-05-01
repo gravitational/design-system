@@ -1,5 +1,10 @@
 import { Menu as ChakraMenu, Portal } from '@chakra-ui/react';
-import type { ReactNode, RefAttributes, RefObject } from 'react';
+import {
+  isValidElement,
+  type ReactNode,
+  type RefAttributes,
+  type RefObject,
+} from 'react';
 
 export type MenuPositioning = NonNullable<ChakraMenu.RootProps['positioning']>;
 export type MenuPlacement = NonNullable<MenuPositioning['placement']>;
@@ -53,7 +58,7 @@ export function ComposedMenu({
 
   return (
     <ChakraMenu.Root positioning={mergedPositioning} {...rootProps} {...rest}>
-      {trigger !== undefined && (
+      {isValidElement(trigger) && (
         <ChakraMenu.Trigger asChild>{trigger}</ChakraMenu.Trigger>
       )}
 
