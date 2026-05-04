@@ -47,7 +47,7 @@ export const menuSlotRecipe = defineSlotRecipe({
       overflowX: 'hidden',
       scrollbarWidth: 'thin',
       scrollbarColor: '{colors.interactive.tonal.neutral.2} transparent',
-      maxHeight: 'inherit',
+      maxHeight: 'var(--available-height)',
       zIndex: 'calc(var(--menu-z-index) + var(--layer-index, 0))',
       outline: 'none',
       transformOrigin: 'var(--transform-origin)',
