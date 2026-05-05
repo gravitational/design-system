@@ -1,0 +1,36 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as CardStories from './Card.stories';
+
+<Meta of={CardStories} />
+
+<DocsHeader
+  title="Card"
+  description="An elevated surface for grouping related content"
+  sourcePath="src/components/layout/card/ComposedCard.tsx"
+  recipePath="src/components/layout/card/recipe.ts"
+/>
+
+<Canvas of={CardStories.DefaultExample} />
+
+## Usage
+
+```tsx
+import { ComposedCard } from '@gravitational/design-system';
+
+<ComposedCard title="Card title">Body content</ComposedCard>;
+```
+
+### Compose mode
+
+For full compositional control over every slot, use `Card.Root` with the slot parts directly.
+
+<Canvas of={CardStories.ComposeExample} />
+
+## Props
+
+<PropTypes name="ComposedCard" />
