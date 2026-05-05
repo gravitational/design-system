@@ -4,30 +4,33 @@ import { Canvas } from '../../../components/Canvas';
 import { DocsHeader } from '../../../components/DocsHeader';
 import { PropTypes } from '../../../components/PropTypes';
 
-import { Checkbox, CheckboxRoot } from '../../../..';
+import * as Stories from './Checkbox.stories';
 
-import { checkboxAnatomy } from '@chakra-ui/react/anatomy';
-
-import { Explorer } from '../../../components/Explorer';
-import * as CheckboxStories from './Checkbox.stories';
-
-<Meta of={CheckboxStories} />
+<Meta of={Stories} />
 
 <DocsHeader
   title="Checkbox"
-  description="Used in forms when a user needs to select multiple values from several options"
-  recipePath="src/components/form/checkbox/recipe.ts"
-  sourcePath="src/components/form/checkbox/Checkbox.tsx"
+  description="A control for selecting one or more options"
+  sourcePath="src/components/forms/checkbox/ComposedCheckbox.tsx"
+  recipePath="src/components/forms/checkbox/recipe.ts"
 />
-
-<Canvas of={CheckboxStories.Preview} />
 
 ## Usage
 
-Information about usage here.
+```tsx
+import { ComposedCheckbox } from '@gravitational/design-system';
+
+function Example() {
+  return <ComposedCheckbox label="Checkbox" />;
+}
+```
+
+### Compose mode
+
+For full compositional control over every slot, use `Checkbox.Root` with the slot parts directly.
 
 ```tsx
-import { Checkbox, FieldCheckbox } from '@gravitational/design-system';
+import { Checkbox } from '@gravitational/design-system';
 
 function Example() {
   return (
@@ -36,29 +39,40 @@ function Example() {
       <Checkbox.Control>
         <Checkbox.Indicator />
       </Checkbox.Control>
-      <Checkbox.Label />
+      <Checkbox.Label>Checkbox</Checkbox.Label>
     </Checkbox.Root>
   );
 }
-
-// FieldCheckbox
-function FieldExample() {
-  return <FieldCheckbox name="example" label="Example Checkbox" />;
-}
 ```
 
-## Examples
+<Canvas of={Stories.ComposeExample} />
 
-### Example
+### Sizes
 
-<Canvas of={CheckboxStories.Example} />
+<Canvas of={Stories.Sizes} />
+
+### Checked
+
+<Canvas of={Stories.Checked} />
+
+### Disabled
+
+<Canvas of={Stories.Disabled} />
+
+### Focused
+
+<Canvas of={Stories.Focused} />
+
+### Group
+
+<Canvas of={Stories.Group} />
 
 ## Props
 
+### ComposedCheckbox
+
+<PropTypes name="ComposedCheckbox" />
+
 ### Root
 
-<PropTypes name="CheckboxRoot" />
-
-## Explorer
-
-<Explorer of={CheckboxStories.ExplorerExample} keys={checkboxAnatomy.keys()} />
+<PropTypes name="Checkbox" />

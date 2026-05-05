@@ -20,7 +20,9 @@ export const baseThemeConfig = defineConfig({
   cssVarsPrefix: 'teleport',
   cssVarsRoot: ':where(:root, :host)',
   globalCss,
-  conditions: {},
+  conditions: {
+    hasIcon: '&[data-has-icon]',
+  },
   theme: {
     breakpoints,
     keyframes,
