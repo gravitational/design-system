@@ -9,6 +9,7 @@ import { toggleSlotRecipe } from '../components/forms/toggle/recipe';
 import { cardSlotRecipe } from '../components/layout/card/recipe';
 import { listSlotRecipe } from '../components/list/recipe';
 import { dialogSlotRecipe } from '../components/overlays/dialog/recipe';
+import { menuSlotRecipe } from '../components/overlays/menu/recipe';
 import { popoverSlotRecipe } from '../components/overlays/popover/recipe';
 import { tableSlotRecipe } from '../components/table/recipe';
 import { tooltipSlotRecipe } from '../components/overlays/tooltip/recipe';
@@ -21,6 +22,7 @@ export const slotRecipes = {
   dialog: dialogSlotRecipe,
   datePicker: datePickerSlotRecipe,
   list: listSlotRecipe,
+  menu: menuSlotRecipe,
   popover: popoverSlotRecipe,
   checkbox: checkboxSlotRecipe,
   field: fieldSlotRecipe,
