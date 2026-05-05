@@ -8,7 +8,7 @@ const config: Configuration = {
   // commands so lint-staged doesn't append file paths.
   'src/icons/icons.ts': () => 'pnpm generate-icons --check',
   '{src/components,src/themes}/**/*.{ts,tsx}': () =>
-    'pnpm generate-theme && pnpm generate-props --check',
+    'pnpm generate-props --check',
 };
 
 export { config as default };
