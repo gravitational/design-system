@@ -755,6 +755,18 @@
         "defaultValue": null
       },
       {
+        "name": "maxSelectedValues",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The maximum number of selected values",
+        "defaultValue": null
+      },
+      {
         "name": "name",
         "typeInfo": {
           "kind": "primitive",
@@ -1535,6 +1547,18 @@
         "defaultValue": "true"
       },
       {
+        "name": "createCalendar",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(identifier: CalendarIdentifier) => Calendar"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "A function that creates a Calendar object for a given calendar identifier.\nEnables non-Gregorian calendar support (Persian, Buddhist, Islamic, etc.)\nwithout bundling all calendars by default.",
+        "defaultValue": null
+      },
+      {
         "name": "defaultFocusedValue",
         "typeInfo": {
           "kind": "reference",
@@ -1720,6 +1744,18 @@
         "defaultValue": null
       },
       {
+        "name": "maxSelectedDates",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The maximum number of dates that can be selected.\nThis is only applicable when `selectionMode` is `multiple`.",
+        "defaultValue": null
+      },
+      {
         "name": "maxView",
         "typeInfo": {
           "kind": "reference",
@@ -1844,6 +1880,18 @@
         "defaultValue": null
       },
       {
+        "name": "onVisibleRangeChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: VisibleRangeChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the visible range changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -1854,6 +1902,18 @@
         "readonly": false,
         "description": "The controlled open state of the date picker",
         "defaultValue": null
+      },
+      {
+        "name": "openOnClick",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to open the calendar when the input is clicked.",
+        "defaultValue": "false"
       },
       {
         "name": "outsideDaySelectable",
@@ -1896,7 +1956,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -1954,6 +2014,18 @@
         "defaultValue": "single"
       },
       {
+        "name": "showWeekNumbers",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to show the week number column in the day view.",
+        "defaultValue": null
+      },
+      {
         "name": "skipAnimationOnMount",
         "typeInfo": {
           "kind": "primitive",
@@ -1994,7 +2066,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "IntlTranslations",
-          "expanded": "interface IntlTranslations {\n  dayCell: (state: DayTableCellState) => string;\n  nextTrigger: (view: DateView) => string;\n  monthSelect: string;\n  yearSelect: string;\n  viewTrigger: (view: DateView) => string;\n  prevTrigger: (view: DateView) => string;\n  presetTrigger: (value: string[]) => string;\n  clearTrigger: string;\n  trigger: (open: boolean) => string;\n  content: string;\n  placeholder: (locale: string) => {\n    year: string;\n    month: string;\n    day: string;\n  };\n}\n"
+          "expanded": "interface IntlTranslations {\n  dayCell: (state: DayTableCellState) => string;\n  nextTrigger: (view: DateView) => string;\n  monthSelect: string;\n  yearSelect: string;\n  viewTrigger: (view: DateView) => string;\n  prevTrigger: (view: DateView) => string;\n  presetTrigger: (value: string[]) => string;\n  clearTrigger: string;\n  trigger: (open: boolean) => string;\n  content: string;\n  placeholder: (locale: string) => {\n    year: string;\n    month: string;\n    day: string;\n  };\n  weekColumnHeader?: string | undefined;\n  weekNumberCell?: ((weekNumber: number) => string) | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -2133,6 +2205,22 @@
         "defaultValue": "false"
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial active trigger value when rendered.\nUse when you don't need to control the active trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "finalFocusEl",
         "typeInfo": {
           "kind": "function",
@@ -2173,7 +2261,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -2315,6 +2403,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to call when the active trigger changes",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -2426,6 +2526,22 @@
         "required": false,
         "readonly": false,
         "description": "Convenience: element wrapped in `<Dialog.Trigger asChild>`.",
+        "defaultValue": null
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled active trigger value",
         "defaultValue": null
       },
       {
@@ -2585,6 +2701,18 @@
         "readonly": false,
         "description": "Indicates whether the field is required.",
         "defaultValue": null
+      },
+      {
+        "name": "target",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The target field item value the label should point to.",
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -2699,6 +2827,22 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "gutter",
         "typeInfo": {
           "kind": "primitive",
@@ -2743,7 +2887,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  contextTrigger?: string | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  contextTrigger?:\n    | string\n    | ((value?: string | undefined) => string)\n    | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -2913,6 +3057,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -2967,7 +3123,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "MenuPositioning",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -3026,6 +3182,22 @@
         "required": false,
         "readonly": false,
         "description": "Convenience: element wrapped in `<Menu.Trigger asChild>`. Typically a\nButton.",
+        "defaultValue": null
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
         "defaultValue": null
       },
       {
@@ -3146,6 +3318,34 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
+        "name": "finalFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => MaybeElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Element to receive focus when the popover is closed.",
+        "defaultValue": null
+      },
+      {
         "name": "gutter",
         "typeInfo": {
           "kind": "primitive",
@@ -3174,7 +3374,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -3316,6 +3516,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -3383,7 +3595,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PopoverPositioning",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -3402,6 +3614,18 @@
         "readonly": false,
         "description": "Whether the node is present (controlled by the user)",
         "defaultValue": null
+      },
+      {
+        "name": "restoreFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to restore focus to the element that had focus before the popover was opened.",
+        "defaultValue": "true"
       },
       {
         "name": "showArrow",
@@ -3428,6 +3652,19 @@
         "defaultValue": "false"
       },
       {
+        "name": "translations",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "IntlTranslations",
+          "expanded": "interface IntlTranslations {\n  closeTriggerLabel?: string | undefined;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states",
+        "defaultValue": null
+      },
+      {
         "name": "trigger",
         "typeInfo": {
           "kind": "reference",
@@ -3438,6 +3675,22 @@
         "required": false,
         "readonly": false,
         "description": "Convenience: element wrapped in `<Popover.Trigger asChild>`. Ignored\nwhen `anchorRef` is provided.",
+        "defaultValue": null
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
         "defaultValue": null
       },
       {
@@ -3922,6 +4175,18 @@
         "defaultValue": "true"
       },
       {
+        "name": "createCalendar",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(identifier: CalendarIdentifier) => Calendar"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "A function that creates a Calendar object for a given calendar identifier.\nEnables non-Gregorian calendar support (Persian, Buddhist, Islamic, etc.)\nwithout bundling all calendars by default.",
+        "defaultValue": null
+      },
+      {
         "name": "defaultFocusedValue",
         "typeInfo": {
           "kind": "reference",
@@ -4131,6 +4396,18 @@
         "defaultValue": null
       },
       {
+        "name": "maxSelectedDates",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The maximum number of dates that can be selected.\nThis is only applicable when `selectionMode` is `multiple`.",
+        "defaultValue": null
+      },
+      {
         "name": "maxView",
         "typeInfo": {
           "kind": "reference",
@@ -4255,6 +4532,18 @@
         "defaultValue": null
       },
       {
+        "name": "onVisibleRangeChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: VisibleRangeChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the visible range changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -4265,6 +4554,18 @@
         "readonly": false,
         "description": "The controlled open state of the date picker",
         "defaultValue": null
+      },
+      {
+        "name": "openOnClick",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to open the calendar when the input is clicked.",
+        "defaultValue": "false"
       },
       {
         "name": "outsideDaySelectable",
@@ -4307,7 +4608,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -4365,6 +4666,18 @@
         "defaultValue": "single"
       },
       {
+        "name": "showWeekNumbers",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to show the week number column in the day view.",
+        "defaultValue": null
+      },
+      {
         "name": "skipAnimationOnMount",
         "typeInfo": {
           "kind": "primitive",
@@ -4405,7 +4718,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "IntlTranslations",
-          "expanded": "interface IntlTranslations {\n  dayCell: (state: DayTableCellState) => string;\n  nextTrigger: (view: DateView) => string;\n  monthSelect: string;\n  yearSelect: string;\n  viewTrigger: (view: DateView) => string;\n  prevTrigger: (view: DateView) => string;\n  presetTrigger: (value: string[]) => string;\n  clearTrigger: string;\n  trigger: (open: boolean) => string;\n  content: string;\n  placeholder: (locale: string) => {\n    year: string;\n    month: string;\n    day: string;\n  };\n}\n"
+          "expanded": "interface IntlTranslations {\n  dayCell: (state: DayTableCellState) => string;\n  nextTrigger: (view: DateView) => string;\n  monthSelect: string;\n  yearSelect: string;\n  viewTrigger: (view: DateView) => string;\n  prevTrigger: (view: DateView) => string;\n  presetTrigger: (value: string[]) => string;\n  clearTrigger: string;\n  trigger: (open: boolean) => string;\n  content: string;\n  placeholder: (locale: string) => {\n    year: string;\n    month: string;\n    day: string;\n  };\n  weekColumnHeader?: string | undefined;\n  weekNumberCell?: ((weekNumber: number) => string) | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -5044,6 +5357,22 @@
         "defaultValue": "false"
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial active trigger value when rendered.\nUse when you don't need to control the active trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "finalFocusEl",
         "typeInfo": {
           "kind": "function",
@@ -5072,7 +5401,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -5214,6 +5543,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to call when the active trigger changes",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -5313,6 +5654,22 @@
         "readonly": false,
         "description": "Whether to trap focus inside the dialog when it's opened",
         "defaultValue": "true"
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled active trigger value",
+        "defaultValue": null
       },
       {
         "name": "unmountOnExit",
@@ -5588,6 +5945,18 @@
         "readonly": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
         "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The value that identifies this specific trigger",
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -5695,6 +6064,18 @@
         "readonly": false,
         "description": "Indicates whether the field is required.",
         "defaultValue": null
+      },
+      {
+        "name": "target",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The target field item value the label should point to.",
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -5735,6 +6116,24 @@
         "required": false,
         "readonly": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Field.Item",
+    "props": [
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
         "defaultValue": null
       }
     ],
@@ -6645,6 +7044,22 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "highlightedValue",
         "typeInfo": {
           "kind": "union",
@@ -6677,7 +7092,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  contextTrigger?: string | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  contextTrigger?:\n    | string\n    | ((value?: string | undefined) => string)\n    | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -6847,6 +7262,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -6863,7 +7290,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -6910,6 +7337,22 @@
         "readonly": false,
         "description": "Whether to allow the initial presence animation.",
         "defaultValue": "false"
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
+        "defaultValue": null
       },
       {
         "name": "typeahead",
@@ -7401,7 +7844,7 @@
         "name": "onValueChange",
         "typeInfo": {
           "kind": "function",
-          "type": "(e: ValueChangeDetails) => void"
+          "type": "(e: Menu.ValueChangeDetails) => void"
         },
         "conditional": false,
         "required": false,
@@ -7577,6 +8020,18 @@
         "readonly": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
         "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The value that identifies this specific trigger",
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -7664,6 +8119,34 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
+        "name": "finalFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => MaybeElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Element to receive focus when the popover is closed.",
+        "defaultValue": null
+      },
+      {
         "name": "id",
         "typeInfo": {
           "kind": "primitive",
@@ -7680,7 +8163,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -7822,6 +8305,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -7863,7 +8358,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -7884,6 +8379,18 @@
         "defaultValue": null
       },
       {
+        "name": "restoreFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to restore focus to the element that had focus before the popover was opened.",
+        "defaultValue": "true"
+      },
+      {
         "name": "skipAnimationOnMount",
         "typeInfo": {
           "kind": "primitive",
@@ -7894,6 +8401,35 @@
         "readonly": false,
         "description": "Whether to allow the initial presence animation.",
         "defaultValue": "false"
+      },
+      {
+        "name": "translations",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "IntlTranslations",
+          "expanded": "interface IntlTranslations {\n  closeTriggerLabel?: string | undefined;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states",
+        "defaultValue": null
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
+        "defaultValue": null
       },
       {
         "name": "unmountOnExit",
@@ -8200,6 +8736,18 @@
         "required": false,
         "readonly": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The value that identifies this specific trigger",
         "defaultValue": null
       }
     ],
@@ -9487,6 +10035,22 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "disabled",
         "typeInfo": {
           "kind": "primitive",
@@ -9527,7 +10091,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  content?: string | undefined;\n  arrow?: string | undefined;\n  positioner?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  content?: string | undefined;\n  arrow?: string | undefined;\n  positioner?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -9597,6 +10161,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -9663,7 +10239,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "Tooltip.Positioning",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Tooltip.Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Tooltip.Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Tooltip.Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Tooltip.Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -9706,6 +10282,22 @@
         "readonly": false,
         "description": "Whether to allow the initial presence animation.",
         "defaultValue": "false"
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
+        "defaultValue": null
       },
       {
         "name": "unmountOnExit",
@@ -9774,6 +10366,22 @@
         "defaultValue": "false"
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial active trigger value when rendered.\nUse when you don't need to control the active trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "finalFocusEl",
         "typeInfo": {
           "kind": "function",
@@ -9802,7 +10410,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -9907,6 +10515,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to call when the active trigger changes",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -9982,6 +10602,22 @@
         "readonly": false,
         "description": "Whether to trap focus inside the dialog when it's opened",
         "defaultValue": "true"
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled active trigger value",
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -10102,6 +10738,22 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "highlightedValue",
         "typeInfo": {
           "kind": "union",
@@ -10134,7 +10786,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  contextTrigger?: string | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  contextTrigger?:\n    | string\n    | ((value?: string | undefined) => string)\n    | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -10267,6 +10919,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -10283,12 +10947,28 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
         "description": "The options used to dynamically position the menu",
+        "defaultValue": null
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
         "defaultValue": null
       },
       {
@@ -10358,6 +11038,34 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
+        "name": "finalFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => MaybeElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Element to receive focus when the popover is closed.",
+        "defaultValue": null
+      },
+      {
         "name": "id",
         "typeInfo": {
           "kind": "primitive",
@@ -10374,7 +11082,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -10479,6 +11187,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -10520,12 +11240,53 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
         "description": "The user provided options used to position the popover content",
+        "defaultValue": null
+      },
+      {
+        "name": "restoreFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to restore focus to the element that had focus before the popover was opened.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "translations",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "IntlTranslations",
+          "expanded": "interface IntlTranslations {\n  closeTriggerLabel?: string | undefined;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states",
+        "defaultValue": null
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
         "defaultValue": null
       }
     ],
