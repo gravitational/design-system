@@ -1,0 +1,47 @@
+{
+  "planPath": "docs/superpowers/plans/2026-04-19-modal-migration.md",
+  "tasks": [
+    {
+      "id": 8,
+      "subject": "Task 1: Add modalSlotRecipe in components/modal/recipe.ts",
+      "status": "completed",
+      "description": "Created src/components/modal/recipe.ts with teleport-modal className + dialogAnatomy slots + Teleport visuals. Verified via pnpm generate-theme && pnpm type-check."
+    },
+    {
+      "id": 9,
+      "subject": "Task 2: Register modal recipe in src/theme/slotRecipes.ts",
+      "status": "completed",
+      "blockedBy": [8],
+      "description": "Registered modalSlotRecipe under the Chakra 'dialog' key (matches dialogAnatomy). Verified via pnpm generate-theme && pnpm type-check."
+    },
+    {
+      "id": 10,
+      "subject": "Task 3: Implement Modal wrapper component",
+      "status": "completed",
+      "blockedBy": [9],
+      "description": "Wrapper around Chakra Dialog with compositional + trigger= convenience modes. Synthesizes onClose(event, reason) via Ark onEscapeKeyDown/onInteractOutside. All disable* flags + hideBackdrop + keepInDOMAfterClose + static sub-components."
+    },
+    {
+      "id": 11,
+      "subject": "Task 4: Re-export modal from components/index.ts",
+      "status": "completed",
+      "blockedBy": [10],
+      "description": "modal exported alphabetically between layout and popover."
+    },
+    {
+      "id": 12,
+      "subject": "Task 5: Write Modal Storybook stories",
+      "status": "completed",
+      "blockedBy": [11],
+      "description": "CSF3 stories: Default, Convenience, HideBackdrop, KeepInDOMAfterClose, DisableClose, CloseReason. Sizes/Placements/MotionPreset stories were removed after the first draft — the recipe has no variants for those knobs (Teleport Dialog never exposed them)."
+    },
+    {
+      "id": 13,
+      "subject": "Task 6: Add Modal.mdx Docs page and regenerate props",
+      "status": "completed",
+      "blockedBy": [12],
+      "description": "Modal.mdx created mirroring Popover.mdx; generated.json regenerated with Modal entry. All tests green (75/75)."
+    }
+  ],
+  "lastUpdated": "2026-04-19T16:30:00Z"
+}
