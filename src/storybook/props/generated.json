@@ -6921,83 +6921,37 @@
     "name": "IconButton",
     "props": [
       {
-        "name": "fill",
+        "name": "shape",
         "typeInfo": {
           "kind": "union",
-          "type": "'filled' | 'minimal' | 'border' | 'link'",
+          "type": "'circle' | 'square'",
           "members": [
-            "'filled'",
-            "'minimal'",
-            "'border'",
-            "'link'"
+            "'circle'",
+            "'square'"
           ]
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "Fill specifies the desired shape of the button.",
-        "defaultValue": "filled"
-      },
-      {
-        "name": "intent",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'neutral' | 'primary' | 'danger' | 'success'",
-          "members": [
-            "'neutral'",
-            "'primary'",
-            "'danger'",
-            "'success'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Specifies the button's purpose class and affects its color palette.",
-        "defaultValue": "primary"
-      },
-      {
-        "name": "loading",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "If `true`, the button will show a loading spinner.",
-        "defaultValue": "false"
+        "description": null,
+        "defaultValue": "circle"
       },
       {
         "name": "size",
         "typeInfo": {
           "kind": "union",
-          "type": "'sm' | 'md' | 'lg' | 'xl'",
+          "type": "'sm' | 'md' | 'lg'",
           "members": [
             "'sm'",
             "'md'",
-            "'lg'",
-            "'xl'"
+            "'lg'"
           ]
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The size of the button.",
+        "description": null,
         "defaultValue": "md"
-      },
-      {
-        "name": "spinner",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "ReactNode",
-          "expanded": "ReactNode"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The spinner to show while loading.",
-        "defaultValue": null
       }
     ],
     "ref": null

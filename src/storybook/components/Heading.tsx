@@ -66,8 +66,6 @@ export function Heading({ id, mt, mb, my, children, ...props }: HeadingProps) {
             void handleCopy();
           }}
           size="sm"
-          fill="minimal"
-          intent="neutral"
           mr="8px"
           opacity={0}
           _groupHover={{ opacity: 1 }}
