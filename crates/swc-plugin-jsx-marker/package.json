@@ -1,6 +1,6 @@
 {
   "name": "@gravitational/swc-plugin-jsx-marker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "SWC plugin for adding attributes to design system components",
   "main": "swc_plugin_jsx_marker.wasm",
   "scripts": {

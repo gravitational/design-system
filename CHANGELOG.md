@@ -1,5 +1,35 @@
 # @gravitational/design-system
 
+## 0.1.0
+
+### Minor Changes
+
+- Add `Menu` component ([#113](https://github.com/gravitational/design-system/pull/113))
+
+- Add Alert and Banner components ([#101](https://github.com/gravitational/design-system/pull/101))
+
+- Add Popover component ([#111](https://github.com/gravitational/design-system/pull/111))
+
+- add card component ([#120](https://github.com/gravitational/design-system/pull/120))
+
+- add shimmerbox component ([#118](https://github.com/gravitational/design-system/pull/118))
+
+- add input, field, toggle, checkbox, radio components ([#103](https://github.com/gravitational/design-system/pull/103))
+
+- add datatable component ([#104](https://github.com/gravitational/design-system/pull/104))
+
+- Add Dialog component ([#110](https://github.com/gravitational/design-system/pull/110))
+
+- add date picker to design system ([#102](https://github.com/gravitational/design-system/pull/102))
+
+- add iconbutton to design system ([#123](https://github.com/gravitational/design-system/pull/123))
+
+- add typography ([#119](https://github.com/gravitational/design-system/pull/119))
+
+### Patch Changes
+
+- Update dependencies ([#125](https://github.com/gravitational/design-system/pull/125))
+
 ## 0.0.14
 
 ### Patch Changes
