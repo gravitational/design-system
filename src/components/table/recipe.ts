@@ -6,161 +6,97 @@ export const tableSlotRecipe = defineSlotRecipe({
   slots: tableAnatomy.keys(),
   base: {
     root: {
-      fontVariantNumeric: 'lining-nums tabular-nums',
       borderCollapse: 'collapse',
+      borderSpacing: 0,
+      borderStyle: 'hidden',
       width: 'full',
-      textAlign: 'start',
-      verticalAlign: 'top',
-      borderRadius: 'md',
+      fontSize: 2,
+      '& > thead > tr > th, & > tbody > tr > td, & > tfoot > tr > td': {
+        py: 2,
+        px: 2,
+        verticalAlign: 'middle',
+        '&:first-child': {
+          paddingInlineStart: 5,
+        },
+        '&:last-child': {
+          paddingInlineEnd: 5,
+        },
+      },
     },
-    row: {
-      borderColor: 'interactive.tonal.neutral.1',
-      _selected: {
-        bg: 'colorPalette.subtle',
+    columnHeader: {
+      color: 'text.main',
+      textStyle: 'h3',
+      lineHeight: '{sizes.6}',
+      textAlign: 'start',
+      whiteSpace: 'nowrap',
+      py: 0,
+      cursor: 'default',
+      '& svg': {
+        height: '{sizes.3}',
       },
     },
     cell: {
-      textAlign: 'start',
-      alignItems: 'start',
-      verticalAlign: 'top',
+      color: 'text.main',
+      textStyle: 'table',
+      verticalAlign: 'middle',
     },
-    columnHeader: {
-      fontWeight: 'medium',
-      textAlign: 'start',
-      color: 'fg',
-      borderColor: 'interactive.tonal.neutral.2',
-    },
-    caption: {
-      fontWeight: 'medium',
-      textStyle: 'xs',
-    },
-    footer: {
-      fontWeight: 'medium',
+    row: {
+      transitionProperty: 'common',
+      transitionDuration: '150ms',
+      position: 'relative',
+      borderTop: 'md',
+      borderTopColor: 'interactive.tonal.neutral.0',
+      _hover: {
+        borderTopColor: 'transparent',
+        bg: 'levels.surface',
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          zIndex: -1,
+          width: '100%',
+          height: '100%',
+          boxShadow: 'sm',
+        },
+        '& + tr': {
+          borderTopColor: 'transparent',
+        },
+      },
     },
   },
   variants: {
-    interactive: {
-      true: {
-        body: {
-          '& tr': {
-            _hover: {
-              bg: 'colorPalette.subtle',
-            },
-          },
-        },
+    size: {
+      sm: {
+        root: { textStyle: 'sm' },
+        columnHeader: { px: 2, py: 2 },
+        cell: { px: 2, py: 2 },
       },
-    },
-    stickyHeader: {
-      true: {
-        header: {
-          '& :where(tr)': {
-            top: 'var(--table-sticky-offset, 0)',
-            position: 'sticky',
-            zIndex: 1,
-          },
-        },
+      md: {
+        root: { textStyle: 'sm' },
+        columnHeader: { px: 4, py: 4 },
+        cell: { px: 4, py: 4 },
       },
-    },
-    striped: {
-      true: {
-        row: {
-          '&:nth-of-type(odd) td': {
-            bg: 'bg.muted',
-          },
-        },
-      },
-    },
-    showColumnBorder: {
-      true: {
-        columnHeader: {
-          '&:not(:last-of-type)': {
-            borderInlineEndWidth: '1px',
-          },
-        },
-        cell: {
-          '&:not(:last-of-type)': {
-            borderInlineEndWidth: '1px',
-          },
-        },
+      lg: {
+        root: { textStyle: 'md' },
+        columnHeader: { px: 5, py: 4 },
+        cell: { px: 5, py: 4 },
       },
     },
     variant: {
       line: {
-        columnHeader: {
-          borderBottomWidth: '1px',
-        },
-        cell: {
-          borderBottomWidth: '1px',
-        },
-        row: {
-          bg: 'bg',
-        },
+        columnHeader: { borderBottomWidth: '1px' },
+        cell: { borderBottomWidth: '1px' },
       },
       outline: {
-        root: {
-          boxShadow: '0 0 0 1px {colors.interactive.tonal.neutral.1}',
-          overflow: 'hidden',
-        },
-        columnHeader: {
-          borderBottomWidth: '1px',
-        },
-        header: {
-          bg: 'interactive.tonal.neutral.0',
-        },
+        root: { boxShadow: '0 0 0 1px {colors.interactive.tonal.neutral.1}' },
+        columnHeader: { borderBottomWidth: '1px' },
+        header: { bg: 'interactive.tonal.neutral.0' },
         row: {
-          '&:not(:last-of-type)': {
-            borderBottomWidth: '1px',
-          },
+          '&:not(:last-of-type)': { borderBottomWidth: '1px' },
         },
-        footer: {
-          borderTopWidth: '1px',
-        },
+        footer: { borderTopWidth: '1px' },
       },
     },
-    size: {
-      sm: {
-        root: {
-          textStyle: 'sm',
-        },
-        columnHeader: {
-          px: '2',
-          py: '2',
-        },
-        cell: {
-          px: '2',
-          py: '2',
-        },
-      },
-      md: {
-        root: {
-          textStyle: 'sm',
-        },
-        columnHeader: {
-          px: '3',
-          py: '3',
-        },
-        cell: {
-          px: '3',
-          py: '3',
-        },
-      },
-      lg: {
-        root: {
-          textStyle: 'md',
-        },
-        columnHeader: {
-          px: '4',
-          py: '3',
-        },
-        cell: {
-          px: '4',
-          py: '3',
-        },
-      },
-    },
-  },
-  defaultVariants: {
-    variant: 'line',
-    size: 'md',
   },
 });

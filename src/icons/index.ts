@@ -25,6 +25,8 @@ THIS FILE IS GENERATED. DO NOT EDIT.
 export { Icon, type IconProps } from '@chakra-ui/react';
 
 export { ArrowBendDoubleUpRightIcon } from './generated/ArrowBendDoubleUpRightIcon';
+export { ArrowCircleLeftIcon } from './generated/ArrowCircleLeftIcon';
+export { ArrowCircleRightIcon } from './generated/ArrowCircleRightIcon';
 export { ArrowCircleUpIcon } from './generated/ArrowCircleUpIcon';
 export { ArrowLineUpRightIcon } from './generated/ArrowLineUpRightIcon';
 export { ArrowUpIcon } from './generated/ArrowUpIcon';
@@ -33,14 +35,18 @@ export { AtIcon } from './generated/AtIcon';
 export { CaretDownIcon } from './generated/CaretDownIcon';
 export { CaretLeftIcon } from './generated/CaretLeftIcon';
 export { CaretRightIcon } from './generated/CaretRightIcon';
+export { CaretUpDownIcon } from './generated/CaretUpDownIcon';
+export { CaretUpIcon } from './generated/CaretUpIcon';
 export { CheckCircleIcon } from './generated/CheckCircleIcon';
 export { CheckIcon, CheckBoldIcon } from './generated/CheckIcon';
 export { ChefHatIcon } from './generated/ChefHatIcon';
 export { ClipboardIcon } from './generated/ClipboardIcon';
 export { CodeIcon } from './generated/CodeIcon';
+export { DatabaseIcon } from './generated/DatabaseIcon';
 export { GithubLogoIcon } from './generated/GithubLogoIcon';
 export { HorseIcon } from './generated/HorseIcon';
 export { InfoIcon } from './generated/InfoIcon';
+export { MagnifyingGlassIcon } from './generated/MagnifyingGlassIcon';
 export { StarIcon } from './generated/StarIcon';
 export { TrashIcon } from './generated/TrashIcon';
 export { WarningCircleIcon } from './generated/WarningCircleIcon';
