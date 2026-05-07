@@ -7062,10 +7062,11 @@
         "defaultValue": null
       },
       {
-        "name": "bigInputSize",
+        "name": "children",
         "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
         },
         "conditional": false,
         "required": false,
@@ -7074,11 +7075,11 @@
         "defaultValue": null
       },
       {
-        "name": "children",
+        "name": "inputSize",
         "typeInfo": {
           "kind": "reference",
-          "type": "ReactNode",
-          "expanded": "ReactNode"
+          "type": "InputSearchSize",
+          "expanded": "'big' | 'small'"
         },
         "conditional": false,
         "required": false,

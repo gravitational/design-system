@@ -29,7 +29,7 @@ export interface DataTableRowOptions<T> {
   onClick?: (row: T) => void;
   getStyle?: (row: T) => CSSProperties;
   /** Render a custom component instead of the default row. */
-  customRow?: (row: T) => ReactNode;
+  renderCustomCells?: (row: T) => ReactNode;
   /** Render a component after the row. */
   renderAfter?: (row: T) => ReactNode | null;
 }
@@ -98,14 +98,14 @@ export function DataTable<TData>({
   const totalRowCount = serverSidePagination?.totalCount ?? table.getRowCount();
 
   const pagerPosition = clientSidePagination?.pagerPosition;
-  const { showTopPager, showBottomPager, showBothPager } = getPagerPosition(
+  const { showTopPager, showBottomPager, showBothPagers } = getPagerPosition(
     pagerPosition,
     totalRowCount
   );
   const hasPagerVisible =
     hasClientPagination || serverSidePagination !== undefined;
-  const topPager = hasPagerVisible && (showTopPager || showBothPager);
-  const bottomPager = hasPagerVisible && (showBottomPager || showBothPager);
+  const topPager = hasPagerVisible && (showTopPager || showBothPagers);
+  const bottomPager = hasPagerVisible && (showBottomPager || showBothPagers);
   const hasTopPanel = !!searchPanel || !!isSearchable || topPager;
 
   const isFetching = isLoading ?? serverSidePagination?.isLoading ?? false;
@@ -138,40 +138,29 @@ export function DataTable<TData>({
         <Table.Header>
           {table.getHeaderGroups().map(headerGroup => (
             <Table.Row key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
-                const sorted = header.column.getIsSorted();
-                const ariaSort =
-                  sorted === 'asc'
-                    ? 'ascending'
-                    : sorted === 'desc'
-                      ? 'descending'
-                      : header.column.getCanSort()
-                        ? 'none'
-                        : undefined;
-                return (
-                  <Table.ColumnHeader
-                    key={header.id}
-                    colSpan={header.colSpan}
-                    aria-sort={ariaSort}
-                  >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </Table.ColumnHeader>
-                );
-              })}
+              {headerGroup.headers.map(header => (
+                <Table.ColumnHeader
+                  key={header.id}
+                  colSpan={header.colSpan}
+                  aria-sort={getAriaSort(header.column.getIsSorted())}
+                >
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </Table.ColumnHeader>
+              ))}
             </Table.Row>
           ))}
         </Table.Header>
         {renderBody({
           rows,
-          row,
+          rowOptions: row,
           isInitialLoading,
           emptyText,
-          colSpan: visibleColumnCount,
+          numColumns: visibleColumnCount,
         })}
       </Table.Root>
 
@@ -186,39 +175,39 @@ export function DataTable<TData>({
 
 function renderBody<T>({
   rows,
-  row,
+  rowOptions,
   isInitialLoading,
   emptyText,
-  colSpan,
+  numColumns,
 }: {
   rows: Row<T>[];
-  row?: DataTableRowOptions<T>;
+  rowOptions?: DataTableRowOptions<T>;
   isInitialLoading: boolean;
   emptyText: string;
-  colSpan: number;
+  numColumns: number;
 }) {
   if (isInitialLoading) {
-    return <LoadingIndicator colSpan={colSpan} />;
+    return <LoadingIndicator colSpan={numColumns} />;
   }
 
   if (rows.length === 0) {
-    return <EmptyIndicator emptyText={emptyText} colSpan={colSpan} />;
+    return <EmptyIndicator emptyText={emptyText} colSpan={numColumns} />;
   }
 
   return (
     <Table.Body>
       {rows.flatMap(r => {
         const item = r.original;
-        const customRow = row?.customRow?.(item);
-        const renderAfter = row?.renderAfter?.(item);
+        const customCells = rowOptions?.renderCustomCells?.(item);
+        const renderAfter = rowOptions?.renderAfter?.(item);
 
         const rowNode = (
           <Table.Row
             key={r.id}
-            onClick={() => row?.onClick?.(item)}
-            style={row?.getStyle?.(item)}
+            onClick={() => rowOptions?.onClick?.(item)}
+            style={rowOptions?.getStyle?.(item)}
           >
-            {customRow ??
+            {customCells ??
               r
                 .getVisibleCells()
                 .map(cell => (
@@ -306,6 +295,19 @@ const Panel = chakra('nav', {
   },
 });
 
+function getAriaSort(
+  sorted: false | 'asc' | 'desc'
+): 'ascending' | 'descending' | undefined {
+  switch (sorted) {
+    case 'asc':
+      return 'ascending';
+    case 'desc':
+      return 'descending';
+    default:
+      return undefined;
+  }
+}
+
 /**
  * Returns pager position flags.
  *
@@ -321,9 +323,9 @@ function getPagerPosition(
   const showBottomPager = pagerPosition === 'bottom';
   const showTopPager =
     pagerPosition === 'top' || (!pagerPosition && !hasSufficientData);
-  const showBothPager =
+  const showBothPagers =
     pagerPosition === 'both' || (!pagerPosition && hasSufficientData);
-  return { showTopPager, showBottomPager, showBothPager };
+  return { showTopPager, showBottomPager, showBothPagers };
 }
 
 function buildClientPagerProps<T>(table: TanstackTable<T>): PagerProps {

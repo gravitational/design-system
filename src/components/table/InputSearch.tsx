@@ -1,11 +1,13 @@
 import { chakra } from '@chakra-ui/react';
 import { useEffect, useState, type ReactNode } from 'react';
 
+export type InputSearchSize = 'small' | 'big';
+
 export interface InputSearchProps {
   searchValue: string;
   setSearchValue: (searchValue: string) => void;
   children?: ReactNode;
-  bigInputSize?: boolean;
+  inputSize?: InputSearchSize;
   autoFocus?: boolean;
   placeholder?: string;
   isDisabled?: boolean;
@@ -15,7 +17,7 @@ export function InputSearch({
   searchValue,
   setSearchValue,
   children,
-  bigInputSize = false,
+  inputSize = 'small',
   autoFocus = false,
   placeholder = 'Search...',
   isDisabled = false,
@@ -25,8 +27,10 @@ export function InputSearch({
     setInputValue(searchValue);
   }, [searchValue]);
 
+  const big = inputSize === 'big' ? '' : undefined;
+
   return (
-    <Wrapper data-big={bigInputSize ? '' : undefined}>
+    <Wrapper data-big={big}>
       <Form
         onSubmit={e => {
           e.preventDefault();
@@ -34,7 +38,7 @@ export function InputSearch({
         }}
       >
         <StyledInput
-          data-big={bigInputSize ? '' : undefined}
+          data-big={big}
           placeholder={placeholder}
           value={inputValue}
           onChange={e => {

@@ -38,9 +38,15 @@ export interface DataTableServerSidePagination {
   /** Gets the next page. */
   onNext?: () => void;
   isLoading: boolean;
-  /** Index of the first row on the current page. */
+  /**
+   * 1-based index of the first row on the current page (inclusive).
+   * `0` when there are no rows.
+   */
   from: number;
-  /** Index of the last row on the current page. */
+  /**
+   * 1-based index of the last row on the current page (inclusive).
+   * `0` when there are no rows.
+   */
   to: number;
   /** Total count of rows across all pages. */
   totalCount?: number;
@@ -131,9 +137,14 @@ export function useDataTableQuery<TData, TPage, TPageParam = string>(
           setPageIndex(i => i + 1);
           return;
         }
+        const fromIndex = pageIndex;
+        setPageIndex(fromIndex + 1);
         void query.fetchNextPage().then(result => {
-          if (result.data && result.data.pages.length > pages.length) {
-            setPageIndex(i => i + 1);
+          // Roll back if the fetch failed
+          if (result.isError) {
+            setPageIndex(current =>
+              current === fromIndex + 1 ? fromIndex : current
+            );
           }
         });
       }

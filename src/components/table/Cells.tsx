@@ -47,7 +47,8 @@ export function ClickableLabelCell({
           border="none"
           p={0}
           cursor="pointer"
-          onClick={() => {
+          onClick={e => {
+            e.stopPropagation();
             onClick(label);
           }}
         >

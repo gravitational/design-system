@@ -1,8 +1,9 @@
 import { chakra, VStack } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import type { Meta } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { http, HttpResponse } from 'msw';
 import { useMemo, useState } from 'react';
+import { expect, waitFor } from 'storybook/test';
 
 const queryClient = new QueryClient();
 
@@ -29,9 +30,10 @@ function makeRows(count: number): Row[] {
   }));
 }
 
-const meta = {
-  component: DataTable<Row>,
-} satisfies Meta<typeof DataTable<Row>>;
+const meta: Meta<typeof DataTable<Row>> = {
+  component: DataTable,
+  args: { columns: [], data: [], emptyText: '' },
+};
 
 export default meta;
 
@@ -246,3 +248,106 @@ function Container({ children }: { children: React.ReactNode }) {
     </VStack>
   );
 }
+
+// Unit tests
+const testTags = ['!dev', '!docs'];
+
+// All static rows passed in via `data` are visible
+export const BasicTest: StoryObj<typeof meta> = {
+  tags: testTags,
+  render: Basic,
+  play: async ({ canvas }) => {
+    for (let i = 1; i <= 5; i++) {
+      await expect(canvas.getByText(`Row ${i}`)).toBeInTheDocument();
+    }
+  },
+};
+
+// If `data` is empty, the empty state text is shown
+export const EmptyStateTest: StoryObj<typeof meta> = {
+  tags: testTags,
+  render: EmptyState,
+  play: async ({ canvas }) => {
+    await expect(canvas.getByText('No data')).toBeInTheDocument();
+  },
+};
+
+// Client-side pagination only renders the rows for the current page, and clicking
+// the Next button shows the next 5 items
+export const ClientSidePaginationTest: StoryObj<typeof meta> = {
+  tags: testTags,
+  render: ClientSidePagination,
+  play: async ({ canvas, userEvent }) => {
+    // Only rows 1–5 visible on first page
+    await expect(canvas.getByText('Row 1')).toBeInTheDocument();
+    await expect(canvas.getByText('Row 5')).toBeInTheDocument();
+    await expect(canvas.queryByText('Row 6')).not.toBeInTheDocument();
+
+    // There should be 2 pagers (top and bottom)
+    const nextButtons = canvas.getAllByTitle('Next page');
+    await expect(nextButtons).toHaveLength(2);
+
+    // Navigating to the next page shows rows 6-10
+    await userEvent.click(nextButtons[0]);
+    await waitFor(async () => {
+      await expect(canvas.getByText('Row 6')).toBeInTheDocument();
+      await expect(canvas.getByText('Row 10')).toBeInTheDocument();
+    });
+  },
+};
+
+export const ServerSidePaginationTest: StoryObj<typeof meta> = {
+  tags: testTags,
+  render: ServerSidePagination,
+  parameters: ServerSidePagination.parameters,
+  decorators: ServerSidePagination.decorators,
+  play: async ({ canvas, userEvent }) => {
+    // First fetch returns page 1 (row 1-5)
+    await waitFor(
+      async () => {
+        await expect(canvas.getByText('Row 1')).toBeInTheDocument();
+      },
+      { timeout: 3000 }
+    );
+    await expect(canvas.getByText('Row 5')).toBeInTheDocument();
+
+    await waitFor(async () => {
+      await expect(canvas.getAllByTitle('Next page')[0]).not.toBeDisabled();
+    });
+    await userEvent.click(canvas.getAllByTitle('Next page')[0]);
+
+    // Second fetch returns page 2 (row 6-10)
+    await waitFor(
+      async () => {
+        await expect(canvas.getByText('Row 6')).toBeInTheDocument();
+        await expect(canvas.getByText('Row 10')).toBeInTheDocument();
+      },
+      { timeout: 3000 }
+    );
+  },
+};
+
+export const SearchableTest: StoryObj<typeof meta> = {
+  tags: testTags,
+  render: Searchable,
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.type(canvas.getByRole('textbox'), 'Row 3{Enter}');
+    await waitFor(async () => {
+      await expect(canvas.getByText('Row 3')).toBeInTheDocument();
+      await expect(canvas.queryByText('Row 1')).not.toBeInTheDocument();
+    });
+  },
+};
+
+// Clicking a sortable column header toggles the sort direction
+export const SortingTest: StoryObj<typeof meta> = {
+  tags: testTags,
+  render: CustomSorting,
+  play: async ({ canvas, userEvent }) => {
+    const header = canvas.getByRole('columnheader', { name: /name/i });
+    await expect(header).toHaveAttribute('aria-sort', 'ascending');
+
+    await userEvent.click(canvas.getByRole('button', { name: /name/i }));
+    await expect(header).toHaveAttribute('aria-sort', 'descending');
+  },
+};
