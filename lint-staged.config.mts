@@ -7,7 +7,8 @@ const config: Configuration = {
   // Context-aware generator checks. Functions return parameterless
   // commands so lint-staged doesn't append file paths.
   'src/icons/icons.ts': () => 'pnpm generate-icons --check',
-  'src/components/**/*.{ts,tsx}': () => 'pnpm generate-props --check',
+  '{src/components,src/themes}/**/*.{ts,tsx}': () =>
+    'pnpm generate-props --check',
 };
 
 export { config as default };
