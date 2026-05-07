@@ -1,9 +1,9 @@
 import { chakra, type HTMLChakraProps } from '@chakra-ui/react';
 import {
   useCallback,
-  type FormEvent,
   type PropsWithChildren,
   type RefAttributes,
+  type SubmitEvent,
 } from 'react';
 import {
   FormProvider,
@@ -36,7 +36,7 @@ export function Form<
 }: PropsWithChildren<FormProps<TFieldValues, TContext, TTransformedValues>> &
   RefAttributes<HTMLFormElement>) {
   const handleSubmit = useCallback(
-    (event: FormEvent) => {
+    (event: SubmitEvent<HTMLFormElement>) => {
       if (!onSubmit) {
         return;
       }
