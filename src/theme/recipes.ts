@@ -1,4 +1,5 @@
 import { buttonRecipe } from '../components/button/recipe';
+import { iconButtonRecipe } from '../components/button/IconButton.recipe';
 import { codeRecipe } from '../components/code/recipe';
 import { containerRecipe } from '../components/container/recipe';
 import { inputRecipe } from '../components/forms/input/recipe';
@@ -16,6 +17,7 @@ export const recipes = {
   group: groupRecipe,
   heading: headingRecipe,
   icon: iconRecipe,
+  iconButton: iconButtonRecipe,
   input: inputRecipe,
   link: linkRecipe,
   shimmerBox: shimmerBoxRecipe,

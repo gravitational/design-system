@@ -32,12 +32,12 @@ export type SingleColorTheme<T> = T extends TokenSchema
   ? T['value'] extends string | number
     ? T
     : HasOnlyLightDark<T['value']> extends true
-      ? { value: number | string }
+      ? { value: string }
       : T['value'] extends object
         ? {
-            value: { base: number | string } & Record<
+            value: { base: string } & Record<
               ExtractExtraKeys<T['value']>,
-              number | string
+              string
             >;
           }
         : T

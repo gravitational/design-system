@@ -3,6 +3,7 @@ export * from './code';
 export * from './container';
 export * from './feedback';
 export * from './forms';
+export * from './label';
 export * from './layout';
 export * from './overlays';
 export * from './table';

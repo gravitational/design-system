@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NODE_VERSION: 22.x
+  NODE_VERSION: 24.x
   RUST_CHANNEL: stable
 
 jobs:

@@ -8,7 +8,7 @@ edition      = "2021"
 homepage     = "https://github.com/gravitational/design-system"
 license      = "Apache-2.0"
 repository   = "https://github.com/gravitational/design-system.git"
-rust-version = "1.70"
+rust-version = "1.85"
 
 [workspace.dependencies]
 Inflector                   = "0.11.4"

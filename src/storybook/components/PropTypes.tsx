@@ -284,10 +284,6 @@ function ArgTypeWithExpanded({ type, expanded }: ArgTypeWithExpandedProps) {
             }}
             top={1}
             right={1}
-            px={1}
-            py={1}
-            fill="minimal"
-            intent="neutral"
             size="sm"
           >
             {copied ? <CheckIcon /> : <ClipboardIcon />}

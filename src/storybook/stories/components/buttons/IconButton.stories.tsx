@@ -1,8 +1,10 @@
 import { HStack } from '@chakra-ui/react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta } from '@storybook/react-vite';
 
-import { IconButton } from '../../../../components';
+import { IconButton, VStack } from '../../../../components';
 import { HorseIcon } from '../../../../icons';
+
+const hiddenTags = ['!dev'];
 
 const meta = {
   title: 'Components/Buttons/Icon Button',
@@ -11,87 +13,50 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
-
-export const IconButtonStory: Story = {
-  name: 'Icon Button',
-  args: {},
-};
-
-export function Sizes() {
+export function DefaultExample() {
   return (
-    <HStack>
-      <IconButton size="sm">
-        <HorseIcon />
-      </IconButton>
-      <IconButton size="md">
-        <HorseIcon />
-      </IconButton>
-      <IconButton size="lg">
-        <HorseIcon />
-      </IconButton>
-      <IconButton size="xl">
-        <HorseIcon />
-      </IconButton>
-    </HStack>
+    <IconButton aria-label="Horse">
+      <HorseIcon />
+    </IconButton>
   );
 }
+DefaultExample.tags = hiddenTags;
 
-Sizes.parameters = {
-  controls: {
-    disable: true,
-  },
-  control: {
-    disable: true,
-  },
-};
-
-export function Fills() {
+export function SizesExample() {
   return (
-    <HStack>
-      <IconButton fill="minimal">
-        <HorseIcon />
-      </IconButton>
-      <IconButton fill="filled">
-        <HorseIcon />
-      </IconButton>
-      <IconButton fill="border">
-        <HorseIcon />
-      </IconButton>
-    </HStack>
+    <VStack align="start">
+      <HStack>
+        <IconButton aria-label="Small" size="sm">
+          <HorseIcon />
+        </IconButton>
+        <IconButton aria-label="Medium" size="md">
+          <HorseIcon />
+        </IconButton>
+        <IconButton aria-label="Large" size="lg">
+          <HorseIcon />
+        </IconButton>
+      </HStack>
+      <HStack>
+        <IconButton aria-label="Small-Square" size="sm" shape="square">
+          <HorseIcon />
+        </IconButton>
+        <IconButton aria-label="Medium-Square" size="md" shape="square">
+          <HorseIcon />
+        </IconButton>
+        <IconButton aria-label="Large-Square" size="lg" shape="square">
+          <HorseIcon />
+        </IconButton>
+      </HStack>
+    </VStack>
   );
 }
+SizesExample.tags = hiddenTags;
 
-Fills.parameters = {
-  controls: {
-    disable: true,
-  },
-  control: {
-    disable: true,
-  },
-};
-
-export function Rounded() {
+export function DisabledExample() {
   return (
-    <HStack>
-      <IconButton rounded="full" fill="minimal">
-        <HorseIcon />
-      </IconButton>
-      <IconButton rounded="full" fill="filled">
-        <HorseIcon />
-      </IconButton>
-      <IconButton rounded="full" fill="border">
-        <HorseIcon />
-      </IconButton>
-    </HStack>
+    <IconButton aria-label="Disabled" disabled>
+      <HorseIcon />
+    </IconButton>
   );
 }
-
-Rounded.parameters = {
-  controls: {
-    disable: true,
-  },
-  control: {
-    disable: true,
-  },
-};
+DisabledExample.tags = hiddenTags;

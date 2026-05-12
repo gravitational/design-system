@@ -755,6 +755,18 @@
         "defaultValue": null
       },
       {
+        "name": "maxSelectedValues",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The maximum number of selected values",
+        "defaultValue": null
+      },
+      {
         "name": "name",
         "typeInfo": {
           "kind": "primitive",
@@ -1535,6 +1547,18 @@
         "defaultValue": "true"
       },
       {
+        "name": "createCalendar",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(identifier: CalendarIdentifier) => Calendar"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "A function that creates a Calendar object for a given calendar identifier.\nEnables non-Gregorian calendar support (Persian, Buddhist, Islamic, etc.)\nwithout bundling all calendars by default.",
+        "defaultValue": null
+      },
+      {
         "name": "defaultFocusedValue",
         "typeInfo": {
           "kind": "reference",
@@ -1720,6 +1744,18 @@
         "defaultValue": null
       },
       {
+        "name": "maxSelectedDates",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The maximum number of dates that can be selected.\nThis is only applicable when `selectionMode` is `multiple`.",
+        "defaultValue": null
+      },
+      {
         "name": "maxView",
         "typeInfo": {
           "kind": "reference",
@@ -1844,6 +1880,18 @@
         "defaultValue": null
       },
       {
+        "name": "onVisibleRangeChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: VisibleRangeChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the visible range changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -1854,6 +1902,18 @@
         "readonly": false,
         "description": "The controlled open state of the date picker",
         "defaultValue": null
+      },
+      {
+        "name": "openOnClick",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to open the calendar when the input is clicked.",
+        "defaultValue": "false"
       },
       {
         "name": "outsideDaySelectable",
@@ -1896,7 +1956,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -1954,6 +2014,18 @@
         "defaultValue": "single"
       },
       {
+        "name": "showWeekNumbers",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to show the week number column in the day view.",
+        "defaultValue": null
+      },
+      {
         "name": "skipAnimationOnMount",
         "typeInfo": {
           "kind": "primitive",
@@ -1994,7 +2066,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "IntlTranslations",
-          "expanded": "interface IntlTranslations {\n  dayCell: (state: DayTableCellState) => string;\n  nextTrigger: (view: DateView) => string;\n  monthSelect: string;\n  yearSelect: string;\n  viewTrigger: (view: DateView) => string;\n  prevTrigger: (view: DateView) => string;\n  presetTrigger: (value: string[]) => string;\n  clearTrigger: string;\n  trigger: (open: boolean) => string;\n  content: string;\n  placeholder: (locale: string) => {\n    year: string;\n    month: string;\n    day: string;\n  };\n}\n"
+          "expanded": "interface IntlTranslations {\n  dayCell: (state: DayTableCellState) => string;\n  nextTrigger: (view: DateView) => string;\n  monthSelect: string;\n  yearSelect: string;\n  viewTrigger: (view: DateView) => string;\n  prevTrigger: (view: DateView) => string;\n  presetTrigger: (value: string[]) => string;\n  clearTrigger: string;\n  trigger: (open: boolean) => string;\n  content: string;\n  placeholder: (locale: string) => {\n    year: string;\n    month: string;\n    day: string;\n  };\n  weekColumnHeader?: string | undefined;\n  weekNumberCell?: ((weekNumber: number) => string) | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -2133,6 +2205,22 @@
         "defaultValue": "false"
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial active trigger value when rendered.\nUse when you don't need to control the active trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "finalFocusEl",
         "typeInfo": {
           "kind": "function",
@@ -2173,7 +2261,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -2315,6 +2403,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to call when the active trigger changes",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -2426,6 +2526,22 @@
         "required": false,
         "readonly": false,
         "description": "Convenience: element wrapped in `<Dialog.Trigger asChild>`.",
+        "defaultValue": null
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled active trigger value",
         "defaultValue": null
       },
       {
@@ -2585,6 +2701,18 @@
         "readonly": false,
         "description": "Indicates whether the field is required.",
         "defaultValue": null
+      },
+      {
+        "name": "target",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The target field item value the label should point to.",
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -2699,6 +2827,22 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "gutter",
         "typeInfo": {
           "kind": "primitive",
@@ -2743,7 +2887,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  contextTrigger?: string | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  contextTrigger?:\n    | string\n    | ((value?: string | undefined) => string)\n    | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -2913,6 +3057,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -2967,7 +3123,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "MenuPositioning",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -3026,6 +3182,22 @@
         "required": false,
         "readonly": false,
         "description": "Convenience: element wrapped in `<Menu.Trigger asChild>`. Typically a\nButton.",
+        "defaultValue": null
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
         "defaultValue": null
       },
       {
@@ -3146,6 +3318,34 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
+        "name": "finalFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => MaybeElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Element to receive focus when the popover is closed.",
+        "defaultValue": null
+      },
+      {
         "name": "gutter",
         "typeInfo": {
           "kind": "primitive",
@@ -3174,7 +3374,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -3316,6 +3516,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -3383,7 +3595,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PopoverPositioning",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -3402,6 +3614,18 @@
         "readonly": false,
         "description": "Whether the node is present (controlled by the user)",
         "defaultValue": null
+      },
+      {
+        "name": "restoreFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to restore focus to the element that had focus before the popover was opened.",
+        "defaultValue": "true"
       },
       {
         "name": "showArrow",
@@ -3428,6 +3652,19 @@
         "defaultValue": "false"
       },
       {
+        "name": "translations",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "IntlTranslations",
+          "expanded": "interface IntlTranslations {\n  closeTriggerLabel?: string | undefined;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states",
+        "defaultValue": null
+      },
+      {
         "name": "trigger",
         "typeInfo": {
           "kind": "reference",
@@ -3438,6 +3675,22 @@
         "required": false,
         "readonly": false,
         "description": "Convenience: element wrapped in `<Popover.Trigger asChild>`. Ignored\nwhen `anchorRef` is provided.",
+        "defaultValue": null
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
         "defaultValue": null
       },
       {
@@ -3895,6 +4148,149 @@
     "ref": null
   },
   {
+    "name": "DataTable",
+    "props": [
+      {
+        "name": "className",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "clientSidePagination",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DataTablePagination",
+          "expanded": "export interface DataTablePagination {\n  pageSize?: number;\n  pagerPosition?: PagerPosition;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "columns",
+        "typeInfo": {
+          "kind": "array",
+          "type": "ColumnDef<TData>[]"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "data",
+        "typeInfo": {
+          "kind": "array",
+          "type": "TData[]"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "emptyText",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "isLoading",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "isSearchable",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to include the client-side search input.",
+        "defaultValue": null
+      },
+      {
+        "name": "row",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DataTableRowOptions<TData>",
+          "expanded": "DataTableRowOptions<TData>"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "searchPanel",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Custom search input.",
+        "defaultValue": null
+      },
+      {
+        "name": "serverSidePagination",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "DataTableServerSidePagination",
+          "expanded": "export interface DataTableServerSidePagination {\n  onPrev?: () => void;\n  onNext?: () => void;\n  isLoading: boolean;\n  from: number;\n  to: number;\n  totalCount?: number;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "style",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "CSSProperties",
+          "expanded": "CSSProperties"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "DatePicker",
     "props": [
       {
@@ -3920,6 +4316,18 @@
         "readonly": false,
         "description": "Whether the calendar should close after the date selection is complete.\nThis is ignored when the selection mode is `multiple`.",
         "defaultValue": "true"
+      },
+      {
+        "name": "createCalendar",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(identifier: CalendarIdentifier) => Calendar"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "A function that creates a Calendar object for a given calendar identifier.\nEnables non-Gregorian calendar support (Persian, Buddhist, Islamic, etc.)\nwithout bundling all calendars by default.",
+        "defaultValue": null
       },
       {
         "name": "defaultFocusedValue",
@@ -4131,6 +4539,18 @@
         "defaultValue": null
       },
       {
+        "name": "maxSelectedDates",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The maximum number of dates that can be selected.\nThis is only applicable when `selectionMode` is `multiple`.",
+        "defaultValue": null
+      },
+      {
         "name": "maxView",
         "typeInfo": {
           "kind": "reference",
@@ -4255,6 +4675,18 @@
         "defaultValue": null
       },
       {
+        "name": "onVisibleRangeChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: VisibleRangeChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the visible range changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -4265,6 +4697,18 @@
         "readonly": false,
         "description": "The controlled open state of the date picker",
         "defaultValue": null
+      },
+      {
+        "name": "openOnClick",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to open the calendar when the input is clicked.",
+        "defaultValue": "false"
       },
       {
         "name": "outsideDaySelectable",
@@ -4307,7 +4751,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -4365,6 +4809,18 @@
         "defaultValue": "single"
       },
       {
+        "name": "showWeekNumbers",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to show the week number column in the day view.",
+        "defaultValue": null
+      },
+      {
         "name": "skipAnimationOnMount",
         "typeInfo": {
           "kind": "primitive",
@@ -4405,7 +4861,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "IntlTranslations",
-          "expanded": "interface IntlTranslations {\n  dayCell: (state: DayTableCellState) => string;\n  nextTrigger: (view: DateView) => string;\n  monthSelect: string;\n  yearSelect: string;\n  viewTrigger: (view: DateView) => string;\n  prevTrigger: (view: DateView) => string;\n  presetTrigger: (value: string[]) => string;\n  clearTrigger: string;\n  trigger: (open: boolean) => string;\n  content: string;\n  placeholder: (locale: string) => {\n    year: string;\n    month: string;\n    day: string;\n  };\n}\n"
+          "expanded": "interface IntlTranslations {\n  dayCell: (state: DayTableCellState) => string;\n  nextTrigger: (view: DateView) => string;\n  monthSelect: string;\n  yearSelect: string;\n  viewTrigger: (view: DateView) => string;\n  prevTrigger: (view: DateView) => string;\n  presetTrigger: (value: string[]) => string;\n  clearTrigger: string;\n  trigger: (open: boolean) => string;\n  content: string;\n  placeholder: (locale: string) => {\n    year: string;\n    month: string;\n    day: string;\n  };\n  weekColumnHeader?: string | undefined;\n  weekNumberCell?: ((weekNumber: number) => string) | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -5044,6 +5500,22 @@
         "defaultValue": "false"
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial active trigger value when rendered.\nUse when you don't need to control the active trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "finalFocusEl",
         "typeInfo": {
           "kind": "function",
@@ -5072,7 +5544,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -5214,6 +5686,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to call when the active trigger changes",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -5313,6 +5797,22 @@
         "readonly": false,
         "description": "Whether to trap focus inside the dialog when it's opened",
         "defaultValue": "true"
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled active trigger value",
+        "defaultValue": null
       },
       {
         "name": "unmountOnExit",
@@ -5588,6 +6088,18 @@
         "readonly": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
         "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The value that identifies this specific trigger",
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -5695,6 +6207,18 @@
         "readonly": false,
         "description": "Indicates whether the field is required.",
         "defaultValue": null
+      },
+      {
+        "name": "target",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The target field item value the label should point to.",
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -5735,6 +6259,24 @@
         "required": false,
         "readonly": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Field.Item",
+    "props": [
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
         "defaultValue": null
       }
     ],
@@ -6379,83 +6921,37 @@
     "name": "IconButton",
     "props": [
       {
-        "name": "fill",
+        "name": "shape",
         "typeInfo": {
           "kind": "union",
-          "type": "'filled' | 'minimal' | 'border' | 'link'",
+          "type": "'circle' | 'square'",
           "members": [
-            "'filled'",
-            "'minimal'",
-            "'border'",
-            "'link'"
+            "'circle'",
+            "'square'"
           ]
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "Fill specifies the desired shape of the button.",
-        "defaultValue": "filled"
-      },
-      {
-        "name": "intent",
-        "typeInfo": {
-          "kind": "union",
-          "type": "'neutral' | 'primary' | 'danger' | 'success'",
-          "members": [
-            "'neutral'",
-            "'primary'",
-            "'danger'",
-            "'success'"
-          ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "Specifies the button's purpose class and affects its color palette.",
-        "defaultValue": "primary"
-      },
-      {
-        "name": "loading",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "If `true`, the button will show a loading spinner.",
-        "defaultValue": "false"
+        "description": null,
+        "defaultValue": "circle"
       },
       {
         "name": "size",
         "typeInfo": {
           "kind": "union",
-          "type": "'sm' | 'md' | 'lg' | 'xl'",
+          "type": "'sm' | 'md' | 'lg'",
           "members": [
             "'sm'",
             "'md'",
-            "'lg'",
-            "'xl'"
+            "'lg'"
           ]
         },
         "conditional": false,
         "required": false,
         "readonly": false,
-        "description": "The size of the button.",
+        "description": null,
         "defaultValue": "md"
-      },
-      {
-        "name": "spinner",
-        "typeInfo": {
-          "kind": "reference",
-          "type": "ReactNode",
-          "expanded": "ReactNode"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": "The spinner to show while loading.",
-        "defaultValue": null
       }
     ],
     "ref": null
@@ -6494,6 +6990,125 @@
           "kind": "reference",
           "type": "InputSize",
           "expanded": "'sm' | 'md' | 'lg'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "InputSearch",
+    "props": [
+      {
+        "name": "autoFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "inputSize",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "InputSearchSize",
+          "expanded": "'big' | 'small'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "isDisabled",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "placeholder",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "searchValue",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "setSearchValue",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(searchValue: string) => void"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Label",
+    "props": [
+      {
+        "name": "kind",
+        "typeInfo": {
+          "kind": "union",
+          "type": "\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | (\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | null | undefined)[] | { _hover?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _active?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _focus?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _focusWithin?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _focusVisible?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _disabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _visited?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _target?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _readOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _readWrite?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _empty?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _checked?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _enabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _expanded?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _highlighted?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _complete?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _incomplete?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _dragging?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _before?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _after?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _firstLetter?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _firstLine?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _marker?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _selection?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _file?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _backdrop?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _first?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _last?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _notFirst?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _notLast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _only?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _even?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _odd?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerFocus?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerHover?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerActive?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerFocusWithin?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerFocusVisible?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerDisabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerChecked?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerInvalid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerExpanded?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerPlaceholderShown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupFocus?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupHover?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupActive?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupFocusWithin?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupFocusVisible?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupDisabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupChecked?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupExpanded?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupInvalid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _indeterminate?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _required?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _valid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _invalid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _autofill?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _inRange?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _outOfRange?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _placeholder?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _placeholderShown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _pressed?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _selected?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _grabbed?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _underValue?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _overValue?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _atValue?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _default?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _optional?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _open?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _closed?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _fullscreen?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _loading?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _hidden?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _current?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _currentPage?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _currentStep?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _today?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _unavailable?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _rangeStart?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _rangeEnd?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _now?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _topmost?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _motionReduce?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _motionSafe?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _print?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _landscape?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _portrait?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _dark?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _light?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _osDark?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _osLight?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _highContrast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _lessContrast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _moreContrast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _ltr?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _rtl?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _scrollbar?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _scrollbarThumb?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _scrollbarTrack?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _horizontal?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _vertical?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _icon?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _starting?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _hasIcon?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; sm?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smDown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; md?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; mdOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; mdDown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; lg?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; lgOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; lgDown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smToMd?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smToLg?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; mdToLg?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; base?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; }",
+          "members": [
+            "\"primary\"",
+            "\"secondary\"",
+            "\"success\"",
+            "\"warning\"",
+            "\"danger\"",
+            "(\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | null | undefined)[]",
+            "{ _hover?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _active?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _focus?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _focusWithin?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _focusVisible?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _disabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _visited?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _target?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _readOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _readWrite?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _empty?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _checked?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _enabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _expanded?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _highlighted?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _complete?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _incomplete?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _dragging?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _before?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _after?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _firstLetter?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _firstLine?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _marker?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _selection?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _file?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _backdrop?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _first?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _last?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _notFirst?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _notLast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _only?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _even?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _odd?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerFocus?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerHover?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerActive?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerFocusWithin?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerFocusVisible?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerDisabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerChecked?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerInvalid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerExpanded?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _peerPlaceholderShown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupFocus?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupHover?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupActive?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupFocusWithin?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupFocusVisible?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupDisabled?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupChecked?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupExpanded?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _groupInvalid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _indeterminate?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _required?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _valid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _invalid?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _autofill?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _inRange?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _outOfRange?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _placeholder?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _placeholderShown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _pressed?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _selected?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _grabbed?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _underValue?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _overValue?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _atValue?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _default?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _optional?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _open?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _closed?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _fullscreen?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _loading?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _hidden?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _current?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _currentPage?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _currentStep?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _today?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _unavailable?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _rangeStart?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _rangeEnd?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _now?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _topmost?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _motionReduce?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _motionSafe?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _print?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _landscape?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _portrait?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _dark?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _light?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _osDark?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _osLight?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _highContrast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _lessContrast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _moreContrast?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _ltr?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _rtl?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _scrollbar?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _scrollbarThumb?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _scrollbarTrack?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _horizontal?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _vertical?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _icon?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _starting?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; _hasIcon?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; sm?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smDown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; md?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; mdOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; mdDown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; lg?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; lgOnly?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; lgDown?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smToMd?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; smToLg?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; mdToLg?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; base?: ConditionalValue<\"primary\" | \"secondary\" | \"success\" | \"warning\" | \"danger\" | undefined>; }"
+          ]
         },
         "conditional": false,
         "required": false,
@@ -6645,6 +7260,22 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "highlightedValue",
         "typeInfo": {
           "kind": "union",
@@ -6677,7 +7308,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  contextTrigger?: string | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  contextTrigger?:\n    | string\n    | ((value?: string | undefined) => string)\n    | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -6847,6 +7478,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -6863,7 +7506,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -6910,6 +7553,22 @@
         "readonly": false,
         "description": "Whether to allow the initial presence animation.",
         "defaultValue": "false"
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
+        "defaultValue": null
       },
       {
         "name": "typeahead",
@@ -7401,7 +8060,7 @@
         "name": "onValueChange",
         "typeInfo": {
           "kind": "function",
-          "type": "(e: ValueChangeDetails) => void"
+          "type": "(e: Menu.ValueChangeDetails) => void"
         },
         "conditional": false,
         "required": false,
@@ -7577,6 +8236,18 @@
         "readonly": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
         "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The value that identifies this specific trigger",
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -7594,6 +8265,84 @@
         "required": false,
         "readonly": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
+    "name": "Pager",
+    "props": [
+      {
+        "name": "from",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Index of the first row on the current page.",
+        "defaultValue": null
+      },
+      {
+        "name": "isLoading",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "onNext",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "onPrev",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "to",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Index of the last row on the current page.",
+        "defaultValue": null
+      },
+      {
+        "name": "totalCount",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "number"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Total count of rows.",
         "defaultValue": null
       }
     ],
@@ -7664,6 +8413,34 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
+        "name": "finalFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => MaybeElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Element to receive focus when the popover is closed.",
+        "defaultValue": null
+      },
+      {
         "name": "id",
         "typeInfo": {
           "kind": "primitive",
@@ -7680,7 +8457,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -7822,6 +8599,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -7863,7 +8652,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -7884,6 +8673,18 @@
         "defaultValue": null
       },
       {
+        "name": "restoreFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to restore focus to the element that had focus before the popover was opened.",
+        "defaultValue": "true"
+      },
+      {
         "name": "skipAnimationOnMount",
         "typeInfo": {
           "kind": "primitive",
@@ -7894,6 +8695,35 @@
         "readonly": false,
         "description": "Whether to allow the initial presence animation.",
         "defaultValue": "false"
+      },
+      {
+        "name": "translations",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "IntlTranslations",
+          "expanded": "interface IntlTranslations {\n  closeTriggerLabel?: string | undefined;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states",
+        "defaultValue": null
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
+        "defaultValue": null
       },
       {
         "name": "unmountOnExit",
@@ -8200,6 +9030,18 @@
         "required": false,
         "readonly": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior.",
+        "defaultValue": null
+      },
+      {
+        "name": "value",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The value that identifies this specific trigger",
         "defaultValue": null
       }
     ],
@@ -8731,6 +9573,38 @@
     }
   },
   {
+    "name": "SortableHeader",
+    "props": [
+      {
+        "name": "children",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      },
+      {
+        "name": "header",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "Header<TData, TValue>",
+          "expanded": "Header<TData, TValue>"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": null,
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "Spinner",
     "props": [
       {
@@ -8881,18 +9755,6 @@
     "name": "Table",
     "props": [
       {
-        "name": "interactive",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
         "name": "native",
         "typeInfo": {
           "kind": "primitive",
@@ -8905,18 +9767,6 @@
         "defaultValue": null
       },
       {
-        "name": "showColumnBorder",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
         "name": "size",
         "typeInfo": {
           "kind": "union",
@@ -8926,30 +9776,6 @@
             "'md'",
             "'lg'"
           ]
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": "md"
-      },
-      {
-        "name": "stickyHeader",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
-        },
-        "conditional": false,
-        "required": false,
-        "readonly": false,
-        "description": null,
-        "defaultValue": null
-      },
-      {
-        "name": "striped",
-        "typeInfo": {
-          "kind": "primitive",
-          "type": "boolean"
         },
         "conditional": false,
         "required": false,
@@ -8971,7 +9797,7 @@
         "required": false,
         "readonly": false,
         "description": null,
-        "defaultValue": "line"
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -9487,6 +10313,22 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "disabled",
         "typeInfo": {
           "kind": "primitive",
@@ -9527,7 +10369,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  content?: string | undefined;\n  arrow?: string | undefined;\n  positioner?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  content?: string | undefined;\n  arrow?: string | undefined;\n  positioner?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -9597,6 +10439,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -9663,7 +10517,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "Tooltip.Positioning",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Tooltip.Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Tooltip.Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Tooltip.Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Tooltip.Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -9706,6 +10560,22 @@
         "readonly": false,
         "description": "Whether to allow the initial presence animation.",
         "defaultValue": "false"
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
+        "defaultValue": null
       },
       {
         "name": "unmountOnExit",
@@ -9774,6 +10644,22 @@
         "defaultValue": "false"
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial active trigger value when rendered.\nUse when you don't need to control the active trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "finalFocusEl",
         "typeInfo": {
           "kind": "function",
@@ -9802,7 +10688,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -9907,6 +10793,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function to call when the active trigger changes",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -9982,6 +10880,22 @@
         "readonly": false,
         "description": "Whether to trap focus inside the dialog when it's opened",
         "defaultValue": "true"
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled active trigger value",
+        "defaultValue": null
       }
     ],
     "ref": null
@@ -10102,6 +11016,22 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
         "name": "highlightedValue",
         "typeInfo": {
           "kind": "union",
@@ -10134,7 +11064,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | undefined;\n  contextTrigger?: string | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  contextTrigger?:\n    | string\n    | ((value?: string | undefined) => string)\n    | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -10267,6 +11197,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -10283,12 +11225,28 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
         "description": "The options used to dynamically position the menu",
+        "defaultValue": null
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
         "defaultValue": null
       },
       {
@@ -10358,6 +11316,34 @@
         "defaultValue": null
       },
       {
+        "name": "defaultTriggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value.",
+        "defaultValue": null
+      },
+      {
+        "name": "finalFocusEl",
+        "typeInfo": {
+          "kind": "function",
+          "type": "() => MaybeElement"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Element to receive focus when the popover is closed.",
+        "defaultValue": null
+      },
+      {
         "name": "id",
         "typeInfo": {
           "kind": "primitive",
@@ -10374,7 +11360,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
         },
         "conditional": false,
         "required": false,
@@ -10479,6 +11465,18 @@
         "defaultValue": null
       },
       {
+        "name": "onTriggerValueChange",
+        "typeInfo": {
+          "kind": "function",
+          "type": "(details: TriggerValueChangeDetails) => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the trigger value changes.",
+        "defaultValue": null
+      },
+      {
         "name": "open",
         "typeInfo": {
           "kind": "primitive",
@@ -10520,12 +11518,53 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
         "readonly": false,
         "description": "The user provided options used to position the popover content",
+        "defaultValue": null
+      },
+      {
+        "name": "restoreFocus",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "boolean"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Whether to restore focus to the element that had focus before the popover was opened.",
+        "defaultValue": "true"
+      },
+      {
+        "name": "translations",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "IntlTranslations",
+          "expanded": "interface IntlTranslations {\n  closeTriggerLabel?: string | undefined;\n}\n"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states",
+        "defaultValue": null
+      },
+      {
+        "name": "triggerValue",
+        "typeInfo": {
+          "kind": "union",
+          "type": "string | null",
+          "members": [
+            "string",
+            "null"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "The controlled trigger value",
         "defaultValue": null
       }
     ],
