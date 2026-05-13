@@ -26,6 +26,7 @@ jobs:
       - name: Checkout PR head
         uses: actions/checkout@v5
         with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Setup pnpm with cache
