@@ -1,7 +1,12 @@
 import { defineConfig } from '@chakra-ui/react';
 
 import { createThemeSystem } from '../../theme';
-import { resolveColorToken, type ColorMode } from '../../theme';
+import {
+  resolveColorToken,
+  resolveColorTokens,
+  type ColorMode,
+  type TokenTree,
+} from '../../theme';
 import { UiThemeMode, type UiTheme } from '../theme';
 import { colors } from './colors';
 
@@ -30,4 +35,17 @@ export const TELEPORT_THEME: UiTheme = {
  */
 export function resolveTeleportColor(tokenName: string, mode: ColorMode) {
   return resolveColorToken(system, tokenName, mode);
+}
+
+/**
+ * Multi-value counterpart to {@link resolveTeleportColor}. Resolves an object
+ * whose leaves are teleport color token paths into the same shape with each
+ * leaf replaced by its CSS color value for the given mode. See
+ * {@link resolveColorTokens} for details.
+ */
+export function resolveTeleportColors<T extends TokenTree>(
+  tokens: T,
+  mode: ColorMode
+) {
+  return resolveColorTokens(system, tokens, mode);
 }
