@@ -1,0 +1,56 @@
+name: Dev Release
+
+on:
+  pull_request:
+    types: [labeled, synchronize, reopened]
+
+env:
+  NODE_VERSION: 24.x
+
+concurrency:
+  group: dev-release-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  build:
+    name: Build dev release
+    if: contains(github.event.pull_request.labels.*.name, 'dev-release')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm with cache
+        uses: ./.github/actions/setup-pnpm
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Build
+        run: pnpm build
+
+      - name: Upload package tarball
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev-release-pr-${{ github.event.pull_request.number }}
+          path: ./dist/package.tgz
+          retention-days: 90
+          overwrite: true
+
+      - name: Post dev-release comment
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pnpm bot dev-release post \
+            --owner ${{ github.repository_owner }} \
+            --repo ${{ github.event.repository.name }} \
+            --pull-number ${{ github.event.pull_request.number }} \
+            --sha ${{ github.event.pull_request.head.sha }} \
+            --run-id ${{ github.run_id }} \
+            --artifact-id ${{ steps.upload.outputs.artifact-id }} \
+            --artifact-name dev-release-pr-${{ github.event.pull_request.number }}
