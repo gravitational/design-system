@@ -11,16 +11,17 @@ concurrency:
   group: dev-release-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
-permissions:
-  contents: write
-  pull-requests: write
-  issues: write
+permissions: {}
 
 jobs:
   build:
     name: Build dev release
     if: contains(github.event.pull_request.labels.*.name, 'dev-release')
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      asset: ${{ steps.stage.outputs.asset }}
     steps:
       - name: Checkout PR head
         uses: actions/checkout@v5
@@ -45,11 +46,64 @@ jobs:
           cp dist/package.tgz "dist/${asset}"
           echo "asset=${asset}" >> "$GITHUB_OUTPUT"
 
-      - name: Upload to PR dev release
+      - name: Upload tarball
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev-release-tarball
+          path: dist/${{ steps.stage.outputs.asset }}
+          if-no-files-found: error
+          retention-days: 1
+
+  publish:
+    name: Publish dev release
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout main (trusted)
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Setup pnpm with cache
+        uses: ./.github/actions/setup-pnpm
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Download tarball
+        uses: actions/download-artifact@v4
+        with:
+          name: dev-release-tarball
+          path: ./tarball
+
+      - name: Verify tarball matches expected name
+        id: asset
+        env:
+          ASSET: ${{ needs.build.outputs.asset }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          short=${SHA:0:7}
+          expected="design-system-${short}.tgz"
+          if [ "$ASSET" != "$expected" ]; then
+            echo "Build asset name '$ASSET' does not match expected '$expected'." >&2
+            exit 1
+          fi
+          if [ ! -f "tarball/${expected}" ]; then
+            echo "Expected tarball ./tarball/${expected} not found:" >&2
+            ls -la tarball >&2
+            exit 1
+          fi
+          echo "name=${expected}" >> "$GITHUB_OUTPUT"
+
+      - name: Create or update PR dev release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: dev-pr-${{ github.event.pull_request.number }}
-          ASSET: dist/${{ steps.stage.outputs.asset }}
+          ASSET_PATH: tarball/${{ steps.asset.outputs.name }}
           PR: ${{ github.event.pull_request.number }}
           SHA: ${{ github.event.pull_request.head.sha }}
         run: |
@@ -58,9 +112,9 @@ jobs:
 
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release edit "$TAG" --target "$SHA" --notes "$notes"
-            gh release upload "$TAG" "$ASSET" --clobber
+            gh release upload "$TAG" "$ASSET_PATH" --clobber
           else
-            gh release create "$TAG" "$ASSET" \
+            gh release create "$TAG" "$ASSET_PATH" \
               --prerelease \
               --target "$SHA" \
               --title "Dev release for PR #${PR}" \
@@ -77,4 +131,4 @@ jobs:
             --pull-number ${{ github.event.pull_request.number }} \
             --sha ${{ github.event.pull_request.head.sha }} \
             --tag dev-pr-${{ github.event.pull_request.number }} \
-            --asset-name ${{ steps.stage.outputs.asset }}
+            --asset-name ${{ steps.asset.outputs.name }}
