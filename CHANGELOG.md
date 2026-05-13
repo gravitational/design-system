@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.1.1
+
+### Patch Changes
+
+- Fix `resolveColorToken` returning empty for conditional tokens ([#131](https://github.com/gravitational/design-system/pull/131))
+
 ## 0.1.0
 
 ### Minor Changes
