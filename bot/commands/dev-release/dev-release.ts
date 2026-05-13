@@ -30,42 +30,23 @@ const postCommand = command({
     sha: option({
       type: string,
       long: 'sha',
-      description: 'Commit SHA the artifact was built from',
+      description: 'Commit SHA the tarball was built from',
     }),
-    runId: option({
+    tag: option({
       type: string,
-      long: 'run-id',
-      description: 'Workflow run ID that produced the artifact',
+      long: 'tag',
+      description: 'Release tag the tarball is attached to',
     }),
-    artifactId: option({
+    assetName: option({
       type: string,
-      long: 'artifact-id',
-      description: 'ID of the uploaded artifact',
-    }),
-    artifactName: option({
-      type: string,
-      long: 'artifact-name',
-      description: 'Name of the uploaded artifact',
+      long: 'asset-name',
+      description: 'Filename of the tarball asset',
     }),
   },
-  handler: async ({
-    owner,
-    repo,
-    pullNumber,
-    sha,
-    runId,
-    artifactId,
-    artifactName,
-  }) => {
+  handler: async ({ owner, repo, pullNumber, sha, tag, assetName }) => {
     const octokit = createOctokit();
-    const artifactUrl = `https://github.com/${owner}/${repo}/actions/runs/${runId}/artifacts/${artifactId}`;
-    const body = renderActiveBody({
-      owner,
-      repo,
-      sha,
-      artifactUrl,
-      artifactName,
-    });
+    const tarballUrl = `https://github.com/${owner}/${repo}/releases/download/${tag}/${assetName}`;
+    const body = renderBody({ owner, repo, sha, tarballUrl });
 
     await upsertComment(octokit, owner, repo, pullNumber, body);
   },
@@ -102,17 +83,16 @@ const cleanupCommand = command({
     });
 
     if (commentId == null) {
-      core.info('No dev-release comment to clean up.');
+      core.info('No dev-release comment to delete.');
       return;
     }
 
-    await octokit.rest.issues.updateComment({
+    await octokit.rest.issues.deleteComment({
       owner,
       repo,
       comment_id: commentId,
-      body: renderArchivedBody(),
     });
-    core.info(`Marked dev-release comment ${commentId} as archived.`);
+    core.info(`Deleted dev-release comment ${commentId}.`);
   },
 });
 
@@ -157,18 +137,16 @@ async function upsertComment(
   }
 }
 
-function renderActiveBody({
+function renderBody({
   owner,
   repo,
   sha,
-  artifactUrl,
-  artifactName,
+  tarballUrl,
 }: {
   owner: string;
   repo: string;
   sha: string;
-  artifactUrl: string;
-  artifactName: string;
+  tarballUrl: string;
 }) {
   const shortSha = sha.slice(0, 7);
   const commitUrl = `https://github.com/${owner}/${repo}/commit/${sha}`;
@@ -176,27 +154,18 @@ function renderActiveBody({
   return `${COMMENT_MARKER}
 ### 📦 Dev Release
 
-A development build of this PR is available as a workflow artifact.
+A dev release of \`@gravitational/design-system\` is available for this PR.
 
 - **Built from:** [\`${shortSha}\`](${commitUrl})
-- **Download:** [\`${artifactName}.zip\`](${artifactUrl})
+- **Tarball:** ${tarballUrl}
 
-The download is a zip containing \`package.tgz\`. To use it in another repo:
+Add this to your \`package.json\`:
 
-\`\`\`sh
-unzip ${artifactName}.zip
-pnpm add ./package.tgz
+\`\`\`json
+"@gravitational/design-system": "${tarballUrl}"
 \`\`\`
 
-This comment is updated when new commits are pushed. The artifact is deleted when the PR is closed or the \`dev-release\` label is removed.
-`;
-}
-
-function renderArchivedBody() {
-  return `${COMMENT_MARKER}
-### 📦 Dev Release
-
-The dev release artifact for this PR has been deleted.
+The URL changes with each commit (includes the short SHA), so update your \`package.json\` after each new commit. The release is deleted when the PR is closed or the \`dev-release\` label is removed.
 `;
 }
 

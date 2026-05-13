@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
   issues: write
 
@@ -22,8 +22,10 @@ jobs:
     if: contains(github.event.pull_request.labels.*.name, 'dev-release')
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout PR branch
+      - name: Checkout PR head
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Setup pnpm with cache
         uses: ./.github/actions/setup-pnpm
@@ -33,14 +35,37 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Upload package tarball
-        id: upload
-        uses: actions/upload-artifact@v4
-        with:
-          name: dev-release-pr-${{ github.event.pull_request.number }}
-          path: ./dist/package.tgz
-          retention-days: 90
-          overwrite: true
+      - name: Stage tarball with SHA filename
+        id: stage
+        env:
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          short=${SHA:0:7}
+          asset="design-system-${short}.tgz"
+          cp dist/package.tgz "dist/${asset}"
+          echo "asset=${asset}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload to PR dev release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: dev-pr-${{ github.event.pull_request.number }}
+          ASSET: dist/${{ steps.stage.outputs.asset }}
+          PR: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          notes="Development build for PR #${PR}. This release is automatically deleted when the PR is closed or the \`dev-release\` label is removed."
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release edit "$TAG" --target "$SHA" --notes "$notes"
+            gh release upload "$TAG" "$ASSET" --clobber
+          else
+            gh release create "$TAG" "$ASSET" \
+              --prerelease \
+              --target "$SHA" \
+              --title "Dev release for PR #${PR}" \
+              --notes "$notes"
+          fi
 
       - name: Post dev-release comment
         env:
@@ -51,6 +76,5 @@ jobs:
             --repo ${{ github.event.repository.name }} \
             --pull-number ${{ github.event.pull_request.number }} \
             --sha ${{ github.event.pull_request.head.sha }} \
-            --run-id ${{ github.run_id }} \
-            --artifact-id ${{ steps.upload.outputs.artifact-id }} \
-            --artifact-name dev-release-pr-${{ github.event.pull_request.number }}
+            --tag dev-pr-${{ github.event.pull_request.number }} \
+            --asset-name ${{ steps.stage.outputs.asset }}
