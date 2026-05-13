@@ -65,4 +65,5 @@ export const GRAVITATIONAL_MEMBERS = [
   'taraspos',
   'mjsmithnh',
   'lcharkiewicz',
+  'ghassanachi',
 ];

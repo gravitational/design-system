@@ -77,6 +77,8 @@ impl Visit for Analyzer<'_> {
               .map(|v| match v {
                 ModuleExportName::Ident(v) => &*v.sym,
                 ModuleExportName::Str(v) => v.value.as_str().expect("non-utf8 export name"),
+                #[cfg(swc_ast_unknown)]
+                _ => panic!("unknown node"),
               })
               .unwrap_or(&*s.local.sym);
             self
@@ -90,6 +92,8 @@ impl Visit for Analyzer<'_> {
           ImportSpecifier::Namespace(s) => {
             self.state.imported_local_ns = Some(s.local.to_id());
           }
+          #[cfg(swc_ast_unknown)]
+          _ => panic!("unknown node"),
         }
       }
     }
