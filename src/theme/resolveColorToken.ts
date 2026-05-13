@@ -4,7 +4,8 @@ export type ColorMode = 'light' | 'dark';
 
 /**
  * Resolves a color token to a CSS color string for the given color mode,
- * recursively substituting any `{token.path}` references in the value.
+ * recursively substituting any `{token.path}` and `var(--...)` references in
+ * the value.
  *
  * For callers that can't rely on the document's CSS custom properties being
  * applied — e.g. canvas/WebGL painting, or any code running outside the
@@ -33,48 +34,61 @@ function resolveTokenValue(
   mode: ColorMode,
   seen = new Set<string>()
 ): string | undefined {
-  if (seen.has(tokenName)) {
-    return undefined;
-  }
-  seen.add(tokenName);
-
-  const token = system.tokens.getByName(tokenName);
-  if (!token) {
+  const cssVar = lookupCssVar(system, tokenName);
+  if (cssVar === undefined) {
     return undefined;
   }
 
-  const raw = pickConditionValue(token.extensions.conditions, mode);
-  // oxlint-disable-next-line typescript/no-unsafe-assignment
-  const value = raw ?? token.originalValue;
+  return resolveCssVar(system, cssVar, mode, seen);
+}
 
-  if (typeof value !== 'string') {
+// Chakra v3 splits semantic tokens with `{ _light, _dark }` values into one
+// sub-token per condition, all sharing the same name. `tokenMap.get(name)`
+// only retains the last one registered, so the original conditions map and
+// the per-mode values aren't reachable from a single token lookup. The
+// resolved per-mode values live in `tokens.cssVarMap`, keyed by condition and
+// then by CSS variable name (e.g. `'--teleport-colors-terminal-foreground'`).
+// Single-color themes (e.g. bblp) skip the conditional split entirely and
+// store their values under the `'base'` condition.
+function resolveCssVar(
+  system: SystemContext,
+  cssVar: string,
+  mode: ColorMode,
+  seen: Set<string>
+): string | undefined {
+  if (seen.has(cssVar)) {
+    return undefined;
+  }
+  seen.add(cssVar);
+
+  const { cssVarMap } = system.tokens;
+  const value =
+    cssVarMap.get(`_${mode}`)?.get(cssVar) ??
+    cssVarMap.get('base')?.get(cssVar);
+
+  if (typeof value !== 'string' || value === '') {
     return undefined;
   }
 
   return substituteReferences(system, value, mode, seen);
 }
 
-// Chakra types token conditions as `Dict = Record<string, any>`. For color
-// tokens we only care about the mode-specific entries, so narrow to those.
-interface ColorConditions {
-  _light?: unknown;
-  _dark?: unknown;
+// Look up the CSS variable name (e.g. `--teleport-colors-brand`) for a Chakra
+// token name (e.g. `colors.brand`). After Chakra's conditional split there's
+// no guarantee `getByName` returns the base form, but every variant carries
+// the same `extensions.cssVar`, so the first match is enough.
+function lookupCssVar(system: SystemContext, tokenName: string) {
+  return system.tokens.getByName(tokenName)?.extensions.cssVar?.var;
 }
 
-function pickConditionValue(
-  conditions: ColorConditions | undefined,
-  mode: ColorMode
-) {
-  const value = conditions?.[mode === 'dark' ? '_dark' : '_light'];
-
-  return typeof value === 'string' ? value : undefined;
-}
-
-// Chakra writes token references as `{category.path.to.token}`. Replace every
-// occurrence with its resolved value so references embedded inside CSS
-// expressions (e.g. `color-mix(in srgb, white 50%, {colors.levels.sunken})`)
-// get reduced as well. Siblings each get their own copy of `seen` so one
-// branch's ancestors don't leak into another's cycle check.
+// Chakra writes references either as `{category.path.to.token}` (in tokens
+// that reference other tokens whose own value is conditional and therefore
+// can't be eagerly expanded) or as `var(--name)` (everything else, after the
+// `tokens/conditionals` transform substitutes them). Replace both, so values
+// like `color-mix(in srgb, white 50%, {colors.levels.sunken})` and
+// `var(--teleport-colors-data-visualisation-primary-abbey)` both reduce to
+// concrete colors. Each match gets its own copy of `seen` so siblings don't
+// share a cycle check.
 function substituteReferences(
   system: SystemContext,
   value: string,
@@ -84,8 +98,13 @@ function substituteReferences(
   let result = '';
   let lastIndex = 0;
 
-  for (const match of value.matchAll(/\{([^}]+)}/g)) {
-    const resolved = resolveTokenValue(system, match[1], mode, new Set(seen));
+  for (const match of value.matchAll(/var\((--[a-z0-9-]+)\)|\{([^}]+)}/gi)) {
+    // One of the two alternatives in the regex is always captured.
+    const [, cssVarMatch, tokenNameMatch] = match;
+    const resolved = cssVarMatch
+      ? resolveCssVar(system, cssVarMatch, mode, new Set(seen))
+      : resolveTokenValue(system, tokenNameMatch, mode, new Set(seen));
+
     if (resolved === undefined) {
       return undefined;
     }
