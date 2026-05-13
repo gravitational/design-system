@@ -644,7 +644,7 @@ export const colors = defineSemanticTokens.colors({
     },
     yellow: {
       value: {
-        _light: '{colors.dataVisualisation.tertiary.yellow}',
+        _light: '{colors.dataVisualisation.tertiary.sunflower}',
         _dark: '{colors.dataVisualisation.primary.sunflower}',
       },
     },
