@@ -162,6 +162,8 @@ impl<'a, C: Comments> JSXMarkerTransformer<'a, C> {
             Some(ModuleExportName::Ident(i)) => &i.sym,
             Some(ModuleExportName::Str(s)) => s.value.as_str().expect("non-utf8 export name"),
             None => &local_name.sym,
+            #[cfg(swc_ast_unknown)]
+            _ => panic!("unknown node"),
           };
 
           if imported_name == self.styled_function_name {
@@ -177,6 +179,8 @@ impl<'a, C: Comments> JSXMarkerTransformer<'a, C> {
         ImportSpecifier::Namespace(_) => {
           // Handle namespace imports if needed
         }
+        #[cfg(swc_ast_unknown)]
+        _ => panic!("unknown node"),
       }
     }
   }
