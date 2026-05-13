@@ -14,25 +14,17 @@ type SemanticTokenDefinition = Recursive<
 >;
 
 export type ProcessedTokens<T> =
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // oxlint-disable-next-line typescript/no-explicit-any
   T extends TokenSchema<any>
     ? string
-    : // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      T extends { 0: any; 1: any; 2: any }
-      ? string[]
-      : T extends Record<string, unknown>
-        ? { [K in keyof T]: ProcessedTokens<T[K]> }
-        : T extends (infer U)[]
-          ? ProcessedTokens<U>[]
-          : T;
+    : T extends Record<string, unknown>
+      ? { [K in keyof T]: ProcessedTokens<T[K]> }
+      : T extends (infer U)[]
+        ? ProcessedTokens<U>[]
+        : T;
 
 function toKebabCase(str: string): string {
   return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-}
-
-function isNumericKeys(obj: Record<string, unknown>): boolean {
-  const keys = Object.keys(obj);
-  return keys.length > 0 && keys.every(key => /^\d+$/.test(key));
 }
 
 function hasValueProperty(obj: unknown): obj is TokenSchema {
@@ -72,18 +64,6 @@ export function tokensToCSSVariables<T extends SemanticTokenDefinition>(
     }
 
     const nodeAsRecord = node as Record<string, unknown>;
-
-    if (isNumericKeys(nodeAsRecord)) {
-      const keys = Object.keys(nodeAsRecord).sort(
-        (a, b) => Number(a) - Number(b)
-      );
-
-      return keys.map(key => {
-        const newPath = [...path, key];
-
-        return processNode(nodeAsRecord[key], newPath);
-      });
-    }
 
     const result: Record<string, unknown> = {};
 
