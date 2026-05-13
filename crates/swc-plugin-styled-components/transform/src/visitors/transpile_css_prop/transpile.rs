@@ -92,6 +92,8 @@ impl TranspileCssProp<'_> {
         self.ignored_library_imports.contains(&id) || self.derived_from_ignored.contains(&id)
       }
       JSXObject::JSXMemberExpr(member) => self.should_ignore_jsx_object(&member.obj),
+      #[cfg(swc_ast_unknown)]
+      _ => panic!("unknown node"),
     }
   }
 
@@ -497,6 +499,8 @@ impl VisitMut for TranspileCssProp<'_> {
               ImportSpecifier::Namespace(ns) => {
                 self.ignored_library_imports.insert(ns.local.to_id());
               }
+              #[cfg(swc_ast_unknown)]
+              _ => panic!("unknown node"),
             }
           }
         }
