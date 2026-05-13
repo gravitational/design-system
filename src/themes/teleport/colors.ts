@@ -2,6 +2,7 @@ import { defineSemanticTokens } from '@chakra-ui/react';
 
 import { tokensToCSSVariables, type SingleColorTheme } from '../../theme';
 import type { ProcessedTokens } from '../../theme/legacy';
+import { colors as baseColors } from '../../theme/tokens/colors';
 
 export const colors = defineSemanticTokens.colors({
   levels: {
@@ -1140,11 +1141,17 @@ export const colors = defineSemanticTokens.colors({
   },
 });
 
-// Convert the theme tokens to CSS variables so we can derive the legacy theme from the new Teleport
-// theme. This is a temporary solution until we migrate all components to use the new theme.
-export type LegacyThemeColors = ProcessedTokens<typeof colors>;
-export const LEGACY_THEME_COLORS: LegacyThemeColors =
-  tokensToCSSVariables(colors);
+// Convert the theme tokens to CSS variables so we can derive the legacy theme
+// from the new Teleport theme. This is a temporary solution until we migrate
+// all components to use the new theme. The base palette (theme/tokens/colors)
+// is merged in too so consumers can read `theme.colors.blueGrey.300` etc.
+// directly without us maintaining a parallel semantic alias.
+export type LegacyThemeColors = ProcessedTokens<typeof baseColors> &
+  ProcessedTokens<typeof colors>;
+export const LEGACY_THEME_COLORS: LegacyThemeColors = {
+  ...tokensToCSSVariables(baseColors),
+  ...tokensToCSSVariables(colors),
+};
 
 // Use the Teleport theme as the source of truth for the color types. Other themes will use
 // this type to ensure they implement all the required color tokens.

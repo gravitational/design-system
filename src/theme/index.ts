@@ -47,4 +47,5 @@ export type SingleColorTheme<T> = T extends TokenSchema
 
 export { tokensToCSSVariables } from './legacy';
 export { resolveColorToken, type ColorMode } from './resolveColorToken';
+export { resolveColorTokens, type TokenTree } from './resolveColorTokens';
 export { resolveThemeToColors } from './resolveThemeToColors';

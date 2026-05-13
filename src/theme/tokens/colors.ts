@@ -8,7 +8,7 @@ export const colors = defineTokens.colors({
     value: 'currentColor',
   },
   black: {
-    value: '#09090B',
+    value: '#000000',
   },
   white: {
     value: '#FFFFFF',

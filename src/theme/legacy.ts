@@ -14,30 +14,37 @@ type SemanticTokenDefinition = Recursive<
 >;
 
 export type ProcessedTokens<T> =
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // oxlint-disable-next-line typescript/no-explicit-any
   T extends TokenSchema<any>
     ? string
-    : // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      T extends { 0: any; 1: any; 2: any }
-      ? string[]
-      : T extends Record<string, unknown>
-        ? { [K in keyof T]: ProcessedTokens<T[K]> }
-        : T extends (infer U)[]
-          ? ProcessedTokens<U>[]
-          : T;
+    : T extends Record<string, unknown>
+      ? { [K in keyof T]: ProcessedTokens<T[K]> }
+      : T extends (infer U)[]
+        ? ProcessedTokens<U>[]
+        : T;
 
 function toKebabCase(str: string): string {
   return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
-function isNumericKeys(obj: Record<string, unknown>): boolean {
-  const keys = Object.keys(obj);
-  return keys.length > 0 && keys.every(key => /^\d+$/.test(key));
-}
-
 function hasValueProperty(obj: unknown): obj is TokenSchema {
   return obj !== null && typeof obj === 'object' && 'value' in obj;
 }
+
+/**
+ * Maps a generated CSS variable reference (e.g.
+ * `"var(--teleport-colors-terminal-foreground)"`) back to its Chakra token
+ * name (e.g. `"colors.terminal.foreground"`). Populated as a side effect of
+ * {@link tokensToCSSVariables}, so it stays consistent with whatever the
+ * legacy var-string structure currently exposes. Shared across themes — they
+ * all walk structurally identical source trees and therefore produce the same
+ * mappings.
+ *
+ * Lets `resolveColorTokens` accept the existing var-string subtrees (such as
+ * `theme.colors.terminal`) without callers having to maintain a parallel
+ * list of token paths.
+ */
+export const cssVarToTokenPath = new Map<string, string>();
 
 export function tokensToCSSVariables<T extends SemanticTokenDefinition>(
   obj: T
@@ -45,7 +52,11 @@ export function tokensToCSSVariables<T extends SemanticTokenDefinition>(
   function processNode(node: unknown, path: string[]): unknown {
     if (hasValueProperty(node)) {
       const varName = [...path].map(toKebabCase).join('-');
-      return `var(--${varName})`;
+      const cssVar = `var(--${varName})`;
+      // path is ['teleport', 'colors', ...]; chakra token names omit the
+      // 'teleport' prefix.
+      cssVarToTokenPath.set(cssVar, path.slice(1).join('.'));
+      return cssVar;
     }
 
     if (!node || typeof node !== 'object') {
@@ -53,18 +64,6 @@ export function tokensToCSSVariables<T extends SemanticTokenDefinition>(
     }
 
     const nodeAsRecord = node as Record<string, unknown>;
-
-    if (isNumericKeys(nodeAsRecord)) {
-      const keys = Object.keys(nodeAsRecord).sort(
-        (a, b) => Number(a) - Number(b)
-      );
-
-      return keys.map(key => {
-        const newPath = [...path, key];
-
-        return processNode(nodeAsRecord[key], newPath);
-      });
-    }
 
     const result: Record<string, unknown> = {};
 

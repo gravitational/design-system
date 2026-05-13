@@ -17,7 +17,9 @@ export {
   type GridProps,
   Portal,
   type PortalProps,
+  type SystemContext as DesignSystemContext,
   useToken,
+  useChakraContext as useDesignSystemContext,
 } from '@chakra-ui/react';
 
 export * from '@chakra-ui/react/styled-system';
