@@ -16,7 +16,9 @@ permissions: {}
 jobs:
   build:
     name: Build dev release
-    if: contains(github.event.pull_request.labels.*.name, 'dev-release')
+    if: |
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      contains(github.event.pull_request.labels.*.name, 'dev-release')
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -26,7 +28,6 @@ jobs:
       - name: Checkout PR head
         uses: actions/checkout@v5
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Setup pnpm with cache
