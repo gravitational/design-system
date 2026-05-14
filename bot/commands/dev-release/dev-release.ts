@@ -108,20 +108,20 @@ async function upsertComment(
   octokit: Octokit,
   owner: string,
   repo: string,
-  pull_number: number,
+  pullNumber: number,
   body: string
 ) {
   const commentId = await getDevReleaseCommentId(octokit, {
     owner,
     repo,
-    issue_number: pull_number,
+    issue_number: pullNumber,
   });
 
   const params: RestEndpointMethodTypes['issues']['createComment']['parameters'] =
     {
       owner,
       repo,
-      issue_number: pull_number,
+      issue_number: pullNumber,
       body,
     };
 
