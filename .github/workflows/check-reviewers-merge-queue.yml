@@ -1,0 +1,15 @@
+name: Bot
+
+on:
+  merge_group:
+
+jobs:
+  check-reviewers:
+    name: Check reviewers
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: none
+
+    steps:
+      - run: 'echo "Skipping reviewers check in merge queue"'
