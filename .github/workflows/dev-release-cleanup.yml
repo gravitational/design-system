@@ -35,10 +35,17 @@ jobs:
           TAG: dev-pr-${{ github.event.pull_request.number }}
         run: |
           set -euo pipefail
-          if gh release view "$TAG" >/dev/null 2>&1; then
+          set +e
+          view_err=$(gh release view "$TAG" 2>&1 >/dev/null)
+          view_rc=$?
+          set -e
+          if [ "$view_rc" -eq 0 ]; then
             gh release delete "$TAG" --cleanup-tag --yes
-          else
+          elif printf '%s' "$view_err" | grep -qi 'release not found'; then
             echo "No release ${TAG} found; nothing to delete."
+          else
+            echo "Failed to look up release ${TAG} (rc=${view_rc}): ${view_err}" >&2
+            exit 1
           fi
 
       - name: Setup pnpm
