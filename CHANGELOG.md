@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.1.2
+
+### Patch Changes
+
+- Change yellow color reference to sunflower ([#134](https://github.com/gravitational/design-system/pull/134))
+
 ## 0.1.1
 
 ### Patch Changes
