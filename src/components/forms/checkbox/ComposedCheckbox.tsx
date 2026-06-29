@@ -4,7 +4,7 @@ import {
 } from '@chakra-ui/react';
 import type { ReactNode, RefAttributes } from 'react';
 
-import { CheckBoldIcon } from '../../../icons';
+import { CheckBoldIcon, MinusBoldIcon } from '../../../icons';
 
 export type CheckboxSize = SlotRecipeProps<'checkbox'>['size'];
 
@@ -22,7 +22,10 @@ export function ComposedCheckbox({
     <ChakraCheckbox.Root {...rest}>
       <ChakraCheckbox.HiddenInput />
       <ChakraCheckbox.Control>
-        <ChakraCheckbox.Indicator checked={<CheckBoldIcon />} />
+        <ChakraCheckbox.Indicator
+          checked={<CheckBoldIcon />}
+          indeterminate={<MinusBoldIcon />}
+        />
       </ChakraCheckbox.Control>
       {(label ?? children) != null && (
         <ChakraCheckbox.Label>{label ?? children}</ChakraCheckbox.Label>

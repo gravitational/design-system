@@ -1,6 +1,27 @@
 import { defineSlotRecipe } from '@chakra-ui/react';
 import { checkboxAnatomy } from '@chakra-ui/react/anatomy';
 
+const selectedControlStyles = {
+  bg: 'buttons.primary.default',
+  borderColor: 'transparent',
+  _hover: {
+    bg: 'buttons.primary.hover',
+    borderColor: 'transparent',
+    boxShadow: 'xs',
+  },
+  _focusVisible: {
+    bg: 'buttons.primary.default',
+    borderColor: 'transparent',
+    outline: '2px solid',
+    outlineColor: 'buttons.primary.default',
+    outlineOffset: '1px',
+  },
+  _active: {
+    bg: 'buttons.primary.active',
+    borderColor: 'transparent',
+  },
+};
+
 export const checkboxSlotRecipe = defineSlotRecipe({
   className: 'teleport-checkbox',
   slots: checkboxAnatomy.keys(),
@@ -50,26 +71,8 @@ export const checkboxSlotRecipe = defineSlotRecipe({
         bg: 'interactive.tonal.neutral.1',
         borderColor: 'text.slightlyMuted',
       },
-      _checked: {
-        bg: 'buttons.primary.default',
-        borderColor: 'transparent',
-        _hover: {
-          bg: 'buttons.primary.hover',
-          borderColor: 'transparent',
-          boxShadow: 'xs',
-        },
-        _focusVisible: {
-          bg: 'buttons.primary.default',
-          borderColor: 'transparent',
-          outline: '2px solid',
-          outlineColor: 'buttons.primary.default',
-          outlineOffset: '1px',
-        },
-        _active: {
-          bg: 'buttons.primary.active',
-          borderColor: 'transparent',
-        },
-      },
+      _checked: selectedControlStyles,
+      _indeterminate: selectedControlStyles,
       _disabled: {
         bg: 'interactive.tonal.neutral.0',
         borderColor: 'transparent',

@@ -30,6 +30,25 @@ export function Checked() {
 }
 Checked.tags = ['!dev'];
 
+export function Indeterminate() {
+  return (
+    <VStack gap={2} align="start">
+      <ComposedCheckbox checked="indeterminate" label="Indeterminate" />
+      <ComposedCheckbox
+        size="sm"
+        checked="indeterminate"
+        label="Indeterminate (small)"
+      />
+      <ComposedCheckbox
+        disabled
+        checked="indeterminate"
+        label="Indeterminate disabled"
+      />
+    </VStack>
+  );
+}
+Indeterminate.tags = ['!dev'];
+
 export function Disabled() {
   return (
     <VStack gap={2} align="start">

@@ -47,6 +47,7 @@ export { GithubLogoIcon } from './generated/GithubLogoIcon';
 export { HorseIcon } from './generated/HorseIcon';
 export { InfoIcon } from './generated/InfoIcon';
 export { MagnifyingGlassIcon } from './generated/MagnifyingGlassIcon';
+export { MinusIcon, MinusBoldIcon } from './generated/MinusIcon';
 export { StarIcon } from './generated/StarIcon';
 export { TrashIcon } from './generated/TrashIcon';
 export { WarningCircleIcon } from './generated/WarningCircleIcon';
