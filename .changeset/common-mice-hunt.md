@@ -2,4 +2,4 @@
 "@gravitational/design-system": patch
 ---
 
-Add TypeScript as a peer dependency to support pnpm virtual store
+Add TypeScript as a dependency to support pnpm virtual store
