@@ -41,7 +41,8 @@
     "@phosphor-icons/react": "^2.1.10",
     "@tanstack/react-table": "^8.21.3",
     "next-themes": "^0.4.6",
-    "react-hook-form": "^7.75.0"
+    "react-hook-form": "^7.75.0",
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "@emotion/react": ">=11",
@@ -105,7 +106,6 @@
     "storybook": "^10.3.6",
     "tocbot": "^4.36.6",
     "tslib": "^2.8.1",
-    "typescript": "^5.9.3",
     "typescript-eslint": "^8.59.2",
     "usehooks-ts": "^3.1.1",
     "vite": "^8.0.11",
