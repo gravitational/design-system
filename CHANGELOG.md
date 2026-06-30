@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.1.3
+
+### Patch Changes
+
+- Add TypeScript as a dependency to support pnpm virtual store ([#145](https://github.com/gravitational/design-system/pull/145))
+
 ## 0.1.2
 
 ### Patch Changes
