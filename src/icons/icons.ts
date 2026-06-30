@@ -31,6 +31,7 @@ export const AVAILABLE_ICONS: IconConfig[] = [
   { icon: icons.HorseIcon },
   { icon: icons.InfoIcon },
   { icon: icons.MagnifyingGlassIcon },
+  { icon: icons.MinusIcon, weights: ['regular', 'bold'] },
   { icon: icons.StarIcon },
   { icon: icons.TrashIcon },
   { icon: icons.WarningCircleIcon },
