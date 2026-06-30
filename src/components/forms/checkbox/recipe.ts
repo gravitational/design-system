@@ -1,7 +1,7 @@
-import { defineSlotRecipe } from '@chakra-ui/react';
+import { defineSlotRecipe, type SystemStyleObject } from '@chakra-ui/react';
 import { checkboxAnatomy } from '@chakra-ui/react/anatomy';
 
-const selectedControlStyles = {
+const selectedControlStyles: SystemStyleObject = {
   bg: 'buttons.primary.default',
   borderColor: 'transparent',
   _hover: {
