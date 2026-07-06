@@ -187,12 +187,15 @@ async function extractRecipeVariants(filePath: string) {
 }
 
 function findGeneratedTypeFile() {
-  const styledSystem = fileURLToPath(
-    import.meta.resolve('@chakra-ui/react/styled-system')
+  const styledSystemUrl = import.meta.resolve(
+    '@chakra-ui/react/styled-system'
   );
-  const styledSystemTypes = styledSystem.replace('/esm/', '/types/');
 
-  return join(dirname(styledSystemTypes), 'generated', `recipes.gen.d.ts`);
+  const styledSystemTypes = fileURLToPath(
+    styledSystemUrl.replace('/esm/', '/types/')
+  );
+
+  return join(dirname(styledSystemTypes), 'generated', 'recipes.gen.d.ts');
 }
 
 async function updateGeneratedTypes(
