@@ -41,7 +41,7 @@ SOFTWARE.
 */
 
 import { Icon, type IconProps } from '@chakra-ui/react';
-import { XIcon as PhosphorXIcon } from '@phosphor-icons/react/dist/ssr/X';
+import { FloppyDiskIcon as PhosphorFloppyDiskIcon } from '@phosphor-icons/react/dist/ssr/FloppyDisk';
 
 /*
 
@@ -49,18 +49,10 @@ THIS FILE IS GENERATED. DO NOT EDIT.
 
 */
 
-export function XIcon(props: IconProps) {
+export function FloppyDiskIcon(props: IconProps) {
   return (
     <Icon {...props}>
-      <PhosphorXIcon />
-    </Icon>
-  );
-}
-
-export function XBoldIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <PhosphorXIcon weight="bold" />
+      <PhosphorFloppyDiskIcon />
     </Icon>
   );
 }

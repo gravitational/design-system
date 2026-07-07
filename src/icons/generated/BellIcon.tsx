@@ -41,7 +41,7 @@ SOFTWARE.
 */
 
 import { Icon, type IconProps } from '@chakra-ui/react';
-import { XIcon as PhosphorXIcon } from '@phosphor-icons/react/dist/ssr/X';
+import { BellIcon as PhosphorBellIcon } from '@phosphor-icons/react/dist/ssr/Bell';
 
 /*
 
@@ -49,18 +49,10 @@ THIS FILE IS GENERATED. DO NOT EDIT.
 
 */
 
-export function XIcon(props: IconProps) {
+export function BellIcon(props: IconProps) {
   return (
     <Icon {...props}>
-      <PhosphorXIcon />
-    </Icon>
-  );
-}
-
-export function XBoldIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <PhosphorXIcon weight="bold" />
+      <PhosphorBellIcon />
     </Icon>
   );
 }

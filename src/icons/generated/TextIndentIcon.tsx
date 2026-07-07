@@ -41,7 +41,7 @@ SOFTWARE.
 */
 
 import { Icon, type IconProps } from '@chakra-ui/react';
-import { XIcon as PhosphorXIcon } from '@phosphor-icons/react/dist/ssr/X';
+import { TextIndentIcon as PhosphorTextIndentIcon } from '@phosphor-icons/react/dist/ssr/TextIndent';
 
 /*
 
@@ -49,18 +49,10 @@ THIS FILE IS GENERATED. DO NOT EDIT.
 
 */
 
-export function XIcon(props: IconProps) {
+export function TextIndentIcon(props: IconProps) {
   return (
     <Icon {...props}>
-      <PhosphorXIcon />
-    </Icon>
-  );
-}
-
-export function XBoldIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <PhosphorXIcon weight="bold" />
+      <PhosphorTextIndentIcon />
     </Icon>
   );
 }
