@@ -160,4 +160,100 @@ describe('validateApprovals', () => {
     expect(result.isValid).toBe(true);
     expect(result.missingGroups.group2).toBe(false);
   });
+
+  describe('group1 author', () => {
+    const group1Author: PullRequestContext = {
+      ...baseContext,
+      author: 'ryanclark',
+    };
+
+    it('passes with two approvals from any team members', () => {
+      const reviewState: ReviewState = {
+        ...baseReviewState,
+        approvedBy: new Set(['bl-nero', 'gzdunek']),
+      };
+
+      const result = validateApprovals(group1Author, reviewState);
+
+      expect(result.isValid).toBe(true);
+      expect(result.missingGroups.group1).toBe(false);
+      expect(result.missingGroups.group2).toBe(false);
+    });
+
+    it('does not require a second group1 approval', () => {
+      const reviewState: ReviewState = {
+        ...baseReviewState,
+        approvedBy: new Set(['ravicious', 'avatus']),
+      };
+
+      const result = validateApprovals(group1Author, reviewState);
+
+      expect(result.isValid).toBe(true);
+    });
+
+    it('fails with only one approval', () => {
+      const reviewState: ReviewState = {
+        ...baseReviewState,
+        approvedBy: new Set(['bl-nero']),
+      };
+
+      const result = validateApprovals(group1Author, reviewState);
+
+      expect(result.isValid).toBe(false);
+      expect(result.missingGroups.group2).toBe(true);
+    });
+
+    it('still requires design approval when needs-design-review is set', () => {
+      const context: PullRequestContext = {
+        ...group1Author,
+        needsDesignReview: true,
+      };
+
+      const reviewState: ReviewState = {
+        ...baseReviewState,
+        approvedBy: new Set(['bl-nero', 'gzdunek']),
+      };
+
+      const result = validateApprovals(context, reviewState);
+
+      expect(result.isValid).toBe(false);
+      expect(result.missingGroups.design).toBe(true);
+      // the two team approvals are satisfied, so group1/group2 are not flagged
+      expect(result.missingGroups.group1).toBe(false);
+      expect(result.missingGroups.group2).toBe(false);
+    });
+
+    it('passes with two approvals plus design when required', () => {
+      const context: PullRequestContext = {
+        ...group1Author,
+        needsDesignReview: true,
+      };
+
+      const reviewState: ReviewState = {
+        ...baseReviewState,
+        approvedBy: new Set(['bl-nero', 'gzdunek', 'roraback']),
+      };
+
+      const result = validateApprovals(context, reviewState);
+
+      expect(result.isValid).toBe(true);
+    });
+
+    it('does not count a design approval toward the two required team approvals', () => {
+      const context: PullRequestContext = {
+        ...group1Author,
+        needsDesignReview: true,
+      };
+
+      const reviewState: ReviewState = {
+        ...baseReviewState,
+        approvedBy: new Set(['bl-nero', 'roraback']),
+      };
+
+      const result = validateApprovals(context, reviewState);
+
+      expect(result.isValid).toBe(false);
+      expect(result.missingGroups.group2).toBe(true);
+    });
+  });
 });

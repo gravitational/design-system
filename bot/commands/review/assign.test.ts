@@ -39,6 +39,39 @@ describe('selectRandomReviewers', () => {
     expect(reviewers.every(r => eligibleGroup2.includes(r))).toBe(true);
   });
 
+  it('selects two reviewers from the combined group1/group2 pool for a group1 author', () => {
+    const eligibleGroup1 = ['ravicious'];
+    const eligibleGroup2 = ['bl-nero', 'gzdunek', 'nicholasmarais1158'];
+    const combined = [...eligibleGroup1, ...eligibleGroup2];
+
+    const reviewers = selectRandomReviewers(
+      eligibleGroup1,
+      eligibleGroup2,
+      false,
+      true
+    );
+
+    expect(reviewers).toHaveLength(2);
+    expect(new Set(reviewers).size).toBe(2);
+    expect(reviewers.every(r => combined.includes(r))).toBe(true);
+  });
+
+  it('can request the other group1 member for a group1 author', () => {
+    const eligibleGroup1 = ['ravicious'];
+    const eligibleGroup2 = ['bl-nero'];
+
+    const reviewers = selectRandomReviewers(
+      eligibleGroup1,
+      eligibleGroup2,
+      false,
+      true
+    );
+
+    expect(reviewers).toHaveLength(2);
+    expect(reviewers).toContain('ravicious');
+    expect(reviewers).toContain('bl-nero');
+  });
+
   it('returns empty array when no eligible reviewers', () => {
     const reviewers = selectRandomReviewers([], [], false);
 

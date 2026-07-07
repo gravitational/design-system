@@ -7,6 +7,7 @@ import {
   getPullRequestContext,
   getReviewerPool,
   getReviewState,
+  GROUP1_REVIEWERS,
   type PullRequestContext,
   type ReviewState,
 } from './common';
@@ -136,6 +137,11 @@ async function assignRandomReviewers(
   octokit: Octokit,
   context: PullRequestContext
 ) {
+  const isGroup1Author = [
+    ...GROUP1_REVIEWERS.eu,
+    ...GROUP1_REVIEWERS.us,
+  ].includes(context.author);
+
   const eligibleGroup1 = getReviewerPool(context, 'group1').filter(
     r => r !== context.author
   );
@@ -146,7 +152,8 @@ async function assignRandomReviewers(
   const reviewers = selectRandomReviewers(
     eligibleGroup1,
     eligibleGroup2,
-    context.isRelease
+    context.isRelease,
+    isGroup1Author
   );
 
   if (reviewers.length === 0) {
@@ -176,8 +183,17 @@ async function assignRandomReviewers(
 export function selectRandomReviewers(
   eligibleGroup1: string[],
   eligibleGroup2: string[],
-  isRelease: boolean
+  isRelease: boolean,
+  isGroup1Author = false
 ): string[] {
+  if (isGroup1Author && !isRelease) {
+    const pool = [...eligibleGroup1, ...eligibleGroup2].sort(
+      () => Math.random() - 0.5
+    );
+
+    return pool.slice(0, 2);
+  }
+
   const reviewers: string[] = [];
 
   if (eligibleGroup1.length > 0) {

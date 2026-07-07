@@ -78,6 +78,7 @@ async function runCheckReviewersCommand(
 
 interface ApprovalValidation {
   isValid: boolean;
+  isGroup1Author: boolean;
   missingGroups: {
     group1: boolean;
     group2: boolean;
@@ -105,11 +106,13 @@ export function validateApprovals(
   const eligibleGroup2 = group2.filter(u => u !== context.author);
   const eligibleDesign = design.filter(u => u !== context.author);
 
+  const isGroup1Author = allGroup1.includes(context.author);
   const group1Approved = allGroup1.some(u => reviewState.approvedBy.has(u));
 
   if (context.isRelease || context.isDependabot) {
     return {
       isValid: group1Approved,
+      isGroup1Author,
       missingGroups: {
         group1: !group1Approved,
         group2: false,
@@ -123,27 +126,50 @@ export function validateApprovals(
     };
   }
 
+  const designApproved = allDesign.some(u => reviewState.approvedBy.has(u));
+  const needsDesign = context.needsDesignReview && !designApproved;
+  const designSatisfied = !context.needsDesignReview || designApproved;
+
+  if (isGroup1Author) {
+    const teamApprovals = Array.from(reviewState.approvedBy).filter(
+      approver => !allDesign.includes(approver)
+    ).length;
+    const hasEnoughApprovals = teamApprovals >= 2;
+
+    return {
+      isValid: hasEnoughApprovals && designSatisfied,
+      isGroup1Author,
+      missingGroups: {
+        group1: false,
+        group2: !hasEnoughApprovals,
+        design: needsDesign,
+      },
+      eligibleReviewers: {
+        group1: [],
+        group2: eligibleGroup2,
+        design: eligibleDesign,
+      },
+    };
+  }
+
   // count any approver not in group 1 or design as group 2 whilst we do not have the full
   // team being requested for review automatically
   const group2Approved = Array.from(reviewState.approvedBy).some(
     approver => !allGroup1.includes(approver) && !allDesign.includes(approver)
   );
-  const designApproved = allDesign.some(u => reviewState.approvedBy.has(u));
 
   const hasEligibleGroup1 = eligibleGroup1.length > 0;
 
   const needsGroup1 = hasEligibleGroup1 && !group1Approved;
   const needsGroup2 = !group2Approved;
-  const needsDesign = context.needsDesignReview && !designApproved;
 
   const isValid = hasEligibleGroup1
-    ? group1Approved &&
-      group2Approved &&
-      (!context.needsDesignReview || designApproved)
-    : group2Approved && (!context.needsDesignReview || designApproved);
+    ? group1Approved && group2Approved && designSatisfied
+    : group2Approved && designSatisfied;
 
   return {
     isValid,
+    isGroup1Author,
     missingGroups: {
       group1: needsGroup1,
       group2: needsGroup2,
@@ -307,7 +333,14 @@ async function deleteRuns(
 function reportValidationFailure(validation: ApprovalValidation) {
   const failureReasons: string[] = [];
 
-  if (validation.missingGroups.group1 && validation.missingGroups.group2) {
+  if (validation.isGroup1Author) {
+    if (validation.missingGroups.group2) {
+      failureReasons.push('Needs 2 approvals from any team members.');
+    }
+  } else if (
+    validation.missingGroups.group1 &&
+    validation.missingGroups.group2
+  ) {
     failureReasons.push('Required approvals missing: group 1 and group 2.');
   } else if (validation.missingGroups.group1) {
     failureReasons.push('Required approvals missing: group 1.');
@@ -328,8 +361,10 @@ function reportValidationFailure(validation: ApprovalValidation) {
   }
 
   if (validation.missingGroups.group2) {
+    const label = validation.isGroup1Author ? 'Reviewers' : 'Group 2';
+
     core.error(
-      `Group 2: ${formatReviewers(validation.eligibleReviewers.group2)}`
+      `${label}: ${formatReviewers(validation.eligibleReviewers.group2)}`
     );
   }
 
