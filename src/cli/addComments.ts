@@ -187,9 +187,7 @@ async function extractRecipeVariants(filePath: string) {
 }
 
 function findGeneratedTypeFile() {
-  const styledSystemUrl = import.meta.resolve(
-    '@chakra-ui/react/styled-system'
-  );
+  const styledSystemUrl = import.meta.resolve('@chakra-ui/react/styled-system');
 
   const styledSystemTypes = fileURLToPath(
     styledSystemUrl.replace('/esm/', '/types/')
