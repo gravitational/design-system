@@ -56,3 +56,11 @@ export function XIcon(props: IconProps) {
     </Icon>
   );
 }
+
+export function XBoldIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <PhosphorXIcon weight="bold" />
+    </Icon>
+  );
+}

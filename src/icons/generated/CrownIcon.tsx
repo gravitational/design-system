@@ -41,7 +41,7 @@ SOFTWARE.
 */
 
 import { Icon, type IconProps } from '@chakra-ui/react';
-import { MinusIcon as PhosphorMinusIcon } from '@phosphor-icons/react/dist/ssr/Minus';
+import { CrownIcon as PhosphorCrownIcon } from '@phosphor-icons/react/dist/ssr/Crown';
 
 /*
 
@@ -49,10 +49,10 @@ THIS FILE IS GENERATED. DO NOT EDIT.
 
 */
 
-export function MinusIcon(props: IconProps) {
+export function CrownIcon(props: IconProps) {
   return (
     <Icon {...props}>
-      <PhosphorMinusIcon />
+      <PhosphorCrownIcon />
     </Icon>
   );
 }

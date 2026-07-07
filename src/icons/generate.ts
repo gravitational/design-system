@@ -1,6 +1,10 @@
 import * as fs from 'node:fs/promises';
 import { resolve } from 'node:path';
 
+import {
+  IconCategory,
+  icons as phosphorIconMetadata,
+} from '@phosphor-icons/core';
 import * as ts from 'typescript';
 
 import { formatForPath, writeFormattedFile } from '../utils/writeFormattedFile';
@@ -125,6 +129,36 @@ const currentYear = new Date().getFullYear();
 
 function capitalizeFirstLetter(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+interface IconMetadata {
+  readonly name: string;
+  readonly pascal_name: string;
+  readonly categories: readonly IconCategory[];
+  readonly tags: readonly string[];
+  readonly codepoint: number;
+  readonly published_in: number;
+  readonly updated_in: number;
+}
+
+const iconMetadataByPascalName = new Map<string, IconMetadata>();
+
+for (const metadata of phosphorIconMetadata) {
+  iconMetadataByPascalName.set(metadata.pascal_name, metadata);
+}
+
+function toCategoryLabel(category: string) {
+  return category
+    .split(' ')
+    .map(word => (word === '&' ? word : capitalizeFirstLetter(word)))
+    .join(' ');
+}
+
+function primaryCategoryLabel(iconName: string) {
+  const pascalName = iconName.replace(/Icon$/, '');
+  const category = iconMetadataByPascalName.get(pascalName)?.categories[0];
+
+  return category ? toCategoryLabel(category) : 'Uncategorized';
 }
 
 async function createIconFile(baseIconName: string, weights: IconWeight[]) {
@@ -300,37 +334,55 @@ async function makeStorybookFile(iconEntries: IconEntry[]) {
   // Chakra icons do not work nicely with `import * as icons from ...`, so instead we
   // generate the file
 
-  const allIconItems: string[] = [];
+  const entriesByCategory = new Map<string, IconEntry[]>();
 
   for (const entry of iconEntries) {
-    for (const weight of entry.weights) {
-      const iconNameWithoutSuffix = entry.name.replace(/Icon$/, '');
-      const exportedName =
-        weight === 'regular'
-          ? entry.name
-          : `${iconNameWithoutSuffix}${capitalizeFirstLetter(weight)}Icon`;
-      allIconItems.push(`<IconItem name="${exportedName}">
-    <icons.${exportedName} />
-  </IconItem>`);
-    }
+    const category = primaryCategoryLabel(entry.name);
+    const entries = entriesByCategory.get(category) ?? [];
+    entries.push(entry);
+    entriesByCategory.set(category, entries);
   }
 
-  const lines = allIconItems
-    .toSorted((a, b) => a.localeCompare(b))
-    .join('\n  ');
+  const sections = [...entriesByCategory.entries()]
+    .toSorted(([a], [b]) => a.localeCompare(b))
+    .map(([category, entries]) => {
+      const lines = entries
+        .toSorted((a, b) => a.name.localeCompare(b.name))
+        .flatMap(entry => {
+          const iconNameWithoutSuffix = entry.name.replace(/Icon$/, '');
 
-  const content = `import { IconGallery, IconItem, Meta } from '@storybook/addon-docs/blocks';
+          return entry.weights.map(weight => {
+            const exportedName =
+              weight === 'regular'
+                ? entry.name
+                : `${iconNameWithoutSuffix}${capitalizeFirstLetter(weight)}Icon`;
+
+            return `<IconItem name="${exportedName}">
+    <icons.${exportedName} />
+  </IconItem>`;
+          });
+        })
+        .join('\n  ');
+
+      return `## ${category}
+
+<IconGallery>
+  ${lines}
+</IconGallery>`;
+    })
+    .join('\n\n');
+
+  const content = `import { Meta } from '@storybook/addon-docs/blocks';
 
 import * as icons from '../../../icons';
 import { DocsHeader } from '../../components/DocsHeader';
+import { IconGallery, IconItem } from '../../components/IconItem';
 
 <Meta title="Guides/Icons/Icons" />
 
 <DocsHeader title="Icons" />
 
-<IconGallery>
-  ${lines}
-</IconGallery>
+${sections}
 `;
 
   await writeOrCheck(
