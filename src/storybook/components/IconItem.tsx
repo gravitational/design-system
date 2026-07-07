@@ -1,5 +1,5 @@
 import { Box, chakra } from '@chakra-ui/react';
-import { useEffect, useRef, useState, type PropsWithChildren } from 'react';
+import { type PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { useCopyToClipboard } from 'usehooks-ts';
 
 import { Grid, Tooltip } from '../../components';
@@ -94,10 +94,7 @@ interface IconGalleryProps {
   title: string;
 }
 
-export function IconGallery({
-  title,
-  children,
-}: PropsWithChildren<IconGalleryProps>) {
+export function IconGallery({ children }: PropsWithChildren<IconGalleryProps>) {
   return (
     <Box
       w="full"
@@ -107,18 +104,6 @@ export function IconGallery({
       borderWidth="0.5px"
       borderColor="interactive.tonal.neutral.1"
     >
-      <Box
-        as="h2"
-        id={slugify(title)}
-        px={6}
-        pt={6}
-        color="text.main"
-        fontSize="lg"
-        fontWeight="medium"
-      >
-        {title}
-      </Box>
-
       <Grid
         templateColumns="repeat(auto-fill, minmax(210px, 1fr))"
         gap={2}
@@ -128,11 +113,4 @@ export function IconGallery({
       </Grid>
     </Box>
   );
-}
-
-function slugify(value: string) {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
 }

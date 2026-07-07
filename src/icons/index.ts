@@ -115,7 +115,7 @@ export { MagnifyingGlassMinusIcon } from './generated/MagnifyingGlassMinusIcon';
 export { MagnifyingGlassPlusIcon } from './generated/MagnifyingGlassPlusIcon';
 export { MapPinIcon } from './generated/MapPinIcon';
 export { MemoryIcon } from './generated/MemoryIcon';
-export { MinusIcon } from './generated/MinusIcon';
+export { MinusIcon, MinusBoldIcon } from './generated/MinusIcon';
 export { MonitorIcon } from './generated/MonitorIcon';
 export { MoonIcon } from './generated/MoonIcon';
 export { NetworkIcon } from './generated/NetworkIcon';

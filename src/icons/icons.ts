@@ -99,7 +99,7 @@ export const AVAILABLE_ICONS: IconConfig[] = [
   { icon: icons.MagnifyingGlassPlusIcon },
   { icon: icons.MapPinIcon },
   { icon: icons.MemoryIcon },
-  { icon: icons.MinusIcon },
+  { icon: icons.MinusIcon, weights: ['regular', 'bold'] },
   { icon: icons.MonitorIcon },
   { icon: icons.MoonIcon },
   { icon: icons.NetworkIcon },

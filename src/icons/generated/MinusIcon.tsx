@@ -56,3 +56,11 @@ export function MinusIcon(props: IconProps) {
     </Icon>
   );
 }
+
+export function MinusBoldIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <PhosphorMinusIcon weight="bold" />
+    </Icon>
+  );
+}
