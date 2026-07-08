@@ -1,0 +1,10 @@
+import { Button, type ButtonProps as ChakraButtonProps } from '@chakra-ui/react';
+import type { ComponentProps, RefAttributes } from 'react';
+export { Button };
+export type ButtonProps = ChakraButtonProps;
+export declare function ButtonSecondary(props: Omit<ButtonProps, 'fill' | 'intent'> & RefAttributes<HTMLButtonElement>): import("react/jsx-runtime").JSX.Element;
+export declare function ButtonBorder(props: Omit<ButtonProps, 'fill' | 'intent'> & RefAttributes<HTMLButtonElement>): import("react/jsx-runtime").JSX.Element;
+export declare function ButtonWarning(props: Omit<ButtonProps, 'fill' | 'intent'> & RefAttributes<HTMLButtonElement>): import("react/jsx-runtime").JSX.Element;
+export declare function ButtonWarningBorder(props: Omit<ButtonProps, 'fill' | 'intent'> & RefAttributes<HTMLButtonElement>): import("react/jsx-runtime").JSX.Element;
+export declare function ButtonText(props: Omit<ButtonProps, 'fill' | 'intent'> & RefAttributes<HTMLButtonElement>): import("react/jsx-runtime").JSX.Element;
+export declare function ButtonLink({ ref, ...props }: Omit<ButtonProps, 'fill' | 'intent'> & ComponentProps<'a'>): import("react/jsx-runtime").JSX.Element;

@@ -1,0 +1,1 @@
+export declare const cardSlotRecipe: import("@chakra-ui/react").SlotRecipeDefinition<"body" | "footer" | "header" | "title" | "description" | "root", import("@chakra-ui/react").SlotRecipeVariantRecord<"body" | "footer" | "header" | "title" | "description" | "root">>;

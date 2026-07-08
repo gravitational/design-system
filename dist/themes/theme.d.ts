@@ -1,0 +1,25 @@
+import type { SystemConfig } from '@chakra-ui/react';
+export declare enum UiThemeMode {
+    SingleColor = 0,
+    LightAndDark = 1,
+    ForcedColor = 2
+}
+interface BaseUiTheme {
+    isCustom?: boolean;
+    name: string;
+    config: SystemConfig;
+}
+interface UiThemeWithForcedColor extends BaseUiTheme {
+    mode: UiThemeMode.ForcedColor;
+    forcedColorMode: 'light' | 'dark';
+}
+export interface UiThemeWithSingleColor extends BaseUiTheme {
+    mode: UiThemeMode.SingleColor;
+    storybookName: string;
+    color: 'light' | 'dark';
+}
+interface UiThemeDefault extends BaseUiTheme {
+    mode: UiThemeMode.LightAndDark;
+}
+export type UiTheme = UiThemeDefault | UiThemeWithForcedColor | UiThemeWithSingleColor;
+export {};

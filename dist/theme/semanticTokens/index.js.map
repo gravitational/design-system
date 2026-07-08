@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","names":[],"sources":["../../../src/theme/semanticTokens/index.ts"],"sourcesContent":["import { colors } from './colors';\nimport { radii } from './radii';\n\nexport const semanticTokens = {\n  colors,\n  radii,\n};\n"],"mappings":";;;AAGA,MAAa,iBAAiB;CAC5B;CACA;CACD"}

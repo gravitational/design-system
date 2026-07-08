@@ -1,0 +1,1 @@
+{"version":3,"file":"attr.js","names":[],"sources":["../../src/utils/attr.ts"],"sourcesContent":["type Booleanish = boolean | 'true' | 'false';\n\nexport function dataAttr(condition: boolean | undefined) {\n  return (condition ? '' : undefined) as Booleanish;\n}\n"],"mappings":";AAEA,SAAgB,SAAS,WAAgC;CACvD,OAAQ,YAAY,KAAK,KAAA"}

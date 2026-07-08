@@ -1,0 +1,12 @@
+import "./dialog/dialog.js";
+import "./dialog/ComposedDialog.js";
+import "./dialog/index.js";
+import "./menu/menu.js";
+import "./menu/ComposedMenu.js";
+import "./menu/index.js";
+import "./popover/popover.js";
+import "./popover/ComposedPopover.js";
+import "./popover/index.js";
+import "./tooltip/Tooltip.js";
+import "./tooltip/index.js";
+import "@chakra-ui/react";

@@ -1,0 +1,1 @@
+export declare const tooltipSlotRecipe: import("@chakra-ui/react").SlotRecipeDefinition<"content" | "positioner" | "trigger" | "arrow" | "arrowTip", import("@chakra-ui/react").SlotRecipeVariantRecord<"content" | "positioner" | "trigger" | "arrow" | "arrowTip">>;
