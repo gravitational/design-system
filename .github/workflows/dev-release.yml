@@ -1,0 +1,136 @@
+name: Dev Release
+
+on:
+  pull_request_target:
+    types: [labeled, synchronize, reopened]
+
+env:
+  NODE_VERSION: 24.x
+
+concurrency:
+  group: dev-release-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  build:
+    name: Build dev release
+    if: |
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      contains(github.event.pull_request.labels.*.name, 'dev-release')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      asset: ${{ steps.stage.outputs.asset }}
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup pnpm with cache
+        uses: ./.github/actions/setup-pnpm
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Build
+        run: pnpm build
+
+      - name: Stage tarball with SHA filename
+        id: stage
+        env:
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          short=${SHA:0:7}
+          asset="design-system-${short}.tgz"
+          cp dist/package.tgz "dist/${asset}"
+          echo "asset=${asset}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload tarball
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev-release-tarball
+          path: dist/${{ steps.stage.outputs.asset }}
+          if-no-files-found: error
+          retention-days: 1
+
+  publish:
+    name: Publish dev release
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout main (trusted)
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Setup pnpm with cache
+        uses: ./.github/actions/setup-pnpm
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Download tarball
+        uses: actions/download-artifact@v4
+        with:
+          name: dev-release-tarball
+          path: ./tarball
+
+      - name: Verify tarball matches expected name
+        id: asset
+        env:
+          ASSET: ${{ needs.build.outputs.asset }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          short=${SHA:0:7}
+          expected="design-system-${short}.tgz"
+          if [ "$ASSET" != "$expected" ]; then
+            echo "Build asset name '$ASSET' does not match expected '$expected'." >&2
+            exit 1
+          fi
+          if [ ! -f "tarball/${expected}" ]; then
+            echo "Expected tarball ./tarball/${expected} not found:" >&2
+            ls -la tarball >&2
+            exit 1
+          fi
+          echo "name=${expected}" >> "$GITHUB_OUTPUT"
+
+      - name: Create or update PR dev release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: dev-pr-${{ github.event.pull_request.number }}
+          ASSET_PATH: tarball/${{ steps.asset.outputs.name }}
+          PR: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          notes="Development build for PR #${PR}. This release is automatically deleted when the PR is closed or the \`dev-release\` label is removed."
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release edit "$TAG" --target "$SHA" --notes "$notes"
+            gh release upload "$TAG" "$ASSET_PATH" --clobber
+          else
+            gh release create "$TAG" "$ASSET_PATH" \
+              --prerelease \
+              --target "$SHA" \
+              --title "Dev release for PR #${PR}" \
+              --notes "$notes"
+          fi
+
+      - name: Post dev-release comment
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pnpm bot dev-release post \
+            --owner ${{ github.repository_owner }} \
+            --repo ${{ github.event.repository.name }} \
+            --pull-number ${{ github.event.pull_request.number }} \
+            --sha ${{ github.event.pull_request.head.sha }} \
+            --tag dev-pr-${{ github.event.pull_request.number }} \
+            --asset-name ${{ steps.asset.outputs.name }}
