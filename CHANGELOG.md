@@ -1,5 +1,17 @@
 # @gravitational/design-system
 
+## 0.2.0
+
+### Minor Changes
+
+- Added indeterminate state support for `ComposedCheckbox` (set `checked="indeterminate"` to render a horizontal bar) and a bold `Minus` icon. ([#144](https://github.com/gravitational/design-system/pull/144))
+
+### Patch Changes
+
+- Fix Chakra type generation on Windows by resolving the generated types path from the package URL before converting it to an OS-specific filesystem path. ([#148](https://github.com/gravitational/design-system/pull/148))
+
+- Add a bunch of icons ([#149](https://github.com/gravitational/design-system/pull/149))
+
 ## 0.1.3
 
 ### Patch Changes
