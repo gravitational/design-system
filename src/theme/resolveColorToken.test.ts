@@ -102,6 +102,19 @@ describe('resolveColorToken (csco theme, conditional tokens)', () => {
       resolveColorToken(cscoSystem, 'colors.buttons.secondary.active', 'dark')
     ).toBe('rgba(167, 173, 181, 0.18)');
   });
+
+  it('resolves inverse tooltip links against the opposite background mode', () => {
+    expect(
+      resolveColorToken(
+        cscoSystem,
+        'colors.tooltip.inverseLinkDefault',
+        'light'
+      )
+    ).toBe('#649EF5');
+    expect(
+      resolveColorToken(cscoSystem, 'colors.tooltip.inverseLinkDefault', 'dark')
+    ).toBe('#1D69CC');
+  });
 });
 
 describe('resolveColorToken (bblp theme, single-color tokens)', () => {
