@@ -25,6 +25,7 @@ export interface UiThemeWithSingleColor extends BaseUiTheme {
 
 interface UiThemeDefault extends BaseUiTheme {
   mode: UiThemeMode.LightAndDark;
+  storybookName?: string;
 }
 
 export type UiTheme =
