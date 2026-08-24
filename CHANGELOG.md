@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.3.0
+
+### Minor Changes
+
+- Add the CSCO light and dark theme. ([#153](https://github.com/gravitational/design-system/pull/153))
+
 ## 0.2.0
 
 ### Minor Changes
