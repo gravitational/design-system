@@ -202,7 +202,7 @@ export const colors = defineSemanticTokens.colors({
     inverseBackground: paired('rgba(255, 255, 255, 0.5)', 'rgba(0, 0, 0, 0.5)'),
     inverseLinkDefault: paired('#649EF5', '#1D69CC'),
   },
-  progressBarColor: paired('#139BEB', '#52A62B'),
+  progressBarColor: paired('#139BEB', '#33BBF5'),
   error: {
     main: paired('#CC2D37', '#FA5762'),
     hover: paired('#B2242D', '#FB7981'),
