@@ -2,9 +2,10 @@ import { describe, expect, it } from 'vitest';
 
 import { createThemeSystem } from './index';
 import { resolveColorToken } from './resolveColorToken';
-import { BBLP_THEME, TELEPORT_THEME } from '../themes';
+import { BBLP_THEME, CSCO_THEME, TELEPORT_THEME } from '../themes';
 
 const teleportSystem = createThemeSystem(TELEPORT_THEME.config);
+const cscoSystem = createThemeSystem(CSCO_THEME.config);
 const bblpSystem = createThemeSystem(BBLP_THEME.config);
 
 describe('resolveColorToken (teleport theme, conditional tokens)', () => {
@@ -71,6 +72,48 @@ describe('resolveColorToken (teleport theme, conditional tokens)', () => {
     expect(
       resolveColorToken(teleportSystem, 'colors.does.not.exist', 'dark')
     ).toBeUndefined();
+  });
+});
+
+describe('resolveColorToken (csco theme, conditional tokens)', () => {
+  it('resolves the brand token in both modes', () => {
+    expect(resolveColorToken(cscoSystem, 'colors.brand', 'light')).toBe(
+      '#1D69CC'
+    );
+    expect(resolveColorToken(cscoSystem, 'colors.brand', 'dark')).toBe(
+      '#649EF5'
+    );
+  });
+
+  it('resolves inherited token references through the csco palette', () => {
+    expect(resolveColorToken(cscoSystem, 'colors.terminal.red', 'light')).toBe(
+      '#991D53'
+    );
+    expect(resolveColorToken(cscoSystem, 'colors.terminal.red', 'dark')).toBe(
+      '#F57398'
+    );
+  });
+
+  it('resolves secondary button states in both modes', () => {
+    expect(
+      resolveColorToken(cscoSystem, 'colors.buttons.secondary.default', 'light')
+    ).toBe('rgba(101, 108, 117, 0.06)');
+    expect(
+      resolveColorToken(cscoSystem, 'colors.buttons.secondary.active', 'dark')
+    ).toBe('rgba(167, 173, 181, 0.18)');
+  });
+
+  it('resolves inverse tooltip links against the opposite background mode', () => {
+    expect(
+      resolveColorToken(
+        cscoSystem,
+        'colors.tooltip.inverseLinkDefault',
+        'light'
+      )
+    ).toBe('#649EF5');
+    expect(
+      resolveColorToken(cscoSystem, 'colors.tooltip.inverseLinkDefault', 'dark')
+    ).toBe('#1D69CC');
   });
 });
 

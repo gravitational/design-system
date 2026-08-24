@@ -313,7 +313,13 @@ const preview: PreviewWithStorySort = {
       toolbar: {
         title: 'Theme',
         icon: 'contrast',
-        items: ['Light Theme', 'Dark Theme', 'BBLP Theme'],
+        items: [
+          'Light Theme',
+          'Dark Theme',
+          'BBLP Theme',
+          'CSCO Light Theme',
+          'CSCO Dark Theme',
+        ],
         dynamicTitle: true,
       },
     },

@@ -29,15 +29,19 @@ export function getThemes() {
         continue;
 
       case UiThemeMode.LightAndDark:
-        themes['Light Theme'] = {
+        const prefix = theme.storybookName ? `${theme.storybookName} ` : '';
+        const lightThemeName = `${prefix}Light Theme`;
+        const darkThemeName = `${prefix}Dark Theme`;
+
+        themes[lightThemeName] = {
           colorScheme: 'light',
           system,
-          name: 'Light Theme',
+          name: lightThemeName,
         };
-        themes['Dark Theme'] = {
+        themes[darkThemeName] = {
           colorScheme: 'dark',
           system,
-          name: 'Dark Theme',
+          name: darkThemeName,
         };
 
         break;
