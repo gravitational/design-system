@@ -70,7 +70,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pnpm bot storybook \
+          pnpm bot storybook comment \
             --owner ${{ github.repository_owner }} \
             --repo ${{ github.event.repository.name }} \
             --pull-number ${{ github.event.pull_request.number }}
