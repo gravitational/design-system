@@ -2,8 +2,11 @@ packages:
   - '.'
   - 'bot'
   - 'crates/*'
-onlyBuiltDependencies:
-  - '@swc/core'
-  - esbuild
 # Do not install packages released less than 2 days (2880 minutes) ago
 minimumReleaseAge: 2880
+allowBuilds:
+  '@swc/core': true
+  esbuild: true
+  msw: true
+overrides:
+  undici: ^6.25.0

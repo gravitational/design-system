@@ -113,7 +113,7 @@
     "vitest": "^4.1.10",
     "zod": "^4.4.3"
   },
-  "packageManager": "pnpm@10.26.1+sha512.664074abc367d2c9324fdc18037097ce0a8f126034160f709928e9e9f95d98714347044e5c3164d65bd5da6c59c6be362b107546292a8eecb7999196e5ce58fa",
+  "packageManager": "pnpm@12.3.3+sha512.4d0847314b85338f031f6613850e3e6140fc8e41154b7e33ae10bab44bbdc11b274883a965d9890a04e49ad387124555ebda049ec278fd9ef902daeadb5a83e2",
   "engines": {
     "node": "^24"
   },
@@ -133,16 +133,6 @@
       }
     },
     "./ubuntu.css": "./ubuntu.css"
-  },
-  "pnpm": {
-    "overrides": {
-      "undici": "^6.25.0"
-    },
-    "onlyBuiltDependencies": [
-      "@swc/core",
-      "esbuild",
-      "msw"
-    ]
   },
   "msw": {
     "workerDirectory": [
