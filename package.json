@@ -35,8 +35,8 @@
   },
   "dependencies": {
     "@ark-ui/react": "^5.36.2",
-    "@chakra-ui/cli": "^3.35.0",
-    "@chakra-ui/react": "^3.35.0",
+    "@chakra-ui/cli": "^3.37.0",
+    "@chakra-ui/react": "^3.37.0",
     "@hookform/resolvers": "^5.2.2",
     "@phosphor-icons/core": "^2.1.1",
     "@phosphor-icons/react": "^2.1.10",
@@ -55,8 +55,6 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@chakra-ui/cli": "^3.26.0",
-    "@chakra-ui/react": "^3.26.0",
     "@changesets/cli": "^2.31.0",
     "@changesets/get-release-plan": "^4.0.16",
     "@changesets/types": "^6.1.0",
