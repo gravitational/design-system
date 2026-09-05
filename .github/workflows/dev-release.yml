@@ -2,7 +2,7 @@ name: Dev Release
 
 on:
   pull_request_target:
-    types: [labeled, synchronize, reopened]
+    types: [opened, labeled, synchronize, reopened]
 
 env:
   NODE_VERSION: 24.x
