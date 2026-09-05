@@ -1,3 +1,4 @@
+import { c as _c } from "react/compiler-runtime";
 import { Box, Flex } from 'design';
 import { Box as DesignSystemBox } from '@gravitational/design-system';
 import Icons from './icons';
@@ -31,16 +32,32 @@ export function Chained() {
   return <T1 css={{ display: 'flex' }} />;
 }
 
-// A css prop template the compiler hoisted ahead of the JSX. Its function interpolation has to reach
-// styled-components as a function, not as the text `_temp` stringifies to.
-export function HoistedTemplate({ maxWidth }) {
-  const t0 = `
-    max-width: ${maxWidth}px;
-    background-color: ${_temp};
-  `;
-  return <div css={t0}>hoisted template</div>;
-}
-
-function _temp(props) {
-  return props.theme.colors.levels.elevated;
+// CSS arrays expose interpolation dependencies to the compiler before SWC runs.
+export function CompiledCss(t0) {
+	const $ = _c(5);
+	const { active, maxWidth } = t0;
+	let t1;
+	if ($[0] !== active) {
+		t1 = (props) => active ? props.theme.colors.levels.elevated : "transparent";
+		$[0] = active;
+		$[1] = t1;
+	} else {
+		t1 = $[1];
+	}
+	let t2;
+	if ($[2] !== maxWidth || $[3] !== t1) {
+		t2 = <div css={[
+			"max-width: ",
+			maxWidth,
+			"px; background-color: ",
+			t1,
+			";"
+		]}>compiled array</div>;
+		$[2] = maxWidth;
+		$[3] = t1;
+		$[4] = t2;
+	} else {
+		t2 = $[4];
+	}
+	return t2;
 }

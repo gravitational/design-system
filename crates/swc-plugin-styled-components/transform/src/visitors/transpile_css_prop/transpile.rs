@@ -34,7 +34,6 @@ pub fn transpile_css_prop<'a>(state: &'a mut State, config: &'a Config) -> impl 
     ignored_library_imports: Default::default(),
     derived_from_ignored: Default::default(),
     local_aliases: Default::default(),
-    local_templates: Default::default(),
   })
 }
 
@@ -57,8 +56,6 @@ struct TranspileCssProp<'a> {
 
   // Function-local `const T0 = Box;` aliases of module-level components, see resolve_element_name.
   local_aliases: FxHashMap<Id, JSXElementName>,
-  // Function-local `const t0 = `...`;` template literals later passed as `css={t0}`, see hoisted_css_template.
-  local_templates: FxHashMap<Id, Tpl>,
 }
 
 impl TranspileCssProp<'_> {
@@ -120,16 +117,6 @@ impl TranspileCssProp<'_> {
         }))
       }
       Expr::Paren(paren) => self.component_alias_target(&paren.expr),
-      _ => None,
-    }
-  }
-
-  /// The React Compiler also hoists a css prop's template literal into a function-local constant when it
-  /// can compute it ahead of the JSX. Evaluated as a plain template that stringifies any function
-  /// interpolation into the CSS text, so the template is transformed as if it were still inline.
-  fn hoisted_css_template(&self, value: &Expr) -> Option<Tpl> {
-    match value {
-      Expr::Ident(ident) => self.local_templates.get(&ident.to_id()).cloned(),
       _ => None,
     }
   }
@@ -267,9 +254,7 @@ impl VisitMut for TranspileCssProp<'_> {
         continue;
       }
 
-      if let Expr::Tpl(tpl) = &**init {
-        self.local_templates.insert(binding.id.to_id(), tpl.clone());
-      } else if let Some(target) = self.component_alias_target(init) {
+      if let Some(target) = self.component_alias_target(init) {
         self.local_aliases.insert(binding.id.to_id(), target);
       }
     }
@@ -371,38 +356,35 @@ impl VisitMut for TranspileCssProp<'_> {
                 JSXAttrValue::JSXExprContainer(JSXExprContainer {
                   expr: JSXExpr::Expr(v),
                   ..
-                }) => match self.hoisted_css_template(v) {
-                  Some(tpl) => Expr::Tpl(tpl),
-                  None => match &mut **v {
-                    Expr::Tpl(..) => *v.take(),
-                    Expr::TaggedTpl(v)
-                      if match &*v.tag {
-                        Expr::Ident(i) => &*i.sym == "css",
-                        _ => false,
-                      } =>
-                    {
-                      Expr::Tpl(*v.tpl.take())
-                    }
-                    Expr::Object(..) => *v.take(),
-                    _ => Expr::Tpl(Tpl {
-                      span: DUMMY_SP,
-                      exprs: vec![v.take()],
-                      quasis: vec![
-                        TplElement {
-                          span: DUMMY_SP,
-                          tail: false,
-                          cooked: None,
-                          raw: "".into(),
-                        },
-                        TplElement {
-                          span: DUMMY_SP,
-                          tail: true,
-                          cooked: None,
-                          raw: "".into(),
-                        },
-                      ],
-                    }),
-                  },
+                }) => match &mut **v {
+                  Expr::Tpl(..) => *v.take(),
+                  Expr::TaggedTpl(v)
+                    if match &*v.tag {
+                      Expr::Ident(i) => &*i.sym == "css",
+                      _ => false,
+                    } =>
+                  {
+                    Expr::Tpl(*v.tpl.take())
+                  }
+                  Expr::Object(..) => *v.take(),
+                  _ => Expr::Tpl(Tpl {
+                    span: DUMMY_SP,
+                    exprs: vec![v.take()],
+                    quasis: vec![
+                      TplElement {
+                        span: DUMMY_SP,
+                        tail: false,
+                        cooked: None,
+                        raw: "".into(),
+                      },
+                      TplElement {
+                        span: DUMMY_SP,
+                        tail: true,
+                        cooked: None,
+                        raw: "".into(),
+                      },
+                    ],
+                  }),
                 },
 
                 _ => continue,
