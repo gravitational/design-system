@@ -2,6 +2,7 @@ import * as core from '@actions/core';
 import { run, subcommands } from 'cmd-ts';
 
 import { changesetCommand } from './commands/changeset/changeset';
+import { devReleaseCommand } from './commands/dev-release/dev-release';
 import { releaseCommand } from './commands/release/release';
 import { reviewCommand } from './commands/review/review';
 import { storybookCommand } from './commands/storybook/storybook';
@@ -11,6 +12,7 @@ const bot = subcommands({
   name: 'bot',
   cmds: {
     changeset: changesetCommand,
+    'dev-release': devReleaseCommand,
     release: releaseCommand,
     review: reviewCommand,
     storybook: storybookCommand,
