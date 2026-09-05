@@ -1280,6 +1280,67 @@ var _StyledDiv = styled("div").withConfig({
 "
 `;
 
+exports[`Should load styled-components wasm plugin correctly > Should transform transpile-css-prop-compiler-alias correctly 1`] = `
+"import { Box, Flex } from 'design';
+import { Box as DesignSystemBox } from '@gravitational/design-system';
+import Icons from './icons';
+import styled from 'styled-components';
+const Lines = styled(Box)\`
+  padding: 4px;
+\`;
+var _StyledLines = styled(Lines)\`color: red;\`;
+// The React Compiler aliases module-level components into function-local temporaries and uses those as
+// JSX tags. The styled component created for the css prop still has to live at module scope, so the
+// alias is resolved back to the component it names.
+export function Compiled({ lines, maxHeight }) {
+    const T0 = Box;
+    const T1 = Lines;
+    const T2 = DesignSystemBox;
+    const T3 = Icons.Foo;
+    const t0 = lines.map((line)=>/*#__PURE__*/ React.createElement("div", {
+            key: line
+        }, line));
+    return /*#__PURE__*/ React.createElement(_StyledBox, {
+        maxHeight: maxHeight
+    }, /*#__PURE__*/ React.createElement(_StyledLines, null, t0), /*#__PURE__*/ React.createElement(T2, {
+        css: {
+            color: 'red'
+        }
+    }, "ignored library, not transformed"), /*#__PURE__*/ React.createElement(_StyledIconsFoo, null));
+}
+export function Chained() {
+    const T0 = Flex;
+    const T1 = T0;
+    return /*#__PURE__*/ React.createElement(_StyledFlex, null);
+}
+// A css prop template the compiler hoisted ahead of the JSX. Its function interpolation has to reach
+// styled-components as a function, not as the text \`_temp\` stringifies to.
+export function HoistedTemplate({ maxWidth }) {
+    const t0 = \`
+    max-width: \${maxWidth}px;
+    background-color: \${_temp};
+  \`;
+    return /*#__PURE__*/ React.createElement(_StyledDiv, {
+        $_css: maxWidth
+    }, "hoisted template");
+}
+function _temp(props) {
+    return props.theme.colors.levels.elevated;
+}
+var _StyledBox = styled(Box)({
+    position: 'relative'
+});
+var _StyledFlex = styled(Flex)({
+    display: 'flex'
+});
+var _StyledIconsFoo = styled(Icons.Foo)\`margin: 0;\`;
+var _StyledDiv = styled("div")\`
+    max-width: \${(p)=>p.$_css}px;
+    background-color: \${_temp};
+  \`;
+"
+`;
+
 exports[`Should load styled-components wasm plugin correctly > Should transform transpile-css-prop-ignored-libraries correctly 1`] = `
 "// Import components from the ignored library
 import { Box, styled as designStyled } from '@gravitational/design-system';
@@ -1355,6 +1416,19 @@ var _StyledDiv = styled("div")({
 });
 var _StyledDiv2 = styled("div")({
     color: 'blue'
+});
+"
+`;
+
+exports[`Should load styled-components wasm plugin correctly > Should transform transpile-css-prop-ignored-paths correctly 1`] = `
+"// A file under an ignored path, such as a locally linked design system whose components implement the
+// css prop themselves. Nothing here is transformed.
+import _styled from "styled-components";
+export function Card({ children }) {
+    return /*#__PURE__*/ React.createElement(_StyledDiv, null, children);
+}
+var _StyledDiv = _styled("div")({
+    padding: 4
 });
 "
 `;
