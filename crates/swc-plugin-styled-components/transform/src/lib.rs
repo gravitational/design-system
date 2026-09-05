@@ -53,6 +53,9 @@ pub struct Config {
 
   #[serde(default)]
   pub css_prop_ignore_from_libraries: Vec<String>,
+
+  #[serde(default)]
+  pub css_prop_ignore_paths: Vec<String>,
 }
 
 fn true_by_default() -> bool {
@@ -70,6 +73,23 @@ impl Config {
     }
     format!("{}__", self.namespace)
   }
+
+  fn transpile_css_prop_in(&self, file_name: Option<&str>) -> bool {
+    if !self.css_prop {
+      return false;
+    }
+
+    let Some(file_name) = file_name else {
+      return true;
+    };
+
+    let file_name = file_name.replace('\\', "/");
+
+    !self
+      .css_prop_ignore_paths
+      .iter()
+      .any(|path| file_name.contains(&path.replace('\\', "/")))
+  }
 }
 
 pub fn styled_components<'a, C>(
@@ -86,7 +106,7 @@ where
 
     program.mutate(analyzer(config, &mut state));
 
-    if config.css_prop {
+    if config.transpile_css_prop_in(file_name) {
       program.mutate(transpile_css_prop(&mut state, config));
     }
 
