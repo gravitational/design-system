@@ -4,7 +4,9 @@ import { fileURLToPath } from 'node:url';
 
 import { addComments } from './addComments';
 
-process.argv.push(join(import.meta.dirname, '../themes/teleport/theme.js'));
+const themePath = join(import.meta.dirname, '../themes/teleport/theme.js');
+
+process.argv.push(themePath);
 
 /**
  * This script runs the Chakra UI CLI to generate type definitions for a custom theme
@@ -21,13 +23,9 @@ async function main() {
     await new Promise<void>((resolvePromise, reject) => {
       const child = spawn(
         process.execPath,
-        [
-          chakraCliPath,
-          'typegen',
-          join(import.meta.dirname, '../themes/teleport/theme.js'),
-        ],
+        [chakraCliPath, 'typegen', themePath],
         {
-          cwd: resolve(import.meta.dirname, '../..'), // design-system root
+          cwd: import.meta.dirname,
           stdio: 'inherit',
         }
       );
