@@ -128,6 +128,13 @@ export const Arrow: StoryObj<typeof meta> = {
     });
     await expect(document.body.querySelector(openArrowTip)).toBeNull();
 
+    await userEvent.keyboard('{Escape}');
+    await waitFor(async () => {
+      await expect(
+        within(document.body).getByText('No arrow here.')
+      ).not.toBeVisible();
+    });
+
     const withArrowTrigger = canvas.getByRole('button', { name: 'With arrow' });
     await userEvent.click(withArrowTrigger);
     await waitFor(async () => {
