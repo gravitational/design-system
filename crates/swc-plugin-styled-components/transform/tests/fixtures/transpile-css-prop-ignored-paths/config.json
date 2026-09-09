@@ -1,0 +1,7 @@
+{
+  "ssr": false,
+  "displayName": false,
+  "transpileTemplateLiterals": false,
+  "minify": false,
+  "cssPropIgnorePaths": ["fixtures/transpile-css-prop-ignored-paths/"]
+}
