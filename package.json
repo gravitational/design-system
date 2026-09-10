@@ -111,7 +111,7 @@
     "vitest": "^4.1.10",
     "zod": "^4.4.3"
   },
-  "packageManager": "pnpm@12.3.3+sha512.4d0847314b85338f031f6613850e3e6140fc8e41154b7e33ae10bab44bbdc11b274883a965d9890a04e49ad387124555ebda049ec278fd9ef902daeadb5a83e2",
+  "packageManager": "pnpm@11.26.0+sha512.fc0e2bf890b9f983611f1ab68c0637bce914390653699f83c1a78b005ed25f2c81e77920c8fd8eee2ecf0b58b28cdcb00a84d97f69bcf7c56b2f344710238664",
   "engines": {
     "node": "^24"
   },
