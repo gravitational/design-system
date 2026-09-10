@@ -1,12 +1,12 @@
 import { spawn } from 'node:child_process';
-import { dirname, join, resolve } from 'node:path';
+import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { addComments } from './addComments';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const themePath = join(import.meta.dirname, '../themes/teleport/theme.js');
 
-process.argv.push(join(__dirname, '../themes/teleport/theme.js'));
+process.argv.push(themePath);
 
 /**
  * This script runs the Chakra UI CLI to generate type definitions for a custom theme
@@ -20,19 +20,19 @@ async function main() {
     );
     const chakraCliPath = resolve(chakraCliIndexPath, '../../../bin/index.js');
 
-    await new Promise<void>((resolve, reject) => {
+    await new Promise<void>((resolvePromise, reject) => {
       const child = spawn(
-        `node "${chakraCliPath}"`,
-        ['typegen', join(__dirname, '../themes/teleport/theme.js')],
+        process.execPath,
+        [chakraCliPath, 'typegen', themePath],
         {
+          cwd: import.meta.dirname,
           stdio: 'inherit',
-          shell: true,
         }
       );
 
       child.on('exit', code => {
         if (code === 0) {
-          resolve();
+          resolvePromise();
         } else {
           reject(new Error(`chakra typegen exited with code ${code}`));
         }
