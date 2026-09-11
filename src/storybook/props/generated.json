@@ -586,7 +586,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  root?: string | undefined;\n  hiddenInput?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  root?: string | undefined;\n  hiddenInput?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -1407,7 +1407,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  root?: string | undefined;\n  hiddenInput?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  root?: string | undefined;\n  hiddenInput?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -1646,6 +1646,19 @@
         "defaultValue": null
       },
       {
+        "name": "hideMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "HideMode",
+          "expanded": "'display-none' | 'activity'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+.",
+        "defaultValue": "display-none"
+      },
+      {
         "name": "id",
         "typeInfo": {
           "kind": "primitive",
@@ -1662,7 +1675,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  root?: string | undefined;\n  label?: ((index: number) => string) | undefined;\n  table?: ((id: string) => string) | undefined;\n  tableHeader?: ((id: string) => string) | undefined;\n  tableBody?: ((id: string) => string) | undefined;\n  tableRow?: ((id: string) => string) | undefined;\n  content?: string | undefined;\n  cellTrigger?: ((id: string) => string) | undefined;\n  prevTrigger?: ((view: DateView) => string) | undefined;\n  nextTrigger?: ((view: DateView) => string) | undefined;\n  viewTrigger?: ((view: DateView) => string) | undefined;\n  clearTrigger?: string | undefined;\n  control?: string | undefined;\n  input?: ((index: number) => string) | undefined;\n  trigger?: string | undefined;\n  monthSelect?: string | undefined;\n  yearSelect?: string | undefined;\n  positioner?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  root?: string | undefined;\n  label?: ((index: number) => string) | undefined;\n  table?: ((id: string) => string) | undefined;\n  tableHeader?: ((id: string) => string) | undefined;\n  tableBody?: ((id: string) => string) | undefined;\n  tableRow?: ((id: string) => string) | undefined;\n  content?: string | undefined;\n  cellTrigger?: ((id: string) => string) | undefined;\n  prevTrigger?: ((view: DateView) => string) | undefined;\n  nextTrigger?: ((view: DateView) => string) | undefined;\n  viewTrigger?: ((view: DateView) => string) | undefined;\n  clearTrigger?: string | undefined;\n  control?: string | undefined;\n  input?: ((index: number) => string) | undefined;\n  trigger?: string | undefined;\n  monthSelect?: string | undefined;\n  yearSelect?: string | undefined;\n  positioner?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -1819,6 +1832,19 @@
         "defaultValue": null
       },
       {
+        "name": "onEnterComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the open state",
+        "defaultValue": null
+      },
+      {
         "name": "onExitComplete",
         "typeInfo": {
           "kind": "reference",
@@ -1956,7 +1982,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  applyStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -2066,7 +2092,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "IntlTranslations",
-          "expanded": "interface IntlTranslations {\n  dayCell: (state: DayTableCellState) => string;\n  nextTrigger: (view: DateView) => string;\n  monthSelect: string;\n  yearSelect: string;\n  viewTrigger: (view: DateView) => string;\n  prevTrigger: (view: DateView) => string;\n  presetTrigger: (value: string[]) => string;\n  clearTrigger: string;\n  trigger: (open: boolean) => string;\n  content: string;\n  placeholder: (locale: string) => {\n    year: string;\n    month: string;\n    day: string;\n  };\n  weekColumnHeader?: string | undefined;\n  weekNumberCell?: ((weekNumber: number) => string) | undefined;\n}\n"
+          "expanded": "interface IntlTranslations {\n  dayCell?: ((state: DayTableCellState) => string) | undefined;\n  nextTrigger?: ((view: DateView) => string) | undefined;\n  monthSelect?: string | undefined;\n  yearSelect?: string | undefined;\n  viewTrigger?:\n    | ((view: DateView, nextView: DateView | undefined) => string)\n    | undefined;\n  prevTrigger?: ((view: DateView) => string) | undefined;\n  presetTrigger?: ((value: string[]) => string) | undefined;\n  clearTrigger?: string | undefined;\n  trigger?: ((open: boolean) => string) | undefined;\n  content?: string | undefined;\n  placeholder?:\n    | ((locale: string) => {\n        year: string;\n        month: string;\n        day: string;\n      })\n    | undefined;\n  weekColumnHeader?: string | undefined;\n  weekNumberCell?: ((weekNumber: number) => string) | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -2245,6 +2271,19 @@
         "defaultValue": null
       },
       {
+        "name": "hideMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "HideMode",
+          "expanded": "'display-none' | 'activity'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+.",
+        "defaultValue": "display-none"
+      },
+      {
         "name": "id",
         "typeInfo": {
           "kind": "primitive",
@@ -2261,7 +2300,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  trigger?: (string | ((value?: string) => string)) | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -2316,6 +2355,19 @@
         "readonly": false,
         "description": "Whether to prevent pointer interaction outside the element and hide all content below it",
         "defaultValue": "true"
+      },
+      {
+        "name": "onEnterComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the open state",
+        "defaultValue": null
       },
       {
         "name": "onEscapeKeyDown",
@@ -2855,6 +2907,19 @@
         "defaultValue": null
       },
       {
+        "name": "hideMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "HideMode",
+          "expanded": "'display-none' | 'activity'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+.",
+        "defaultValue": "display-none"
+      },
+      {
         "name": "highlightedValue",
         "typeInfo": {
           "kind": "union",
@@ -2887,7 +2952,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  contextTrigger?:\n    | string\n    | ((value?: string | undefined) => string)\n    | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  trigger?: (string | ((value?: string) => string)) | undefined;\n  contextTrigger?: (string | ((value?: string) => string)) | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -2945,6 +3010,19 @@
         "required": false,
         "readonly": false,
         "description": "Function to navigate to the selected item if it's an anchor element",
+        "defaultValue": null
+      },
+      {
+        "name": "onEnterComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the open state",
         "defaultValue": null
       },
       {
@@ -3123,7 +3201,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "MenuPositioning",
-          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  applyStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -3358,6 +3436,19 @@
         "defaultValue": null
       },
       {
+        "name": "hideMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "HideMode",
+          "expanded": "'display-none' | 'activity'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+.",
+        "defaultValue": "display-none"
+      },
+      {
         "name": "id",
         "typeInfo": {
           "kind": "primitive",
@@ -3374,7 +3465,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  anchor?: string | undefined;\n  trigger?: (string | ((value?: string) => string)) | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -3429,6 +3520,19 @@
         "readonly": false,
         "description": "Whether the popover should be modal. When set to `true`:\n- interaction with outside elements will be disabled\n- only popover content will be visible to screen readers\n- scrolling is blocked\n- focus is trapped within the popover",
         "defaultValue": "false"
+      },
+      {
+        "name": "onEnterComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the open state",
+        "defaultValue": null
       },
       {
         "name": "onEscapeKeyDown",
@@ -3595,7 +3699,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PopoverPositioning",
-          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  applyStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -3780,7 +3884,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  root?: string | undefined;\n  label?: string | undefined;\n  indicator?: string | undefined;\n  item?: ((value: string) => string) | undefined;\n  itemLabel?: ((value: string) => string) | undefined;\n  itemControl?: ((value: string) => string) | undefined;\n  itemHiddenInput?: ((value: string) => string) | undefined;\n}"
+          "expanded": "interface ElementIds {\n  root?: string | undefined;\n  label?: string | undefined;\n  indicator?: string | undefined;\n  item?: ((value: string) => string) | undefined;\n  itemLabel?: ((value: string) => string) | undefined;\n  itemControl?: ((value: string) => string) | undefined;\n  itemHiddenInput?: ((value: string) => string) | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -3992,7 +4096,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  root?: string | undefined;\n  hiddenInput?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n  thumb?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  root?: string | undefined;\n  hiddenInput?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n  thumb?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -4429,6 +4533,19 @@
         "defaultValue": null
       },
       {
+        "name": "hideMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "HideMode",
+          "expanded": "'display-none' | 'activity'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+.",
+        "defaultValue": "display-none"
+      },
+      {
         "name": "id",
         "typeInfo": {
           "kind": "primitive",
@@ -4445,7 +4562,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  root?: string | undefined;\n  label?: ((index: number) => string) | undefined;\n  table?: ((id: string) => string) | undefined;\n  tableHeader?: ((id: string) => string) | undefined;\n  tableBody?: ((id: string) => string) | undefined;\n  tableRow?: ((id: string) => string) | undefined;\n  content?: string | undefined;\n  cellTrigger?: ((id: string) => string) | undefined;\n  prevTrigger?: ((view: DateView) => string) | undefined;\n  nextTrigger?: ((view: DateView) => string) | undefined;\n  viewTrigger?: ((view: DateView) => string) | undefined;\n  clearTrigger?: string | undefined;\n  control?: string | undefined;\n  input?: ((index: number) => string) | undefined;\n  trigger?: string | undefined;\n  monthSelect?: string | undefined;\n  yearSelect?: string | undefined;\n  positioner?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  root?: string | undefined;\n  label?: ((index: number) => string) | undefined;\n  table?: ((id: string) => string) | undefined;\n  tableHeader?: ((id: string) => string) | undefined;\n  tableBody?: ((id: string) => string) | undefined;\n  tableRow?: ((id: string) => string) | undefined;\n  content?: string | undefined;\n  cellTrigger?: ((id: string) => string) | undefined;\n  prevTrigger?: ((view: DateView) => string) | undefined;\n  nextTrigger?: ((view: DateView) => string) | undefined;\n  viewTrigger?: ((view: DateView) => string) | undefined;\n  clearTrigger?: string | undefined;\n  control?: string | undefined;\n  input?: ((index: number) => string) | undefined;\n  trigger?: string | undefined;\n  monthSelect?: string | undefined;\n  yearSelect?: string | undefined;\n  positioner?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -4614,6 +4731,19 @@
         "defaultValue": null
       },
       {
+        "name": "onEnterComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the open state",
+        "defaultValue": null
+      },
+      {
         "name": "onExitComplete",
         "typeInfo": {
           "kind": "reference",
@@ -4751,7 +4881,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  applyStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -4861,7 +4991,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "IntlTranslations",
-          "expanded": "interface IntlTranslations {\n  dayCell: (state: DayTableCellState) => string;\n  nextTrigger: (view: DateView) => string;\n  monthSelect: string;\n  yearSelect: string;\n  viewTrigger: (view: DateView) => string;\n  prevTrigger: (view: DateView) => string;\n  presetTrigger: (value: string[]) => string;\n  clearTrigger: string;\n  trigger: (open: boolean) => string;\n  content: string;\n  placeholder: (locale: string) => {\n    year: string;\n    month: string;\n    day: string;\n  };\n  weekColumnHeader?: string | undefined;\n  weekNumberCell?: ((weekNumber: number) => string) | undefined;\n}\n"
+          "expanded": "interface IntlTranslations {\n  dayCell?: ((state: DayTableCellState) => string) | undefined;\n  nextTrigger?: ((view: DateView) => string) | undefined;\n  monthSelect?: string | undefined;\n  yearSelect?: string | undefined;\n  viewTrigger?:\n    | ((view: DateView, nextView: DateView | undefined) => string)\n    | undefined;\n  prevTrigger?: ((view: DateView) => string) | undefined;\n  presetTrigger?: ((value: string[]) => string) | undefined;\n  clearTrigger?: string | undefined;\n  trigger?: ((open: boolean) => string) | undefined;\n  content?: string | undefined;\n  placeholder?:\n    | ((locale: string) => {\n        year: string;\n        month: string;\n        day: string;\n      })\n    | undefined;\n  weekColumnHeader?: string | undefined;\n  weekNumberCell?: ((weekNumber: number) => string) | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -5528,6 +5658,19 @@
         "defaultValue": null
       },
       {
+        "name": "hideMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "HideMode",
+          "expanded": "'display-none' | 'activity'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+.",
+        "defaultValue": "display-none"
+      },
+      {
         "name": "id",
         "typeInfo": {
           "kind": "primitive",
@@ -5544,7 +5687,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  trigger?: (string | ((value?: string) => string)) | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -5599,6 +5742,19 @@
         "readonly": false,
         "description": "Whether to prevent pointer interaction outside the element and hide all content below it",
         "defaultValue": "true"
+      },
+      {
+        "name": "onEnterComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the open state",
+        "defaultValue": null
       },
       {
         "name": "onEscapeKeyDown",
@@ -5968,6 +6124,19 @@
         "defaultValue": null
       },
       {
+        "name": "hideMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "HideMode",
+          "expanded": "'display-none' | 'activity'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+.",
+        "defaultValue": "display-none"
+      },
+      {
         "name": "immediate",
         "typeInfo": {
           "kind": "primitive",
@@ -5990,6 +6159,19 @@
         "readonly": false,
         "description": "Whether to enable lazy mounting",
         "defaultValue": "false"
+      },
+      {
+        "name": "onEnterComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the open state",
+        "defaultValue": null
       },
       {
         "name": "onExitComplete",
@@ -6528,7 +6710,7 @@
         "conditional": false,
         "required": true,
         "readonly": false,
-        "description": "The render function to render each item in the array",
+        "description": "The function to render each item in the array",
         "defaultValue": null
       },
       {
@@ -7276,6 +7458,19 @@
         "defaultValue": null
       },
       {
+        "name": "hideMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "HideMode",
+          "expanded": "'display-none' | 'activity'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+.",
+        "defaultValue": "display-none"
+      },
+      {
         "name": "highlightedValue",
         "typeInfo": {
           "kind": "union",
@@ -7308,7 +7503,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  contextTrigger?:\n    | string\n    | ((value?: string | undefined) => string)\n    | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  trigger?: (string | ((value?: string) => string)) | undefined;\n  contextTrigger?: (string | ((value?: string) => string)) | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -7366,6 +7561,19 @@
         "required": false,
         "readonly": false,
         "description": "Function to navigate to the selected item if it's an anchor element",
+        "defaultValue": null
+      },
+      {
+        "name": "onEnterComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the open state",
         "defaultValue": null
       },
       {
@@ -7506,7 +7714,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  applyStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -8100,6 +8308,19 @@
         "defaultValue": null
       },
       {
+        "name": "hideMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "HideMode",
+          "expanded": "'display-none' | 'activity'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+.",
+        "defaultValue": "display-none"
+      },
+      {
         "name": "immediate",
         "typeInfo": {
           "kind": "primitive",
@@ -8122,6 +8343,19 @@
         "readonly": false,
         "description": "Whether to enable lazy mounting",
         "defaultValue": "false"
+      },
+      {
+        "name": "onEnterComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the open state",
+        "defaultValue": null
       },
       {
         "name": "onExitComplete",
@@ -8441,6 +8675,19 @@
         "defaultValue": null
       },
       {
+        "name": "hideMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "HideMode",
+          "expanded": "'display-none' | 'activity'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+.",
+        "defaultValue": "display-none"
+      },
+      {
         "name": "id",
         "typeInfo": {
           "kind": "primitive",
@@ -8457,7 +8704,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  anchor?: string | undefined;\n  trigger?: (string | ((value?: string) => string)) | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -8512,6 +8759,19 @@
         "readonly": false,
         "description": "Whether the popover should be modal. When set to `true`:\n- interaction with outside elements will be disabled\n- only popover content will be visible to screen readers\n- scrolling is blocked\n- focus is trapped within the popover",
         "defaultValue": "false"
+      },
+      {
+        "name": "onEnterComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the open state",
+        "defaultValue": null
       },
       {
         "name": "onEscapeKeyDown",
@@ -8652,7 +8912,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  applyStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -8911,6 +9171,19 @@
         "defaultValue": null
       },
       {
+        "name": "hideMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "HideMode",
+          "expanded": "'display-none' | 'activity'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+.",
+        "defaultValue": "display-none"
+      },
+      {
         "name": "immediate",
         "typeInfo": {
           "kind": "primitive",
@@ -8933,6 +9206,19 @@
         "readonly": false,
         "description": "Whether to enable lazy mounting",
         "defaultValue": "false"
+      },
+      {
+        "name": "onEnterComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the open state",
+        "defaultValue": null
       },
       {
         "name": "onExitComplete",
@@ -9150,7 +9436,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  root?: string | undefined;\n  label?: string | undefined;\n  indicator?: string | undefined;\n  item?: ((value: string) => string) | undefined;\n  itemLabel?: ((value: string) => string) | undefined;\n  itemControl?: ((value: string) => string) | undefined;\n  itemHiddenInput?: ((value: string) => string) | undefined;\n}"
+          "expanded": "interface ElementIds {\n  root?: string | undefined;\n  label?: string | undefined;\n  indicator?: string | undefined;\n  item?: ((value: string) => string) | undefined;\n  itemLabel?: ((value: string) => string) | undefined;\n  itemControl?: ((value: string) => string) | undefined;\n  itemHiddenInput?: ((value: string) => string) | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -9932,7 +10218,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  root?: string | undefined;\n  hiddenInput?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n  thumb?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  root?: string | undefined;\n  hiddenInput?: string | undefined;\n  control?: string | undefined;\n  label?: string | undefined;\n  thumb?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -10353,6 +10639,19 @@
         "defaultValue": null
       },
       {
+        "name": "hideMode",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "HideMode",
+          "expanded": "'display-none' | 'activity'"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+.",
+        "defaultValue": "display-none"
+      },
+      {
         "name": "id",
         "typeInfo": {
           "kind": "primitive",
@@ -10369,7 +10668,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  content?: string | undefined;\n  arrow?: string | undefined;\n  positioner?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  trigger?: (string | ((value?: string) => string)) | undefined;\n  content?: string | undefined;\n  arrow?: string | undefined;\n  positioner?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -10412,6 +10711,19 @@
         "readonly": false,
         "description": "Whether to enable lazy mounting",
         "defaultValue": "false"
+      },
+      {
+        "name": "onEnterComplete",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "VoidFunction",
+          "expanded": "() => void"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Function called when the animation ends in the open state",
+        "defaultValue": null
       },
       {
         "name": "onExitComplete",
@@ -10517,7 +10829,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "Tooltip.Positioning",
-          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Tooltip.Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Tooltip.Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  applyStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Tooltip.Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Tooltip.Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -10688,7 +11000,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  trigger?: (string | ((value?: string) => string)) | undefined;\n  positioner?: string | undefined;\n  backdrop?: string | undefined;\n  content?: string | undefined;\n  closeTrigger?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -11064,7 +11376,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  contextTrigger?:\n    | string\n    | ((value?: string | undefined) => string)\n    | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  trigger?: (string | ((value?: string) => string)) | undefined;\n  contextTrigger?: (string | ((value?: string) => string)) | undefined;\n  content?: string | undefined;\n  groupLabel?: ((id: string) => string) | undefined;\n  group?: ((id: string) => string) | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -11225,7 +11537,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  applyStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -11360,7 +11672,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "ElementIds",
-          "expanded": "{\n  anchor?: string | undefined;\n  trigger?: string | ((value?: string | undefined) => string) | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}"
+          "expanded": "interface ElementIds {\n  anchor?: string | undefined;\n  trigger?: (string | ((value?: string) => string)) | undefined;\n  content?: string | undefined;\n  title?: string | undefined;\n  description?: string | undefined;\n  closeTrigger?: string | undefined;\n  positioner?: string | undefined;\n  arrow?: string | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
@@ -11518,7 +11830,7 @@
         "typeInfo": {
           "kind": "reference",
           "type": "PositioningOptions",
-          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
+          "expanded": "interface PositioningOptions {\n  restoreStyles?: boolean | undefined;\n  applyStyles?: boolean | undefined;\n  hideWhenDetached?: boolean | undefined;\n  strategy?: 'absolute' | 'fixed' | undefined;\n  placement?: Placement | undefined;\n  offset?:\n    | {\n        mainAxis?: number | undefined;\n        crossAxis?: number | undefined;\n      }\n    | undefined;\n  gutter?: number | undefined;\n  shift?: number | undefined;\n  overflowPadding?: number | undefined;\n  arrowPadding?: number | undefined;\n  flip?: boolean | Placement[] | undefined;\n  slide?: boolean | undefined;\n  overlap?: boolean | undefined;\n  sameWidth?: boolean | undefined;\n  fitViewport?: boolean | undefined;\n  sizeMiddleware?: boolean | undefined;\n  boundary?: (() => Boundary) | Boundary | 'clipping-ancestors' | undefined;\n  listeners?: boolean | AutoUpdateOptions | undefined;\n  onComplete?: ((data: ComputePositionReturn) => void) | undefined;\n  onPositioned?: ((data: { placed: boolean }) => void) | undefined;\n  getAnchorElement?: (() => HTMLElement | VirtualElement | null) | undefined;\n  getAnchorRect?:\n    | ((element: HTMLElement | VirtualElement | null) => AnchorRect | null)\n    | undefined;\n  updatePosition?:\n    | ((data: {\n        updatePosition: () => Promise<void>;\n        floatingElement: HTMLElement | null;\n      }) => void | Promise<void>)\n    | undefined;\n}\n"
         },
         "conditional": false,
         "required": false,
