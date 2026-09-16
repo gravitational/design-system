@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.3.1
+
+### Patch Changes
+
+- Update Chakra UI to 3.37.0 ([#155](https://github.com/gravitational/design-system/pull/155))
+
 ## 0.3.0
 
 ### Minor Changes
