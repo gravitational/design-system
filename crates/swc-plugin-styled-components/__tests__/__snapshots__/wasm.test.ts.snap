@@ -1450,9 +1450,9 @@ var _StyledDiv2 = styled("div")({
 `;
 
 exports[`Should load styled-components wasm plugin correctly > Should transform transpile-css-prop-ignored-paths correctly 1`] = `
-"// A file under an ignored path, such as a locally linked design system whose components implement the
+"import _styled from "styled-components";
+// A file under an ignored path, such as a locally linked design system whose components implement the
 // css prop themselves. Nothing here is transformed.
-import _styled from "styled-components";
 export function Card({ children }) {
     return /*#__PURE__*/ React.createElement(_StyledDiv, null, children);
 }
