@@ -10,7 +10,6 @@ export const inputRecipe = defineRecipe({
     position: 'relative',
     textAlign: 'start',
     display: 'block',
-    borderRadius: 'sm',
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: 'interactive.tonal.neutral.2',
@@ -83,8 +82,19 @@ export const inputRecipe = defineRecipe({
         _invalid: { paddingInlineEnd: '40px' },
       },
     },
+    shape: {
+      rectangle: {
+        borderRadius: 'sm',
+      },
+      pill: {
+        borderRadius: 'full',
+        bg: 'interactive.tonal.neutral.0',
+        borderColor: 'transparent',
+      },
+    },
   },
   defaultVariants: {
     size: 'md',
+    shape: 'rectangle',
   },
 });

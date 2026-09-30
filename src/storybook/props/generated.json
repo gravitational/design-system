@@ -6581,6 +6581,22 @@
         "defaultValue": null
       },
       {
+        "name": "shape",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'rectangle' | 'pill'",
+          "members": [
+            "'rectangle'",
+            "'pill'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "rectangle"
+      },
+      {
         "name": "size",
         "typeInfo": {
           "kind": "reference",
@@ -7165,6 +7181,22 @@
         "readonly": false,
         "description": "Optional icon to render on the left side of the input.",
         "defaultValue": null
+      },
+      {
+        "name": "shape",
+        "typeInfo": {
+          "kind": "union",
+          "type": "'rectangle' | 'pill'",
+          "members": [
+            "'rectangle'",
+            "'pill'"
+          ]
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": null,
+        "defaultValue": "rectangle"
       },
       {
         "name": "size",
