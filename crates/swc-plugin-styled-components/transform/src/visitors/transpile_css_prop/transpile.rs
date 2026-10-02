@@ -33,6 +33,7 @@ pub fn transpile_css_prop<'a>(state: &'a mut State, config: &'a Config) -> impl 
     top_level_decls: Default::default(),
     ignored_library_imports: Default::default(),
     derived_from_ignored: Default::default(),
+    local_aliases: Default::default(),
   })
 }
 
@@ -52,6 +53,9 @@ struct TranspileCssProp<'a> {
   ignored_library_imports: FxHashSet<Id>,
   // Track components derived from ignored libraries (e.g., styled(Box))
   derived_from_ignored: FxHashSet<Id>,
+
+  // Function-local `const T0 = Box;` aliases of module-level components, see resolve_element_name.
+  local_aliases: FxHashMap<Id, JSXElementName>,
 }
 
 impl TranspileCssProp<'_> {
@@ -68,6 +72,53 @@ impl TranspileCssProp<'_> {
       .as_ref()
       .map(|decls| decls.contains(&ident.to_id()))
       .unwrap_or(false)
+  }
+
+  /// The React Compiler aliases module-level components into function-local temporaries and uses those
+  /// as JSX tags: `const T0 = Box; ... <T0 css={...}>`. The styled component created for a css prop has
+  /// to live at module scope, so such a tag is resolved back to the component it names. Anything else
+  /// is returned unchanged.
+  fn resolve_element_name(&self, name: &JSXElementName) -> JSXElementName {
+    if let JSXElementName::Ident(ident) = name {
+      if let Some(target) = self.local_aliases.get(&ident.to_id()) {
+        return target.clone();
+      }
+    }
+    name.clone()
+  }
+
+  /// Returns the module-level component an alias initializer refers to, following other aliases and
+  /// member accesses (`const T1 = T0;`, `const T2 = Icons.Foo;`).
+  fn component_alias_target(&self, init: &Expr) -> Option<JSXElementName> {
+    match init {
+      Expr::Ident(ident) => {
+        if self.is_top_level_ident(ident) {
+          Some(JSXElementName::Ident(ident.clone()))
+        } else {
+          self.local_aliases.get(&ident.to_id()).cloned()
+        }
+      }
+      Expr::Member(MemberExpr {
+        obj,
+        prop: MemberProp::Ident(prop),
+        ..
+      }) => {
+        let obj = match self.component_alias_target(obj)? {
+          JSXElementName::Ident(ident) => JSXObject::Ident(ident),
+          JSXElementName::JSXMemberExpr(member) => JSXObject::JSXMemberExpr(Box::new(member)),
+          JSXElementName::JSXNamespacedName(..) => return None,
+          #[cfg(swc_ast_unknown)]
+          _ => return None,
+        };
+        Some(JSXElementName::JSXMemberExpr(JSXMemberExpr {
+          span: DUMMY_SP,
+          obj,
+          prop: prop.clone(),
+        }))
+      }
+      Expr::Paren(paren) => self.component_alias_target(&paren.expr),
+      _ => None,
+    }
   }
 
   fn should_ignore_component(&self, name: &JSXElementName) -> bool {
@@ -188,13 +239,34 @@ impl VisitMut for TranspileCssProp<'_> {
         }
       }
     }
+
+    // Only `const` bindings are safe to treat as aliases, a `let` could be reassigned before use.
+    if var_decl.kind != VarDeclKind::Const {
+      return;
+    }
+
+    for decl in &var_decl.decls {
+      let (Pat::Ident(binding), Some(init)) = (&decl.name, &decl.init) else {
+        continue;
+      };
+
+      if self.is_top_level_ident(&binding.id) {
+        continue;
+      }
+
+      if let Some(target) = self.component_alias_target(init) {
+        self.local_aliases.insert(binding.id.to_id(), target);
+      }
+    }
   }
 
   fn visit_mut_jsx_element(&mut self, elem: &mut JSXElement) {
     elem.visit_mut_children_with(self);
 
+    let element_name = self.resolve_element_name(&elem.opening.name);
+
     // Skip CSS prop transformation if this component is from an ignored library
-    if self.should_ignore_component(&elem.opening.name) {
+    if self.should_ignore_component(&element_name) {
       return;
     }
 
@@ -220,7 +292,7 @@ impl VisitMut for TranspileCssProp<'_> {
               .clone()
           };
 
-          let name = get_name_ident(&elem.opening.name);
+          let name = get_name_ident(&element_name);
           let id_sym = name.sym.to_pascal_case();
 
           // Match the original plugin's behavior.
@@ -249,7 +321,7 @@ impl VisitMut for TranspileCssProp<'_> {
               None::<Ident>,
             )
           } else {
-            let name_expr = get_name_expr(&elem.opening.name);
+            let name_expr = get_name_expr(&element_name);
 
             (
               Expr::Call(CallExpr {
