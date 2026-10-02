@@ -5,5 +5,7 @@ import type { RefAttributes } from 'react';
 export function SearchInput(
   props: InputProps & RefAttributes<HTMLInputElement>
 ) {
-  return <Input shape="pill" icon={MagnifyingGlassIcon} {...props} />;
+  return (
+    <Input type="search" shape="pill" icon={MagnifyingGlassIcon} {...props} />
+  );
 }
