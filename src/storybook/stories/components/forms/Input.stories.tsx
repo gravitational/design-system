@@ -1,7 +1,7 @@
 import { VStack } from '@chakra-ui/react';
 import type { Meta } from '@storybook/react-vite';
 
-import { Input } from '../../../../components';
+import { Input, SearchInput } from '../../../../components';
 import { AtIcon, HorseIcon } from '../../../../icons';
 
 const meta = {
@@ -65,3 +65,23 @@ export function ReadOnly() {
 }
 
 ReadOnly.tags = ['!dev'];
+
+export function PillShaped() {
+  return (
+    <VStack gap={3} align="stretch" minW="320px">
+      <Input placeholder="Pill-shaped" shape="pill" />
+    </VStack>
+  );
+}
+
+PillShaped.tags = ['!dev'];
+
+export function Search() {
+  return (
+    <VStack gap={3} align="stretch" minW="320px">
+      <SearchInput placeholder="Search Input" />
+    </VStack>
+  );
+}
+
+Search.tags = ['!dev'];
