@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.4.0
+
+### Minor Changes
+
+- Add a pill-shaped text input and a search input wrapper ([#159](https://github.com/gravitational/design-system/pull/159))
+
 ## 0.3.1
 
 ### Patch Changes

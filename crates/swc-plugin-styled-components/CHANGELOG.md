@@ -1,5 +1,15 @@
 # @swc/plugin-styled-components
 
+## 0.2.0
+
+### Minor Changes
+
+- Add `cssPropIgnorePaths` to allow directories to be ignored (useful when linking during local development) ([#156](https://github.com/gravitational/design-system/pull/156))
+
+### Patch Changes
+
+- Make the CSS prop transform work on output from the React Compiler ([#156](https://github.com/gravitational/design-system/pull/156))
+
 ## 0.1.0
 
 ### Minor Changes
