@@ -56,3 +56,11 @@ export function WarningCircleIcon(props: IconProps) {
     </Icon>
   );
 }
+
+export function WarningCircleFillIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <PhosphorWarningCircleIcon weight="fill" />
+    </Icon>
+  );
+}
