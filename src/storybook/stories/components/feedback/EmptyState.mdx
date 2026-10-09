@@ -1,0 +1,56 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import { Canvas } from '../../../components/Canvas';
+import { DocsHeader } from '../../../components/DocsHeader';
+import { PropTypes } from '../../../components/PropTypes';
+
+import * as Stories from './EmptyState.stories';
+
+<Meta of={Stories} />
+
+<DocsHeader
+  title="Empty State"
+  description="A placeholder when there is no content to show"
+  sourcePath="src/components/feedback/emptyState/ComposedEmptyState.tsx"
+  recipePath="src/components/feedback/emptyState/recipe.ts"
+/>
+
+## Usage
+
+```tsx
+import { ComposedEmptyState } from '@gravitational/design-system';
+
+function Example() {
+  return <ComposedEmptyState title="No results found" />;
+}
+```
+
+<Canvas of={Stories.Default} />
+
+### With description and icon
+
+Pass an icon component with `icon={MagnifyingGlassIcon}`.
+
+<Canvas of={Stories.WithDescriptionExample} />
+
+### With an action and icon
+
+Pass an action as children.
+
+<Canvas of={Stories.WithActionExample} />
+
+### Compose mode
+
+Use `EmptyState.Root` and its slot parts for a custom composition.
+
+<Canvas of={Stories.ComposeExample} />
+
+## Props
+
+### ComposedEmptyState
+
+<PropTypes name="ComposedEmptyState" />
+
+### Root
+
+<PropTypes name="EmptyState" />
