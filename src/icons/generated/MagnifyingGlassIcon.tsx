@@ -56,3 +56,11 @@ export function MagnifyingGlassIcon(props: IconProps) {
     </Icon>
   );
 }
+
+export function MagnifyingGlassFillIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <PhosphorMagnifyingGlassIcon weight="fill" />
+    </Icon>
+  );
+}

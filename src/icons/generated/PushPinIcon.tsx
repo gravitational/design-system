@@ -41,7 +41,7 @@ SOFTWARE.
 */
 
 import { Icon, type IconProps } from '@chakra-ui/react';
-import { HardDrivesIcon as PhosphorHardDrivesIcon } from '@phosphor-icons/react/dist/ssr/HardDrives';
+import { PushPinIcon as PhosphorPushPinIcon } from '@phosphor-icons/react/dist/ssr/PushPin';
 
 /*
 
@@ -49,18 +49,18 @@ THIS FILE IS GENERATED. DO NOT EDIT.
 
 */
 
-export function HardDrivesIcon(props: IconProps) {
+export function PushPinIcon(props: IconProps) {
   return (
     <Icon {...props}>
-      <PhosphorHardDrivesIcon />
+      <PhosphorPushPinIcon />
     </Icon>
   );
 }
 
-export function HardDrivesFillIcon(props: IconProps) {
+export function PushPinFillIcon(props: IconProps) {
   return (
     <Icon {...props}>
-      <PhosphorHardDrivesIcon weight="fill" />
+      <PhosphorPushPinIcon weight="fill" />
     </Icon>
   );
 }
