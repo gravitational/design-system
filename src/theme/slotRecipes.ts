@@ -1,5 +1,6 @@
 import { alertSlotRecipe } from '../components/feedback/alert/recipe';
 import { bannerSlotRecipe } from '../components/feedback/banner/recipe';
+import { emptyStateSlotRecipe } from '../components/feedback/emptyState/recipe';
 import { blockquoteSlotRecipe } from '../components/blockquote/recipe';
 import { checkboxSlotRecipe } from '../components/forms/checkbox/recipe';
 import { datePickerSlotRecipe } from '../components/forms/datePicker/recipe';
@@ -17,6 +18,7 @@ import { tooltipSlotRecipe } from '../components/overlays/tooltip/recipe';
 export const slotRecipes = {
   alert: alertSlotRecipe,
   banner: bannerSlotRecipe,
+  emptyState: emptyStateSlotRecipe,
   blockquote: blockquoteSlotRecipe,
   card: cardSlotRecipe,
   dialog: dialogSlotRecipe,

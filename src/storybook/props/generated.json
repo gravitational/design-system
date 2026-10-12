@@ -2612,6 +2612,50 @@
     "ref": null
   },
   {
+    "name": "ComposedEmptyState",
+    "props": [
+      {
+        "name": "description",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ReactNode",
+          "expanded": "ReactNode"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Additional description text displayed below the title.",
+        "defaultValue": null
+      },
+      {
+        "name": "icon",
+        "typeInfo": {
+          "kind": "reference",
+          "type": "ComponentType<IconProps>",
+          "expanded": "ComponentClass<IconProps, any> | FunctionComponent<IconProps>"
+        },
+        "conditional": false,
+        "required": false,
+        "readonly": false,
+        "description": "Optional icon. The `fill` variant usually looks better.",
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "typeInfo": {
+          "kind": "primitive",
+          "type": "string"
+        },
+        "conditional": false,
+        "required": true,
+        "readonly": false,
+        "description": "The title text of the empty state.",
+        "defaultValue": null
+      }
+    ],
+    "ref": null
+  },
+  {
     "name": "ComposedField",
     "props": [
       {
@@ -6284,6 +6328,31 @@
         "defaultValue": null
       }
     ],
+    "ref": null
+  },
+  {
+    "name": "EmptyState",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "EmptyState.Content",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "EmptyState.Description",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "EmptyState.Indicator",
+    "props": [],
+    "ref": null
+  },
+  {
+    "name": "EmptyState.Title",
+    "props": [],
     "ref": null
   },
   {

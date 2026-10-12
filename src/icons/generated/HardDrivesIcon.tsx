@@ -56,3 +56,11 @@ export function HardDrivesIcon(props: IconProps) {
     </Icon>
   );
 }
+
+export function HardDrivesFillIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <PhosphorHardDrivesIcon weight="fill" />
+    </Icon>
+  );
+}

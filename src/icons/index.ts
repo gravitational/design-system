@@ -96,7 +96,7 @@ export { GithubLogoIcon } from './generated/GithubLogoIcon';
 export { GlobeHemisphereWestIcon } from './generated/GlobeHemisphereWestIcon';
 export { GlobeIcon } from './generated/GlobeIcon';
 export { GraphIcon } from './generated/GraphIcon';
-export { HardDrivesIcon } from './generated/HardDrivesIcon';
+export { HardDrivesIcon, HardDrivesFillIcon } from './generated/HardDrivesIcon';
 export { HexagonIcon } from './generated/HexagonIcon';
 export { HorseIcon } from './generated/HorseIcon';
 export { IdentificationBadgeIcon } from './generated/IdentificationBadgeIcon';
@@ -110,7 +110,10 @@ export { LinuxLogoIcon } from './generated/LinuxLogoIcon';
 export { ListChecksIcon } from './generated/ListChecksIcon';
 export { ListPlusIcon } from './generated/ListPlusIcon';
 export { LockIcon } from './generated/LockIcon';
-export { MagnifyingGlassIcon } from './generated/MagnifyingGlassIcon';
+export {
+  MagnifyingGlassIcon,
+  MagnifyingGlassFillIcon,
+} from './generated/MagnifyingGlassIcon';
 export { MagnifyingGlassMinusIcon } from './generated/MagnifyingGlassMinusIcon';
 export { MagnifyingGlassPlusIcon } from './generated/MagnifyingGlassPlusIcon';
 export { MapPinIcon } from './generated/MapPinIcon';
@@ -131,6 +134,7 @@ export { PlugsConnectedIcon } from './generated/PlugsConnectedIcon';
 export { PlusIcon } from './generated/PlusIcon';
 export { PowerIcon } from './generated/PowerIcon';
 export { PulseIcon } from './generated/PulseIcon';
+export { PushPinIcon, PushPinFillIcon } from './generated/PushPinIcon';
 export { QuestionIcon } from './generated/QuestionIcon';
 export { RobotIcon } from './generated/RobotIcon';
 export { ScanIcon } from './generated/ScanIcon';
@@ -163,7 +167,10 @@ export { UserIcon } from './generated/UserIcon';
 export { UserListIcon } from './generated/UserListIcon';
 export { UsersIcon } from './generated/UsersIcon';
 export { UsersThreeIcon } from './generated/UsersThreeIcon';
-export { WarningCircleIcon } from './generated/WarningCircleIcon';
+export {
+  WarningCircleIcon,
+  WarningCircleFillIcon,
+} from './generated/WarningCircleIcon';
 export { WarningIcon } from './generated/WarningIcon';
 export { WifiHighIcon } from './generated/WifiHighIcon';
 export { WindowsLogoIcon } from './generated/WindowsLogoIcon';
