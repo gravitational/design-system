@@ -7,14 +7,17 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       width: 'full',
+      display: 'flex',
+      justifyContent: 'center',
       px: 4,
       py: 6,
       // Extra bottom padding moves the content slightly upward, which looks
       // more visually centered.
       pb: 8,
-      maxWidth: 'xl',
     },
     content: {
+      width: 'full',
+      maxWidth: 'xl',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
