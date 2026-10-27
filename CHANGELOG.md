@@ -1,5 +1,13 @@
 # @gravitational/design-system
 
+## 0.5.0
+
+### Minor Changes
+
+- Added `ComposedEmptyState`, a placeholder for when there is no content to show. ([#162](https://github.com/gravitational/design-system/pull/162))
+
+- Added the `HardDrivesFillIcon`, `PushPinIcon`, `MagnifyingGlassFillIcon`, `PushPinFillIcon` and `WarningCircleFillIcon` icons. ([#162](https://github.com/gravitational/design-system/pull/162))
+
 ## 0.4.0
 
 ### Minor Changes
