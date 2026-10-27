@@ -1,11 +1,12 @@
 import * as core from '@actions/core';
 import { Octokit, type RestEndpointMethodTypes } from '@octokit/rest';
-import { command, number, option, string } from 'cmd-ts';
+import { command, number, option, string, subcommands } from 'cmd-ts';
 
 import { createOctokit } from '../../util';
+import { storybookNukeCommand } from './nuke';
 
-export const storybookCommand = command({
-  name: 'storybook',
+const storybookCommentCommand = command({
+  name: 'comment',
   args: {
     owner: option({
       type: string,
@@ -30,6 +31,14 @@ export const storybookCommand = command({
     const octokit = createOctokit();
 
     await runStorybookCommand(octokit, owner, repo, pullNumber);
+  },
+});
+
+export const storybookCommand = subcommands({
+  name: 'storybook',
+  cmds: {
+    comment: storybookCommentCommand,
+    'nuke-previews': storybookNukeCommand,
   },
 });
 
