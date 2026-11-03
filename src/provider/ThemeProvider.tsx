@@ -1,15 +1,12 @@
 import { ChakraProvider, type SystemContext } from '@chakra-ui/react';
 import { type PropsWithChildren, useLayoutEffect } from 'react';
 
-import { type ColorMode } from '../theme/resolveColorToken';
+import { type ColorMode } from '../theme';
 
 interface ThemeProviderProps extends PropsWithChildren {
   /** The Chakra design system. */
   system: SystemContext;
-  /**
-   * The resolved color mode.
-   * Leave unset for single-color themes, which have no light/dark distinction.
-   */
+  /** The resolved color mode. */
   forcedTheme?: ColorMode;
 }
 
@@ -19,10 +16,6 @@ export function ThemeProvider({
   children,
 }: ThemeProviderProps) {
   useLayoutEffect(() => {
-    if (!forcedTheme) {
-      return;
-    }
-
     const root = document.documentElement;
 
     // Disable transitions during the theme change, otherwise elements with
@@ -34,8 +27,12 @@ export function ThemeProvider({
     document.head.appendChild(style);
 
     root.classList.remove('light', 'dark');
-    root.classList.add(forcedTheme);
-    root.style.colorScheme = forcedTheme;
+    if (forcedTheme) {
+      root.classList.add(forcedTheme);
+      root.style.colorScheme = forcedTheme;
+    } else {
+      root.style.colorScheme = '';
+    }
 
     // Force a style recalculation before restoring transitions.
     void window.getComputedStyle(document.body).opacity;
@@ -47,6 +44,8 @@ export function ThemeProvider({
     return () => {
       clearTimeout(id);
       style.remove();
+      root.classList.remove('light', 'dark');
+      root.style.colorScheme = '';
     };
   }, [forcedTheme]);
 
