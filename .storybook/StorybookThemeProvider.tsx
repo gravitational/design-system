@@ -1,6 +1,6 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import { ThemeProvider as NextThemeProvider } from 'next-themes';
 import { type PropsWithChildren } from 'react';
+
+import { ThemeProvider } from '../src';
 
 import { type StorybookTheme } from './themes';
 
@@ -13,14 +13,8 @@ export function StorybookThemeProvider({
   theme,
 }: PropsWithChildren<StorybookThemeProviderProps>) {
   return (
-    <ChakraProvider value={theme.system}>
-      <NextThemeProvider
-        attribute="class"
-        disableTransitionOnChange
-        forcedTheme={theme.colorScheme}
-      >
-        {children}
-      </NextThemeProvider>
-    </ChakraProvider>
+    <ThemeProvider system={theme.system} forcedTheme={theme.colorScheme}>
+      {children}
+    </ThemeProvider>
   );
 }

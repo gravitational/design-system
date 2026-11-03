@@ -1,10 +1,10 @@
 import type { SystemContext } from '@chakra-ui/react';
 
-import { createThemeSystem, THEMES, UiThemeMode } from '../src';
+import { createThemeSystem, THEMES, UiThemeMode, type ColorMode } from '../src';
 import { storybookConfig } from './storybookTheme';
 
 export interface StorybookTheme {
-  colorScheme: string;
+  colorScheme: ColorMode;
   system: SystemContext;
   name: string;
 }
