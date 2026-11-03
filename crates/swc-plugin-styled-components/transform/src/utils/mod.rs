@@ -8,7 +8,7 @@ pub use self::analyzer::{analyze, analyzer};
 
 mod analyzer;
 
-pub(crate) fn get_prop_key_as_expr(p: &Prop) -> Cow<Expr> {
+pub(crate) fn get_prop_key_as_expr(p: &Prop) -> Cow<'_, Expr> {
   match p {
     Prop::Shorthand(p) => Cow::Owned(Expr::Ident(p.clone())),
     Prop::KeyValue(p) => prop_name_to_expr(&p.key),
@@ -21,7 +21,7 @@ pub(crate) fn get_prop_key_as_expr(p: &Prop) -> Cow<Expr> {
   }
 }
 
-pub(crate) fn prop_name_to_expr(p: &PropName) -> Cow<Expr> {
+pub(crate) fn prop_name_to_expr(p: &PropName) -> Cow<'_, Expr> {
   match p {
     PropName::Ident(p) => Cow::Owned(Expr::Ident(p.clone().into())),
     PropName::Str(p) => Cow::Owned(Expr::Lit(Lit::Str(p.clone()))),
@@ -322,7 +322,7 @@ impl State {
   }
 }
 
-pub fn prefix_leading_digit(s: &str) -> Cow<str> {
+pub fn prefix_leading_digit(s: &str) -> Cow<'_, str> {
   if s
     .chars()
     .next()
