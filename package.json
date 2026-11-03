@@ -41,7 +41,6 @@
     "@phosphor-icons/core": "^2.1.1",
     "@phosphor-icons/react": "^2.1.10",
     "@tanstack/react-table": "^8.21.3",
-    "next-themes": "^0.4.6",
     "react-hook-form": "^7.75.0",
     "typescript": "^5.9.3"
   },
