@@ -1,13 +1,13 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-import { format, type FormatOptions } from 'oxfmt';
+import { format, type FormatConfig } from 'oxfmt';
 
-async function loadConfig(): Promise<FormatOptions> {
+async function loadConfig(): Promise<FormatConfig> {
   const configPath = resolve(import.meta.dirname, '../../.oxfmtrc.json');
   const raw = await readFile(configPath, 'utf-8');
 
-  return JSON.parse(raw) as FormatOptions;
+  return JSON.parse(raw) as FormatConfig;
 }
 
 export async function writeFormattedFile(path: string, content: string) {
