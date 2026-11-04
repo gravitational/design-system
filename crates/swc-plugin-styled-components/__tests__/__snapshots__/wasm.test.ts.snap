@@ -50,9 +50,7 @@ exports[`Should load styled-components wasm plugin correctly > Should transform 
             configurable: true,
             writable: true
         });
-    } else {
-        obj[key] = value;
-    }
+    } else obj[key] = value;
     return obj;
 }
 import styled from "styled-components";
@@ -319,7 +317,7 @@ const Test = /*#__PURE__*/ styled.div.withConfig({
 })([
     \`width:100%;\`
 ]);
-const Test2 = /*#__PURE__*/ styled("div").withConfig({
+const Test2 = /*#__PURE__*/ (styled("div")).withConfig({
     displayName: "test__Test2",
     componentId: "sc-eb129dbe-1"
 })([
@@ -351,7 +349,7 @@ Component = /*#__PURE__*/ styled.div.withConfig({
 })([
     \`\`
 ]);
-const WrappedComponent = /*#__PURE__*/ styled(Inner).withConfig({
+const WrappedComponent = /*#__PURE__*/ (styled(Inner)).withConfig({
     displayName: "test__WrappedComponent",
     componentId: "sc-eb129dbe-6"
 })([

@@ -433,7 +433,7 @@ impl VisitMut for TranspileCssProp<'_> {
             if reducer.replace_object_with_prop_function {
               css = Expr::Arrow(ArrowExpr {
                 params: vec![Pat::Ident(p.clone().into())],
-                body: Box::new(BlockStmtOrExpr::Expr(Box::new(css.take()))),
+                body: Box::new(ArrowFunctionBody::Expr(Box::new(css.take()))),
                 is_async: false,
                 is_generator: false,
                 ..Default::default()
@@ -469,7 +469,7 @@ impl VisitMut for TranspileCssProp<'_> {
 
                 acc.push(Box::new(Expr::Arrow(ArrowExpr {
                   params: vec![Pat::Ident(p.clone().into())],
-                  body: Box::new(BlockStmtOrExpr::Expr(p.make_member(identifier).into())),
+                  body: Box::new(ArrowFunctionBody::Expr(p.make_member(identifier).into())),
                   is_async: false,
                   is_generator: false,
                   ..Default::default()
@@ -841,7 +841,7 @@ fn get_local_identifier(idx: &mut usize, expr: &Expr) -> IdentName {
   identifier
 }
 
-fn append_if_gt_one(s: &str, suffix: usize) -> Cow<str> {
+fn append_if_gt_one(s: &str, suffix: usize) -> Cow<'_, str> {
   if suffix > 1 {
     Cow::Owned(format!("{s}{suffix}"))
   } else {

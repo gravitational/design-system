@@ -1,7 +1,6 @@
 use std::path::PathBuf;
 
 use jsx_marker::JSXMarkerOptions;
-use swc_atoms::Atom;
 use swc_ecma_parser::{Syntax, TsSyntax};
 use swc_ecma_transforms_testing::test_fixture;
 use testing::fixture;

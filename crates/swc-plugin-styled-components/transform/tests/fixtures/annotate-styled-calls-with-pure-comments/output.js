@@ -5,7 +5,7 @@ const Test = /*#__PURE__*/ styled.div.withConfig({
 })([
     `width:100%;`
 ]);
-const Test2 = /*#__PURE__*/ styled("div").withConfig({
+const Test2 = /*#__PURE__*/ (styled("div")).withConfig({
     displayName: "code__Test2",
     componentId: "sc-eb129dbe-1"
 })([
@@ -37,7 +37,7 @@ Component = /*#__PURE__*/ styled.div.withConfig({
 })([
     ``
 ]);
-const WrappedComponent = /*#__PURE__*/ styled(Inner).withConfig({
+const WrappedComponent = /*#__PURE__*/ (styled(Inner)).withConfig({
     displayName: "code__WrappedComponent",
     componentId: "sc-eb129dbe-6"
 })([
