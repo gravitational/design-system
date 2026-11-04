@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.6.0
+
+### Minor Changes
+
+- `ThemeProvider` no longer depends on `next-themes`. It now applies the color mode you pass it directly. ([#165](https://github.com/gravitational/design-system/pull/165))
+
 ## 0.5.0
 
 ### Minor Changes
