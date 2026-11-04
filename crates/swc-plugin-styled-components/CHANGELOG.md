@@ -1,5 +1,11 @@
 # @swc/plugin-styled-components
 
+## 0.3.0
+
+### Minor Changes
+
+- Update `swc_core` to v83. ([#164](https://github.com/gravitational/design-system/pull/164))
+
 ## 0.2.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @gravitational/swc-plugin-jsx-marker
 
+## 0.2.0
+
+### Minor Changes
+
+- Update `swc_core` to v83. ([#164](https://github.com/gravitational/design-system/pull/164))
+
 ## 0.1.0
 
 ### Minor Changes
