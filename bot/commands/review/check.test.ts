@@ -161,6 +161,19 @@ describe('validateApprovals', () => {
     expect(result.missingGroups.group2).toBe(false);
   });
 
+  it('validates with two group1 approvers', () => {
+    const reviewState: ReviewState = {
+      ...baseReviewState,
+      approvedBy: new Set(['ryanclark', 'avatus']),
+    };
+
+    const result = validateApprovals(baseContext, reviewState);
+
+    expect(result.isValid).toBe(true);
+    expect(result.missingGroups.group1).toBe(false);
+    expect(result.missingGroups.group2).toBe(false);
+  });
+
   describe('group1 author', () => {
     const group1Author: PullRequestContext = {
       ...baseContext,
