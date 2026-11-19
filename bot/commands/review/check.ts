@@ -158,14 +158,20 @@ export function validateApprovals(
     approver => !allGroup1.includes(approver) && !allDesign.includes(approver)
   );
 
+  // a second group 1 approval stands in for group 2
+  const group1Approvals = allGroup1.filter(u =>
+    reviewState.approvedBy.has(u)
+  ).length;
+  const group2Satisfied = group2Approved || group1Approvals >= 2;
+
   const hasEligibleGroup1 = eligibleGroup1.length > 0;
 
   const needsGroup1 = hasEligibleGroup1 && !group1Approved;
-  const needsGroup2 = !group2Approved;
+  const needsGroup2 = !group2Satisfied;
 
   const isValid = hasEligibleGroup1
-    ? group1Approved && group2Approved && designSatisfied
-    : group2Approved && designSatisfied;
+    ? group1Approved && group2Satisfied && designSatisfied
+    : group2Satisfied && designSatisfied;
 
   return {
     isValid,
