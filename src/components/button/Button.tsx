@@ -1,12 +1,46 @@
 import {
-  Button,
+  Button as ChakraButton,
   type ButtonProps as ChakraButtonProps,
 } from '@chakra-ui/react';
-import type { ComponentProps, Ref, RefAttributes } from 'react';
-
-export { Button };
+import {
+  isValidElement,
+  type ComponentProps,
+  type MouseEvent,
+  type ReactElement,
+  type Ref,
+  type RefAttributes,
+} from 'react';
 
 export type ButtonProps = ChakraButtonProps;
+
+function isAnchorButton(props: ButtonProps) {
+  if (props.as === 'a') return true;
+  if (!props.asChild || !isValidElement(props.children)) return false;
+  const child = props.children as ReactElement<{ href?: unknown }>;
+  return child.type === 'a' || typeof child.props.href === 'string';
+}
+
+export function Button(props: ButtonProps) {
+  if (!props.disabled || !isAnchorButton(props)) {
+    return <ChakraButton {...props} />;
+  }
+
+  // `disabled` is not a real attribute on <a>. The recipe hides pointer
+  // events; this also drops the link from the tab order and cancels navigation
+  // if a click still arrives (keyboard or a scripted click).
+  const { onClick, ...rest } = props;
+  return (
+    <ChakraButton
+      {...rest}
+      aria-disabled
+      tabIndex={-1}
+      onClick={(event: MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        onClick?.(event);
+      }}
+    />
+  );
+}
 
 export function ButtonSecondary(
   props: Omit<ButtonProps, 'fill' | 'intent'> & RefAttributes<HTMLButtonElement>

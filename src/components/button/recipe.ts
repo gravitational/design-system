@@ -33,6 +33,8 @@ export const buttonRecipe = defineRecipe({
       borderColor: 'transparent',
       boxShadow: 'none',
       cursor: 'auto',
+      // Anchors ignore the disabled attribute, so a link button stayed clickable.
+      pointerEvents: 'none',
     },
     _icon: {
       flexShrink: '0',
