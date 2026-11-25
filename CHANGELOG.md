@@ -1,5 +1,11 @@
 # @gravitational/design-system
 
+## 0.7.0
+
+### Minor Changes
+
+- update zod to 4.6.7 ([#168](https://github.com/gravitational/design-system/pull/168))
+
 ## 0.6.0
 
 ### Minor Changes
